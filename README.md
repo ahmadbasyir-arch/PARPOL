@@ -2,11 +2,11 @@
 
 Website portal resmi sistem informasi direktori dan rekapitulasi data **Partai Politik Kabupaten Tanah Laut Tahun 2026** (Provinsi Kalimantan Selatan) berbasis framework **Laravel 12** dan **PHP 8.2+**.
 
-Menyajikan data otentik 15 partai politik lengkap dengan logo resmi, legalitas SK kepengurusan, jajaran pengurus DPC/DPD (Ketua, Sekretaris, Bendahara), nomor kontak penghubung (LO), alamat kantor sekretariat, dan status berkas SK3P3.
+Menyajikan data otentik 20 partai politik lengkap dengan logo resmi, legalitas SK kepengurusan, jajaran pengurus DPC/DPD (Ketua, Sekretaris, Bendahara), nomor kontak penghubung (LO), alamat kantor sekretariat, dan status berkas SK3P3.
 
 ---
 
-## 🏛️ Daftar 15 Partai Politik Kabupaten Tanah Laut (2026)
+## 🏛️ Daftar 20 Partai Politik Kabupaten Tanah Laut (2026)
 
 | No | Partai Politik | Akronim | Ketua DPC/DPD | Petugas Penghubung (LO) | Wilayah Kantor | SK3P3 |
 |:--:|---|:---:|---|---|---|:---:|
@@ -25,6 +25,11 @@ Menyajikan data otentik 15 partai politik lengkap dengan logo resmi, legalitas S
 | 13 | Partai Persatuan Indonesia | **PARTAI PERINDO** | KASIR | KASIR (082154094043) | Kel. Karang Taruna, Pelaihari | Ada |
 | 14 | Partai Persatuan Pembangunan | **PPP** | AIRLANGGA | ANGGA (085347222285) | Kel. Karang Taruna, Pelaihari | Ada |
 | 15 | Partai Gerakan Rakyat | **GERAKAN RAKYAT** | MADI | MADI (085248837818) | Desa Damit Hulu, Kec. Batu Ampar | Ada |
+| 16 | Partai Gema Bangsa | **GEMA BANGSA** | EKO CAHYADI, SE | EKO CAHYADI, SE (081349237329) | Kel. Pelaihari, Pelaihari | Ada |
+| 17 | Partai Garda Perubahan Indonesia | **GARUDA** | TRI SURADIANINGSIH | NADIA (085971881052) | Kel. Pelaihari, Pelaihari | Blm |
+| 18 | Partai Kebangkitan Nusantara | **PKN** | MIXE SRIBIMA AREOTEJO, SH | ALI MASHARI (081271781122) | Desa Atu Atu, Pelaihari | Blm |
+| 19 | Partai Ummat | **PARTAI UMMAT** | RONIANSYAH | SYAHRIANTO (085347222285) | Kel. Angsau, Pelaihari | Blm |
+| 20 | Partai Buruh | **PARTAI BURUH** | NURYANTO | MULYAJI (085386145752) | Desa Panggung, Pelaihari | Blm |
 
 ---
 

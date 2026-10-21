@@ -77,7 +77,7 @@
     <div class="no-print mb-4 p-3 bg-light border rounded d-flex justify-content-between align-items-center">
         <div>
             <h5 class="m-0 fw-bold">Pratinjau Cetak Format Dokumen Resmi</h5>
-            <span class="small text-muted">Format A4 Landscape &bull; Rekapitulasi 15 Partai Politik Kab. Tanah Laut</span>
+            <span class="small text-muted">Format A4 Landscape &bull; Rekapitulasi {{ count($parpols) }} Partai Politik Kab. Tanah Laut</span>
         </div>
         <div class="d-flex gap-2">
             <a href="{{ route('parpol.home') }}" class="btn btn-outline-secondary btn-sm">

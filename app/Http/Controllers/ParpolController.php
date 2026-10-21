@@ -48,6 +48,7 @@ class ParpolController extends Controller
         $totalBatuAmpar = Parpol::where('kecamatan', 'Batu Ampar')->count();
         $totalLo = Parpol::whereNotNull('lo_hp')->count();
         $totalSkAda = Parpol::where('sk3p3', 'Ada')->count();
+        $totalSkBlm = Parpol::where('sk3p3', '!=', 'Ada')->count();
 
         $aspirasiTerbaru = Aspirasi::latest()->take(5)->get();
 
@@ -58,6 +59,7 @@ class ParpolController extends Controller
             'totalBatuAmpar',
             'totalLo',
             'totalSkAda',
+            'totalSkBlm',
             'aspirasiTerbaru'
         ));
     }

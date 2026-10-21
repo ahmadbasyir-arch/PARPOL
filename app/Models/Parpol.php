@@ -50,6 +50,11 @@ class Parpol extends Model
             13 => 'images/parpol/perindo.png',
             14 => 'images/parpol/ppp.png',
             15 => 'images/parpol/gerakan-rakyat.png',
+            16 => 'images/parpol/gema-bangsa.jpg',
+            17 => 'images/parpol/garuda.jpg',
+            18 => 'images/parpol/pkn.png',
+            19 => 'images/parpol/ummat.png',
+            20 => 'images/parpol/buruh.png',
         ];
 
         return $latestLogos[$this->nomor_urut] ?? $value;

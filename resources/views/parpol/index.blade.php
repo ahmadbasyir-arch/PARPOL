@@ -253,11 +253,11 @@
                         Data Partai Politik <span class="highlight">Kabupaten Tanah Laut</span>
                     </h1>
                     <p class="hero-lead">
-                        Portal resmi sistem informasi rekapitulasi data legalitas surat keputusan (SK), susunan pengurus (Ketua, Sekretaris, Bendahara), petugas penghubung (LO), serta alamat kantor sekretariat 15 partai politik di Kabupaten Tanah Laut, Provinsi Kalimantan Selatan.
+                        Portal resmi sistem informasi rekapitulasi data legalitas surat keputusan (SK), susunan pengurus (Ketua, Sekretaris, Bendahara), petugas penghubung (LO), serta alamat kantor sekretariat {{ $totalParpol }} partai politik di Kabupaten Tanah Laut, Provinsi Kalimantan Selatan.
                     </p>
                     <div class="d-flex flex-wrap gap-3">
                         <a href="#tabel-data" class="btn btn-primary btn-lg fw-bold px-4 rounded-3 shadow-sm">
-                            <i class="bi bi-table me-2"></i> Telusuri Tabel Resmi (15 Parpol)
+                            <i class="bi bi-table me-2"></i> Telusuri Tabel Resmi ({{ $totalParpol }} Parpol)
                         </a>
                         <a href="#galeri-partai" class="btn btn-outline-light btn-lg fw-semibold px-4 rounded-3">
                             <i class="bi bi-grid-3x3-gap me-2"></i> Direktori Kartu & Logo
@@ -274,19 +274,19 @@
                             <i class="bi bi-patch-check-fill fs-1 text-warning"></i>
                         </div>
                         <h4 class="fw-bold text-white mb-1">Status Verifikasi</h4>
-                        <span class="badge bg-success px-3 py-2 text-uppercase mb-3">100% Terverifikasi SK3P3</span>
+                        <span class="badge bg-success px-3 py-2 text-uppercase mb-3">{{ $totalSkAda }} Terverifikasi SK3P3</span>
                         <p class="text-light opacity-75 small mb-3">
-                            Seluruh 15 partai politik di wilayah Kabupaten Tanah Laut telah memenuhi kelengkapan berkas kepengurusan dan legalitas hukum resmi.
+                            Sebanyak {{ $totalSkAda }} partai politik telah diverifikasi berkas SK3P3, dan {{ $totalSkBlm }} partai dalam proses verifikasi.
                         </p>
                         <div class="border-top border-secondary pt-3 text-start small text-light opacity-75">
                             <div class="d-flex align-items-center mb-2">
-                                <i class="bi bi-geo-alt-fill text-danger me-2"></i> 14 Parpol di Kec. Pelaihari
+                                <i class="bi bi-geo-alt-fill text-danger me-2"></i> {{ $totalPelaihari }} Parpol di Kec. Pelaihari
                             </div>
                             <div class="d-flex align-items-center mb-2">
-                                <i class="bi bi-geo-alt-fill text-danger me-2"></i> 1 Parpol di Kec. Batu Ampar
+                                <i class="bi bi-geo-alt-fill text-danger me-2"></i> {{ $totalBatuAmpar }} Parpol di Kec. Batu Ampar
                             </div>
                             <div class="d-flex align-items-center">
-                                <i class="bi bi-telephone-fill text-success me-2"></i> 15 LO Memiliki Kontak Aktif
+                                <i class="bi bi-telephone-fill text-success me-2"></i> {{ $totalLo }} LO Memiliki Kontak Aktif
                             </div>
                         </div>
                     </div>
@@ -304,8 +304,8 @@
                     <div class="stat-label">Partai Politik Terdaftar</div>
                 </div>
                 <div class="col-6 col-lg-3 border-end">
-                    <div class="stat-number text-success">100%</div>
-                    <div class="stat-label">Status SK3P3 (Semua Ada)</div>
+                    <div class="stat-number text-success">{{ $totalSkAda }} / {{ $totalParpol }}</div>
+                    <div class="stat-label">Status SK3P3 ({{ $totalSkAda }} Ada, {{ $totalSkBlm }} Proses)</div>
                 </div>
                 <div class="col-6 col-lg-3 border-end">
                     <div class="stat-number text-primary">{{ $totalPelaihari }}</div>
@@ -347,9 +347,9 @@
                         </div>
                     </div>
                     <div class="col-md-6 text-md-end d-flex flex-wrap gap-2 justify-content-md-end">
-                        <button class="btn btn-sm btn-outline-primary active filter-btn" onclick="filterByKecamatan('all', this)">Semua (15)</button>
-                        <button class="btn btn-sm btn-outline-primary filter-btn" onclick="filterByKecamatan('Pelaihari', this)">Kec. Pelaihari (14)</button>
-                        <button class="btn btn-sm btn-outline-primary filter-btn" onclick="filterByKecamatan('Batu Ampar', this)">Kec. Batu Ampar (1)</button>
+                        <button class="btn btn-sm btn-outline-primary active filter-btn" onclick="filterByKecamatan('all', this)">Semua ({{ $totalParpol }})</button>
+                        <button class="btn btn-sm btn-outline-primary filter-btn" onclick="filterByKecamatan('Pelaihari', this)">Kec. Pelaihari ({{ $totalPelaihari }})</button>
+                        <button class="btn btn-sm btn-outline-primary filter-btn" onclick="filterByKecamatan('Batu Ampar', this)">Kec. Batu Ampar ({{ $totalBatuAmpar }})</button>
                     </div>
                 </div>
             </div>
@@ -443,9 +443,15 @@
 
                                 <!-- SK3P3 -->
                                 <td class="text-center">
-                                    <span class="badge-sk">
-                                        <i class="bi bi-check2-circle me-1"></i> {{ $p->sk3p3 }}
-                                    </span>
+                                    @if (strtolower($p->sk3p3) === 'ada')
+                                        <span class="badge-sk">
+                                            <i class="bi bi-check2-circle me-1"></i> Ada
+                                        </span>
+                                    @else
+                                        <span class="badge bg-warning text-dark border border-warning rounded-pill px-2 py-1 fw-semibold small">
+                                            <i class="bi bi-hourglass-split me-1"></i> Belum
+                                        </span>
+                                    @endif
                                 </td>
 
                                 <!-- AKSI -->
@@ -467,7 +473,7 @@
         <div class="container py-4">
             <div class="text-center mb-5">
                 <span class="section-badge"><i class="bi bi-grid-3x3-gap me-1"></i> Direktori Profil</span>
-                <h2 class="section-title">Direktori Kartu 15 Partai Politik</h2>
+                <h2 class="section-title">Direktori Kartu {{ $totalParpol }} Partai Politik</h2>
                 <p class="section-subtitle">
                     Tampilan kartu visual modern yang memudahkan pembaca melihat lambang partai, pimpinan DPC/DPD, dan nomor WhatsApp petugas penghubung.
                 </p>
@@ -479,7 +485,11 @@
                         <div class="party-card">
                             <div class="party-card-header bg-light border-bottom">
                                 <span class="badge bg-dark rounded-pill px-3 py-2 fw-bold">NO. {{ $p->nomor_urut }}</span>
-                                <span class="badge-sk"><i class="bi bi-check-circle-fill me-1"></i> SK3P3: Ada</span>
+                                @if (strtolower($p->sk3p3) === 'ada')
+                                    <span class="badge-sk"><i class="bi bi-check-circle-fill me-1"></i> SK3P3: Ada</span>
+                                @else
+                                    <span class="badge bg-warning text-dark border border-warning rounded-pill px-2 py-1 fw-bold small"><i class="bi bi-hourglass-split me-1"></i> SK3P3: Belum</span>
+                                @endif
                             </div>
 
                             <div class="party-card-body text-center">
@@ -546,15 +556,22 @@
                                 <h5 class="fw-bold mb-0 text-dark"><i class="bi bi-geo-alt-fill text-primary me-2"></i>Kecamatan Pelaihari</h5>
                                 <span class="small text-muted">Ibu Kota Kabupaten Tanah Laut</span>
                             </div>
-                            <span class="badge bg-primary fs-6 px-3 py-2 rounded-pill">14 Partai</span>
+                            <span class="badge bg-primary fs-6 px-3 py-2 rounded-pill">{{ $totalPelaihari }} Partai</span>
                         </div>
                         <ul class="list-group list-group-flush small">
                             <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                                 <div>
                                     <strong>Kelurahan Angsau</strong>
-                                    <div class="text-muted">Jl. Boejasin, Jl. KH Mansyur, Jl. Ks Tubun, Jl. Almanar, Puri Anggoro</div>
+                                    <div class="text-muted">Jl. Boejasin, Jl. KH Mansyur, Jl. Ks Tubun, Jl. Almanar, Puri Anggoro, Jl. Al Jihad Manunggal</div>
                                 </div>
-                                <span class="badge bg-secondary rounded-pill">6 Parpol (PKB, Gerindra, Golkar, NasDem, Demokrat, PSI)</span>
+                                <span class="badge bg-secondary rounded-pill">7 Parpol (PKB, Gerindra, Golkar, NasDem, Demokrat, PSI, Ummat)</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <div>
+                                    <strong>Kelurahan Pelaihari</strong>
+                                    <div class="text-muted">Jl. Majakeling No.10, Jl. Norsehat, Jl. Gembira No.29</div>
+                                </div>
+                                <span class="badge bg-secondary rounded-pill">3 Parpol (PBB, Gema Bangsa, Garuda)</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                                 <div>
@@ -579,10 +596,17 @@
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                                 <div>
-                                    <strong>Kelurahan Pelaihari</strong>
-                                    <div class="text-muted">Jl. Majakeling No.10</div>
+                                    <strong>Desa Atu Atu</strong>
+                                    <div class="text-muted">Jl. Kolonel Soepirman Rt.03 Rw.01 No.86</div>
                                 </div>
-                                <span class="badge bg-secondary rounded-pill">1 Parpol (PBB)</span>
+                                <span class="badge bg-secondary rounded-pill">1 Parpol (PKN)</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <div>
+                                    <strong>Desa Panggung</strong>
+                                    <div class="text-muted">Jl. Pondok Indah III Desa Panggung</div>
+                                </div>
+                                <span class="badge bg-secondary rounded-pill">1 Parpol (Partai Buruh)</span>
                             </li>
                         </ul>
                     </div>

@@ -256,7 +256,7 @@
                         <a class="nav-link" href="#tabel-data"><i class="bi bi-table me-1"></i> Tabel Resmi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#galeri-partai"><i class="bi bi-grid-3x3-gap me-1"></i> Direktori Parpol (15)</a>
+                        <a class="nav-link" href="#galeri-partai"><i class="bi bi-grid-3x3-gap me-1"></i> Direktori Parpol (20)</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#sebaran"><i class="bi bi-geo me-1"></i> Sebaran Kantor</a>
@@ -294,17 +294,17 @@
                         </div>
                     </div>
                     <p class="text-secondary small mb-3" style="line-height: 1.7;">
-                        Sistem informasi publik yang menyajikan data otentik legalitas surat keputusan kepengurusan, jajaran pengurus (Ketua, Sekretaris, Bendahara), alamat sekretariat, kontak Liaison Officer (LO), serta status kelengkapan dokumen (SK3P3) 15 partai politik di Kabupaten Tanah Laut, Kalimantan Selatan.
+                        Sistem informasi publik yang menyajikan data otentik legalitas surat keputusan kepengurusan, jajaran pengurus (Ketua, Sekretaris, Bendahara), alamat sekretariat, kontak Liaison Officer (LO), serta status kelengkapan dokumen (SK3P3) 20 partai politik di Kabupaten Tanah Laut, Kalimantan Selatan.
                     </p>
                     <div class="small text-muted">
-                        <i class="bi bi-shield-check text-success me-1"></i> Seluruh 15 Partai Politik Terverifikasi Sah Sesuai SK Terdaftar.
+                        <i class="bi bi-shield-check text-success me-1"></i> Data Terdaftar Resmi Sesuai Rekapitulasi Parpol Tanah Laut 2026.
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6">
                     <h5>Navigasi Direktori</h5>
                     <ul class="footer-links">
-                        <li><a href="#tabel-data">Tabel Dokumen Resmi (15 Parpol)</a></li>
+                        <li><a href="#tabel-data">Tabel Dokumen Resmi (20 Parpol)</a></li>
                         <li><a href="#galeri-partai">Galeri Logo & Profil DPC/DPD</a></li>
                         <li><a href="#sebaran">Sebaran Kantor Kecamatan Pelaihari & Batu Ampar</a></li>
                         <li><a href="{{ route('parpol.cetak') }}" target="_blank">Unduh / Cetak Dokumen Lengkap (A4)</a></li>
@@ -317,13 +317,13 @@
                     <p class="small text-secondary mb-2">
                         <strong class="text-white">Kabupaten Tanah Laut, Kalimantan Selatan</strong><br>
                         Pusat Pemerintahan: Kota Pelaihari 70814<br>
-                        Cakupan Sekretariat: Kel. Angsau, Sarang Halang, Karang Taruna, Pabahanan, Pelaihari & Kec. Batu Ampar.
+                        Cakupan Sekretariat: Kel. Angsau, Sarang Halang, Karang Taruna, Pabahanan, Pelaihari, Desa Atu Atu, Desa Panggung & Kec. Batu Ampar.
                     </p>
                     <p class="small text-secondary mb-1">
                         <i class="bi bi-info-circle text-primary me-2"></i> Sumber Data: Lembar Rekapitulasi Partai Politik Kab. Tanah Laut 2026
                     </p>
                     <p class="small text-secondary">
-                        <i class="bi bi-check2-all text-success me-2"></i> Standar Format SK3P3 Terpenuhi (100% Ada)
+                        <i class="bi bi-check2-all text-success me-2"></i> Rekapitulasi Lengkap 20 Partai Politik
                     </p>
                 </div>
             </div>
@@ -335,7 +335,7 @@
                     &copy; 2026 <strong>SIPARPOL Kabupaten Tanah Laut</strong>. Sistem Informasi Data Partai Politik.
                 </div>
                 <div class="col-md-5 text-center text-md-end mt-2 mt-md-0">
-                    <span class="badge bg-secondary me-2">15 Partai Politik</span>
+                    <span class="badge bg-secondary me-2">20 Partai Politik</span>
                     <span>Pelaihari &bull; Tanah Laut &bull; Kalsel</span>
                 </div>
             </div>
