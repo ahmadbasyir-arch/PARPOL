@@ -120,18 +120,18 @@
         width: 72px;
         height: 72px;
         background: #ffffff;
-        border-radius: 10px;
+        border-radius: 12px;
         border: 1px solid #cbd5e1;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 6px;
+        padding: 4px;
         box-shadow: 0 2px 6px rgba(0,0,0,0.06);
     }
 
     .logo-box img {
-        max-width: 100%;
-        max-height: 100%;
+        max-width: 95%;
+        max-height: 95%;
         object-fit: contain;
     }
 
@@ -358,7 +358,7 @@
                                 <td>
                                     <div class="d-flex align-items-center gap-3">
                                         <div class="logo-box">
-                                            <img src="{{ asset($p->logo) }}" alt="Logo {{ $p->akronim }}">
+                                            <img src="{{ asset($p->logo) }}?v=2" alt="Logo {{ $p->akronim }}">
                                         </div>
                                         <div>
                                             <h6 class="fw-bold text-dark mb-0">{{ $p->akronim }}</h6>
@@ -462,7 +462,7 @@
 
                             <div class="party-card-body text-center">
                                 <div class="mx-auto mb-3" style="width: 100px; height: 100px; padding: 6px; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                                    <img src="{{ asset($p->logo) }}" alt="Logo {{ $p->akronim }}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                                    <img src="{{ asset($p->logo) }}?v=2" alt="Logo {{ $p->akronim }}" style="max-width: 95%; max-height: 95%; object-fit: contain;">
                                 </div>
 
                                 <h5 class="fw-bold text-dark mb-1">{{ $p->akronim }}</h5>
@@ -693,7 +693,7 @@
                     <div class="modal-header bg-dark text-white p-4">
                         <div class="d-flex align-items-center gap-3">
                             <div style="width: 55px; height: 55px; background: #ffffff; border-radius: 10px; padding: 4px; display: flex; align-items: center; justify-content: center;">
-                                <img src="{{ asset($p->logo) }}" alt="Logo {{ $p->akronim }}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                                <img src="{{ asset($p->logo) }}?v=2" alt="Logo {{ $p->akronim }}" style="max-width: 95%; max-height: 95%; object-fit: contain;">
                             </div>
                             <div>
                                 <span class="badge bg-danger text-uppercase px-2 py-1 mb-1">Nomor Urut {{ $p->nomor_urut }}</span>
