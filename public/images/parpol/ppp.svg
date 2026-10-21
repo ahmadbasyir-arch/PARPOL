@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+  <rect width="300" height="300" rx="16" fill="#14532d"/>
+  <!-- Ka'bah Hitam dengan Kiswah Emas -->
+  <g transform="translate(150, 115)">
+    <!-- Perspektif Ka'bah -->
+    <!-- Sisi Depan -->
+    <polygon points="-45,-35 25,-42 25,45 -45,45" fill="#09090b" stroke="#000000" stroke-width="2"/>
+    <!-- Sisi Samping Kanan -->
+    <polygon points="25,-42 60,-28 60,35 25,45" fill="#18181b" stroke="#000000" stroke-width="2"/>
+    <!-- Atap Ka'bah -->
+    <polygon points="-45,-35 -15,-48 60,-28 25,-42" fill="#27272a"/>
+    <!-- Pita Kiswah Emas Sisi Depan -->
+    <polygon points="-45,-20 25,-26 25,-18 -45,-12" fill="#facc15"/>
+    <!-- Pita Kiswah Emas Sisi Samping -->
+    <polygon points="25,-26 60,-15 60,-9 25,-18" fill="#eab308"/>
+    <!-- Pintu Ka'bah Emas -->
+    <rect x="-32" y="-5" width="22" height="42" fill="#facc15" stroke="#ca8a04" stroke-width="1"/>
+    <line x1="-21" y1="-5" x2="-21" y2="37" stroke="#ca8a04" stroke-width="1"/>
+  </g>
+  <!-- Kotak Putih Teks PPP -->
+  <rect x="25" y="215" width="250" height="60" rx="8" fill="#ffffff"/>
+  <text x="150" y="260" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="900" font-size="44" fill="#15803d" text-anchor="middle" letter-spacing="4">PPP</text>
+</svg>

@@ -1,71 +1,69 @@
 @extends('layouts.app')
 
-@section('title', 'PARPOL - Partai Politik Republik Indonesia')
+@section('title', 'Data Partai Politik Kab. Tanah Laut Tahun 2026 | Portal Resmi')
 
 @push('styles')
 <style>
     /* Hero Section */
     .hero-section {
-        background: radial-gradient(circle at 80% 20%, rgba(220, 38, 38, 0.15), transparent 40%),
-                    linear-gradient(135deg, #090e1a 0%, #172554 50%, #1e1b4b 100%);
+        background: radial-gradient(circle at 80% 20%, rgba(30, 58, 138, 0.25), transparent 45%),
+                    linear-gradient(135deg, #090e1a 0%, #0f172a 50%, #172554 100%);
         color: #ffffff;
-        padding: 95px 0 110px;
+        padding: 70px 0 90px;
         position: relative;
-        overflow: hidden;
     }
 
     .hero-badge {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        background: rgba(239, 68, 68, 0.18);
-        border: 1px solid rgba(239, 68, 68, 0.4);
-        color: #fca5a5;
-        padding: 8px 18px;
+        background: rgba(30, 58, 138, 0.4);
+        border: 1px solid rgba(96, 165, 250, 0.4);
+        color: #93c5fd;
+        padding: 7px 18px;
         border-radius: 50px;
-        font-size: 0.85rem;
-        font-weight: 600;
+        font-size: 0.82rem;
+        font-weight: 700;
         letter-spacing: 0.8px;
-        margin-bottom: 24px;
-        backdrop-filter: blur(8px);
+        margin-bottom: 20px;
     }
 
     .hero-title {
-        font-size: 3.4rem;
+        font-size: 2.9rem;
         font-weight: 800;
-        line-height: 1.18;
+        line-height: 1.2;
         letter-spacing: -1px;
-        margin-bottom: 24px;
+        margin-bottom: 18px;
     }
 
     .hero-title .highlight {
-        background: linear-gradient(120deg, #f87171, #fbbf24);
+        background: linear-gradient(120deg, #60a5fa, #38bdf8, #facc15);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
 
     .hero-lead {
-        font-size: 1.2rem;
+        font-size: 1.12rem;
         color: #cbd5e1;
         line-height: 1.7;
-        margin-bottom: 35px;
-        max-width: 620px;
+        margin-bottom: 30px;
+        max-width: 700px;
     }
 
     /* Stats Banner */
     .stats-bar {
         background: #ffffff;
-        border-radius: 20px;
-        margin-top: -55px;
-        box-shadow: 0 15px 35px -5px rgba(15, 23, 42, 0.12);
-        padding: 30px 25px;
+        border-radius: 18px;
+        margin-top: -45px;
+        box-shadow: 0 15px 35px -5px rgba(15, 23, 42, 0.1);
+        padding: 26px 20px;
         position: relative;
         z-index: 20;
         border: 1px solid #e2e8f0;
     }
 
     .stat-number {
-        font-size: 2.2rem;
+        font-size: 2.1rem;
         font-weight: 800;
         color: var(--parpol-primary);
         line-height: 1;
@@ -73,129 +71,148 @@
     }
 
     .stat-label {
-        font-size: 0.85rem;
-        font-weight: 600;
+        font-size: 0.8rem;
+        font-weight: 700;
         color: #64748b;
         text-transform: uppercase;
         letter-spacing: 0.5px;
     }
 
-    /* Visi Misi */
-    .pilar-card {
+    /* Official Table Styles */
+    .table-parpol {
         background: #ffffff;
-        border-radius: 16px;
-        padding: 32px 26px;
-        border: 1px solid #e2e8f0;
-        transition: all 0.3s ease;
-        height: 100%;
-    }
-
-    .pilar-card:hover {
-        border-color: #f87171;
-        box-shadow: 0 12px 28px rgba(185, 28, 28, 0.08);
-        transform: translateY(-4px);
-    }
-
-    .pilar-icon-wrap {
-        width: 58px;
-        height: 58px;
+        border-collapse: separate;
+        border-spacing: 0;
         border-radius: 14px;
-        background: #fee2e2;
-        color: var(--parpol-primary);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.6rem;
-        margin-bottom: 20px;
-    }
-
-    /* Pimpinan */
-    .leader-card {
-        border-radius: 16px;
         overflow: hidden;
+        border: 1px solid #cbd5e1;
+    }
+
+    .table-parpol thead th {
+        background: #0f172a;
+        color: #ffffff;
+        font-size: 0.82rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        padding: 14px 16px;
+        border-bottom: 3px solid var(--parpol-primary);
+        vertical-align: middle;
+    }
+
+    .table-parpol tbody td {
+        padding: 16px 16px;
+        vertical-align: top;
+        font-size: 0.88rem;
+        border-bottom: 1px solid #e2e8f0;
+        color: #334155;
+    }
+
+    .table-parpol tbody tr:hover {
+        background-color: #f8fafc;
+    }
+
+    .table-parpol tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    .logo-box {
+        width: 72px;
+        height: 72px;
         background: #ffffff;
-        border: 1px solid #e2e8f0;
-        transition: all 0.3s ease;
-    }
-
-    .leader-card:hover {
-        box-shadow: 0 16px 30px rgba(0,0,0,0.08);
-        transform: translateY(-4px);
-    }
-
-    .leader-avatar {
-        height: 200px;
-        background: linear-gradient(135deg, #1e293b, #334155);
+        border-radius: 10px;
+        border: 1px solid #cbd5e1;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #94a3b8;
-        font-size: 4rem;
-        position: relative;
+        padding: 6px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.06);
     }
 
-    .leader-badge {
-        position: absolute;
-        bottom: 12px;
-        right: 12px;
-        background: rgba(15, 23, 42, 0.85);
-        color: var(--parpol-accent);
-        font-size: 0.75rem;
-        font-weight: 700;
-        padding: 4px 12px;
-        border-radius: 30px;
-        border: 1px solid rgba(245, 158, 11, 0.3);
+    .logo-box img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
     }
 
-    /* Program Section */
-    .program-card {
+    /* Party Cards */
+    .party-card {
         background: #ffffff;
         border-radius: 16px;
-        padding: 28px 24px;
         border: 1px solid #e2e8f0;
-        transition: all 0.25s;
+        box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+        transition: all 0.28s ease;
+        height: 100%;
+        display: flex;
+        flex-column: column;
     }
 
-    .program-card:hover {
-        background: #fffafa;
-        border-color: #fca5a5;
+    .party-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 14px 28px rgba(15, 23, 42, 0.09);
+        border-color: #93c5fd;
     }
 
-    /* Form Card */
-    .form-wrapper {
-        background: #ffffff;
-        border-radius: 20px;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-        padding: 40px;
-    }
-
-    .form-control, .form-select {
-        border-radius: 10px;
-        padding: 12px 16px;
-        border: 1px solid #cbd5e1;
-        font-size: 0.95rem;
-    }
-
-    .form-control:focus, .form-select:focus {
-        border-color: var(--parpol-primary);
-        box-shadow: 0 0 0 4px rgba(185, 28, 28, 0.15);
-    }
-
-    .form-label {
-        font-weight: 600;
-        font-size: 0.9rem;
-        color: #334155;
-        margin-bottom: 6px;
-    }
-
-    /* Aspirasi Item */
-    .aspirasi-card {
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        border-radius: 12px;
+    .party-card-header {
         padding: 16px 20px;
-        margin-bottom: 14px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .party-card-body {
+        padding: 20px;
+        flex: 1;
+    }
+
+    .party-card-footer {
+        padding: 14px 20px;
+        background: #f8fafc;
+        border-top: 1px solid #e2e8f0;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+
+    .btn-wa {
+        background-color: #25d366;
+        color: #ffffff;
+        font-weight: 600;
+        border: none;
+        border-radius: 8px;
+        padding: 7px 14px;
+        font-size: 0.85rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        text-decoration: none;
+        transition: all 0.2s;
+    }
+
+    .btn-wa:hover {
+        background-color: #1eb954;
+        color: #ffffff;
+        transform: translateY(-1px);
+    }
+
+    .badge-sk {
+        background: #dcfce7;
+        color: #15803d;
+        border: 1px solid #86efac;
+        font-weight: 700;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.78rem;
+    }
+
+    /* Sebaran Wilayah */
+    .wilayah-box {
+        background: #ffffff;
+        border-radius: 14px;
+        border: 1px solid #e2e8f0;
+        padding: 20px;
+        height: 100%;
     }
 </style>
 @endpush
@@ -206,50 +223,48 @@
     <section class="hero-section" id="beranda">
         <div class="container">
             <div class="row align-items-center g-5">
-                <div class="col-lg-7">
+                <div class="col-lg-8">
                     <div class="hero-badge">
-                        <i class="bi bi-star-fill text-warning"></i> PARTAI POLITIK REPUBLIK INDONESIA
+                        <i class="bi bi-shield-check text-warning"></i> REKAPITULASI RESMI TAHUN 2026
                     </div>
                     <h1 class="hero-title">
-                        Satu Suara, Satu Barisan Demi <span class="highlight">Kedaulatan & Kejayaan Rakyat</span>
+                        Data Partai Politik <span class="highlight">Kabupaten Tanah Laut</span>
                     </h1>
                     <p class="hero-lead">
-                        PARPOL adalah gerakan politik kebangsaan yang bertekad menghadirkan keadilan sosial, kemandirian ekonomi, dan birokrasi berintegritas untuk seluruh rakyat Indonesia dari Sabang sampai Merauke.
+                        Portal resmi sistem informasi rekapitulasi data legalitas surat keputusan (SK), susunan pengurus (Ketua, Sekretaris, Bendahara), petugas penghubung (LO), serta alamat kantor sekretariat 15 partai politik di Kabupaten Tanah Laut, Provinsi Kalimantan Selatan.
                     </p>
                     <div class="d-flex flex-wrap gap-3">
-                        <a href="#daftar-kader" class="btn btn-parpol btn-lg">
-                            <i class="bi bi-person-plus-fill me-2"></i> Gabung Jadi Kader
+                        <a href="#tabel-data" class="btn btn-primary btn-lg fw-bold px-4 rounded-3 shadow-sm">
+                            <i class="bi bi-table me-2"></i> Telusuri Tabel Resmi (15 Parpol)
                         </a>
-                        <a href="#aspirasi" class="btn btn-parpol-outline btn-lg">
-                            <i class="bi bi-chat-quote-fill me-2"></i> Sampaikan Aspirasi
+                        <a href="#galeri-partai" class="btn btn-outline-light btn-lg fw-semibold px-4 rounded-3">
+                            <i class="bi bi-grid-3x3-gap me-2"></i> Direktori Kartu & Logo
                         </a>
-                        <a href="#tentang" class="btn btn-link text-white text-decoration-none d-flex align-items-center px-3">
-                            Pelajari Visi <i class="bi bi-arrow-right ms-2"></i>
+                        <a href="{{ route('parpol.cetak') }}" target="_blank" class="btn btn-warning btn-lg fw-bold text-dark px-4 rounded-3 shadow-sm">
+                            <i class="bi bi-printer-fill me-2"></i> Cetak Laporan A4
                         </a>
                     </div>
                 </div>
 
-                <div class="col-lg-5 d-none d-lg-block text-center">
-                    <div class="p-4 rounded-4" style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(12px);">
-                        <div class="mb-4">
-                            <div class="d-inline-flex p-3 rounded-circle bg-danger bg-opacity-25 border border-danger text-white mb-3">
-                                <i class="bi bi-shield-shaded fs-1 text-danger"></i>
-                            </div>
-                            <h3 class="fw-bold text-white mb-2">Manifesto Kebangsaan</h3>
-                            <p class="text-light opacity-75 small">
-                                "Politik adalah ibadah perjuangan membela kaum yang lemah, menegakkan kebenaran konstitusi, dan memajukan peradaban nusantara."
-                            </p>
+                <div class="col-lg-4 d-none d-lg-block text-center">
+                    <div class="p-4 rounded-4" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); backdrop-filter: blur(12px);">
+                        <div class="d-inline-flex p-3 rounded-circle bg-primary bg-opacity-25 border border-primary text-white mb-3">
+                            <i class="bi bi-patch-check-fill fs-1 text-warning"></i>
                         </div>
-                        
+                        <h4 class="fw-bold text-white mb-1">Status Verifikasi</h4>
+                        <span class="badge bg-success px-3 py-2 text-uppercase mb-3">100% Terverifikasi SK3P3</span>
+                        <p class="text-light opacity-75 small mb-3">
+                            Seluruh 15 partai politik di wilayah Kabupaten Tanah Laut telah memenuhi kelengkapan berkas kepengurusan dan legalitas hukum resmi.
+                        </p>
                         <div class="border-top border-secondary pt-3 text-start small text-light opacity-75">
                             <div class="d-flex align-items-center mb-2">
-                                <i class="bi bi-check-circle-fill text-warning me-2"></i> Terdaftar Resmi di Kemenkumham RI
+                                <i class="bi bi-geo-alt-fill text-danger me-2"></i> 14 Parpol di Kec. Pelaihari
                             </div>
                             <div class="d-flex align-items-center mb-2">
-                                <i class="bi bi-check-circle-fill text-warning me-2"></i> Memenuhi Syarat KPU RI 100%
+                                <i class="bi bi-geo-alt-fill text-danger me-2"></i> 1 Parpol di Kec. Batu Ampar
                             </div>
                             <div class="d-flex align-items-center">
-                                <i class="bi bi-check-circle-fill text-warning me-2"></i> Keterbukaan Informasi Publik Terverifikasi
+                                <i class="bi bi-telephone-fill text-success me-2"></i> 15 LO Memiliki Kontak Aktif
                             </div>
                         </div>
                     </div>
@@ -261,347 +276,227 @@
     <!-- ================= STATS BAR ================= -->
     <div class="container">
         <div class="stats-bar">
-            <div class="row text-center g-4">
+            <div class="row text-center g-3">
                 <div class="col-6 col-lg-3 border-end">
-                    <div class="stat-number">38</div>
-                    <div class="stat-label">Provinsi (DPD Lengkap)</div>
+                    <div class="stat-number">{{ $totalParpol }}</div>
+                    <div class="stat-label">Partai Politik Terdaftar</div>
                 </div>
                 <div class="col-6 col-lg-3 border-end">
-                    <div class="stat-number">514</div>
-                    <div class="stat-label">Kabupaten / Kota (DPC)</div>
+                    <div class="stat-number text-success">100%</div>
+                    <div class="stat-label">Status SK3P3 (Semua Ada)</div>
                 </div>
                 <div class="col-6 col-lg-3 border-end">
-                    <div class="stat-number">{{ number_format($totalKader, 0, ',', '.') }}+</div>
-                    <div class="stat-label">Kader Aktif Ber-KTA</div>
+                    <div class="stat-number text-primary">{{ $totalPelaihari }}</div>
+                    <div class="stat-label">Sekretariat di Kec. Pelaihari</div>
                 </div>
                 <div class="col-6 col-lg-3">
-                    <div class="stat-number text-warning">{{ number_format($totalAspirasi, 0, ',', '.') }}+</div>
-                    <div class="stat-label">Aspirasi Rakyat Terhimpun</div>
+                    <div class="stat-number text-danger">{{ $totalBatuAmpar }}</div>
+                    <div class="stat-label">Sekretariat di Kec. Batu Ampar</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ================= IDENTITAS & LEGALITAS RESMI PARTAI ================= -->
-    <section class="py-5 mt-4" id="legalitas">
-        <div class="container py-4">
-            <div class="text-center mb-5">
-                <span class="section-badge"><i class="bi bi-shield-check me-1"></i> Data Resmi & Badan Hukum</span>
-                <h2 class="section-title">Identitas Resmi, Lambang & Legalitas Partai</h2>
-                <p class="section-subtitle">
-                    Keterbukaan informasi publik mengenai legalitas pendirian, SK Kementerian Hukum & HAM, penetapan KPU RI, serta filosofi lambang resmi.
-                </p>
-            </div>
-
-            <!-- Kartu Identitas & Nomor Urut Pemilu -->
-            <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-5" style="background: linear-gradient(135deg, #0f172a, #1e293b); color: #ffffff;">
-                <div class="p-4 p-lg-5">
-                    <div class="row align-items-center g-4">
-                        <!-- Nomor Urut Kotak Suara KPU -->
-                        <div class="col-lg-3 text-center">
-                            <div class="p-3 rounded-4 mx-auto" style="max-width: 200px; background: #ffffff; border: 4px solid var(--parpol-primary); box-shadow: 0 10px 25px rgba(0,0,0,0.3);">
-                                <span class="d-block text-secondary small fw-bold text-uppercase" style="letter-spacing: 1px;">Nomor Urut Resmi</span>
-                                <div class="display-1 fw-bold text-danger my-1" style="line-height: 1;">{{ $identitasPartai['nomor_urut'] }}</div>
-                                <span class="badge bg-danger text-uppercase px-2 py-1">KPU RI Terverifikasi</span>
-                            </div>
-                        </div>
-
-                        <!-- Nama Resmi & Slogan -->
-                        <div class="col-lg-5">
-                            <span class="text-warning text-uppercase fw-bold small letter-spacing-1">
-                                <i class="bi bi-check-circle-fill me-1"></i> {{ $identitasPartai['status_peserta'] }}
-                            </span>
-                            <h2 class="fw-bold text-white mt-1 mb-2">{{ $identitasPartai['nama_resmi'] }}</h2>
-                            <p class="text-light opacity-75 mb-3 fs-5">
-                                Nama Singkatan / Akronim: <strong class="text-warning">{{ $identitasPartai['singkatan'] }}</strong>
-                            </p>
-                            <div class="d-inline-flex align-items-center px-3 py-2 rounded-3" style="background: rgba(255, 255, 255, 0.08); border-left: 4px solid var(--parpol-accent);">
-                                <i class="bi bi-quote fs-4 text-warning me-2"></i>
-                                <span class="fst-italic text-white fw-semibold">"{{ $identitasPartai['slogan'] }}"</span>
-                            </div>
-                        </div>
-
-                        <!-- Dokumen Legalitas Kemenkumham & Notaris -->
-                        <div class="col-lg-4">
-                            <div class="p-4 rounded-4" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
-                                <h6 class="text-warning fw-bold text-uppercase small mb-3">
-                                    <i class="bi bi-patch-check-fill me-1"></i> Dokumen Legalitas Hukum
-                                </h6>
-                                <div class="mb-3 small">
-                                    <strong class="text-white d-block">SK Kemenkumham RI:</strong>
-                                    <span class="text-light opacity-75">{{ $identitasPartai['sk_kemenkumham']['nomor'] }}</span><br>
-                                    <span class="badge bg-success bg-opacity-25 text-success-emphasis border border-success mt-1">Disahkan {{ $identitasPartai['sk_kemenkumham']['tanggal'] }}</span>
-                                </div>
-                                <div class="mb-3 small">
-                                    <strong class="text-white d-block">Akta Notaris Pendirian:</strong>
-                                    <span class="text-light opacity-75">{{ $identitasPartai['akta_notaris']['nomor'] }}</span><br>
-                                    <span class="text-light opacity-75">Notaris: {{ $identitasPartai['akta_notaris']['notaris'] }}</span>
-                                </div>
-                                <div class="small">
-                                    <strong class="text-white d-block">Tanggal Deklarasi / Pendirian:</strong>
-                                    <span class="text-light opacity-75">{{ $identitasPartai['tanggal_pendirian'] }} (Jakarta)</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Logo & Filosofi Lambang Partai -->
-            <div class="row g-4 align-items-center mb-5">
-                <div class="col-lg-4 text-center">
-                    <div class="p-4 rounded-4 bg-white border shadow-sm text-center">
-                        <img src="{{ asset('images/logo-parpol.svg') }}" alt="Lambang Resmi PARPOL" class="img-fluid mb-3" style="max-height: 230px;">
-                        <h5 class="fw-bold text-dark mb-1">Lambang Resmi PARPOL</h5>
-                        <p class="text-secondary small mb-3">Format Vektor SVG Kualitas Tinggi (Resmi DPP)</p>
-                        <a href="{{ asset('images/logo-parpol.svg') }}" download="logo-parpol-resmi.svg" class="btn btn-outline-danger btn-sm rounded-pill px-3">
-                            <i class="bi bi-download me-1"></i> Unduh File Vektor (SVG)
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-8">
-                    <h4 class="fw-bold text-dark mb-3">
-                        <i class="bi bi-palette2 text-danger me-2"></i> Arti & Filosofi Lambang Partai
-                    </h4>
-                    <p class="text-secondary small mb-4">
-                        Setiap garis, warna, dan lambang pada bendera PARPOL mengandung makna luhur yang mencerminkan cita-cita pendiri bangsa dan jati diri perjuangan rakyat:
-                    </p>
-
-                    <div class="row g-3">
-                        @foreach ($identitasPartai['filosofi_logo'] as $item)
-                            <div class="col-md-6">
-                                <div class="p-3 rounded-3 border bg-white h-100 shadow-none">
-                                    <h6 class="fw-bold text-danger mb-1 d-flex align-items-center gap-2">
-                                        <i class="bi bi-check-circle-fill text-warning"></i> {{ $item['elemen'] }}
-                                    </h6>
-                                    <p class="text-secondary small mb-0" style="line-height: 1.5;">
-                                        {{ $item['makna'] }}
-                                    </p>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-
-            <!-- Visi & 5 Butir Misi Resmi (Panca Krida) -->
-            <div class="p-4 p-md-5 rounded-4 bg-white border shadow-sm mb-4">
-                <div class="row g-4">
-                    <div class="col-lg-5 border-end-lg">
-                        <span class="badge bg-danger px-3 py-2 text-uppercase mb-2">Visi Resmi Partai</span>
-                        <h4 class="fw-bold text-dark mb-3">Arah Haluan Kebangsaan</h4>
-                        <div class="p-3 rounded-3 bg-light border-start border-4 border-danger">
-                            <p class="text-dark fw-medium mb-0" style="font-size: 1.05rem; line-height: 1.7;">
-                                "{{ $identitasPartai['visi'] }}"
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-7 ps-lg-4">
-                        <span class="badge bg-dark px-3 py-2 text-uppercase mb-2">Misi Resmi (Panca Krida)</span>
-                        <h4 class="fw-bold text-dark mb-3">Lima Agenda Perjuangan</h4>
-                        <div class="d-flex flex-column gap-3">
-                            @foreach ($identitasPartai['misi'] as $idx => $misiItem)
-                                <div class="d-flex align-items-start gap-3">
-                                    <span class="badge rounded-circle bg-danger text-white d-flex align-items-center justify-content-center" style="width: 28px; height: 28px; font-size: 0.85rem; flex-shrink: 0;">
-                                        {{ $idx + 1 }}
-                                    </span>
-                                    <p class="text-secondary mb-0 small" style="line-height: 1.6;">
-                                        {{ $misiItem }}
-                                    </p>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ================= TENTANG / VISI & MISI ================= -->
-    <section class="py-5" id="tentang">
-        <div class="container py-4">
-            <div class="text-center mb-5">
-                <span class="section-badge"><i class="bi bi-compass me-1"></i> Haluan Perjuangan</span>
-                <h2 class="section-title">Visi & Nilai Dasar PARPOL</h2>
-                <p class="section-subtitle">
-                    Landasan filosofis dan garis perjuangan kami demi tegaknya martabat bangsa dan kesejahteraan seluruh tumpah darah Indonesia.
-                </p>
-            </div>
-
-            <!-- Kartu Visi Utama -->
-            <div class="card border-0 shadow-sm p-4 p-md-5 mb-5 rounded-4" style="background: linear-gradient(135deg, #1e293b, #0f172a); color: #ffffff;">
-                <div class="row align-items-center">
-                    <div class="col-md-3 text-center mb-4 mb-md-0">
-                        <span class="badge bg-danger fs-6 px-3 py-2 text-uppercase mb-2">Visi Utama</span>
-                        <h1 class="display-3 fw-bold text-warning mb-0"><i class="bi bi-eye"></i></h1>
-                    </div>
-                    <div class="col-md-9 border-start-md ps-md-4">
-                        <h4 class="fw-bold mb-3 text-white">Mewujudkan Indonesia yang Berdaulat, Adil Makmur, dan Bermartabat di Mata Dunia</h4>
-                        <p class="text-light opacity-75 mb-0 leading-relaxed">
-                            Mewujudkan tata pemerintahan yang bersih, berpihak sepenuhnya pada kepentingan rakyat jelata, memperkuat ketahanan pangan dan ekonomi kerakyatan, serta menjaga persatuan Bhinneka Tunggal Ika dengan integritas moral tanpa kompromi.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 4 Pilar Gerakan -->
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-3">
-                    <div class="pilar-card">
-                        <div class="pilar-icon-wrap">
-                            <i class="bi bi-people-fill"></i>
-                        </div>
-                        <h5 class="fw-bold text-dark mb-2">Kedaulatan Rakyat</h5>
-                        <p class="text-secondary small mb-0">
-                            Menempatkan rakyat sebagai pemegang mandat tertinggi kekuasaan dan menolak oligarki yang merugikan publik.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3">
-                    <div class="pilar-card">
-                        <div class="pilar-icon-wrap">
-                            <i class="bi bi-graph-up-arrow"></i>
-                        </div>
-                        <h5 class="fw-bold text-dark mb-2">Ekonomi Berdikari</h5>
-                        <p class="text-secondary small mb-0">
-                            Penguatan koperasi, UMKM, petani, dan nelayan agar mandiri secara ekonomi dan berdaya saing global.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3">
-                    <div class="pilar-card">
-                        <div class="pilar-icon-wrap">
-                            <i class="bi bi-shield-lock-fill"></i>
-                        </div>
-                        <h5 class="fw-bold text-dark mb-2">Keadilan Hukum</h5>
-                        <p class="text-secondary small mb-0">
-                            Pemberantasan korupsi tanpa tebang pilih, penegakan HAM, serta kepastian hukum yang adil bagi setiap warga negara.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3">
-                    <div class="pilar-card">
-                        <div class="pilar-icon-wrap">
-                            <i class="bi bi-mortarboard-fill"></i>
-                        </div>
-                        <h5 class="fw-bold text-dark mb-2">SDM Unggul & Berkarakter</h5>
-                        <p class="text-secondary small mb-0">
-                            Pendidikan bermutu, sains modern, dan teknologi yang berakar kuat pada nilai-nilai Pancasila dan kearifan lokal.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ================= PIMPINAN NASIONAL ================= -->
-    <section class="py-5 bg-white border-top border-bottom" id="pimpinan">
-        <div class="container py-4">
-            <div class="text-center mb-5">
-                <span class="section-badge"><i class="bi bi-award me-1"></i> Kepengurusan</span>
-                <h2 class="section-title">Dewan Pimpinan Pusat (DPP)</h2>
-                <p class="section-subtitle">
-                    Kombinasi para tokoh berintegritas, cendekiawan, praktisi, dan aktivis pemuda yang memimpin arah perjuangan partai.
-                </p>
-            </div>
-
-            <div class="row g-4">
-                @foreach ($pimpinan as $leader)
-                    <div class="col-md-6 col-lg-3">
-                        <div class="leader-card h-100">
-                            <div class="leader-avatar">
-                                <i class="bi bi-person-bounding-box"></i>
-                                <span class="leader-badge">{{ $leader['periode'] }}</span>
-                            </div>
-                            <div class="p-4">
-                                <span class="text-danger fw-bold small text-uppercase">{{ $leader['jabatan'] }}</span>
-                                <h5 class="fw-bold text-dark mt-1 mb-2">{{ $leader['nama'] }}</h5>
-                                <p class="text-secondary small mb-0">
-                                    {{ $leader['bio'] }}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
-    <!-- ================= PROGRAM AKSI UNGGULAN ================= -->
-    <section class="py-5" id="program">
-        <div class="container py-4">
-            <div class="text-center mb-5">
-                <span class="section-badge"><i class="bi bi-list-check me-1"></i> Aksi Nyata</span>
-                <h2 class="section-title">Program Unggulan PARPOL</h2>
-                <p class="section-subtitle">
-                    Bukan sekadar janji kampanye, program konkret yang langsung menyentuh sendi-sendi kehidupan masyarakat.
-                </p>
-            </div>
-
-            <div class="row g-4">
-                @foreach ($programUnggulan as $prog)
-                    <div class="col-md-6 col-lg-4">
-                        <div class="program-card h-100">
-                            <div class="d-flex align-items-center gap-3 mb-3">
-                                <div class="pilar-icon-wrap mb-0" style="width: 48px; height: 48px; font-size: 1.3rem;">
-                                    <i class="bi {{ $prog['icon'] }}"></i>
-                                </div>
-                                <h5 class="fw-bold mb-0 text-dark">{{ $prog['judul'] }}</h5>
-                            </div>
-                            <p class="text-secondary small mb-0" style="line-height: 1.6;">
-                                {{ $prog['deskripsi'] }}
-                            </p>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
-    <!-- ================= BERITA & KEGIATAN TERKINI ================= -->
-    <section class="py-5 bg-white border-top border-bottom" id="berita">
-        <div class="container py-4">
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-5">
+    <!-- ================= TABEL DATA RESMI (PERSIS DOKUMEN FISIK) ================= -->
+    <section class="py-5 mt-4" id="tabel-data">
+        <div class="container py-3">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4">
                 <div>
-                    <span class="section-badge"><i class="bi bi-newspaper me-1"></i> Warta Terkini</span>
-                    <h2 class="section-title mb-0">Kabar & Publikasi Resmi</h2>
+                    <span class="section-badge"><i class="bi bi-file-earmark-spreadsheet me-1"></i> Format Resmi Dokumen</span>
+                    <h2 class="section-title mb-1">Tabel Data Partai Politik Kab. Tanah Laut Tahun 2026</h2>
+                    <p class="text-secondary small mb-0">
+                        Disusun persis berdasarkan lembar rekapitulasi partai politik Kabupaten Tanah Laut. Dilengkapi logo berkualitas tinggi dan kontak langsung LO.
+                    </p>
                 </div>
-                <div class="mt-3 mt-md-0">
-                    <a href="#berita" class="btn btn-outline-danger fw-semibold px-4 rounded-3">
-                        Lihat Semua Berita <i class="bi bi-arrow-right ms-1"></i>
+                <div class="mt-3 mt-md-0 d-flex gap-2">
+                    <a href="{{ route('parpol.cetak') }}" target="_blank" class="btn btn-outline-dark btn-sm rounded-pill px-3 fw-semibold">
+                        <i class="bi bi-printer me-1"></i> Cetak Format Dokumen (A4)
                     </a>
                 </div>
             </div>
 
-            <div class="row g-4">
-                @foreach ($beritaTerkini as $berita)
-                    <div class="col-lg-4 col-md-6">
-                        <div class="custom-card h-100">
-                            <div style="height: 190px; background: linear-gradient(135deg, #334155, #1e293b); display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 3rem;">
-                                <i class="bi bi-image"></i>
-                            </div>
-                            <div class="p-4 d-flex flex-column justify-content-between" style="min-height: 220px;">
-                                <div>
-                                    <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <span class="badge bg-danger bg-opacity-10 text-danger fw-semibold px-2 py-1 rounded">
-                                            {{ $berita['kategori'] }}
-                                        </span>
-                                        <span class="text-muted small"><i class="bi bi-calendar3 me-1"></i> {{ $berita['tanggal'] }}</span>
+            <!-- Bilah Pencarian & Filter Cepat -->
+            <div class="card border-0 shadow-sm rounded-4 p-3 mb-4 bg-white border">
+                <div class="row g-3 align-items-center">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0"><i class="bi bi-search text-muted"></i></span>
+                            <input type="text" id="liveSearchInput" class="form-control border-start-0 ps-0" placeholder="Ketik nama partai (misal: PKB, Gerindra, Golkar, PKS) atau nama pengurus..." onkeyup="filterParpolTable()">
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-md-end d-flex flex-wrap gap-2 justify-content-md-end">
+                        <button class="btn btn-sm btn-outline-primary active filter-btn" onclick="filterByKecamatan('all', this)">Semua (15)</button>
+                        <button class="btn btn-sm btn-outline-primary filter-btn" onclick="filterByKecamatan('Pelaihari', this)">Kec. Pelaihari (14)</button>
+                        <button class="btn btn-sm btn-outline-primary filter-btn" onclick="filterByKecamatan('Batu Ampar', this)">Kec. Batu Ampar (1)</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabel Responsif -->
+            <div class="table-responsive shadow-sm rounded-4">
+                <table class="table table-parpol table-hover align-middle mb-0" id="mainParpolTable">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="width: 50px;">NO</th>
+                            <th style="min-width: 170px;">PARPOL</th>
+                            <th style="min-width: 220px;">LEGALITAS</th>
+                            <th style="min-width: 260px;">PENGURUS</th>
+                            <th style="min-width: 240px;">ALAMAT KANTOR</th>
+                            <th class="text-center" style="width: 80px;">SK3P3</th>
+                            <th class="text-center" style="width: 100px;">AKSI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($parpols as $p)
+                            <tr class="parpol-row" data-kecamatan="{{ $p->kecamatan }}" data-search="{{ strtolower($p->nama_partai . ' ' . $p->akronim . ' ' . $p->ketua . ' ' . $p->sekretaris . ' ' . $p->bendahara . ' ' . $p->lo_nama . ' ' . $p->alamat . ' ' . $p->no_sk) }}">
+                                <!-- NO -->
+                                <td class="text-center fw-bold fs-5 text-secondary">
+                                    {{ $p->nomor_urut }}
+                                </td>
+
+                                <!-- PARPOL & LOGO -->
+                                <td>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="logo-box">
+                                            <img src="{{ asset($p->logo) }}" alt="Logo {{ $p->akronim }}">
+                                        </div>
+                                        <div>
+                                            <h6 class="fw-bold text-dark mb-0">{{ $p->akronim }}</h6>
+                                            <span class="small text-muted">{{ $p->nama_partai }}</span>
+                                        </div>
                                     </div>
-                                    <h5 class="fw-bold text-dark mb-2">{{ $berita['judul'] }}</h5>
-                                    <p class="text-secondary small mb-3">
-                                        {{ $berita['ringkasan'] }}
-                                    </p>
+                                </td>
+
+                                <!-- LEGALITAS -->
+                                <td>
+                                    <div class="small">
+                                        <span class="text-muted d-block">No SK Kepengurusan:</span>
+                                        <strong class="text-dark">{{ $p->no_sk }}</strong>
+                                        @if ($p->tanggal_sk)
+                                            <div class="text-muted mt-1">
+                                                <i class="bi bi-calendar-check me-1 text-primary"></i> {{ $p->tanggal_sk }}
+                                            </div>
+                                        @endif
+                                    </div>
+                                </td>
+
+                                <!-- PENGURUS -->
+                                <td>
+                                    <div class="small">
+                                        <div class="mb-1">
+                                            <span class="text-muted">Ketua:</span> <strong>{{ $p->ketua }}</strong>
+                                            @if ($p->no_hp_ketua && $p->no_hp_ketua != '-')
+                                                <span class="text-muted">({{ $p->no_hp_ketua }})</span>
+                                            @endif
+                                        </div>
+                                        <div class="mb-1">
+                                            <span class="text-muted">Sekretaris:</span> <strong>{{ $p->sekretaris }}</strong>
+                                        </div>
+                                        <div class="mb-1">
+                                            <span class="text-muted">Bendahara:</span> <strong>{{ $p->bendahara }}</strong>
+                                        </div>
+                                        <div class="mt-2 pt-1 border-top">
+                                            <span class="text-muted">LO:</span> 
+                                            <strong class="text-primary">{{ $p->lo_nama }}</strong>
+                                            @if ($p->lo_hp)
+                                                <br>
+                                                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', (str_starts_with($p->lo_hp, '0') ? '62' . substr($p->lo_hp, 1) : $p->lo_hp)) }}" target="_blank" class="btn btn-wa mt-1">
+                                                    <i class="bi bi-whatsapp"></i> {{ $p->lo_hp }}
+                                                </a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <!-- ALAMAT -->
+                                <td>
+                                    <div class="small">
+                                        <i class="bi bi-geo-alt-fill text-danger me-1"></i>
+                                        {{ $p->alamat }}
+                                        <div class="mt-1">
+                                            <span class="badge bg-light text-secondary border">Kec. {{ $p->kecamatan }}</span>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <!-- SK3P3 -->
+                                <td class="text-center">
+                                    <span class="badge-sk">
+                                        <i class="bi bi-check2-circle me-1"></i> {{ $p->sk3p3 }}
+                                    </span>
+                                </td>
+
+                                <!-- AKSI -->
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-outline-primary w-100 mb-1" data-bs-toggle="modal" data-bs-target="#modalParpol{{ $p->id }}">
+                                        <i class="bi bi-eye"></i> Detail
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= GALERI DIREKTORI KARTU (MODERN VIEW) ================= -->
+    <section class="py-5 bg-white border-top border-bottom" id="galeri-partai">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <span class="section-badge"><i class="bi bi-grid-3x3-gap me-1"></i> Direktori Profil</span>
+                <h2 class="section-title">Direktori Kartu 15 Partai Politik</h2>
+                <p class="section-subtitle">
+                    Tampilan kartu visual modern yang memudahkan pembaca melihat lambang partai, pimpinan DPC/DPD, dan nomor WhatsApp petugas penghubung.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                @foreach ($parpols as $p)
+                    <div class="col-md-6 col-lg-4">
+                        <div class="party-card">
+                            <div class="party-card-header bg-light border-bottom">
+                                <span class="badge bg-dark rounded-pill px-3 py-2 fw-bold">NO. {{ $p->nomor_urut }}</span>
+                                <span class="badge-sk"><i class="bi bi-check-circle-fill me-1"></i> SK3P3: Ada</span>
+                            </div>
+
+                            <div class="party-card-body text-center">
+                                <div class="mx-auto mb-3" style="width: 100px; height: 100px; padding: 6px; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                                    <img src="{{ asset($p->logo) }}" alt="Logo {{ $p->akronim }}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                                 </div>
-                                <a href="#berita" class="text-danger fw-bold small text-decoration-none">
-                                    Baca Selengkapnya <i class="bi bi-chevron-right ms-1"></i>
-                                </a>
+
+                                <h5 class="fw-bold text-dark mb-1">{{ $p->akronim }}</h5>
+                                <p class="text-muted small mb-3">{{ $p->nama_partai }}</p>
+
+                                <div class="text-start p-3 rounded-3 bg-light border small mb-3">
+                                    <div class="mb-1 text-truncate">
+                                        <span class="text-muted">Ketua:</span> <strong>{{ $p->ketua }}</strong>
+                                    </div>
+                                    <div class="mb-1 text-truncate">
+                                        <span class="text-muted">Sekretaris:</span> <strong>{{ $p->sekretaris }}</strong>
+                                    </div>
+                                    <div class="mb-1 text-truncate">
+                                        <span class="text-muted">Bendahara:</span> <strong>{{ $p->bendahara }}</strong>
+                                    </div>
+                                    <div class="mb-0 text-truncate">
+                                        <span class="text-muted">LO:</span> <strong class="text-primary">{{ $p->lo_nama }}</strong>
+                                    </div>
+                                </div>
+
+                                <div class="text-start small text-secondary">
+                                    <i class="bi bi-geo-alt-fill text-danger me-1"></i> {{ Str::limit($p->alamat, 75) }}
+                                </div>
+                            </div>
+
+                            <div class="party-card-footer d-flex justify-content-between align-items-center">
+                                <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalParpol{{ $p->id }}">
+                                    <i class="bi bi-info-circle me-1"></i> Rincian SK
+                                </button>
+                                @if ($p->lo_hp)
+                                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', (str_starts_with($p->lo_hp, '0') ? '62' . substr($p->lo_hp, 1) : $p->lo_hp)) }}" target="_blank" class="btn btn-wa btn-sm">
+                                        <i class="bi bi-whatsapp"></i> Hubungi LO
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -610,140 +505,176 @@
         </div>
     </section>
 
-    <!-- ================= DAFTAR JADI KADER (REGISTRASI) ================= -->
-    <section class="py-5" id="daftar-kader">
+    <!-- ================= SEBARAN WILAYAH SEKRETARIAT ================= -->
+    <section class="py-5" id="sebaran">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <span class="section-badge"><i class="bi bi-map me-1"></i> Pemetaan Kantor</span>
+                <h2 class="section-title">Sebaran Kantor Sekretariat Partai Politik</h2>
+                <p class="section-subtitle">
+                    Distribusi letak kantor DPC/DPD partai politik di wilayah Kabupaten Tanah Laut berdasarkan kelurahan dan kecamatan.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="wilayah-box shadow-sm">
+                        <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom">
+                            <div>
+                                <h5 class="fw-bold mb-0 text-dark"><i class="bi bi-geo-alt-fill text-primary me-2"></i>Kecamatan Pelaihari</h5>
+                                <span class="small text-muted">Ibu Kota Kabupaten Tanah Laut</span>
+                            </div>
+                            <span class="badge bg-primary fs-6 px-3 py-2 rounded-pill">14 Partai</span>
+                        </div>
+                        <ul class="list-group list-group-flush small">
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <div>
+                                    <strong>Kelurahan Angsau</strong>
+                                    <div class="text-muted">Jl. Boejasin, Jl. KH Mansyur, Jl. Ks Tubun, Jl. Almanar, Puri Anggoro</div>
+                                </div>
+                                <span class="badge bg-secondary rounded-pill">6 Parpol (PKB, Gerindra, Golkar, NasDem, Demokrat, PSI)</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <div>
+                                    <strong>Kelurahan Sarang Halang</strong>
+                                    <div class="text-muted">Jl. A. Yani, Jl. A. Syairani</div>
+                                </div>
+                                <span class="badge bg-secondary rounded-pill">3 Parpol (Gelora, PKS, Hanura)</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <div>
+                                    <strong>Kelurahan Karang Taruna</strong>
+                                    <div class="text-muted">Jl. Raya Takisung, Komp. Permata Jingga, Komp. Perumahan SATP</div>
+                                </div>
+                                <span class="badge bg-secondary rounded-pill">3 Parpol (PAN, Perindo, PPP)</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <div>
+                                    <strong>Kelurahan Pabahanan</strong>
+                                    <div class="text-muted">Jl. A. Yani Rt.04 Rw.02</div>
+                                </div>
+                                <span class="badge bg-secondary rounded-pill">1 Parpol (PDI Perjuangan)</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <div>
+                                    <strong>Kelurahan Pelaihari</strong>
+                                    <div class="text-muted">Jl. Majakeling No.10</div>
+                                </div>
+                                <span class="badge bg-secondary rounded-pill">1 Parpol (PBB)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="wilayah-box shadow-sm">
+                        <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom">
+                            <div>
+                                <h5 class="fw-bold mb-0 text-dark"><i class="bi bi-geo-alt-fill text-danger me-2"></i>Kecamatan Batu Ampar</h5>
+                                <span class="small text-muted">Wilayah Luar Ibu Kota</span>
+                            </div>
+                            <span class="badge bg-danger fs-6 px-3 py-2 rounded-pill">1 Partai</span>
+                        </div>
+                        <ul class="list-group list-group-flush small">
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <div>
+                                    <strong>Desa Damit Hulu</strong>
+                                    <div class="text-muted">Jl. Damit Hulu RT. 05 Desa Damit Hulu</div>
+                                </div>
+                                <span class="badge bg-danger rounded-pill">1 Parpol (Partai Gerakan Rakyat)</span>
+                            </li>
+                        </ul>
+
+                        <div class="p-3 bg-light rounded-3 mt-4 border">
+                            <h6 class="fw-bold text-dark mb-1"><i class="bi bi-info-circle-fill text-info me-1"></i> Catatan Keterbukaan Publik</h6>
+                            <p class="small text-secondary mb-0">
+                                Seluruh alamat sekretariat di atas tercatat resmi pada dokumen pendataan partai politik Kabupaten Tanah Laut Tahun 2026 dan dapat dikunjungi untuk urusan koordinasi atau kepemiluan.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= UPDATE DATA PENGURUS / LO ================= -->
+    <section class="py-5 bg-white border-top border-bottom" id="lapor">
         <div class="container py-4">
             <div class="row align-items-center g-5">
                 <div class="col-lg-5">
-                    <span class="section-badge"><i class="bi bi-person-badge me-1"></i> Rekrutmen Terbuka</span>
-                    <h2 class="section-title mb-3">Jadilah Bagian dari Gerakan Perubahan</h2>
+                    <span class="section-badge"><i class="bi bi-pencil-square me-1"></i> Layanan Khusus Parpol</span>
+                    <h2 class="section-title mb-3">Pengkinian / Perubahan Data DPC Parpol</h2>
                     <p class="text-secondary mb-4">
-                        Pintu PARPOL terbuka lebar bagi siapapun yang ingin berkontribusi nyata bagi bangsa. Dapatkan Kartu Tanda Anggota Elektronik (e-KTA) dan akses ke Akademi Kepemimpinan Politik.
+                        Bagi pengurus DPC/DPD atau Liaison Officer (LO) partai politik di Kabupaten Tanah Laut yang memiliki pembaharuan Surat Keputusan (SK) atau pergantian pengurus, silakan ajukan laporan perubahan melalui formulir ini.
                     </p>
 
-                    <div class="d-flex flex-column gap-3 mb-4">
+                    <div class="d-flex flex-column gap-3">
                         <div class="d-flex gap-3">
-                            <div class="text-danger fs-4"><i class="bi bi-check2-circle"></i></div>
+                            <div class="text-primary fs-4"><i class="bi bi-file-earmark-arrow-up"></i></div>
                             <div>
-                                <h6 class="fw-bold mb-1">Tanpa Mahar Politik</h6>
-                                <p class="text-secondary small mb-0">Prinsip meritokrasi: kaderisasi didasarkan pada kompetensi dan loyalitas rakyat.</p>
+                                <h6 class="fw-bold mb-1">Lampirkan Nomor SK Terbaru</h6>
+                                <p class="text-secondary small mb-0">Pastikan nomor SK DPP/DPD dan tanggal penetapan dicantumkan lengkap.</p>
                             </div>
                         </div>
                         <div class="d-flex gap-3">
-                            <div class="text-danger fs-4"><i class="bi bi-check2-circle"></i></div>
+                            <div class="text-primary fs-4"><i class="bi bi-whatsapp"></i></div>
                             <div>
-                                <h6 class="fw-bold mb-1">Hak Suara Kongres</h6>
-                                <p class="text-secondary small mb-0">Setiap kader memiliki hak berpendapat dan menentukan arah kebijakan partai.</p>
-                            </div>
-                        </div>
-                        <div class="d-flex gap-3">
-                            <div class="text-danger fs-4"><i class="bi bi-check2-circle"></i></div>
-                            <div>
-                                <h6 class="fw-bold mb-1">Pelatihan & Advokasi</h6>
-                                <p class="text-secondary small mb-0">Akses jaringan bantuan hukum dan peningkatan kapasitas kepemimpinan publik.</p>
+                                <h6 class="fw-bold mb-1">Konfirmasi Kontak LO</h6>
+                                <p class="text-secondary small mb-0">Tim verifikator akan menghubungi nomor WhatsApp LO terdaftar untuk verifikasi dokumen.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-7">
-                    <div class="form-wrapper">
-                        <div class="d-flex align-items-center justify-content-between mb-4 pb-3 border-bottom">
-                            <div>
-                                <h4 class="fw-bold text-dark mb-1">Formulir Pendaftaran Kader</h4>
-                                <span class="text-muted small">Registrasi e-KTA Nasional PARPOL</span>
-                            </div>
-                            <span class="badge bg-danger px-3 py-2">Gratis 100%</span>
-                        </div>
+                    <div class="p-4 rounded-4 border bg-light shadow-sm">
+                        <h4 class="fw-bold text-dark mb-3">Formulir Permohonan Pembaruan Data</h4>
 
-                        @if (session('kader_success'))
+                        @if (session('lapor_success'))
                             <div class="alert alert-success d-flex align-items-center mb-4" role="alert">
                                 <i class="bi bi-check-circle-fill fs-4 me-3"></i>
                                 <div>
-                                    <strong>Berhasil!</strong> {{ session('kader_success') }}
+                                    <strong>Laporan Terkirim!</strong> {{ session('lapor_success') }}
                                 </div>
                             </div>
                         @endif
 
-                        @if ($errors->any())
-                            <div class="alert alert-danger mb-4" role="alert">
-                                <div class="fw-bold mb-1"><i class="bi bi-exclamation-triangle-fill me-1"></i> Mohon periksa kembali input Anda:</div>
-                                <ul class="mb-0 small ps-3">
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
-                        <form action="{{ route('parpol.daftar') }}" method="POST">
+                        <form action="{{ route('parpol.lapor') }}" method="POST">
                             @csrf
                             <div class="row g-3">
                                 <div class="col-md-6">
-                                    <label class="form-label" for="nama_lengkap">Nama Lengkap (Sesuai KTP) <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap" name="nama_lengkap" value="{{ old('nama_lengkap') }}" placeholder="Contoh: Budi Gunawan" required>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label class="form-label" for="nik">NIK (16 Digit) <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('nik') is-invalid @enderror" id="nik" name="nik" value="{{ old('nik') }}" maxlength="16" placeholder="3201xxxxxxxxxxxx" required>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label class="form-label" for="email">Alamat Email <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" placeholder="nama@email.com" required>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label class="form-label" for="no_telepon">No. WhatsApp / HP <span class="text-danger">*</span></label>
-                                    <input type="tel" class="form-control @error('no_telepon') is-invalid @enderror" id="no_telepon" name="no_telepon" value="{{ old('no_telepon') }}" placeholder="0812xxxxxxxx" required>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label class="form-label" for="provinsi">Provinsi <span class="text-danger">*</span></label>
-                                    <select class="form-select @error('provinsi') is-invalid @enderror" id="provinsi" name="provinsi" required>
-                                        <option value="">-- Pilih Provinsi --</option>
-                                        <option value="DKI Jakarta" {{ old('provinsi') == 'DKI Jakarta' ? 'selected' : '' }}>DKI Jakarta</option>
-                                        <option value="Jawa Barat" {{ old('provinsi') == 'Jawa Barat' ? 'selected' : '' }}>Jawa Barat</option>
-                                        <option value="Jawa Tengah" {{ old('provinsi') == 'Jawa Tengah' ? 'selected' : '' }}>Jawa Tengah</option>
-                                        <option value="Jawa Timur" {{ old('provinsi') == 'Jawa Timur' ? 'selected' : '' }}>Jawa Timur</option>
-                                        <option value="Banten" {{ old('provinsi') == 'Banten' ? 'selected' : '' }}>Banten</option>
-                                        <option value="D.I. Yogyakarta" {{ old('provinsi') == 'D.I. Yogyakarta' ? 'selected' : '' }}>D.I. Yogyakarta</option>
-                                        <option value="Sumatera Utara" {{ old('provinsi') == 'Sumatera Utara' ? 'selected' : '' }}>Sumatera Utara</option>
-                                        <option value="Sumatera Barat" {{ old('provinsi') == 'Sumatera Barat' ? 'selected' : '' }}>Sumatera Barat</option>
-                                        <option value="Sumatera Selatan" {{ old('provinsi') == 'Sumatera Selatan' ? 'selected' : '' }}>Sumatera Selatan</option>
-                                        <option value="Riau" {{ old('provinsi') == 'Riau' ? 'selected' : '' }}>Riau</option>
-                                        <option value="Kalimantan Timur" {{ old('provinsi') == 'Kalimantan Timur' ? 'selected' : '' }}>Kalimantan Timur</option>
-                                        <option value="Kalimantan Barat" {{ old('provinsi') == 'Kalimantan Barat' ? 'selected' : '' }}>Kalimantan Barat</option>
-                                        <option value="Sulawesi Selatan" {{ old('provinsi') == 'Sulawesi Selatan' ? 'selected' : '' }}>Sulawesi Selatan</option>
-                                        <option value="Bali" {{ old('provinsi') == 'Bali' ? 'selected' : '' }}>Bali</option>
-                                        <option value="Papua" {{ old('provinsi') == 'Papua' ? 'selected' : '' }}>Papua</option>
-                                        <option value="Lainnya" {{ old('provinsi') == 'Lainnya' ? 'selected' : '' }}>Provinsi Lainnya</option>
+                                    <label class="form-label small fw-bold">Pilih Partai Politik <span class="text-danger">*</span></label>
+                                    <select class="form-select" name="nama_partai" required>
+                                        <option value="">-- Pilih Partai --</option>
+                                        @foreach ($parpols as $p)
+                                            <option value="{{ $p->akronim }} - {{ $p->nama_partai }}">{{ $p->nomor_urut }}. {{ $p->akronim }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label class="form-label" for="kota_kabupaten">Kota / Kabupaten <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('kota_kabupaten') is-invalid @enderror" id="kota_kabupaten" name="kota_kabupaten" value="{{ old('kota_kabupaten') }}" placeholder="Contoh: Jakarta Selatan" required>
+                                    <label class="form-label small fw-bold">Nama Pemohon / Pelapor <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="nama_pemohon" placeholder="Nama lengkap Anda" required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold">Jabatan di Partai <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="jabatan" placeholder="Contoh: LO / Sekretaris DPC" required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold">No. WhatsApp Aktif <span class="text-danger">*</span></label>
+                                    <input type="tel" class="form-control" name="no_hp" placeholder="08xxxxxxxxxx" required>
                                 </div>
 
                                 <div class="col-12">
-                                    <label class="form-label" for="motivasi">Motivasi Bergabung (Opsional)</label>
-                                    <textarea class="form-control @error('motivasi') is-invalid @enderror" id="motivasi" name="motivasi" rows="3" placeholder="Sampaikan apa yang memotivasi Anda untuk memperjuangkan aspirasi bersama PARPOL...">{{ old('motivasi') }}</textarea>
+                                    <label class="form-label small fw-bold">Rincian Perubahan Data <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" name="rincian_perubahan" rows="4" placeholder="Sampaikan perubahan yang diajukan (misal: Nomor SK baru, pergantian nama pengurus, atau pemindahan alamat kantor)..." required></textarea>
                                 </div>
 
-                                <div class="col-12">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="setuju" required>
-                                        <label class="form-check-label small text-secondary" for="setuju">
-                                            Saya menyatakan setia kepada Pancasila dan UUD 1945, serta siap mematuhi AD/ART dan Pakta Integritas PARPOL.
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 mt-4">
-                                    <button type="submit" class="btn btn-parpol w-100 py-3 fw-bold fs-6">
-                                        <i class="bi bi-send-fill me-2"></i> Kirim Pendaftaran Kader
+                                <div class="col-12 mt-3">
+                                    <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">
+                                        <i class="bi bi-send-check me-2"></i> Kirim Permohonan Pembaruan
                                     </button>
                                 </div>
                             </div>
@@ -754,139 +685,139 @@
         </div>
     </section>
 
-    <!-- ================= KANAL ASPIRASI PUBLIK ================= -->
-    <section class="py-5 bg-white border-top" id="aspirasi">
-        <div class="container py-4">
-            <div class="text-center mb-5">
-                <span class="section-badge"><i class="bi bi-megaphone me-1"></i> Kanal Publik</span>
-                <h2 class="section-title">Kanal Aspirasi & Suara Rakyat</h2>
-                <p class="section-subtitle">
-                    Kritik, saran, masukan perundang-undangan, dan keluhan layanan publik Anda langsung dibaca oleh Fraksi PARPOL.
-                </p>
-            </div>
+    <!-- ================= MODAL DETAIL PROFIL TIAP PARTAI ================= -->
+    @foreach ($parpols as $p)
+        <div class="modal fade" id="modalParpol{{ $p->id }}" tabindex="-1" aria-labelledby="modalLabel{{ $p->id }}" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content rounded-4 border-0 shadow">
+                    <div class="modal-header bg-dark text-white p-4">
+                        <div class="d-flex align-items-center gap-3">
+                            <div style="width: 55px; height: 55px; background: #ffffff; border-radius: 10px; padding: 4px; display: flex; align-items: center; justify-content: center;">
+                                <img src="{{ asset($p->logo) }}" alt="Logo {{ $p->akronim }}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            </div>
+                            <div>
+                                <span class="badge bg-danger text-uppercase px-2 py-1 mb-1">Nomor Urut {{ $p->nomor_urut }}</span>
+                                <h4 class="modal-title fw-bold mb-0" id="modalLabel{{ $p->id }}">{{ $p->akronim }}</h4>
+                                <span class="small text-light opacity-75">{{ $p->nama_partai }}</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
 
-            <div class="row g-5">
-                <!-- Form Aspirasi -->
-                <div class="col-lg-6">
-                    <div class="p-4 rounded-4 border bg-light">
-                        <h4 class="fw-bold mb-3 text-dark">Sampaikan Masukan Anda</h4>
+                    <div class="modal-body p-4">
+                        <div class="row g-4">
+                            <!-- Kolom Kiri: Legalitas & Alamat -->
+                            <div class="col-md-6 border-end-md">
+                                <h6 class="fw-bold text-primary mb-3">
+                                    <i class="bi bi-file-earmark-check me-1"></i> Legalitas Kepengurusan
+                                </h6>
+                                <div class="p-3 bg-light rounded-3 mb-3 small">
+                                    <div class="text-muted">Nomor Surat Keputusan (SK):</div>
+                                    <strong class="text-dark fs-6">{{ $p->no_sk }}</strong>
+                                    @if ($p->tanggal_sk)
+                                        <div class="text-muted mt-2">Tanggal Penetapan SK:</div>
+                                        <strong>{{ $p->tanggal_sk }}</strong>
+                                    @endif
+                                    <div class="text-muted mt-2">Status SK3P3:</div>
+                                    <span class="badge bg-success text-uppercase">{{ $p->sk3p3 }} (Terverifikasi)</span>
+                                </div>
 
-                        @if (session('aspirasi_success'))
-                            <div class="alert alert-success d-flex align-items-center mb-4" role="alert">
-                                <i class="bi bi-check-circle-fill fs-4 me-3"></i>
-                                <div>
-                                    <strong>Aspirasi Diterima!</strong> {{ session('aspirasi_success') }}
+                                <h6 class="fw-bold text-primary mb-2">
+                                    <i class="bi bi-geo-alt me-1"></i> Alamat Kantor Sekretariat
+                                </h6>
+                                <p class="small text-secondary mb-2">
+                                    {{ $p->alamat }}
+                                </p>
+                                <div class="small text-muted mb-3">
+                                    Kelurahan/Desa: <strong>{{ $p->kelurahan_desa ?? '-' }}</strong><br>
+                                    Kecamatan: <strong>{{ $p->kecamatan }}</strong><br>
+                                    Kabupaten: <strong>{{ $p->kabupaten }}, {{ $p->provinsi }}</strong>
+                                </div>
+                                <a href="https://www.google.com/maps/search/{{ urlencode($p->alamat) }}" target="_blank" class="btn btn-outline-secondary btn-sm">
+                                    <i class="bi bi-map me-1"></i> Buka di Google Maps
+                                </a>
+                            </div>
+
+                            <!-- Kolom Kanan: Susunan Pengurus & LO -->
+                            <div class="col-md-6 ps-md-4">
+                                <h6 class="fw-bold text-primary mb-3">
+                                    <i class="bi bi-people me-1"></i> Susunan Pengurus DPC / DPD
+                                </h6>
+                                <div class="list-group list-group-flush small mb-3">
+                                    <div class="list-group-item px-0">
+                                        <span class="text-muted d-block">Ketua:</span>
+                                        <strong class="fs-6 text-dark">{{ $p->ketua }}</strong>
+                                        @if ($p->no_hp_ketua && $p->no_hp_ketua != '-')
+                                            <div class="text-muted small">No. HP: {{ $p->no_hp_ketua }}</div>
+                                        @endif
+                                    </div>
+                                    <div class="list-group-item px-0">
+                                        <span class="text-muted d-block">Sekretaris:</span>
+                                        <strong class="fs-6 text-dark">{{ $p->sekretaris }}</strong>
+                                    </div>
+                                    <div class="list-group-item px-0">
+                                        <span class="text-muted d-block">Bendahara:</span>
+                                        <strong class="fs-6 text-dark">{{ $p->bendahara }}</strong>
+                                    </div>
+                                </div>
+
+                                <div class="p-3 rounded-3 bg-primary bg-opacity-10 border border-primary-subtle">
+                                    <span class="text-primary fw-bold small text-uppercase d-block mb-1">Petugas Penghubung (LO)</span>
+                                    <h6 class="fw-bold text-dark mb-1">{{ $p->lo_nama }}</h6>
+                                    @if ($p->lo_hp)
+                                        <span class="text-muted small d-block mb-2">Kontak / WhatsApp: {{ $p->lo_hp }}</span>
+                                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', (str_starts_with($p->lo_hp, '0') ? '62' . substr($p->lo_hp, 1) : $p->lo_hp)) }}" target="_blank" class="btn btn-wa w-100 justify-content-center">
+                                            <i class="bi bi-whatsapp"></i> Chat WhatsApp LO
+                                        </a>
+                                    @else
+                                        <span class="text-muted small">Kontak belum tercantum</span>
+                                    @endif
                                 </div>
                             </div>
-                        @endif
-
-                        <form action="{{ route('parpol.aspirasi') }}" method="POST">
-                            @csrf
-                            <div class="mb-3">
-                                <label class="form-label" for="aspirasi_nama">Nama Anda <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="aspirasi_nama" name="nama" placeholder="Nama lengkap atau anonim" required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label" for="aspirasi_email">Email / Kontak <span class="text-danger">*</span></label>
-                                <input type="email" class="form-control" id="aspirasi_email" name="email" placeholder="email@domain.com" required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label" for="kategori">Kategori Isu <span class="text-danger">*</span></label>
-                                <select class="form-select" id="kategori" name="kategori" required>
-                                    <option value="">-- Pilih Kategori --</option>
-                                    <option value="Hukum & Korupsi">Hukum & Penegakan Korupsi</option>
-                                    <option value="Ekonomi & UMKM">Ekonomi, Lapangan Kerja & UMKM</option>
-                                    <option value="Pendidikan">Pendidikan & Sekolah Gratis</option>
-                                    <option value="Kesehatan">Kesehatan & Jaminan Sosial</option>
-                                    <option value="Pertanian & Pangan">Pertanian, Nelayan & Pangan</option>
-                                    <option value="Infrastruktur">Infrastruktur & Transportasi</option>
-                                    <option value="Lainnya">Isu Lainnya</option>
-                                </select>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label" for="subjek">Pokok Aspirasi / Subjek <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="subjek" name="subjek" placeholder="Ringkasan inti aspirasi" required>
-                            </div>
-
-                            <div class="mb-4">
-                                <label class="form-label" for="pesan">Uraian Aspirasi <span class="text-danger">*</span></label>
-                                <textarea class="form-control" id="pesan" name="pesan" rows="4" placeholder="Jelaskan aspirasi, keluhan di daerah, atau masukan undang-undang secara detail..." required></textarea>
-                            </div>
-
-                            <button type="submit" class="btn btn-dark w-100 py-2 fw-bold">
-                                <i class="bi bi-chat-left-dots-fill me-2 text-danger"></i> Salurkan Aspirasi Sekarang
-                            </button>
-                        </form>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Feed Aspirasi Terkini -->
-                <div class="col-lg-6">
-                    <h4 class="fw-bold mb-3 text-dark">Aspirasi Masuk Terbaru</h4>
-                    <p class="text-secondary small mb-4">
-                        Bukti transparansi PARPOL dalam mendengar keluh kesah dan harapan masyarakat nusantara secara terbuka.
-                    </p>
-
-                    @forelse ($aspirasiTerbaru as $item)
-                        <div class="aspirasi-card">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="badge bg-secondary">{{ $item->kategori }}</span>
-                                <span class="small text-muted">{{ $item->created_at->diffForHumans() }}</span>
-                            </div>
-                            <h6 class="fw-bold mb-1 text-dark">{{ $item->subjek }}</h6>
-                            <p class="small text-secondary mb-2">{{ Str::limit($item->pesan, 140) }}</p>
-                            <div class="small text-muted d-flex align-items-center justify-content-between">
-                                <span><i class="bi bi-person-circle me-1"></i> {{ $item->nama }}</span>
-                                <span class="text-success"><i class="bi bi-check2-all me-1"></i> Status: {{ ucfirst($item->status) }}</span>
-                            </div>
-                        </div>
-                    @empty
-                        <!-- Default sample aspirasi ketika database baru pertama kali -->
-                        <div class="aspirasi-card">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="badge bg-primary">Pertanian & Pangan</span>
-                                <span class="small text-muted">2 jam yang lalu</span>
-                            </div>
-                            <h6 class="fw-bold mb-1 text-dark">Subsidi Pupuk Organik untuk Petani Padi</h6>
-                            <p class="small text-secondary mb-2">Mohon Fraksi PARPOL mendorong distribusi pupuk bersubsidi langsung ke kelompok tani tanpa perantara yang berbelit-belit.</p>
-                            <div class="small text-muted d-flex align-items-center justify-content-between">
-                                <span><i class="bi bi-person-circle me-1"></i> Pak Mulyono (Jawa Tengah)</span>
-                                <span class="text-success"><i class="bi bi-check2-all me-1"></i> Status: Diproses Fraksi</span>
-                            </div>
-                        </div>
-
-                        <div class="aspirasi-card">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="badge bg-warning text-dark">Ekonomi & UMKM</span>
-                                <span class="small text-muted">Kemarin</span>
-                            </div>
-                            <h6 class="fw-bold mb-1 text-dark">Akses Permodalan Tanpa Agunan untuk Pemuda Desa</h6>
-                            <p class="small text-secondary mb-2">Kami pemuda karang taruna ingin mengembangkan produk olahan kopi lokal, mohon difasilitasi program kemitraan usaha.</p>
-                            <div class="small text-muted d-flex align-items-center justify-content-between">
-                                <span><i class="bi bi-person-circle me-1"></i> Rian Saputra (Sumatera Selatan)</span>
-                                <span class="text-success"><i class="bi bi-check2-all me-1"></i> Status: Diteruskan ke Badan UMKM</span>
-                            </div>
-                        </div>
-
-                        <div class="aspirasi-card">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="badge bg-info text-dark">Pendidikan</span>
-                                <span class="small text-muted">3 hari yang lalu</span>
-                            </div>
-                            <h6 class="fw-bold mb-1 text-dark">Penyetaraan Gaji Guru Honorer Daerah Terpencil</h6>
-                            <p class="small text-secondary mb-2">Mohon kepastian pengangkatan PPPK untuk guru honorer yang sudah mengabdi lebih dari 10 tahun di pelosok nusantara.</p>
-                            <div class="small text-muted d-flex align-items-center justify-content-between">
-                                <span><i class="bi bi-person-circle me-1"></i> Ibu Siti Marwah (Kalimantan Barat)</span>
-                                <span class="text-success"><i class="bi bi-check2-all me-1"></i> Status: Disuarakan di Komisi X</span>
-                            </div>
-                        </div>
-                    @endforelse
+                    <div class="modal-footer bg-light">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Tutup</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    @endforeach
 
 @endsection
+
+@push('scripts')
+<script>
+    // Live Search Filter Tabel
+    function filterParpolTable() {
+        let input = document.getElementById('liveSearchInput').value.toLowerCase();
+        let rows = document.querySelectorAll('.parpol-row');
+
+        rows.forEach(row => {
+            let searchContent = row.getAttribute('data-search');
+            if (searchContent.includes(input)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    // Filter berdasarkan Kecamatan
+    function filterByKecamatan(kec, btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        let rows = document.querySelectorAll('.parpol-row');
+        rows.forEach(row => {
+            let rowKec = row.getAttribute('data-kecamatan');
+            if (kec === 'all' || rowKec === kec) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+</script>
+@endpush

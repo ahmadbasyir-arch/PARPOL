@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+  <rect width="300" height="300" rx="16" fill="#dc2626"/>
+  <!-- Teks PSI Atas -->
+  <text x="75" y="65" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="900" font-size="52" fill="#ffffff">PSI</text>
+  <!-- Kepalan Tangan Memegang Mawar Putih -->
+  <g transform="translate(195, 115)">
+    <!-- Bunga Mawar Putih Terbuka Berputar -->
+    <circle cx="10" cy="-35" r="28" fill="#ffffff"/>
+    <path d="M 10,-45 C 2,-45 -5,-38 -5,-30 C -5,-20 10,-10 10,-10 C 10,-10 25,-20 25,-30 C 25,-38 18,-45 10,-45 Z" fill="#dc2626"/>
+    <!-- Kepalan Tangan Putih Tegak -->
+    <path d="M -45,15 L -20,15 L -10,35 L -10,65 L -55,65 L -55,35 Z" fill="#ffffff"/>
+    <!-- Jari-Jari Menggenggam Tangkai -->
+    <rect x="-35" y="-5" width="35" height="10" rx="4" fill="#ffffff"/>
+    <rect x="-38" y="8" width="38" height="10" rx="4" fill="#ffffff"/>
+    <rect x="-38" y="21" width="38" height="10" rx="4" fill="#ffffff"/>
+    <rect x="-35" y="34" width="35" height="10" rx="4" fill="#ffffff"/>
+    <!-- Tangkai Mawar Hijau/Putih -->
+    <line x1="5" y1="-8" x2="-15" y2="60" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <!-- Kotak Tulisan PARTAI SOLIDARITAS INDONESIA -->
+  <rect x="25" y="215" width="250" height="60" rx="6" fill="#991b1b"/>
+  <text x="150" y="240" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="900" font-size="14" fill="#ffffff" text-anchor="middle" letter-spacing="2">PARTAI SOLIDARITAS</text>
+  <text x="150" y="262" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="900" font-size="18" fill="#ffffff" text-anchor="middle" letter-spacing="3">INDONESIA</text>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+  <rect width="300" height="300" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <!-- Burung Rajawali / Garuda Sayap Merah & Biru Khas Perindo -->
+  <g transform="translate(150, 115)">
+    <!-- Sayap Kiri Merah -->
+    <path d="M 0,-15 C -25,-45 -85,-40 -105,-15 C -90,-5 -50,-5 -20,10 Z" fill="#dc2626"/>
+    <path d="M -15,10 C -45,0 -80,5 -95,20 C -75,25 -40,25 -10,25 Z" fill="#ef4444"/>
+    <!-- Sayap Kanan Biru -->
+    <path d="M 0,-15 C 25,-45 85,-40 105,-15 C 90,-5 50,-5 20,10 Z" fill="#1e3a8a"/>
+    <path d="M 15,10 C 45,0 80,5 95,20 C 75,25 40,25 10,25 Z" fill="#2563eb"/>
+    <!-- Kepala & Tubuh Putih / Biru -->
+    <path d="M 0,-25 L 8,-8 L 0,30 L -8,-8 Z" fill="#ffffff" stroke="#1e293b" stroke-width="1.5"/>
+    <circle cx="0" cy="-22" r="6" fill="#1e293b"/>
+  </g>
+  <!-- Teks Bawah PARTAI PERINDO -->
+  <text x="150" y="235" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="900" font-size="24" fill="#1e3a8a" text-anchor="middle" letter-spacing="1">PARTAI PERINDO</text>
+  <text x="150" y="260" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="800" font-size="12" fill="#dc2626" text-anchor="middle" letter-spacing="3">PERSATUAN INDONESIA</text>
+</svg>

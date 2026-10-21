@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+  <rect width="300" height="300" rx="16" fill="#1e3a8a"/>
+  <!-- Matahari Putih Bersinar (64 Sinar) -->
+  <g transform="translate(150, 115)">
+    <!-- Inti Matahari -->
+    <circle cx="0" cy="0" r="28" fill="#ffffff"/>
+    <circle cx="0" cy="0" r="18" fill="#1e3a8a"/>
+    <!-- Pancaran Sinar Runcing Melingkar -->
+    <path d="M 0,-70 L 4,-40 L 0,-35 L -4,-40 Z M 0,70 L 4,40 L 0,35 L -4,40 Z M -70,0 L -40,4 L -35,0 L -40,-4 Z M 70,0 L 40,4 L 35,0 L 40,-4 Z" fill="#ffffff"/>
+    <path d="M -49,-49 L -25,-30 L -24,-24 L -30,-25 Z M 49,49 L 25,30 L 24,24 L 30,25 Z M 49,-49 L 30,-25 L 24,-24 L 25,-30 Z M -49,49 L -30,25 L -24,24 L -25,30 Z" fill="#ffffff"/>
+    <path d="M -26,-65 L -12,-38 L -9,-34 L -16,-36 Z M 26,65 L 12,38 L 9,34 L 16,36 Z M 26,-65 L 16,-36 L 9,-34 L 12,-38 Z M -26,65 L -16,36 L -9,34 L -12,38 Z" fill="#ffffff"/>
+    <path d="M -65,-26 L -38,-12 L -34,-9 L -36,-16 Z M 65,26 L 38,12 L 34,9 L 36,16 Z M 65,-26 L 36,-16 L 34,-9 L 38,-12 Z M -65,26 L -36,16 L -34,9 L -38,12 Z" fill="#ffffff"/>
+  </g>
+  <!-- Kotak Putih Teks PAN -->
+  <rect x="25" y="215" width="250" height="60" rx="8" fill="#ffffff"/>
+  <text x="150" y="254" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="900" font-size="36" fill="#1e3a8a" text-anchor="middle" letter-spacing="3">PAN</text>
+  <text x="150" y="268" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="700" font-size="8.5" fill="#1e3a8a" text-anchor="middle" letter-spacing="2">PARTAI AMANAT NASIONAL</text>
+</svg>

@@ -1,96 +1,77 @@
-# PARPOL - Website Resmi Partai Politik Republik Indonesia
+# SIPARPOL - Data Partai Politik Kabupaten Tanah Laut Tahun 2026
 
-Website portal resmi partai politik (PARPOL) berbasis framework **Laravel 12** dan **PHP 8.2+**, dirancang dengan antarmuka modern, responsif, dan kaya fitur interaktif untuk publik, kader, dan simpatisan.
+Website portal resmi sistem informasi direktori dan rekapitulasi data **Partai Politik Kabupaten Tanah Laut Tahun 2026** (Provinsi Kalimantan Selatan) berbasis framework **Laravel 12** dan **PHP 8.2+**.
 
----
-
-## 🌟 Fitur Utama Website PARPOL
-
-1. **Beranda Interaktif (Landing Portal)**
-   - Header & Hero section bertema kebangsaan dinamis dengan visual modern.
-   - Live Counter Statistik (38 DPD Provinsi, 514 DPC Kab/Kota, 125.000+ Kader terdaftar, 8.400+ Aspirasi publik).
-   - Manifesto kebangsaan dan status keterbukaan informasi publik.
-
-2. **Visi, Misi & 4 Pilar Gerakan**
-   - Visi kedaulatan, keadilan, dan kemakmuran rakyat.
-   - 4 Pilar: Kedaulatan Rakyat, Ekonomi Berdikari, Keadilan Hukum & HAM, serta SDM Unggul & Berkarakter.
-
-3. **Struktur Pimpinan Dewan Pimpinan Pusat (DPP)**
-   - Profil Ketua Umum, Sekretaris Jenderal, Bendahara Umum, dan Ketua Dewan Pembina.
-
-4. **Program Kerja & Aksi Nyata**
-   - 6 Program unggulan: Integritas & Anti-Korupsi, Kedaulatan Ekonomi & UMKM, Pendidikan Gratis, Kesehatan Merata, Transisi Energi Hijau, dan Akademi Kepemimpinan Muda.
-
-5. **Warta & Publikasi Terkini**
-   - Rilis pers, agenda konsolidasi nasional, dan aksi sosial kerakyatan.
-
-6. **Pendaftaran Kader Online (e-KTA)**
-   - Formulir pendaftaran anggota terintegrasi dengan database (Nama, NIK 16 digit valid, email, kontak WhatsApp, domisili provinsi & kota/kabupaten, motivasi).
-   - Validasi data & pesan konfirmasi sukses otomatis.
-
-7. **Kanal Aspirasi & Suara Rakyat**
-   - Formulir pengaduan, masukan undang-undang, dan aspirasi publik langsung ke fraksi.
-   - Feed aspirasi masuk terbaru dengan transparansi status penanganan.
+Menyajikan data otentik 15 partai politik lengkap dengan logo resmi, legalitas SK kepengurusan, jajaran pengurus DPC/DPD (Ketua, Sekretaris, Bendahara), nomor kontak penghubung (LO), alamat kantor sekretariat, dan status berkas SK3P3.
 
 ---
 
-## 🛠️ Struktur Teknis Project
+## 🏛️ Daftar 15 Partai Politik Kabupaten Tanah Laut (2026)
 
-- **Framework**: Laravel 12.x
-- **Bahasa**: PHP 8.2.12
-- **Database**: SQLite (default tanpa perlu konfigurasi MySQL tambahan) / siap dialihkan ke MySQL / PostgreSQL via `.env`
-- **Frontend**: Blade Templating + Bootstrap 5.3 + Bootstrap Icons + Google Fonts (*Plus Jakarta Sans*)
-- **Lokasi Proyek**: `C:\Users\LENOVO\.gemini\antigravity\scratch\parpol`
-
-### File & Direktori Kunci
-- `app/Http/Controllers/ParpolController.php` : Controller utama untuk beranda, registrasi kader, dan aspirasi.
-- `app/Models/Anggota.php` : Model data pendaftaran kader/anggota partai.
-- `app/Models/Aspirasi.php` : Model data kanal aspirasi rakyat.
-- `database/migrations/` : Tabel `anggotas` dan `aspirasis`.
-- `database/seeders/DatabaseSeeder.php` : Data awal/sample kader dan aspirasi.
-- `resources/views/layouts/app.blade.php` : Master layout (Navbar, Topbar DPP, Footer, Meta).
-- `resources/views/parpol/index.blade.php` : Tampilan visual lengkap portal PARPOL.
-- `routes/web.php` : Routing halaman beranda dan endpoint POST.
-- `tests/Feature/ExampleTest.php` : Pengujian otomatis (Unit & Feature Test) yang telah lulus 100%.
+| No | Partai Politik | Akronim | Ketua DPC/DPD | Petugas Penghubung (LO) | Wilayah Kantor | SK3P3 |
+|:--:|---|:---:|---|---|---|:---:|
+| 1 | Partai Kebangkitan Bangsa | **PKB** | H. MUHAMMAD ZAZULI, S.H. | SUPIAN HADI (085249727776) | Kel. Angsau, Pelaihari | Ada |
+| 2 | Partai Gerakan Indonesia Raya | **GERINDRA** | H. ATMARI | RISNAWATI (081347075054) | Kel. Angsau, Pelaihari | Ada |
+| 3 | Partai Demokrasi Indonesia Perjuangan | **PDI PERJUANGAN** | H. JUNAIDI, S.K.M | NURUL (08125156376) | Kel. Pabahanan, Pelaihari | Ada |
+| 4 | Partai Golongan Karya | **GOLKAR** | H. AGUS PRASETYA BUDIONO | TAUFIK (088245416377) | Kel. Angsau, Pelaihari | Ada |
+| 5 | Partai NasDem | **Partai NasDem** | JOKO PITOYO, S.AP | PAULUS A P, SE (085251362186) | Kel. Angsau, Pelaihari | Ada |
+| 6 | Partai Gelombang Rakyat Indonesia | **GELORA** | SURYANI PRAMESTI PODO | RENDI (085391910345) | Kel. Sarang Halang, Pelaihari | Ada |
+| 7 | Partai Keadilan Sejahtera | **PKS** | FUAD AMIN | SLAMET HERMAWAN (083152039062) | Kel. Sarang Halang, Pelaihari | Ada |
+| 8 | Partai Hati Nurani Rakyat | **HANURA** | YUDI RIZAL | FIRMAN (083145203320) | Kel. Sarang Halang, Pelaihari | Ada |
+| 9 | Partai Amanat Nasional | **PAN** | YOGA PINIS SUHENDRA, ST, MH | ASRIEL (082156488770) | Kel. Karang Taruna, Pelaihari | Ada |
+| 10 | Partai Bulan Bintang | **PBB** | MUHAMMAD GAZALI RAHMAN SE | ZALI (083185778444 / 085345494445) | Kel. Pelaihari, Pelaihari | Ada |
+| 11 | Partai Demokrat | **PARTAI DEMOKRAT** | H. ARKANI, S.Pd. M.Si | SAMINGAN (085248522432) | Kel. Angsau, Pelaihari | Ada |
+| 12 | Partai Solidaritas Indonesia | **PSI** | HARRY YADI | GALANG (082252973411) | Kel. Angsau, Pelaihari | Ada |
+| 13 | Partai Persatuan Indonesia | **PARTAI PERINDO** | KASIR | KASIR (082154094043) | Kel. Karang Taruna, Pelaihari | Ada |
+| 14 | Partai Persatuan Pembangunan | **PPP** | AIRLANGGA | ANGGA (085347222285) | Kel. Karang Taruna, Pelaihari | Ada |
+| 15 | Partai Gerakan Rakyat | **GERAKAN RAKYAT** | MADI | MADI (085248837818) | Desa Damit Hulu, Kec. Batu Ampar | Ada |
 
 ---
 
-## 🚀 Cara Menjalankan Website
+## 🌟 Fitur Utama Website
+
+1. **Format Tabel Dokumen Resmi**: Menampilkan seluruh data sesuai lembar rekapitulasi fisik (No, Logo, Legalitas SK, Pengurus, Alamat, SK3P3).
+2. **Pencarian Realtime & Filter Wilayah**: Filter instan nama partai, pengurus, atau wilayah (Kec. Pelaihari / Kec. Batu Ampar).
+3. **Direktori Kartu Visual (Grid Cards)**: Menampilkan logo beresolusi tinggi (format vektor SVG) dan tombol cepat WhatsApp LO.
+4. **Modal Rincian Partai**: Pop-up interaktif rincian legalitas SK, Google Maps alamat, dan susunan pengurus.
+5. **Pratinjau & Cetak Dokumen (A4 Landscape)**: Format cetak siap print (Ctrl+P) persis lembar rekapitulasi pemerintah daerah.
+6. **Layanan Pengkinian Data Pengurus**: Formulir khusus LO / pengurus parpol untuk mengajukan update SK atau pergantian struktur.
+
+---
+
+## 🚀 Cara Menjalankan Website Secara Lokal
 
 Buka terminal di folder project:
-
 ```powershell
 cd C:\Users\LENOVO\.gemini\antigravity\scratch\parpol
 ```
 
-Jalankan web server lokal Laravel:
-
+Jalankan perintah:
 ```powershell
 php artisan serve
 ```
 
-Buka peramban (browser) dan akses:
+Akses website di browser:
 👉 **http://127.0.0.1:8000**
+👉 Format Cetak: **http://127.0.0.1:8000/cetak-data**
 
 ---
 
-## 🧪 Menjalankan Pengujian Otomatis
+## 🧪 Pengujian Otomatis (Testing)
 
-Untuk memastikan semua modul dan database berfungsi:
-
+Semua pengujian unit dan fitur telah lulus 100%:
 ```powershell
 php artisan test
 ```
-
-Hasil test:
 ```text
 PASS  Tests\Unit\ExampleTest
 ✓ that true is true
 
 PASS  Tests\Feature\ExampleTest
 ✓ the application returns a successful response
-✓ can register new anggota
+✓ cetak page returns successful response
 ✓ can submit aspirasi
+✓ can submit perubahan data
 
-Tests: 4 passed (8 assertions)
+Tests: 5 passed (17 assertions)
 ```
