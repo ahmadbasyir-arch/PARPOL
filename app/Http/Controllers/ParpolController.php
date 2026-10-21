@@ -14,6 +14,11 @@ class ParpolController extends Controller
      */
     public function index(Request $request)
     {
+        // Auto-seed jika database masih kosong
+        if (Parpol::count() === 0) {
+            \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'ParpolSeeder', '--force' => true]);
+        }
+
         $query = Parpol::query();
 
         // Filter berdasarkan pencarian nama partai, akronim, atau nama pengurus
