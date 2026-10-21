@@ -113,7 +113,7 @@
                         {{ $p->nomor_urut }}
                     </td>
                     <td style="text-align: center;">
-                        <img src="{{ asset($p->logo) }}?v=2" alt="Logo {{ $p->akronim }}" class="logo-img">
+                        <img src="{{ asset($p->logo) }}?v=3" alt="Logo {{ $p->akronim }}" class="logo-img">
                         <strong style="font-size: 10pt;">{{ $p->akronim }}</strong>
                     </td>
                     <td style="font-size: 9.5pt;">
