@@ -154,7 +154,11 @@
         transition: all 0.28s ease;
         height: 100%;
         display: flex;
-        flex-column: column;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .party-card:hover {
@@ -170,11 +174,17 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .party-card-body {
         padding: 20px;
-        flex: 1;
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .party-card-footer {
@@ -183,6 +193,8 @@
         border-top: 1px solid #e2e8f0;
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .btn-wa {
@@ -471,24 +483,24 @@
                             </div>
 
                             <div class="party-card-body text-center">
-                                <div class="mx-auto mb-3" style="width: 100px; height: 100px; padding: 6px; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                                    <img src="{{ asset($p->logo) }}?v=3" alt="Logo {{ $p->akronim }}" style="max-width: 95%; max-height: 95%; object-fit: contain;">
+                                <div class="mx-auto mb-3" style="width: 90px; height: 90px; padding: 6px; background: #ffffff; border-radius: 12px; border: 1.5px solid #cbd5e1; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                                    <img src="{{ asset($p->logo) }}?v=4" alt="Logo {{ $p->akronim }}" style="max-width: 90%; max-height: 90%; object-fit: contain;">
                                 </div>
 
                                 <h5 class="fw-bold text-dark mb-1">{{ $p->akronim }}</h5>
-                                <p class="text-muted small mb-3">{{ $p->nama_partai }}</p>
+                                <p class="text-muted small mb-3" style="min-height: 38px;">{{ $p->nama_partai }}</p>
 
-                                <div class="text-start p-3 rounded-3 bg-light border small mb-3">
-                                    <div class="mb-1 text-truncate">
-                                        <span class="text-muted">Ketua:</span> <strong>{{ $p->ketua }}</strong>
+                                <div class="text-start p-3 rounded-3 bg-light border small mb-3 mt-auto">
+                                    <div class="mb-1 text-break">
+                                        <span class="text-muted">Ketua:</span> <strong class="text-dark">{{ $p->ketua }}</strong>
                                     </div>
-                                    <div class="mb-1 text-truncate">
-                                        <span class="text-muted">Sekretaris:</span> <strong>{{ $p->sekretaris }}</strong>
+                                    <div class="mb-1 text-break">
+                                        <span class="text-muted">Sekretaris:</span> <strong class="text-dark">{{ $p->sekretaris }}</strong>
                                     </div>
-                                    <div class="mb-1 text-truncate">
-                                        <span class="text-muted">Bendahara:</span> <strong>{{ $p->bendahara }}</strong>
+                                    <div class="mb-1 text-break">
+                                        <span class="text-muted">Bendahara:</span> <strong class="text-dark">{{ $p->bendahara }}</strong>
                                     </div>
-                                    <div class="mb-0 text-truncate">
+                                    <div class="mb-0 text-break">
                                         <span class="text-muted">LO:</span> <strong class="text-primary">{{ $p->lo_nama }}</strong>
                                     </div>
                                 </div>
@@ -498,7 +510,7 @@
                                 </div>
                             </div>
 
-                            <div class="party-card-footer d-flex justify-content-between align-items-center">
+                            <div class="party-card-footer d-flex justify-content-between align-items-center gap-2">
                                 <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalParpol{{ $p->id }}">
                                     <i class="bi bi-info-circle me-1"></i> Rincian SK
                                 </button>
