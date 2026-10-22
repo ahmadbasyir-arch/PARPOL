@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Parpol extends Model
 {
@@ -58,5 +59,10 @@ class Parpol extends Model
         ];
 
         return $latestLogos[$this->nomor_urut] ?? $value;
+    }
+
+    public function pendidikanPolitik(): HasMany
+    {
+        return $this->hasMany(PendidikanPolitik::class);
     }
 }

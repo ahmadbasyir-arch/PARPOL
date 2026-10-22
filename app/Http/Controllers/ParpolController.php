@@ -18,8 +18,11 @@ class ParpolController extends Controller
         if (Parpol::count() === 0) {
             \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'ParpolSeeder', '--force' => true]);
         }
+        if (\App\Models\PendidikanPolitik::count() === 0) {
+            \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'PendidikanPolitikSeeder', '--force' => true]);
+        }
 
-        $query = Parpol::query();
+        $query = Parpol::with('pendidikanPolitik');
 
         // Filter berdasarkan pencarian nama partai, akronim, atau nama pengurus
         if ($request->filled('q')) {
