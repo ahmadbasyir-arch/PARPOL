@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 840" width="100%" height="100%">
+  <defs>
+    <style>
+      .actor-label { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; font-weight: 700; fill: #0f172a; text-anchor: middle; }
+      .actor-sub { font-family: 'Segoe UI', Arial, sans-serif; font-size: 11px; fill: #64748b; text-anchor: middle; }
+      .system-title { font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; font-weight: 700; fill: #0f172a; }
+      .system-sub { font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-style: italic; fill: #64748b; }
+      .uc-text { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; font-weight: 600; fill: #1e293b; text-anchor: middle; dominant-baseline: middle; }
+      .uc-code { font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; font-weight: 700; fill: #3b82f6; text-anchor: middle; }
+      .assoc-line { stroke: #334155; stroke-width: 1.5; stroke-linecap: round; }
+      .stick-figure { stroke: #0f172a; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+      .caption { font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-style: italic; fill: #475569; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="840" fill="#ffffff" />
+
+  <!-- ================= SYSTEM BOUNDARY ================= -->
+  <rect x="220" y="30" width="520" height="770" rx="6" fill="#f8fafc" stroke="#1e293b" stroke-width="2" />
+  <text x="240" y="58" class="system-sub">«sistem»</text>
+  <text x="240" y="78" class="system-title">SIPARPOL Kab. Tanah Laut</text>
+
+  <!-- ================= ASSOCIATION LINES ================= -->
+  <!-- Dari Aktor 1 (Masyarakat / Publik) (130, 235) -->
+  <line x1="130" y1="235" x2="305" y2="125" class="assoc-line" />
+  <line x1="130" y1="235" x2="305" y2="205" class="assoc-line" />
+  <line x1="130" y1="235" x2="305" y2="285" class="assoc-line" />
+  <line x1="130" y1="235" x2="305" y2="365" class="assoc-line" />
+  <line x1="130" y1="235" x2="305" y2="445" class="assoc-line" />
+  <line x1="130" y1="235" x2="305" y2="525" class="assoc-line" />
+  <line x1="130" y1="235" x2="305" y2="605" class="assoc-line" />
+
+  <!-- Dari Aktor 2 (Pengurus / LO Partai) (130, 665) -->
+  <line x1="130" y1="665" x2="305" y2="125" class="assoc-line" />
+  <line x1="130" y1="665" x2="305" y2="285" class="assoc-line" />
+  <line x1="130" y1="665" x2="305" y2="685" class="assoc-line" />
+
+  <!-- Dari Aktor 3 (Admin Bakesbangpol) (830, 455) -->
+  <line x1="830" y1="455" x2="655" y2="125" class="assoc-line" />
+  <line x1="830" y1="455" x2="655" y2="365" class="assoc-line" />
+  <line x1="830" y1="455" x2="655" y2="525" class="assoc-line" />
+  <line x1="830" y1="455" x2="655" y2="605" class="assoc-line" />
+  <line x1="830" y1="455" x2="655" y2="685" class="assoc-line" />
+  <line x1="830" y1="455" x2="655" y2="765" class="assoc-line" />
+
+  <!-- ================= USE CASE ELLIPSES ================= -->
+  <!-- UC1 -->
+  <g id="uc-1">
+    <ellipse cx="480" cy="125" rx="175" ry="26" fill="#ffffff" stroke="#1e293b" stroke-width="1.8" />
+    <text x="480" y="117" class="uc-code">UC-01</text>
+    <text x="480" y="132" class="uc-text">Melihat Rekapitulasi Data Parpol</text>
+  </g>
+
+  <!-- UC2 -->
+  <g id="uc-2">
+    <ellipse cx="480" cy="205" rx="175" ry="26" fill="#ffffff" stroke="#1e293b" stroke-width="1.8" />
+    <text x="480" y="197" class="uc-code">UC-02</text>
+    <text x="480" y="212" class="uc-text">Pencarian &amp; Filter Wilayah Realtime</text>
+  </g>
+
+  <!-- UC3 -->
+  <g id="uc-3">
+    <ellipse cx="480" cy="285" rx="175" ry="26" fill="#ffffff" stroke="#1e293b" stroke-width="1.8" />
+    <text x="480" y="277" class="uc-code">UC-03</text>
+    <text x="480" y="292" class="uc-text">Melihat Detail Profil &amp; Legalitas SK</text>
+  </g>
+
+  <!-- UC4 -->
+  <g id="uc-4">
+    <ellipse cx="480" cy="365" rx="175" ry="26" fill="#ffffff" stroke="#1e293b" stroke-width="1.8" />
+    <text x="480" y="357" class="uc-code">UC-04</text>
+    <text x="480" y="372" class="uc-text">Melihat Realisasi Pendidikan Politik</text>
+  </g>
+
+  <!-- UC5 -->
+  <g id="uc-5">
+    <ellipse cx="480" cy="445" rx="175" ry="26" fill="#ffffff" stroke="#1e293b" stroke-width="1.8" />
+    <text x="480" y="437" class="uc-code">UC-05</text>
+    <text x="480" y="452" class="uc-text">Melihat Pemetaan Sebaran Kantor</text>
+  </g>
+
+  <!-- UC6 -->
+  <g id="uc-6">
+    <ellipse cx="480" cy="525" rx="175" ry="26" fill="#ffffff" stroke="#1e293b" stroke-width="1.8" />
+    <text x="480" y="517" class="uc-code">UC-06</text>
+    <text x="480" y="532" class="uc-text">Mencetak Rekapitulasi Dokumen (A4)</text>
+  </g>
+
+  <!-- UC7 -->
+  <g id="uc-7">
+    <ellipse cx="480" cy="605" rx="175" ry="26" fill="#ffffff" stroke="#1e293b" stroke-width="1.8" />
+    <text x="480" y="597" class="uc-code">UC-07</text>
+    <text x="480" y="612" class="uc-text">Mengirim Aspirasi &amp; Masukan Publik</text>
+  </g>
+
+  <!-- UC8 -->
+  <g id="uc-8">
+    <ellipse cx="480" cy="685" rx="175" ry="26" fill="#ffffff" stroke="#1e293b" stroke-width="1.8" />
+    <text x="480" y="677" class="uc-code">UC-08</text>
+    <text x="480" y="692" class="uc-text">Mengajukan Pengkinian Data Pengurus/SK</text>
+  </g>
+
+  <!-- UC9 -->
+  <g id="uc-9">
+    <ellipse cx="480" cy="765" rx="175" ry="26" fill="#ffffff" stroke="#1e293b" stroke-width="1.8" />
+    <text x="480" y="757" class="uc-code">UC-09</text>
+    <text x="480" y="772" class="uc-text">Memverifikasi &amp; Mengelola Data Parpol</text>
+  </g>
+
+  <!-- ================= ACTOR 1: MASYARAKAT / PUBLIK ================= -->
+  <g id="actor-masyarakat">
+    <!-- Head -->
+    <circle cx="95" cy="180" r="16" class="stick-figure" />
+    <!-- Body -->
+    <line x1="95" y1="196" x2="95" y2="255" class="stick-figure" />
+    <!-- Arms -->
+    <line x1="65" y1="215" x2="125" y2="215" class="stick-figure" />
+    <!-- Legs -->
+    <line x1="95" y1="255" x2="72" y2="300" class="stick-figure" />
+    <line x1="95" y1="255" x2="118" y2="300" class="stick-figure" />
+    <!-- Text -->
+    <text x="95" y="325" class="actor-label">Masyarakat / Publik</text>
+    <text x="95" y="342" class="actor-sub">(Pengunjung Umum)</text>
+  </g>
+
+  <!-- ================= ACTOR 2: PENGURUS / LO PARTAI ================= -->
+  <g id="actor-lo">
+    <!-- Head -->
+    <circle cx="95" cy="610" r="16" class="stick-figure" />
+    <!-- Body -->
+    <line x1="95" y1="626" x2="95" y2="685" class="stick-figure" />
+    <!-- Arms -->
+    <line x1="65" y1="645" x2="125" y2="645" class="stick-figure" />
+    <!-- Legs -->
+    <line x1="95" y1="685" x2="72" y2="730" class="stick-figure" />
+    <line x1="95" y1="685" x2="118" y2="730" class="stick-figure" />
+    <!-- Text -->
+    <text x="95" y="755" class="actor-label">Pengurus / LO Partai</text>
+    <text x="95" y="772" class="actor-sub">(Liaison Officer DPC/DPD)</text>
+  </g>
+
+  <!-- ================= ACTOR 3: ADMIN BAKESBANGPOL ================= -->
+  <g id="actor-admin">
+    <!-- Head -->
+    <circle cx="865" cy="400" r="16" class="stick-figure" />
+    <!-- Body -->
+    <line x1="865" y1="416" x2="865" y2="475" class="stick-figure" />
+    <!-- Arms -->
+    <line x1="835" y1="435" x2="895" y2="435" class="stick-figure" />
+    <!-- Legs -->
+    <line x1="865" y1="475" x2="842" y2="520" class="stick-figure" />
+    <line x1="865" y1="475" x2="888" y2="520" class="stick-figure" />
+    <!-- Text -->
+    <text x="865" y="545" class="actor-label">Admin Bakesbangpol</text>
+    <text x="865" y="562" class="actor-sub">(Pemerintah Daerah)</text>
+  </g>
+
+  <!-- Caption -->
+  <text x="480" y="825" class="caption">Use Case Diagram Sistem Informasi Partai Politik (SIPARPOL) Kabupaten Tanah Laut</text>
+</svg>
