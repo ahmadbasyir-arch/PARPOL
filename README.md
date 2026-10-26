@@ -37,7 +37,7 @@ Menyajikan data otentik 20 partai politik lengkap dengan logo resmi, legalitas S
 
 1. **Format Tabel Dokumen Resmi**: Menampilkan seluruh data sesuai lembar rekapitulasi fisik (No, Logo, Legalitas SK, Pengurus, Alamat, SK3P3).
 2. **Pencarian Realtime & Filter Wilayah**: Filter instan nama partai, pengurus, atau wilayah (Kec. Pelaihari / Kec. Batu Ampar).
-3. **Direktori Kartu Visual (Grid Cards)**: Menampilkan logo beresolusi tinggi (format vektor SVG) dan tombol cepat WhatsApp LO.
+3. **Direktori Kartu Visual (Grid Cards)**: Menampilkan logo beresolusi tinggi (format vektor SVG) serta nomor kontak resmi petugas penghubung (LO).
 4. **Modal Rincian Partai**: Pop-up interaktif rincian legalitas SK, Google Maps alamat, dan susunan pengurus.
 5. **Pratinjau & Cetak Dokumen (A4 Landscape)**: Format cetak siap print (Ctrl+P) persis lembar rekapitulasi pemerintah daerah.
 6. **Layanan Pengkinian Data Pengurus**: Formulir khusus LO / pengurus parpol untuk mengajukan update SK atau pergantian struktur.

@@ -198,26 +198,6 @@
         box-sizing: border-box;
     }
 
-    .btn-wa {
-        background-color: #25d366;
-        color: #ffffff;
-        font-weight: 600;
-        border: none;
-        border-radius: 8px;
-        padding: 7px 14px;
-        font-size: 0.85rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        text-decoration: none;
-        transition: all 0.2s;
-    }
-
-    .btn-wa:hover {
-        background-color: #1eb954;
-        color: #ffffff;
-        transform: translateY(-1px);
-    }
 
     .badge-sk {
         background: #dcfce7;
@@ -429,10 +409,9 @@
                                             <span class="text-muted">LO:</span> 
                                             <strong class="text-primary">{{ $p->lo_nama }}</strong>
                                             @if ($p->lo_hp)
-                                                <br>
-                                                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', (str_starts_with($p->lo_hp, '0') ? '62' . substr($p->lo_hp, 1) : $p->lo_hp)) }}" target="_blank" class="btn btn-wa mt-1">
-                                                    <i class="bi bi-whatsapp"></i> {{ $p->lo_hp }}
-                                                </a>
+                                                <div class="text-dark mt-1">
+                                                    <i class="bi bi-telephone-fill text-secondary me-1"></i> <strong>{{ $p->lo_hp }}</strong>
+                                                </div>
                                             @endif
                                         </div>
                                     </div>
@@ -483,7 +462,7 @@
                 <span class="section-badge"><i class="bi bi-grid-3x3-gap me-1"></i> Direktori Profil</span>
                 <h2 class="section-title">Direktori Kartu {{ $totalParpol }} Partai Politik</h2>
                 <p class="section-subtitle">
-                    Tampilan kartu visual modern yang memudahkan pembaca melihat lambang partai, pimpinan DPC/DPD, dan nomor WhatsApp petugas penghubung.
+                    Tampilan kartu visual modern yang memudahkan pembaca melihat lambang partai, pimpinan DPC/DPD, dan nomor kontak petugas penghubung.
                 </p>
             </div>
 
@@ -528,6 +507,11 @@
                                     </div>
                                     <div class="mb-0 text-break">
                                         <span class="text-muted">LO:</span> <strong class="text-primary">{{ $p->lo_nama }}</strong>
+                                        @if ($p->lo_hp)
+                                            <div class="text-dark mt-1">
+                                                <i class="bi bi-telephone-fill text-secondary me-1"></i> <span class="fw-semibold">{{ $p->lo_hp }}</span>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -536,15 +520,10 @@
                                 </div>
                             </div>
 
-                            <div class="party-card-footer d-flex justify-content-between align-items-center gap-2">
-                                <button class="btn {{ $p->pendidikanPolitik->count() > 0 ? 'btn-outline-primary' : 'btn-outline-secondary' }} btn-sm" data-bs-toggle="modal" data-bs-target="#modalParpol{{ $p->id }}">
-                                    <i class="bi bi-info-circle me-1"></i> {{ $p->pendidikanPolitik->count() > 0 ? 'Rincian & Dikpol' : 'Rincian SK' }}
+                            <div class="party-card-footer">
+                                <button class="btn {{ $p->pendidikanPolitik->count() > 0 ? 'btn-primary' : 'btn-outline-primary' }} btn-sm w-100" data-bs-toggle="modal" data-bs-target="#modalParpol{{ $p->id }}">
+                                    <i class="bi bi-info-circle me-1"></i> {{ $p->pendidikanPolitik->count() > 0 ? 'Rincian & Dikpol' : 'Rincian SK & Profil' }}
                                 </button>
-                                @if ($p->lo_hp)
-                                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', (str_starts_with($p->lo_hp, '0') ? '62' . substr($p->lo_hp, 1) : $p->lo_hp)) }}" target="_blank" class="btn btn-wa btn-sm">
-                                        <i class="bi bi-whatsapp"></i> Hubungi LO
-                                    </a>
-                                @endif
                             </div>
                         </div>
                     </div>
@@ -679,10 +658,10 @@
                             </div>
                         </div>
                         <div class="d-flex gap-3">
-                            <div class="text-primary fs-4"><i class="bi bi-whatsapp"></i></div>
+                            <div class="text-primary fs-4"><i class="bi bi-telephone-fill"></i></div>
                             <div>
                                 <h6 class="fw-bold mb-1">Konfirmasi Kontak LO</h6>
-                                <p class="text-secondary small mb-0">Tim verifikator akan menghubungi nomor WhatsApp LO terdaftar untuk verifikasi dokumen.</p>
+                                <p class="text-secondary small mb-0">Tim verifikator akan menghubungi nomor kontak / telepon LO terdaftar untuk verifikasi dokumen.</p>
                             </div>
                         </div>
                     </div>
@@ -725,7 +704,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label class="form-label small fw-bold">No. WhatsApp Aktif <span class="text-danger">*</span></label>
+                                    <label class="form-label small fw-bold">No. Kontak / Telepon Aktif <span class="text-danger">*</span></label>
                                     <input type="tel" class="form-control" name="no_hp" placeholder="08xxxxxxxxxx" required>
                                 </div>
 
@@ -848,16 +827,21 @@
                                     </div>
                                 </div>
 
-                                <div class="p-3 rounded-3 bg-primary bg-opacity-10 border border-primary-subtle">
-                                    <span class="text-primary fw-bold small text-uppercase d-block mb-1">Petugas Penghubung (LO)</span>
-                                    <h6 class="fw-bold text-dark mb-1">{{ $p->lo_nama }}</h6>
+                                <div class="p-3 rounded-3 bg-light border">
+                                    <span class="text-primary fw-bold small text-uppercase d-block mb-1">
+                                        <i class="bi bi-person-badge me-1"></i> Petugas Penghubung (LO)
+                                    </span>
+                                    <h6 class="fw-bold text-dark mb-2">{{ $p->lo_nama }}</h6>
                                     @if ($p->lo_hp)
-                                        <span class="text-muted small d-block mb-2">Kontak / WhatsApp: {{ $p->lo_hp }}</span>
-                                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', (str_starts_with($p->lo_hp, '0') ? '62' . substr($p->lo_hp, 1) : $p->lo_hp)) }}" target="_blank" class="btn btn-wa w-100 justify-content-center">
-                                            <i class="bi bi-whatsapp"></i> Chat WhatsApp LO
-                                        </a>
+                                        <div class="p-2 bg-white rounded-2 border d-flex align-items-center gap-2">
+                                            <div class="text-primary fs-5"><i class="bi bi-telephone-fill"></i></div>
+                                            <div>
+                                                <span class="text-muted small d-block" style="font-size: 0.75rem;">Nomor Telepon / Kontak LO:</span>
+                                                <strong class="text-dark fs-6">{{ $p->lo_hp }}</strong>
+                                            </div>
+                                        </div>
                                     @else
-                                        <span class="text-muted small">Kontak belum tercantum</span>
+                                        <span class="text-muted small">Nomor kontak belum tercantum</span>
                                     @endif
                                 </div>
                             </div>
