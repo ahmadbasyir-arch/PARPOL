@@ -1,170 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 640" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 780" width="100%" height="100%">
   <defs>
     <style>
-      .class-hdr { font-family: "Segoe UI", Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #ffffff; text-anchor: middle; dominant-baseline: middle; }
-      .class-body { font-family: "Consolas", "Courier New", monospace; font-size: 11.5px; fill: #18181b; }
-      .class-box { fill: #ffffff; stroke: #94a3b8; stroke-width: 1.2; }
-      .hdr-rect { fill: #22c0c3; stroke: #94a3b8; stroke-width: 1.2; }
-      .div-line { stroke: #cbd5e1; stroke-width: 1; }
-      .conn-line { stroke: #1e293b; stroke-width: 1.5; fill: none; }
-      .caption { font-family: "Segoe UI", Arial, sans-serif; font-size: 12px; font-style: italic; fill: #64748b; text-anchor: middle; }
+      .class-hdr { font-family: "Segoe UI", Arial, sans-serif; font-size: 13.5px; font-weight: bold; fill: #ffffff; text-anchor: middle; dominant-baseline: middle; }
+      .class-body { font-family: "Segoe UI", Arial, sans-serif; font-size: 11px; fill: #18181b; }
+      .class-box { fill: #ffffff; stroke: #a1a1aa; stroke-width: 1.2; }
+      .hdr-rect { fill: #22c0c3; stroke: #a1a1aa; stroke-width: 1.2; }
+      .div-line { stroke: #e2e8f0; stroke-width: 1; }
+      .conn-line { stroke: #1e293b; stroke-width: 2; fill: none; }
     </style>
     <!-- Arrowhead Marker (Standard UML) -->
-    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
-      <path d="M 0 1 L 9 5 L 0 9 z" fill="#1e293b" />
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto">
+      <path d="M 0 2 L 13 7 L 0 12 z" fill="#1e293b" />
     </marker>
   </defs>
 
-  <!-- Background -->
-  <rect width="940" height="640" fill="#ffffff" />
+  <!-- PURE WHITE BACKGROUND -->
+  <rect width="1040" height="780" fill="#ffffff" />
 
   <!-- ================= CONNECTION LINES ================= -->
 
-  <!-- 1. Vertical line: Pengurus_lo (165, 175) to Parpol (165, 215) -->
-  <line x1="165" y1="175" x2="165" y2="215" class="conn-line" />
+  <!-- 1. Vertical: Pengurus_lo (180, 200) to Parpol (180, 250) -->
+  <line x1="180" y1="200" x2="180" y2="250" class="conn-line" />
 
-  <!-- 2. Vertical line: Parpol (165, 395) to Petugas_bakesbangpol (165, 435) -->
-  <line x1="165" y1="395" x2="165" y2="435" class="conn-line" />
+  <!-- 2. Vertical: Parpol (180, 490) to Petugas_bakesbangpol (180, 540) -->
+  <line x1="180" y1="490" x2="180" y2="540" class="conn-line" />
 
-  <!-- 3. Horizontal line: Parpol (270, 305) to Aspirasi (365, 305) -->
-  <line x1="270" y1="305" x2="365" y2="305" class="conn-line" />
+  <!-- 3. Horizontal: Parpol (300, 370) to Aspirasi (390, 370) -->
+  <line x1="300" y1="370" x2="390" y2="370" class="conn-line" />
 
-  <!-- 4. Diagonal arrow: Pengkinian_data_lo (670, 185) to Aspirasi (575, 235) -->
-  <line x1="670" y1="185" x2="578" y2="233" class="conn-line" marker-end="url(#arrow)" />
+  <!-- 4. Diagonal arrow: Pengkinian_data_lo (720, 215) to Aspirasi (630, 280) -->
+  <line x1="720" y1="215" x2="633" y2="280" class="conn-line" marker-end="url(#arrow)" />
 
-  <!-- 5. Diagonal arrow: Aspirasi_masyarakat (670, 425) to Aspirasi (575, 375) -->
-  <line x1="670" y1="425" x2="578" y2="377" class="conn-line" marker-end="url(#arrow)" />
+  <!-- 5. Diagonal arrow: Aspirasi_masyarakat (720, 555) to Aspirasi (630, 460) -->
+  <line x1="720" y1="555" x2="633" y2="460" class="conn-line" marker-end="url(#arrow)" />
 
 
   <!-- ================= 1. Pengurus_lo (Top Left) ================= -->
   <g id="box-pengurus-lo">
-    <rect x="60" y="35" width="210" height="140" class="class-box" />
-    <rect x="60" y="35" width="210" height="34" class="hdr-rect" />
-    <text x="165" y="52" class="class-hdr">Pengurus_lo</text>
+    <rect x="60" y="35" width="240" height="165" class="class-box" />
+    <rect x="60" y="35" width="240" height="38" class="hdr-rect" />
+    <text x="180" y="54" class="class-hdr">Pengurus_lo</text>
 
     <!-- Attributes -->
-    <text x="72" y="86" class="class-body">+ id_lo: int</text>
-    <text x="72" y="102" class="class-body">+ nama: char</text>
-    <text x="72" y="118" class="class-body">+ no_hp: char</text>
+    <text x="74" y="93" class="class-body">+ id_lo: int</text>
+    <text x="74" y="112" class="class-body">+ nama: char</text>
+    <text x="74" y="131" class="class-body">+ no_hp: char</text>
 
     <!-- Divider -->
-    <line x1="60" y1="128" x2="270" y2="128" class="div-line" />
+    <line x1="60" y1="142" x2="300" y2="142" class="div-line" />
 
     <!-- Methods -->
-    <text x="72" y="146" class="class-body">+ insert_data ()</text>
-    <text x="72" y="162" class="class-body">+ update_data ()</text>
+    <text x="74" y="163" class="class-body">+ insert_data ()</text>
+    <text x="74" y="182" class="class-body">+ update_data ()</text>
   </g>
 
 
   <!-- ================= 2. Parpol (Middle Left) ================= -->
   <g id="box-parpol">
-    <rect x="60" y="215" width="210" height="180" class="class-box" />
-    <rect x="60" y="215" width="210" height="34" class="hdr-rect" />
-    <text x="165" y="232" class="class-hdr">Parpol</text>
+    <rect x="60" y="250" width="240" height="240" class="class-box" />
+    <rect x="60" y="250" width="240" height="38" class="hdr-rect" />
+    <text x="180" y="269" class="class-hdr">Parpol</text>
 
     <!-- Attributes -->
-    <text x="72" y="266" class="class-body">+ id_parpol: int</text>
-    <text x="72" y="282" class="class-body">+ nama_partai: char</text>
-    <text x="72" y="298" class="class-body">+ akronim: char</text>
-    <text x="72" y="314" class="class-body">+ ketua: char</text>
-    <text x="72" y="330" class="class-body">+ sk3p3: char</text>
+    <text x="74" y="308" class="class-body">+ id_parpol: int</text>
+    <text x="74" y="327" class="class-body">+ nama_partai: char</text>
+    <text x="74" y="346" class="class-body">+ akronim: char</text>
+    <text x="74" y="365" class="class-body">+ ketua: char</text>
+    <text x="74" y="384" class="class-body">+ sk3p3: char</text>
 
     <!-- Divider -->
-    <line x1="60" y1="340" x2="270" y2="340" class="div-line" />
+    <line x1="60" y1="395" x2="300" y2="395" class="div-line" />
 
     <!-- Methods -->
-    <text x="72" y="358" class="class-body">+ insert_data ()</text>
-    <text x="72" y="374" class="class-body">+ update_data ()</text>
-    <text x="72" y="390" class="class-body">+ cari_data ()</text>
+    <text x="74" y="416" class="class-body">+ insert_data ()</text>
+    <text x="74" y="435" class="class-body">+ update_data ()</text>
+    <text x="74" y="454" class="class-body">+ cari_data ()</text>
   </g>
 
 
   <!-- ================= 3. Petugas_bakesbangpol (Bottom Left) ================= -->
   <g id="box-petugas">
-    <rect x="60" y="435" width="210" height="150" class="class-box" />
-    <rect x="60" y="435" width="210" height="34" class="hdr-rect" />
-    <text x="165" y="452" class="class-hdr">Petugas_bakesbangpol</text>
+    <rect x="60" y="540" width="240" height="205" class="class-box" />
+    <rect x="60" y="540" width="240" height="38" class="hdr-rect" />
+    <text x="180" y="559" class="class-hdr">Petugas_bakesbangpol</text>
 
     <!-- Attributes -->
-    <text x="72" y="486" class="class-body">+ id_petugas: int</text>
-    <text x="72" y="502" class="class-body">+ nama: char</text>
-    <text x="72" y="518" class="class-body">+ jabatan: char</text>
+    <text x="74" y="598" class="class-body">+ id_petugas: int</text>
+    <text x="74" y="617" class="class-body">+ nama: char</text>
+    <text x="74" y="636" class="class-body">+ email: char</text>
+    <text x="74" y="655" class="class-body">+ jabatan: char</text>
 
     <!-- Divider -->
-    <line x1="60" y1="528" x2="270" y2="528" class="div-line" />
+    <line x1="60" y1="666" x2="300" y2="666" class="div-line" />
 
     <!-- Methods -->
-    <text x="72" y="546" class="class-body">+ insert_data ()</text>
-    <text x="72" y="562" class="class-body">+ update_data ()</text>
-    <text x="72" y="578" class="class-body">+ verifikasi_sk ()</text>
+    <text x="74" y="687" class="class-body">+ insert_data ()</text>
+    <text x="74" y="706" class="class-body">+ update_data ()</text>
+    <text x="74" y="725" class="class-body">+ verifikasi_sk ()</text>
   </g>
 
 
   <!-- ================= 4. Aspirasi (Center Middle) ================= -->
   <g id="box-aspirasi">
-    <rect x="365" y="215" width="210" height="180" class="class-box" />
-    <rect x="365" y="215" width="210" height="34" class="hdr-rect" />
-    <text x="470" y="232" class="class-hdr">Aspirasi</text>
+    <rect x="390" y="250" width="240" height="240" class="class-box" />
+    <rect x="390" y="250" width="240" height="38" class="hdr-rect" />
+    <text x="510" y="269" class="class-hdr">Aspirasi</text>
 
     <!-- Attributes -->
-    <text x="377" y="266" class="class-body">+ id_aspirasi: int</text>
-    <text x="377" y="282" class="class-body">+ id_parpol: int</text>
-    <text x="377" y="298" class="class-body">+ nama_pengirim: char</text>
-    <text x="377" y="314" class="class-body">+ email: char</text>
-    <text x="377" y="330" class="class-body">+ status: char</text>
+    <text x="404" y="308" class="class-body">+ id_aspirasi: int</text>
+    <text x="404" y="327" class="class-body">+ id_parpol: int</text>
+    <text x="404" y="346" class="class-body">+ nama_pengirim: char</text>
+    <text x="404" y="365" class="class-body">+ email: char</text>
+    <text x="404" y="384" class="class-body">+ status: char</text>
 
     <!-- Divider -->
-    <line x1="365" y1="340" x2="575" y2="340" class="div-line" />
+    <line x1="390" y1="395" x2="630" y2="395" class="div-line" />
 
     <!-- Methods -->
-    <text x="377" y="358" class="class-body">+ insert_data ()</text>
-    <text x="377" y="374" class="class-body">+ update_data ()</text>
-    <text x="377" y="390" class="class-body">+ verifikasi_pesan ()</text>
+    <text x="404" y="416" class="class-body">+ insert_data ()</text>
+    <text x="404" y="435" class="class-body">+ update_data ()</text>
+    <text x="404" y="454" class="class-body">+ verifikasi_pesan ()</text>
   </g>
 
 
   <!-- ================= 5. Pengkinian_data_lo (Top Right) ================= -->
   <g id="box-pengkinian">
-    <rect x="670" y="35" width="210" height="160" class="class-box" />
-    <rect x="670" y="35" width="210" height="34" class="hdr-rect" />
-    <text x="775" y="52" class="class-hdr">Pengkinian_data_lo</text>
+    <rect x="720" y="35" width="240" height="190" class="class-box" />
+    <rect x="720" y="35" width="240" height="38" class="hdr-rect" />
+    <text x="840" y="54" class="class-hdr">Pengkinian_data_lo</text>
 
     <!-- Attributes -->
-    <text x="682" y="86" class="class-body">+ id_aspirasi: int</text>
-    <text x="682" y="102" class="class-body">+ nama_partai: char</text>
-    <text x="682" y="118" class="class-body">+ no_hp: char</text>
-    <text x="682" y="134" class="class-body">+ rincian_sk: char</text>
+    <text x="734" y="93" class="class-body">+ id_aspirasi: int</text>
+    <text x="734" y="112" class="class-body">+ nama_partai: char</text>
+    <text x="734" y="131" class="class-body">+ no_hp: char</text>
+    <text x="734" y="150" class="class-body">+ rincian_sk: char</text>
 
     <!-- Divider -->
-    <line x1="670" y1="144" x2="880" y2="144" class="div-line" />
+    <line x1="720" y1="161" x2="960" y2="161" class="div-line" />
 
     <!-- Methods -->
-    <text x="682" y="162" class="class-body">+ insert_data ()</text>
-    <text x="682" y="178" class="class-body">+ update_data ()</text>
+    <text x="734" y="182" class="class-body">+ insert_data ()</text>
+    <text x="734" y="201" class="class-body">+ update_data ()</text>
   </g>
 
 
   <!-- ================= 6. Aspirasi_masyarakat (Bottom Right) ================= -->
   <g id="box-aspirasi-masyarakat">
-    <rect x="670" y="425" width="210" height="160" class="class-box" />
-    <rect x="670" y="425" width="210" height="34" class="hdr-rect" />
-    <text x="775" y="442" class="class-hdr">Aspirasi_masyarakat</text>
+    <rect x="720" y="540" width="240" height="200" class="class-box" />
+    <rect x="720" y="540" width="240" height="38" class="hdr-rect" />
+    <text x="840" y="559" class="class-hdr">Aspirasi_masyarakat</text>
 
     <!-- Attributes -->
-    <text x="682" y="476" class="class-body">+ id_aspirasi: int</text>
-    <text x="682" y="492" class="class-body">+ kategori: char</text>
-    <text x="682" y="508" class="class-body">+ subjek: char</text>
-    <text x="682" y="524" class="class-body">+ pesan: char</text>
+    <text x="734" y="598" class="class-body">+ id_aspirasi: int</text>
+    <text x="734" y="617" class="class-body">+ kategori: char</text>
+    <text x="734" y="636" class="class-body">+ subjek: char</text>
+    <text x="734" y="655" class="class-body">+ pesan: char</text>
 
     <!-- Divider -->
-    <line x1="670" y1="534" x2="880" y2="534" class="div-line" />
+    <line x1="720" y1="666" x2="960" y2="666" class="div-line" />
 
     <!-- Methods -->
-    <text x="682" y="552" class="class-body">+ insert_data ()</text>
-    <text x="682" y="568" class="class-body">+ update_data ()</text>
+    <text x="734" y="687" class="class-body">+ insert_data ()</text>
+    <text x="734" y="706" class="class-body">+ update_data ()</text>
   </g>
-
-  <!-- Caption -->
-  <text x="470" y="622" class="caption">Class Diagram Sistem Informasi Partai Politik (SIPARPOL) Kabupaten Tanah Laut</text>
 </svg>
