@@ -361,7 +361,7 @@
                                 <td>
                                     <div class="d-flex align-items-center gap-3" style="min-width: 220px;">
                                         <div class="logo-box flex-shrink-0">
-                                            <img src="{{ asset($p->logo) }}?v=6" alt="Logo {{ $p->akronim }}">
+                                            <img src="{{ asset($p->logo) }}?v=7" alt="Logo {{ $p->akronim }}">
                                         </div>
                                         <div>
                                             <h6 class="fw-bold text-dark mb-0">{{ $p->akronim }}</h6>
@@ -481,7 +481,7 @@
 
                             <div class="party-card-body text-center">
                                 <div class="mx-auto mb-3" style="width: 88px; height: 88px; padding: 0; background: #ffffff; border-radius: 14px; border: 1.5px solid #cbd5e1; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.06); overflow: hidden;">
-                                    <img src="{{ asset($p->logo) }}?v=6" alt="Logo {{ $p->akronim }}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 13px;">
+                                    <img src="{{ asset($p->logo) }}?v=7" alt="Logo {{ $p->akronim }}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 13px;">
                                 </div>
 
                                 <h5 class="fw-bold text-dark mb-1">{{ $p->akronim }}</h5>
@@ -734,7 +734,7 @@
                     <div class="modal-header bg-dark text-white p-4">
                         <div class="d-flex align-items-center gap-3">
                             <div style="width: 55px; height: 55px; background: #ffffff; border-radius: 10px; padding: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1.5px solid rgba(255,255,255,0.2);">
-                                <img src="{{ asset($p->logo) }}?v=6" alt="Logo {{ $p->akronim }}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 9px;">
+                                <img src="{{ asset($p->logo) }}?v=7" alt="Logo {{ $p->akronim }}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 9px;">
                             </div>
                             <div>
                                 <span class="badge bg-danger text-uppercase px-2 py-1 mb-1">Nomor Urut {{ $p->nomor_urut }}</span>
