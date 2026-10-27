@@ -22,7 +22,33 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'parpol_id',
     ];
+
+    /**
+     * Relasi ke Partai Politik jika role = 'parpol'
+     */
+    public function parpol()
+    {
+        return $this->belongsTo(Parpol::class);
+    }
+
+    /**
+     * Cek apakah user adalah Admin Bakesbangpol
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    /**
+     * Cek apakah user adalah Operator/Pengurus Partai Politik
+     */
+    public function isParpol(): bool
+    {
+        return $this->role === 'parpol';
+    }
 
     /**
      * The attributes that should be hidden for serialization.
