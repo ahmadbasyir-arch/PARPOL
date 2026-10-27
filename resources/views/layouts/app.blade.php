@@ -335,7 +335,7 @@
                             <a class="dropdown-item py-2 small d-flex align-items-center gap-2" href="{{ route('wasbang.index') }}">
                                 <i class="bi bi-flag-fill text-danger"></i>
                                 <div>
-                                    <div class="fw-bold text-dark">WASBANG (Ideologi)</div>
+                                    <div class="fw-bold text-dark">WASBANG TANAH LAUT</div>
                                     <small class="text-muted" style="font-size: 0.7rem;">Pengarsipan Dokumentasi Lapangan</small>
                                 </div>
                             </a>

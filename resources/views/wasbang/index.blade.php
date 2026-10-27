@@ -260,7 +260,7 @@
             <div class="col-lg-8">
                 <div class="wasbang-badge">
                     <i class="bi bi-shield-fill-check text-warning"></i>
-                    Bidang Bina Ideologi, Wawasan Kebangsaan &amp; Karakter Bangsa
+                    WASBANG TANAH LAUT &bull; Bidang Bina Ideologi, Wawasan Kebangsaan &amp; Karakter Bangsa
                 </div>
                 <h1 class="hero-title-wasbang">
                     Pengarsipan Dokumentasi <br>
