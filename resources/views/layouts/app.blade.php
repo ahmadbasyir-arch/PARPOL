@@ -95,10 +95,13 @@
         .nav-link {
             font-weight: 600;
             color: #334155 !important;
-            padding: 8px 14px !important;
+            padding: 8px 12px !important;
             border-radius: 8px;
             transition: all 0.2s ease;
-            font-size: 0.92rem;
+            font-size: 0.88rem;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
         }
 
         .nav-link:hover {
@@ -110,18 +113,68 @@
             background-color: var(--parpol-primary);
             color: #ffffff;
             font-weight: 600;
-            padding: 9px 20px;
-            border-radius: 9px;
-            border: none;
-            box-shadow: 0 4px 14px rgba(30, 58, 138, 0.25);
-            transition: all 0.25s ease;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--parpol-primary);
+            box-shadow: 0 2px 8px rgba(30, 58, 138, 0.2);
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            font-size: 0.86rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .btn-parpol:hover {
             background-color: var(--parpol-primary-hover);
             color: #ffffff;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(30, 58, 138, 0.35);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+        }
+
+        .btn-login-portal {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #0f172a !important;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid #d97706;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.25);
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            font-size: 0.86rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+
+        .btn-login-portal:hover {
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            color: #ffffff !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35);
+        }
+
+        .btn-user-portal {
+            background-color: #ffffff;
+            color: #1e293b !important;
+            font-weight: 600;
+            padding: 7px 14px;
+            border-radius: 8px;
+            border: 1.5px solid #0f766e;
+            box-shadow: 0 2px 6px rgba(15, 118, 110, 0.15);
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            font-size: 0.86rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-user-portal:hover {
+            background-color: #f0fdfa;
+            border-color: #0d9488;
         }
 
         /* Section Titles */
@@ -231,15 +284,15 @@
     </div>
 
     <!-- Navigasi Utama -->
-    <nav class="navbar navbar-expand-lg navbar-parpol">
-        <div class="container">
+    <nav class="navbar navbar-expand-xl navbar-parpol shadow-sm sticky-top">
+        <div class="container-fluid px-xl-5 px-3">
             <a class="navbar-brand d-flex align-items-center gap-3" href="{{ route('parpol.home') }}">
                 <div class="logo-emblem">
                     <i class="bi bi-bank2"></i>
                 </div>
                 <div>
                     <div class="brand-title">SIPARPOL TANAH LAUT</div>
-                    <div class="brand-sub">Data Partai Politik Kab. Tanah Laut Tahun 2026</div>
+                    <div class="brand-sub">Kab. Tanah Laut Tahun 2026</div>
                 </div>
             </a>
             
@@ -248,7 +301,7 @@
             </button>
             
             <div class="collapse navbar-collapse" id="navbarMenu">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-1">
+                <ul class="navbar-nav ms-auto mb-2 mb-xl-0 align-items-xl-center gap-1">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('parpol.home') }}#beranda"><i class="bi bi-house-door me-1"></i> Beranda</a>
                     </li>
@@ -256,7 +309,7 @@
                         <a class="nav-link" href="{{ route('parpol.home') }}#tabel-data"><i class="bi bi-table me-1"></i> Tabel Resmi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('parpol.home') }}#galeri-partai"><i class="bi bi-grid-3x3-gap me-1"></i> Direktori Parpol (20)</a>
+                        <a class="nav-link" href="{{ route('parpol.home') }}#galeri-partai"><i class="bi bi-grid-3x3-gap me-1"></i> Direktori Parpol</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('parpol.home') }}#dikpol"><i class="bi bi-mortarboard-fill me-1"></i> Pendidikan Politik</a>
@@ -267,25 +320,27 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('parpol.home') }}#lapor"><i class="bi bi-pencil-square me-1"></i> Update Data LO</a>
                     </li>
-                    <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-                        <a class="btn btn-parpol text-decoration-none" href="{{ route('parpol.cetak') }}" target="_blank">
-                            <i class="bi bi-printer-fill me-1"></i> Cetak Dokumen
-                        </a>
-                    </li>
+                </ul>
+
+                <!-- Tombol Aksi di Pojok Kanan Atas -->
+                <div class="d-flex align-items-center gap-2 ms-xl-3 mt-3 mt-xl-0">
+                    <a class="btn-parpol text-decoration-none" href="{{ route('parpol.cetak') }}" target="_blank">
+                        <i class="bi bi-printer-fill"></i> Cetak Dokumen
+                    </a>
                     
                     @auth
-                        <li class="nav-item dropdown ms-lg-2 mt-2 mt-lg-0">
-                            <a class="btn btn-warning dropdown-toggle fw-semibold rounded-pill px-3 shadow-sm text-dark d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-person-circle fs-5"></i>
+                        <div class="dropdown">
+                            <button class="btn btn-user-portal dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle text-primary fs-6"></i>
                                 <span>{{ auth()->user()->isParpol() ? (auth()->user()->parpol->akronim ?? 'Partai') : 'Admin Bakesbangpol' }}</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 mt-2">
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-3 mt-2" style="min-width: 230px;">
                                 <li class="px-3 py-2 border-bottom bg-light">
-                                    <small class="text-muted d-block">{{ auth()->user()->isAdmin() ? 'Superadmin Bakesbangpol' : 'Operator / Pengurus Partai' }}</small>
+                                    <small class="text-muted d-block" style="font-size: 0.75rem;">{{ auth()->user()->isAdmin() ? 'Superadmin Bakesbangpol' : 'Operator / Pengurus Partai' }}</small>
                                     <strong class="text-dark small">{{ auth()->user()->name }}</strong>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item py-2" href="{{ route('dashboard') }}">
+                                    <a class="dropdown-item py-2 small" href="{{ route('dashboard') }}">
                                         <i class="bi bi-speedometer2 text-primary me-2"></i> Dashboard Pelaporan
                                     </a>
                                 </li>
@@ -293,22 +348,22 @@
                                 <li>
                                     <form action="{{ route('logout') }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="dropdown-item py-2 text-danger">
+                                        <button type="submit" class="dropdown-item py-2 small text-danger">
                                             <i class="bi bi-box-arrow-right me-2"></i> Keluar (Logout)
                                         </button>
                                     </form>
                                 </li>
                             </ul>
-                        </li>
+                        </div>
                     @else
-                        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-                            <a class="btn btn-warning fw-semibold rounded-pill px-3 shadow-sm text-dark d-flex align-items-center gap-1" href="{{ route('login') }}">
-                                <i class="bi bi-box-arrow-in-right"></i> Login Parpol / Admin
-                            </a>
-                        </li>
+                        <a class="btn-login-portal text-decoration-none" href="{{ route('login') }}">
+                            <i class="bi bi-box-arrow-in-right"></i> Login Portal
+                        </a>
                     @endauth
-                </ul>
+                </div>
             </div>
+        </div>
+    </nav>
         </div>
     </nav>
 
