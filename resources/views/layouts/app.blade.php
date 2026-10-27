@@ -271,17 +271,21 @@
 
     <!-- Bar Informasi Wilayah -->
     <div class="top-bar d-none d-lg-block">
-        <div class="container">
+        <div class="container-fluid px-lg-5 px-3">
             <div class="row align-items-center">
-                <div class="col-md-7">
-                    <span><i class="bi bi-geo-alt-fill text-danger me-1"></i> Kabupaten Tanah Laut, Provinsi Kalimantan Selatan</span>
-                    <span class="mx-3 text-muted">|</span>
-                    <span><i class="bi bi-calendar-event me-1 text-warning"></i> Data Resmi Pemilu & Kepengurusan Tahun 2026</span>
-                </div>
-                <div class="col-md-5 text-end">
-                    <span><i class="bi bi-building me-1 text-info"></i> Sekretariat Wilayah: Kec. Pelaihari & Batu Ampar</span>
+                <div class="col-md-6">
+                    <span><i class="bi bi-geo-alt-fill text-danger me-1"></i> Kabupaten Tanah Laut, Kalimantan Selatan</span>
                     <span class="mx-2 text-muted">|</span>
-                    <a href="{{ route('parpol.cetak') }}" target="_blank" class="fw-semibold text-warning">
+                    <a href="{{ route('portal.home') }}" class="text-white text-decoration-none small">
+                        <i class="bi bi-house-door me-1"></i> Portal Utama Bakesbangpol
+                    </a>
+                </div>
+                <div class="col-md-6 text-end">
+                    <a href="{{ route('wasbang.index') }}" class="fw-semibold text-warning text-decoration-none me-3">
+                        <i class="bi bi-flag-fill me-1"></i> Layanan WASBANG
+                    </a>
+                    <span class="mx-1 text-muted">|</span>
+                    <a href="{{ route('parpol.cetak') }}" target="_blank" class="fw-semibold text-white text-decoration-none">
                         <i class="bi bi-printer me-1"></i> Cetak Dokumen
                     </a>
                 </div>
@@ -292,15 +296,54 @@
     <!-- Navigasi Utama -->
     <nav class="navbar navbar-expand-xl navbar-parpol shadow-sm sticky-top">
         <div class="container-fluid px-lg-4 px-2">
-            <a class="navbar-brand d-flex align-items-center gap-2 me-2" href="{{ route('parpol.home') }}">
-                <div class="logo-emblem">
-                    <i class="bi bi-bank2"></i>
+            <div class="d-flex align-items-center gap-2">
+                <a class="navbar-brand d-flex align-items-center gap-2 me-1" href="{{ route('parpol.home') }}">
+                    <div class="logo-emblem">
+                        <i class="bi bi-bank2"></i>
+                    </div>
+                    <div>
+                        <div class="brand-title">SIPARPOL TANAH LAUT</div>
+                        <div class="brand-sub">Kab. Tanah Laut 2026</div>
+                    </div>
+                </a>
+
+                <!-- Dropdown Switcher Layanan Bidang -->
+                <div class="dropdown d-none d-md-block">
+                    <button class="btn btn-outline-secondary btn-sm dropdown-toggle py-1 px-2 text-dark rounded-3" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 0.76rem; font-weight: 600; background: #f8fafc;">
+                        <i class="bi bi-grid-fill text-primary me-1"></i> Pindah Bidang
+                    </button>
+                    <ul class="dropdown-menu shadow border-0 rounded-3 mt-1" style="min-width: 250px;">
+                        <li class="px-3 py-2 border-bottom bg-light">
+                            <small class="text-muted d-block" style="font-size: 0.72rem;">Portal Bakesbangpol Kab. Tanah Laut</small>
+                            <strong class="text-dark small">Pindah Layanan Bidang:</strong>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2 small d-flex align-items-center gap-2" href="{{ route('portal.home') }}">
+                                <i class="bi bi-house-door-fill text-secondary"></i>
+                                <span>Halaman Utama Portal</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2 small d-flex align-items-center gap-2 active bg-primary" href="{{ route('parpol.home') }}">
+                                <i class="bi bi-bank2 text-white"></i>
+                                <div>
+                                    <div class="fw-bold">SIPARPOL (Poldagri)</div>
+                                    <small class="text-white-50" style="font-size: 0.7rem;">Data 20 Parpol &amp; Realisasi Dikpol</small>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2 small d-flex align-items-center gap-2" href="{{ route('wasbang.index') }}">
+                                <i class="bi bi-flag-fill text-danger"></i>
+                                <div>
+                                    <div class="fw-bold text-dark">WASBANG (Ideologi)</div>
+                                    <small class="text-muted" style="font-size: 0.7rem;">Pengarsipan Dokumentasi Lapangan</small>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <div>
-                    <div class="brand-title">SIPARPOL TANAH LAUT</div>
-                    <div class="brand-sub">Kab. Tanah Laut 2026</div>
-                </div>
-            </a>
+            </div>
             
             <button class="navbar-toggler border-0 p-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
