@@ -19,7 +19,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(ParpolSeeder::class);
         $this->call(PendidikanPolitikSeeder::class);
+        $this->call(UserSeeder::class);
         $this->call(WasbangKegiatanSeeder::class);
+        $this->call(KegiatanWasbangSeeder::class);
         User::firstOrCreate(
             ['email' => 'admin@parpol.or.id'],
             [

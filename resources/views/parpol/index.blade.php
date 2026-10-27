@@ -131,18 +131,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 3px;
+        padding: 0 !important;
         box-shadow: 0 2px 6px rgba(0,0,0,0.06);
         box-sizing: border-box;
         overflow: hidden;
     }
 
     .logo-box img {
-        width: 100%;
-        height: 100%;
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        object-fit: cover !important;
+        border-radius: 11px;
     }
 
     /* Party Cards */
@@ -197,26 +198,6 @@
         box-sizing: border-box;
     }
 
-    .btn-wa {
-        background-color: #25d366;
-        color: #ffffff;
-        font-weight: 600;
-        border: none;
-        border-radius: 8px;
-        padding: 7px 14px;
-        font-size: 0.85rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        text-decoration: none;
-        transition: all 0.2s;
-    }
-
-    .btn-wa:hover {
-        background-color: #1eb954;
-        color: #ffffff;
-        transform: translateY(-1px);
-    }
 
     .badge-sk {
         background: #dcfce7;
@@ -380,7 +361,7 @@
                                 <td>
                                     <div class="d-flex align-items-center gap-3" style="min-width: 220px;">
                                         <div class="logo-box flex-shrink-0">
-                                            <img src="{{ asset($p->logo) }}?v=3" alt="Logo {{ $p->akronim }}">
+                                            <img src="{{ asset($p->logo) }}?v=7" alt="Logo {{ $p->akronim }}">
                                         </div>
                                         <div>
                                             <h6 class="fw-bold text-dark mb-0">{{ $p->akronim }}</h6>
@@ -428,10 +409,9 @@
                                             <span class="text-muted">LO:</span> 
                                             <strong class="text-primary">{{ $p->lo_nama }}</strong>
                                             @if ($p->lo_hp)
-                                                <br>
-                                                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', (str_starts_with($p->lo_hp, '0') ? '62' . substr($p->lo_hp, 1) : $p->lo_hp)) }}" target="_blank" class="btn btn-wa mt-1">
-                                                    <i class="bi bi-whatsapp"></i> {{ $p->lo_hp }}
-                                                </a>
+                                                <div class="text-dark mt-1">
+                                                    <i class="bi bi-telephone-fill text-secondary me-1"></i> <strong>{{ $p->lo_hp }}</strong>
+                                                </div>
                                             @endif
                                         </div>
                                     </div>
@@ -482,7 +462,7 @@
                 <span class="section-badge"><i class="bi bi-grid-3x3-gap me-1"></i> Direktori Profil</span>
                 <h2 class="section-title">Direktori Kartu {{ $totalParpol }} Partai Politik</h2>
                 <p class="section-subtitle">
-                    Tampilan kartu visual modern yang memudahkan pembaca melihat lambang partai, pimpinan DPC/DPD, dan nomor WhatsApp petugas penghubung.
+                    Tampilan kartu visual modern yang memudahkan pembaca melihat lambang partai, pimpinan DPC/DPD, dan nomor kontak petugas penghubung.
                 </p>
             </div>
 
@@ -500,8 +480,8 @@
                             </div>
 
                             <div class="party-card-body text-center">
-                                <div class="mx-auto mb-3" style="width: 90px; height: 90px; padding: 6px; background: #ffffff; border-radius: 12px; border: 1.5px solid #cbd5e1; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                                    <img src="{{ asset($p->logo) }}?v=4" alt="Logo {{ $p->akronim }}" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+                                <div class="mx-auto mb-3" style="width: 88px; height: 88px; padding: 0; background: #ffffff; border-radius: 14px; border: 1.5px solid #cbd5e1; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.06); overflow: hidden;">
+                                    <img src="{{ asset($p->logo) }}?v=7" alt="Logo {{ $p->akronim }}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 13px;">
                                 </div>
 
                                 <h5 class="fw-bold text-dark mb-1">{{ $p->akronim }}</h5>
@@ -527,6 +507,11 @@
                                     </div>
                                     <div class="mb-0 text-break">
                                         <span class="text-muted">LO:</span> <strong class="text-primary">{{ $p->lo_nama }}</strong>
+                                        @if ($p->lo_hp)
+                                            <div class="text-dark mt-1">
+                                                <i class="bi bi-telephone-fill text-secondary me-1"></i> <span class="fw-semibold">{{ $p->lo_hp }}</span>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -535,15 +520,10 @@
                                 </div>
                             </div>
 
-                            <div class="party-card-footer d-flex justify-content-between align-items-center gap-2">
-                                <button class="btn {{ $p->pendidikanPolitik->count() > 0 ? 'btn-outline-primary' : 'btn-outline-secondary' }} btn-sm" data-bs-toggle="modal" data-bs-target="#modalParpol{{ $p->id }}">
-                                    <i class="bi bi-info-circle me-1"></i> {{ $p->pendidikanPolitik->count() > 0 ? 'Rincian & Dikpol' : 'Rincian SK' }}
+                            <div class="party-card-footer">
+                                <button class="btn {{ $p->pendidikanPolitik->count() > 0 ? 'btn-primary' : 'btn-outline-primary' }} btn-sm w-100" data-bs-toggle="modal" data-bs-target="#modalParpol{{ $p->id }}">
+                                    <i class="bi bi-info-circle me-1"></i> {{ $p->pendidikanPolitik->count() > 0 ? 'Rincian & Dikpol' : 'Rincian SK & Profil' }}
                                 </button>
-                                @if ($p->lo_hp)
-                                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', (str_starts_with($p->lo_hp, '0') ? '62' . substr($p->lo_hp, 1) : $p->lo_hp)) }}" target="_blank" class="btn btn-wa btn-sm">
-                                        <i class="bi bi-whatsapp"></i> Hubungi LO
-                                    </a>
-                                @endif
                             </div>
                         </div>
                     </div>
@@ -551,6 +531,199 @@
             </div>
         </div>
     </section>
+
+    <!-- ================= MATRIKS REALISASI PENDIDIKAN POLITIK (BANPOL) ================= -->
+    <section class="py-5" id="dikpol" style="background-color: #f8fafc;">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <span class="section-badge"><i class="bi bi-mortarboard-fill me-1"></i> Bantuan Keuangan &amp; Kaderisasi</span>
+                <h2 class="section-title">Matriks Realisasi Pendidikan Politik</h2>
+                <p class="section-subtitle">
+                    Transparansi pelaksanaan dan pertanggungjawaban kegiatan pendidikan politik partai politik di Kabupaten Tanah Laut T.A. 2026 yang didanai melalui pos Bantuan Keuangan Partai Politik (Banpol).
+                </p>
+            </div>
+
+            <!-- Banner & 4 Stat Cards -->
+            <div class="row g-3 mb-4">
+                <div class="col-6 col-lg-3">
+                    <div class="p-3 bg-white rounded-3 border text-center shadow-sm h-100">
+                        <div class="text-primary fs-3 mb-1"><i class="bi bi-journal-check"></i></div>
+                        <h4 class="fw-bold text-dark mb-0">{{ $totalDikpol }} Jenis Dikpol</h4>
+                        <span class="small text-muted">Agenda Terlaksana</span>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="p-3 bg-white rounded-3 border text-center shadow-sm h-100">
+                        <div class="text-success fs-3 mb-1"><i class="bi bi-cash-stack"></i></div>
+                        <h4 class="fw-bold text-success mb-0">Rp {{ number_format($totalBiayaDikpol, 0, ',', '.') }}</h4>
+                        <span class="small text-muted">100% Anggaran Terserap</span>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="p-3 bg-white rounded-3 border text-center shadow-sm h-100">
+                        <div class="text-warning fs-3 mb-1"><i class="bi bi-people-fill"></i></div>
+                        <h4 class="fw-bold text-dark mb-0">{{ $totalPesertaDikpol }} Peserta</h4>
+                        <span class="small text-muted">Kader &amp; Konstituen</span>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="p-3 bg-white rounded-3 border text-center shadow-sm h-100">
+                        <div class="text-danger fs-3 mb-1"><i class="bi bi-geo-alt-fill"></i></div>
+                        <h4 class="fw-bold text-dark mb-0">{{ $totalTempatDikpol }} Titik Lokasi</h4>
+                        <span class="small text-muted">Pelaihari &amp; Sekitarnya</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Regulasi Permendagri Banpol -->
+            <div class="alert alert-primary bg-white border border-primary-subtle shadow-sm rounded-3 p-3 mb-4 d-flex align-items-center gap-3">
+                <div class="fs-2 text-primary flex-shrink-0"><i class="bi bi-info-circle-fill"></i></div>
+                <div class="small">
+                    <strong>Dasar Hukum Pelaksanaan Banpol:</strong> Sesuai Permendagri No. 78 Tahun 2020, dana Bantuan Keuangan Partai Politik diprioritaskan minimal 60% untuk kegiatan <strong>Pendidikan Politik</strong> bagi anggota partai politik dan masyarakat guna meningkatkan partisipasi politik, kesadaran hak dan kewajiban warga negara, serta etika berdemokrasi di Kabupaten Tanah Laut.
+                </div>
+            </div>
+
+            <!-- Matriks Tabel Realisasi Pendidikan Politik -->
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+                <div class="card-header bg-dark text-white p-3 d-flex flex-wrap align-items-center justify-content-between gap-2">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-table text-warning fs-5"></i>
+                        <span class="fw-bold">Matriks Laporan Pelaksanaan Pendidikan Politik T.A. 2026</span>
+                    </div>
+                    <span class="badge bg-success bg-opacity-25 border border-success text-white px-3 py-1 small">
+                        <i class="bi bi-check-circle-fill me-1"></i> Data Terverifikasi Bakesbangpol
+                    </span>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0" style="font-size: 0.9rem;">
+                        <thead class="table-light text-uppercase small text-secondary" style="border-bottom: 2px solid #cbd5e1;">
+                            <tr>
+                                <th class="text-center" style="width: 45px;">No</th>
+                                <th style="min-width: 170px;">Partai Politik</th>
+                                <th style="min-width: 220px;">Jenis / Nama Kegiatan Dikpol</th>
+                                <th style="min-width: 190px;">Tempat Pelaksanaan</th>
+                                <th style="min-width: 150px;">Tanggal</th>
+                                <th class="text-center" style="min-width: 110px;">Jumlah Peserta</th>
+                                <th class="text-end" style="min-width: 140px;">Biaya (Rp)</th>
+                                <th class="text-center" style="min-width: 130px;">Dokumentasi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($dikpols as $idx => $d)
+                                <tr>
+                                    <td class="text-center fw-bold text-secondary">{{ $idx + 1 }}</td>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div style="width: 36px; height: 36px; border-radius: 8px; border: 1px solid #cbd5e1; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #ffffff;">
+                                                <img src="{{ asset($d->parpol->logo ?? 'images/parpol/pks.jpg') }}" alt="Logo {{ $d->parpol->akronim ?? 'PKS' }}" style="width: 100%; height: 100%; object-fit: cover;">
+                                            </div>
+                                            <div>
+                                                <strong class="text-dark d-block">{{ $d->parpol->akronim ?? 'PKS' }}</strong>
+                                                <span class="text-muted" style="font-size: 0.75rem;">{{ $d->parpol->nama_partai ?? 'Partai Keadilan Sejahtera' }}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <strong class="text-dark text-capitalize d-block">{{ $d->nama_kegiatan }}</strong>
+                                        @if ($d->keterangan)
+                                            <span class="text-muted small">{{ $d->keterangan }}</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div class="text-dark">
+                                            <i class="bi bi-geo-alt-fill text-danger me-1"></i> {{ $d->tempat_pelaksanaan ?? 'Kabupaten Tanah Laut' }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="text-dark">
+                                            <i class="bi bi-calendar-event text-primary me-1"></i> {{ $d->tanggal_pelaksanaan }}
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge bg-primary bg-opacity-10 text-primary border border-primary-subtle px-2 py-1 fw-bold">
+                                            {{ $d->peserta_jumlah }} Orang
+                                        </span>
+                                        <div class="text-muted mt-1" style="font-size: 0.75rem;">
+                                            <i class="bi bi-check2-circle text-success"></i> Kader Partai
+                                        </div>
+                                    </td>
+                                    <td class="text-end fw-bold text-dark">
+                                        Rp {{ number_format($d->jumlah_biaya, 0, ',', '.') }}
+                                    </td>
+                                    <td class="text-center">
+                                        @if ($d->dokumentasi)
+                                            <button type="button" class="btn btn-outline-primary btn-sm p-1 rounded-2" data-bs-toggle="modal" data-bs-target="#modalFotoDikpol{{ $d->id }}" title="Klik untuk melihat bukti foto kegiatan">
+                                                <img src="{{ asset($d->dokumentasi) }}" alt="Dokumentasi" class="rounded" style="width: 80px; height: 48px; object-fit: cover; display: block;">
+                                                <span class="d-block mt-1 text-primary fw-semibold" style="font-size: 0.7rem;"><i class="bi bi-zoom-in"></i> Lihat Foto</span>
+                                            </button>
+                                        @else
+                                            <span class="text-muted small">-</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="8" class="text-center py-4 text-muted">Belum ada data realisasi pendidikan politik.</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                        <tfoot class="table-light fw-bold" style="border-top: 2px solid #cbd5e1;">
+                            <tr>
+                                <td colspan="5" class="text-end text-uppercase text-secondary pe-3">Total Rekapitulasi Realisasi:</td>
+                                <td class="text-center text-primary fs-6">{{ $totalPesertaDikpol }} Orang</td>
+                                <td class="text-end text-success fs-6">Rp {{ number_format($totalBiayaDikpol, 0, ',', '.') }}</td>
+                                <td class="text-center text-muted small">{{ $totalDikpol }} Berkas Foto Fisik</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Petunjuk Tambahan / Alur Bagi LO Partai -->
+            <div class="p-3 bg-white rounded-3 border shadow-sm d-flex flex-wrap align-items-center justify-content-between gap-3">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="text-success fs-3"><i class="bi bi-file-earmark-arrow-up-fill"></i></div>
+                    <div>
+                        <h6 class="fw-bold text-dark mb-0">Ingin Mengajukan Pembaruan Laporan Dikpol Partai Anda?</h6>
+                        <span class="text-muted small">Pengurus atau Petugas Penghubung (LO) partai politik dapat melampirkan berkas berita acara dan LPJ ke tim Bakesbangpol.</span>
+                    </div>
+                </div>
+                <a href="#lapor" class="btn btn-outline-primary btn-sm fw-semibold px-3 py-2 rounded-3">
+                    <i class="bi bi-pencil-square me-1"></i> Form Layanan Pengkinian Data
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals untuk Pembesaran Foto Dokumentasi Dikpol -->
+    @foreach ($dikpols as $d)
+        @if ($d->dokumentasi)
+            <div class="modal fade" id="modalFotoDikpol{{ $d->id }}" tabindex="-1" aria-labelledby="modalFotoLabel{{ $d->id }}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content rounded-4 border-0 shadow-lg overflow-hidden">
+                        <div class="modal-header bg-dark text-white p-3">
+                            <div>
+                                <span class="badge bg-warning text-dark text-uppercase px-2 py-1 mb-1">Dokumentasi Pendidikan Politik</span>
+                                <h5 class="modal-title fw-bold mb-0 text-capitalize" id="modalFotoLabel{{ $d->id }}">{{ $d->nama_kegiatan }}</h5>
+                            </div>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body p-0 text-center bg-black">
+                            <img src="{{ asset($d->dokumentasi) }}" alt="Dokumentasi {{ $d->nama_kegiatan }}" class="img-fluid" style="max-height: 520px; object-fit: contain;">
+                        </div>
+                        <div class="modal-footer bg-light p-3 d-flex flex-wrap align-items-center justify-content-between">
+                            <div class="text-start small">
+                                <div><i class="bi bi-geo-alt-fill text-danger me-1"></i> <strong>Tempat:</strong> {{ $d->tempat_pelaksanaan ?? 'Kabupaten Tanah Laut' }}</div>
+                                <div><i class="bi bi-calendar-event text-primary me-1"></i> <strong>Tanggal:</strong> {{ $d->tanggal_pelaksanaan }} &bull; <strong>Peserta:</strong> {{ $d->peserta_jumlah }} Orang &bull; <strong>Biaya:</strong> Rp {{ number_format($d->jumlah_biaya, 0, ',', '.') }}</div>
+                            </div>
+                            <button type="button" class="btn btn-secondary btn-sm rounded-pill px-4" data-bs-dismiss="modal">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+    @endforeach
 
     <!-- ================= SEBARAN WILAYAH SEKRETARIAT ================= -->
     <section class="py-5" id="sebaran">
@@ -678,10 +851,10 @@
                             </div>
                         </div>
                         <div class="d-flex gap-3">
-                            <div class="text-primary fs-4"><i class="bi bi-whatsapp"></i></div>
+                            <div class="text-primary fs-4"><i class="bi bi-telephone-fill"></i></div>
                             <div>
                                 <h6 class="fw-bold mb-1">Konfirmasi Kontak LO</h6>
-                                <p class="text-secondary small mb-0">Tim verifikator akan menghubungi nomor WhatsApp LO terdaftar untuk verifikasi dokumen.</p>
+                                <p class="text-secondary small mb-0">Tim verifikator akan menghubungi nomor kontak / telepon LO terdaftar untuk verifikasi dokumen.</p>
                             </div>
                         </div>
                     </div>
@@ -724,7 +897,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label class="form-label small fw-bold">No. WhatsApp Aktif <span class="text-danger">*</span></label>
+                                    <label class="form-label small fw-bold">No. Kontak / Telepon Aktif <span class="text-danger">*</span></label>
                                     <input type="tel" class="form-control" name="no_hp" placeholder="08xxxxxxxxxx" required>
                                 </div>
 
@@ -753,8 +926,8 @@
                 <div class="modal-content rounded-4 border-0 shadow">
                     <div class="modal-header bg-dark text-white p-4">
                         <div class="d-flex align-items-center gap-3">
-                            <div style="width: 55px; height: 55px; background: #ffffff; border-radius: 10px; padding: 4px; display: flex; align-items: center; justify-content: center;">
-                                <img src="{{ asset($p->logo) }}?v=3" alt="Logo {{ $p->akronim }}" style="max-width: 95%; max-height: 95%; object-fit: contain;">
+                            <div style="width: 55px; height: 55px; background: #ffffff; border-radius: 10px; padding: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1.5px solid rgba(255,255,255,0.2);">
+                                <img src="{{ asset($p->logo) }}?v=7" alt="Logo {{ $p->akronim }}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 9px;">
                             </div>
                             <div>
                                 <span class="badge bg-danger text-uppercase px-2 py-1 mb-1">Nomor Urut {{ $p->nomor_urut }}</span>
@@ -847,16 +1020,21 @@
                                     </div>
                                 </div>
 
-                                <div class="p-3 rounded-3 bg-primary bg-opacity-10 border border-primary-subtle">
-                                    <span class="text-primary fw-bold small text-uppercase d-block mb-1">Petugas Penghubung (LO)</span>
-                                    <h6 class="fw-bold text-dark mb-1">{{ $p->lo_nama }}</h6>
+                                <div class="p-3 rounded-3 bg-light border">
+                                    <span class="text-primary fw-bold small text-uppercase d-block mb-1">
+                                        <i class="bi bi-person-badge me-1"></i> Petugas Penghubung (LO)
+                                    </span>
+                                    <h6 class="fw-bold text-dark mb-2">{{ $p->lo_nama }}</h6>
                                     @if ($p->lo_hp)
-                                        <span class="text-muted small d-block mb-2">Kontak / WhatsApp: {{ $p->lo_hp }}</span>
-                                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', (str_starts_with($p->lo_hp, '0') ? '62' . substr($p->lo_hp, 1) : $p->lo_hp)) }}" target="_blank" class="btn btn-wa w-100 justify-content-center">
-                                            <i class="bi bi-whatsapp"></i> Chat WhatsApp LO
-                                        </a>
+                                        <div class="p-2 bg-white rounded-2 border d-flex align-items-center gap-2">
+                                            <div class="text-primary fs-5"><i class="bi bi-telephone-fill"></i></div>
+                                            <div>
+                                                <span class="text-muted small d-block" style="font-size: 0.75rem;">Nomor Telepon / Kontak LO:</span>
+                                                <strong class="text-dark fs-6">{{ $p->lo_hp }}</strong>
+                                            </div>
+                                        </div>
                                     @else
-                                        <span class="text-muted small">Kontak belum tercantum</span>
+                                        <span class="text-muted small">Nomor kontak belum tercantum</span>
                                     @endif
                                 </div>
                             </div>
@@ -932,7 +1110,12 @@
                                                             @endif
                                                         </td>
                                                         <td>
-                                                            <i class="bi bi-calendar3 text-primary me-1"></i> {{ $keg->tanggal_pelaksanaan }}
+                                                            <div><i class="bi bi-calendar3 text-primary me-1"></i> {{ $keg->tanggal_pelaksanaan }}</div>
+                                                            @if ($keg->tempat_pelaksanaan)
+                                                                <div class="small text-muted mt-1">
+                                                                    <i class="bi bi-geo-alt-fill text-danger me-1"></i> {{ $keg->tempat_pelaksanaan }}
+                                                                </div>
+                                                            @endif
                                                         </td>
                                                         <td class="text-center">
                                                             <span class="badge bg-primary rounded-pill px-2 py-1">{{ $keg->peserta_jumlah }} Orang</span>

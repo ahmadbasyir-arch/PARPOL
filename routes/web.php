@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ParpolController;
 use App\Http\Controllers\PortalController;
 use App\Http\Controllers\WasbangController;
@@ -35,4 +36,22 @@ Route::prefix('wasbang')->name('wasbang.')->group(function () {
     Route::get('/cetak/{id}', [WasbangController::class, 'cetakDetail'])->name('cetak.detail');
     Route::get('/download/{id}/{type}', [WasbangController::class, 'downloadMedia'])->name('download');
     Route::delete('/hapus/{id}', [WasbangController::class, 'destroy'])->name('destroy');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Otentikasi & Login Multi-Role (Admin Bakesbangpol & Parpol)
+|--------------------------------------------------------------------------
+*/
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+/*
+|--------------------------------------------------------------------------
+| Area Terproteksi (Wajib Login)
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
 });

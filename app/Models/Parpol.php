@@ -65,4 +65,9 @@ class Parpol extends Model
     {
         return $this->hasMany(PendidikanPolitik::class);
     }
+
+    public function users(): HasMany
+    {
+        return $this->hasMany(User::class);
+    }
 }
