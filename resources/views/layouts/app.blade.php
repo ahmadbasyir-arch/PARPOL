@@ -57,48 +57,51 @@
         .navbar-parpol {
             background: #ffffff;
             box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.07);
-            padding: 12px 0;
+            padding: 8px 0;
             position: sticky;
             top: 0;
             z-index: 1030;
         }
 
         .navbar-brand .logo-emblem {
-            width: 44px;
-            height: 44px;
+            width: 38px;
+            height: 38px;
             background: linear-gradient(135deg, #1e3a8a, #0284c7);
-            border-radius: 12px;
+            border-radius: 9px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             color: #ffffff;
-            font-size: 1.4rem;
-            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
+            font-size: 1.15rem;
+            box-shadow: 0 3px 8px rgba(30, 58, 138, 0.2);
+            flex-shrink: 0;
         }
 
         .navbar-brand .brand-title {
             font-weight: 800;
-            font-size: 1.25rem;
+            font-size: 1.05rem;
             color: var(--parpol-secondary);
             line-height: 1.15;
             letter-spacing: -0.3px;
+            white-space: nowrap;
         }
 
         .navbar-brand .brand-sub {
-            font-size: 0.72rem;
+            font-size: 0.65rem;
             font-weight: 600;
             color: var(--parpol-accent);
-            letter-spacing: 0.8px;
+            letter-spacing: 0.6px;
             text-transform: uppercase;
+            white-space: nowrap;
         }
 
         .nav-link {
             font-weight: 600;
             color: #334155 !important;
-            padding: 8px 12px !important;
-            border-radius: 8px;
+            padding: 6px 9px !important;
+            border-radius: 6px;
             transition: all 0.2s ease;
-            font-size: 0.88rem;
+            font-size: 0.83rem;
             white-space: nowrap;
             display: inline-flex;
             align-items: center;
@@ -113,63 +116,66 @@
             background-color: var(--parpol-primary);
             color: #ffffff;
             font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 8px;
+            padding: 6px 12px;
+            border-radius: 6px;
             border: 1px solid var(--parpol-primary);
-            box-shadow: 0 2px 8px rgba(30, 58, 138, 0.2);
+            box-shadow: 0 2px 6px rgba(30, 58, 138, 0.2);
             transition: all 0.2s ease;
             white-space: nowrap;
-            font-size: 0.86rem;
+            font-size: 0.82rem;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
+            flex-shrink: 0;
         }
 
         .btn-parpol:hover {
             background-color: var(--parpol-primary-hover);
             color: #ffffff;
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+            box-shadow: 0 3px 10px rgba(30, 58, 138, 0.3);
         }
 
         .btn-login-portal {
             background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
             color: #0f172a !important;
             font-weight: 700;
-            padding: 8px 16px;
-            border-radius: 8px;
+            padding: 6px 14px;
+            border-radius: 6px;
             border: 1px solid #d97706;
-            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.25);
+            box-shadow: 0 2px 6px rgba(245, 158, 11, 0.25);
             transition: all 0.2s ease;
             white-space: nowrap;
-            font-size: 0.86rem;
+            font-size: 0.82rem;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             text-decoration: none;
+            flex-shrink: 0;
         }
 
         .btn-login-portal:hover {
             background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
             color: #ffffff !important;
             transform: translateY(-1px);
-            box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35);
+            box-shadow: 0 3px 10px rgba(217, 119, 6, 0.35);
         }
 
         .btn-user-portal {
             background-color: #ffffff;
             color: #1e293b !important;
             font-weight: 600;
-            padding: 7px 14px;
-            border-radius: 8px;
+            padding: 6px 12px;
+            border-radius: 6px;
             border: 1.5px solid #0f766e;
-            box-shadow: 0 2px 6px rgba(15, 118, 110, 0.15);
+            box-shadow: 0 2px 5px rgba(15, 118, 110, 0.15);
             transition: all 0.2s ease;
             white-space: nowrap;
-            font-size: 0.86rem;
+            font-size: 0.82rem;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
+            flex-shrink: 0;
         }
 
         .btn-user-portal:hover {
@@ -285,23 +291,23 @@
 
     <!-- Navigasi Utama -->
     <nav class="navbar navbar-expand-xl navbar-parpol shadow-sm sticky-top">
-        <div class="container-fluid px-xl-5 px-3">
-            <a class="navbar-brand d-flex align-items-center gap-3" href="{{ route('parpol.home') }}">
+        <div class="container-fluid px-lg-4 px-2">
+            <a class="navbar-brand d-flex align-items-center gap-2 me-2" href="{{ route('parpol.home') }}">
                 <div class="logo-emblem">
                     <i class="bi bi-bank2"></i>
                 </div>
                 <div>
                     <div class="brand-title">SIPARPOL TANAH LAUT</div>
-                    <div class="brand-sub">Kab. Tanah Laut Tahun 2026</div>
+                    <div class="brand-sub">Kab. Tanah Laut 2026</div>
                 </div>
             </a>
             
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler border-0 p-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
             <div class="collapse navbar-collapse" id="navbarMenu">
-                <ul class="navbar-nav ms-auto mb-2 mb-xl-0 align-items-xl-center gap-1">
+                <ul class="navbar-nav ms-auto mb-2 mb-xl-0 align-items-xl-center">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('parpol.home') }}#beranda"><i class="bi bi-house-door me-1"></i> Beranda</a>
                     </li>
@@ -309,23 +315,23 @@
                         <a class="nav-link" href="{{ route('parpol.home') }}#tabel-data"><i class="bi bi-table me-1"></i> Tabel Resmi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('parpol.home') }}#galeri-partai"><i class="bi bi-grid-3x3-gap me-1"></i> Direktori Parpol</a>
+                        <a class="nav-link" href="{{ route('parpol.home') }}#galeri-partai"><i class="bi bi-grid-3x3-gap me-1"></i> Direktori</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('parpol.home') }}#dikpol"><i class="bi bi-mortarboard-fill me-1"></i> Pendidikan Politik</a>
+                        <a class="nav-link" href="{{ route('parpol.home') }}#dikpol"><i class="bi bi-mortarboard-fill me-1"></i> Dikpol</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('parpol.home') }}#sebaran"><i class="bi bi-geo me-1"></i> Sebaran Kantor</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('parpol.home') }}#lapor"><i class="bi bi-pencil-square me-1"></i> Update Data LO</a>
+                        <a class="nav-link" href="{{ route('parpol.home') }}#lapor"><i class="bi bi-pencil-square me-1"></i> Update Data</a>
                     </li>
                 </ul>
 
                 <!-- Tombol Aksi di Pojok Kanan Atas -->
-                <div class="d-flex align-items-center gap-2 ms-xl-3 mt-3 mt-xl-0">
-                    <a class="btn-parpol text-decoration-none" href="{{ route('parpol.cetak') }}" target="_blank">
-                        <i class="bi bi-printer-fill"></i> Cetak Dokumen
+                <div class="d-flex align-items-center gap-2 ms-xl-2 mt-2 mt-xl-0 flex-shrink-0">
+                    <a class="btn-parpol text-decoration-none" href="{{ route('parpol.cetak') }}" target="_blank" title="Cetak Dokumen Resmi">
+                        <i class="bi bi-printer-fill"></i> Cetak
                     </a>
                     
                     @auth
@@ -334,7 +340,7 @@
                                 <i class="bi bi-person-circle text-primary fs-6"></i>
                                 <span>{{ auth()->user()->isParpol() ? (auth()->user()->parpol->akronim ?? 'Partai') : 'Admin Bakesbangpol' }}</span>
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-3 mt-2" style="min-width: 230px;">
+                            <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-3 mt-2" style="min-width: 220px;">
                                 <li class="px-3 py-2 border-bottom bg-light">
                                     <small class="text-muted d-block" style="font-size: 0.75rem;">{{ auth()->user()->isAdmin() ? 'Superadmin Bakesbangpol' : 'Operator / Pengurus Partai' }}</small>
                                     <strong class="text-dark small">{{ auth()->user()->name }}</strong>
@@ -362,8 +368,6 @@
                     @endauth
                 </div>
             </div>
-        </div>
-    </nav>
         </div>
     </nav>
 
