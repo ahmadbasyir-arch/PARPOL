@@ -130,7 +130,9 @@
                                 <td class="text-center fw-bold">{{ $idx + 1 }}</td>
                                 <td>
                                     <div class="d-flex align-items-center gap-2">
-                                        <img src="{{ asset($item->parpol->logo) }}" alt="{{ $item->parpol->akronim }}" style="width: 28px; height: 28px; object-fit: contain;">
+                                        <div style="width: 32px; height: 32px; border-radius: 6px; background: #ffffff; border: 1px solid #cbd5e1; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 2px;" class="flex-shrink-0">
+                                            <img src="{{ asset($item->parpol->logo) }}" alt="{{ $item->parpol->akronim }}" style="width: 100%; height: 100%; object-fit: contain;">
+                                        </div>
                                         <span class="fw-bold text-dark">{{ $item->parpol->akronim }}</span>
                                     </div>
                                 </td>

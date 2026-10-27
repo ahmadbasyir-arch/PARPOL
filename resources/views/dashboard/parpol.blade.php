@@ -11,8 +11,8 @@
             <div class="card-body p-4 p-md-5 text-white">
                 <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
                     <div class="d-flex align-items-center gap-3">
-                        <div class="bg-white rounded-circle p-2 shadow d-flex align-items-center justify-content-center" style="width: 72px; height: 72px;">
-                            <img src="{{ asset($parpol->logo) }}" alt="{{ $parpol->akronim }}" style="max-width: 54px; max-height: 54px; object-fit: contain;">
+                        <div class="shadow-sm flex-shrink-0" style="width: 80px; height: 80px; background: #ffffff; border-radius: 16px; border: 2px solid rgba(255, 255, 255, 0.4); display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 6px;">
+                            <img src="{{ asset($parpol->logo) }}" alt="{{ $parpol->akronim }}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
                         </div>
                         <div>
                             <span class="badge bg-warning text-dark text-uppercase px-2 py-1 mb-1 fw-bold">Nomor Urut {{ sprintf('%02d', $parpol->nomor_urut) }} &bull; Pengurus DPC/DPD</span>

@@ -337,7 +337,13 @@
                     @auth
                         <div class="dropdown">
                             <button class="btn btn-user-portal dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-person-circle text-primary fs-6"></i>
+                                @if(auth()->user()->isParpol() && auth()->user()->parpol)
+                                    <span style="width: 20px; height: 20px; border-radius: 4px; background: #ffffff; display: inline-flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid #cbd5e1;" class="me-1 flex-shrink-0">
+                                        <img src="{{ asset(auth()->user()->parpol->logo) }}" alt="{{ auth()->user()->parpol->akronim }}" style="width: 100%; height: 100%; object-fit: contain;">
+                                    </span>
+                                @else
+                                    <i class="bi bi-shield-check text-primary fs-6 me-1"></i>
+                                @endif
                                 <span>{{ auth()->user()->isParpol() ? (auth()->user()->parpol->akronim ?? 'Partai') : 'Admin Bakesbangpol' }}</span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-3 mt-2" style="min-width: 220px;">
