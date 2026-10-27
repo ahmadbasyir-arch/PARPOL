@@ -13,8 +13,8 @@
                     
                     <!-- Header Card -->
                     <div class="card-header bg-dark text-white p-4 text-center border-0" style="background: linear-gradient(135deg, #1e293b 0%, #0f766e 100%);">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white text-primary rounded-circle mb-3 shadow" style="width: 64px; height: 64px;">
-                            <i class="bi bi-shield-lock-fill fs-2 text-success"></i>
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-3 mb-3 shadow p-2" style="width: 68px; height: 68px;">
+                            <img src="{{ asset('images/tanahlaut.png') }}" alt="Lambang Kabupaten Tanah Laut" style="width: 100%; height: 100%; object-fit: contain;">
                         </div>
                         <h4 class="fw-bold mb-1">Masuk ke SIPARPOL</h4>
                         <p class="text-white-50 small mb-0">

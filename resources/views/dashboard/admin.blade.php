@@ -11,8 +11,8 @@
             <div class="card-body p-4 p-md-5 text-white">
                 <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
                     <div class="d-flex align-items-center gap-3">
-                        <div class="bg-white bg-opacity-25 rounded-circle p-3 text-warning fs-2 d-flex align-items-center justify-content-center" style="width: 68px; height: 68px;">
-                            <i class="bi bi-shield-check"></i>
+                        <div class="bg-white rounded-3 p-2 shadow d-flex align-items-center justify-content-center" style="width: 68px; height: 68px;">
+                            <img src="{{ asset('images/tanahlaut.png') }}" alt="Lambang Kabupaten Tanah Laut" style="width: 100%; height: 100%; object-fit: contain;">
                         </div>
                         <div>
                             <span class="badge bg-warning text-dark text-uppercase px-2 py-1 mb-1 fw-bold">Hak Akses: Superadmin</span>

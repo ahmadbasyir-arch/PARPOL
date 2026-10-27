@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cetak Data Partai Politik Kab. Tanah Laut Tahun 2026</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/tanahlaut.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -90,8 +91,11 @@
     </div>
 
     <!-- Judul Dokumen Resmi -->
-    <div class="header-title">
-        DATA PARTAI POLITIK KAB. TANAH LAUT TAHUN 2026
+    <div class="d-flex align-items-center justify-content-center gap-3 mb-3">
+        <img src="{{ asset('images/tanahlaut.png') }}" alt="Logo Kab. Tanah Laut" style="width: 58px; height: auto;">
+        <div class="header-title mb-0">
+            DATA PARTAI POLITIK KAB. TANAH LAUT TAHUN 2026
+        </div>
     </div>
 
     <!-- Tabel Rekapitulasi -->

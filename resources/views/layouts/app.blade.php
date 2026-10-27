@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title', 'Data Partai Politik Kab. Tanah Laut Tahun 2026 | Portal Resmi')</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/tanahlaut.png') }}">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -298,9 +299,7 @@
         <div class="container-fluid px-lg-4 px-2">
             <div class="d-flex align-items-center gap-2">
                 <a class="navbar-brand d-flex align-items-center gap-2 me-1" href="{{ route('parpol.home') }}">
-                    <div class="logo-emblem">
-                        <i class="bi bi-bank2"></i>
-                    </div>
+                    <img src="{{ asset('images/tanahlaut.png') }}" alt="Logo Kab. Tanah Laut" style="width: 36px; height: auto; object-fit: contain;" class="flex-shrink-0">
                     <div>
                         <div class="brand-title">SIPARPOL TANAH LAUT</div>
                         <div class="brand-sub">Kab. Tanah Laut 2026</div>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Bakesbangpol Kabupaten Tanah Laut</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/tanahlaut.png') }}">
     
     <!-- Google Fonts & Bootstrap 5 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -152,9 +153,7 @@
         <div class="container-fluid px-lg-5 px-3">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center gap-3">
-                    <div style="width: 40px; height: 40px; background: #1e3a8a; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.25rem;">
-                        <i class="bi bi-shield-check"></i>
-                    </div>
+                    <img src="{{ asset('images/tanahlaut.png') }}" alt="Logo Kab. Tanah Laut" style="width: 38px; height: auto; object-fit: contain;">
                     <div>
                         <h6 class="fw-bold mb-0 text-dark">Portal Bakesbangpol</h6>
                         <small class="text-muted" style="font-size: 0.75rem;">Kabupaten Tanah Laut</small>
@@ -180,6 +179,11 @@
             <!-- Judul & Logo Tengah -->
             <div class="text-center text-white mb-4">
                 
+                <!-- Logo Resmi Kabupaten Tanah Laut -->
+                <div class="mb-3 text-center">
+                    <img src="{{ asset('images/tanahlaut.png') }}" alt="Lambang Kabupaten Tanah Laut" style="width: 88px; height: auto; filter: drop-shadow(0 6px 16px rgba(0,0,0,0.6));">
+                </div>
+
                 <!-- Badge Resmi -->
                 <div class="mb-3">
                     <span class="badge-instansi">

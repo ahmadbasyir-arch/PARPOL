@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WASBANG - Dokumentasi Kegiatan Luar Bidang Bina Ideologi & Karakter Bangsa</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/tanahlaut.png') }}">
     
     <!-- Google Fonts & Bootstrap 5 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -138,7 +139,7 @@
         <div class="container-fluid px-lg-5 px-3">
             <div class="d-flex align-items-center justify-content-between">
                 <div>
-                    <span><i class="bi bi-geo-alt-fill text-danger me-1"></i> Kabupaten Tanah Laut, Kalimantan Selatan</span>
+                    <span><img src="{{ asset('images/tanahlaut.png') }}" style="width: 16px; height: auto;" class="me-1"> Kabupaten Tanah Laut, Kalimantan Selatan</span>
                     <span class="mx-2 text-white-50">|</span>
                     <span><i class="bi bi-flag me-1 text-warning"></i> Bidang Bina Ideologi, Wawasan Kebangsaan, &amp; Karakter Bangsa</span>
                 </div>
@@ -158,9 +159,7 @@
                 
                 <!-- Brand WASBANG -->
                 <a href="{{ route('wasbang.index') }}" class="d-flex align-items-center gap-2 text-decoration-none text-dark">
-                    <div style="width: 40px; height: 40px; background: #dc2626; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.3rem;">
-                        <i class="bi bi-flag-fill"></i>
-                    </div>
+                    <img src="{{ asset('images/tanahlaut.png') }}" alt="Logo Kab. Tanah Laut" style="width: 38px; height: auto; object-fit: contain;">
                     <div>
                         <div class="fw-bold" style="font-size: 1.1rem; line-height: 1.2;">WASBANG TANAH LAUT</div>
                         <div class="text-danger fw-semibold" style="font-size: 0.7rem; letter-spacing: 0.5px;">DOKUMENTASI &amp; PENGARSIPAN KEGIATAN LUAR</div>

@@ -87,11 +87,14 @@
     </div>
 
     <!-- Kop Surat Resmi -->
-    <div class="kop-surat">
-        <h4>PEMERINTAH KABUPATEN TANAH LAUT</h4>
-        <h3>BADAN KESATUAN BANGSA DAN POLITIK</h3>
-        <p>Jl. A. Yani No. 01, Pelaihari, Kabupaten Tanah Laut, Kalimantan Selatan 70814</p>
-        <p>Laman: www.tanahlautkab.go.id &bull; Pos-el: bakesbangpol@tanahlautkab.go.id</p>
+    <div class="kop-surat d-flex align-items-center justify-content-center gap-4">
+        <img src="{{ asset('images/tanahlaut.png') }}" alt="Lambang Kabupaten Tanah Laut" style="width: 72px; height: auto;">
+        <div>
+            <h4>PEMERINTAH KABUPATEN TANAH LAUT</h4>
+            <h3>BADAN KESATUAN BANGSA DAN POLITIK</h3>
+            <p>Jl. A. Yani No. 01, Pelaihari, Kabupaten Tanah Laut, Kalimantan Selatan 70814</p>
+            <p>Laman: www.tanahlautkab.go.id &bull; Pos-el: bakesbangpol@tanahlautkab.go.id</p>
+        </div>
     </div>
 
     <div class="text-center mb-4">
