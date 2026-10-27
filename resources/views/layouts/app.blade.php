@@ -250,28 +250,63 @@
             <div class="collapse navbar-collapse" id="navbarMenu">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-1">
                     <li class="nav-item">
-                        <a class="nav-link" href="#beranda"><i class="bi bi-house-door me-1"></i> Beranda</a>
+                        <a class="nav-link" href="{{ route('parpol.home') }}#beranda"><i class="bi bi-house-door me-1"></i> Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#tabel-data"><i class="bi bi-table me-1"></i> Tabel Resmi</a>
+                        <a class="nav-link" href="{{ route('parpol.home') }}#tabel-data"><i class="bi bi-table me-1"></i> Tabel Resmi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#galeri-partai"><i class="bi bi-grid-3x3-gap me-1"></i> Direktori Parpol (20)</a>
+                        <a class="nav-link" href="{{ route('parpol.home') }}#galeri-partai"><i class="bi bi-grid-3x3-gap me-1"></i> Direktori Parpol (20)</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#dikpol"><i class="bi bi-mortarboard-fill me-1"></i> Pendidikan Politik</a>
+                        <a class="nav-link" href="{{ route('parpol.home') }}#dikpol"><i class="bi bi-mortarboard-fill me-1"></i> Pendidikan Politik</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#sebaran"><i class="bi bi-geo me-1"></i> Sebaran Kantor</a>
+                        <a class="nav-link" href="{{ route('parpol.home') }}#sebaran"><i class="bi bi-geo me-1"></i> Sebaran Kantor</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#lapor"><i class="bi bi-pencil-square me-1"></i> Update Data LO</a>
+                        <a class="nav-link" href="{{ route('parpol.home') }}#lapor"><i class="bi bi-pencil-square me-1"></i> Update Data LO</a>
                     </li>
                     <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
                         <a class="btn btn-parpol text-decoration-none" href="{{ route('parpol.cetak') }}" target="_blank">
-                            <i class="bi bi-printer-fill me-1"></i> Cetak Laporan Resmi
+                            <i class="bi bi-printer-fill me-1"></i> Cetak Dokumen
                         </a>
                     </li>
+                    
+                    @auth
+                        <li class="nav-item dropdown ms-lg-2 mt-2 mt-lg-0">
+                            <a class="btn btn-warning dropdown-toggle fw-semibold rounded-pill px-3 shadow-sm text-dark d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle fs-5"></i>
+                                <span>{{ auth()->user()->isParpol() ? (auth()->user()->parpol->akronim ?? 'Partai') : 'Admin Bakesbangpol' }}</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 mt-2">
+                                <li class="px-3 py-2 border-bottom bg-light">
+                                    <small class="text-muted d-block">{{ auth()->user()->isAdmin() ? 'Superadmin Bakesbangpol' : 'Operator / Pengurus Partai' }}</small>
+                                    <strong class="text-dark small">{{ auth()->user()->name }}</strong>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item py-2" href="{{ route('dashboard') }}">
+                                        <i class="bi bi-speedometer2 text-primary me-2"></i> Dashboard Pelaporan
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider my-1"></li>
+                                <li>
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item py-2 text-danger">
+                                            <i class="bi bi-box-arrow-right me-2"></i> Keluar (Logout)
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @else
+                        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                            <a class="btn btn-warning fw-semibold rounded-pill px-3 shadow-sm text-dark d-flex align-items-center gap-1" href="{{ route('login') }}">
+                                <i class="bi bi-box-arrow-in-right"></i> Login Parpol / Admin
+                            </a>
+                        </li>
+                    @endauth
                 </ul>
             </div>
         </div>
