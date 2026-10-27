@@ -4,17 +4,6 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
-if (!function_exists('user')) {
-    /**
-     * Helper shortcut untuk mendapatkan user yang sedang login
-     * Mencegah error "Call to undefined function user()" jika dipanggil di view/controller
-     */
-    function user()
-    {
-        return auth()->user();
-    }
-}
-
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
