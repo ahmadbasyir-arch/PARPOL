@@ -13,13 +13,26 @@ class ExampleTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * Test halaman utama SIPARPOL Tanah Laut dapat diakses dan menampilkan data 15 parpol.
+     * Test halaman utama Portal Smart Kesbangpol (Daftar Modul).
+     */
+    public function test_portal_home_returns_successful_response(): void
+    {
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
+        $response->assertSee('Pilih Layanan Bidang');
+        $response->assertSee('SIPARPOL');
+        $response->assertSee('WASBANG');
+    }
+
+    /**
+     * Test modul SIPARPOL Tanah Laut dapat diakses di /parpol dan menampilkan data partai politik.
      */
     public function test_the_application_returns_a_successful_response(): void
     {
         $this->seed(ParpolSeeder::class);
 
-        $response = $this->get('/');
+        $response = $this->get('/parpol');
 
         $response->assertStatus(200);
         $response->assertSee('Data Partai Politik');

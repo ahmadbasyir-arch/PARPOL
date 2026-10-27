@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14532d" />
+      <stop offset="50%" stop-color="#166534" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="goldGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde047" />
+      <stop offset="100%" stop-color="#eab308" />
+    </linearGradient>
+    <linearGradient id="overlayGrad4" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="rgba(15, 23, 42, 0.9)" />
+      <stop offset="55%" stop-color="rgba(15, 23, 42, 0.3)" />
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0)" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bgGrad4)" />
+
+  <!-- Mountain / Outdoor Camping Silhouette -->
+  <polygon points="100,380 280,180 460,380" fill="#1e3a5f" opacity="0.4" />
+  <polygon points="320,380 520,150 720,380" fill="#1e293b" opacity="0.6" />
+
+  <!-- Campfire icon -->
+  <g transform="translate(400, 210)">
+    <circle cx="0" cy="0" r="64" fill="url(#goldGrad4)" />
+    <circle cx="0" cy="0" r="56" fill="#14532d" />
+    <!-- Flame -->
+    <path d="M0,26 C-16,26 -20,10 -10,0 C-18,-8 -6,-28 0,-34 C6,-28 18,-8 10,0 C20,10 16,26 0,26 Z" fill="#f97316" />
+    <path d="M0,22 C-10,22 -12,12 -6,4 C-10,-2 -4,-18 0,-22 C4,-18 10,-2 6,4 C12,12 10,22 0,22 Z" fill="#fde047" />
+  </g>
+
+  <rect width="800" height="500" fill="url(#overlayGrad4)" />
+
+  <rect x="40" y="40" width="220" height="34" rx="17" fill="#4ade80" />
+  <text x="150" y="62" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="12" font-weight="800" fill="#14532d" text-anchor="middle" letter-spacing="1">KEMAH BELA NEGARA</text>
+
+  <text x="40" y="380" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="24" font-weight="800" fill="#ffffff">Kemah Wawasan Nusantara Pemuda Lintas Etnis</text>
+  <text x="40" y="415" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="15" font-weight="500" fill="#86efac">Lokasi: Bumi Perkemahan Agro Wisata Desa Tirta Jaya, Bajuin</text>
+  <text x="40" y="445" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="13" font-weight="400" fill="#cbd5e1">150 Pemuda KNPI, Pemuda Pancasila &amp; Forum Pembauran Kebangsaan</text>
+</svg>

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a" />
+      <stop offset="50%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="goldGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="100%" stop-color="#eab308" />
+    </linearGradient>
+    <linearGradient id="overlayGrad3" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="rgba(15, 23, 42, 0.9)" />
+      <stop offset="55%" stop-color="rgba(15, 23, 42, 0.3)" />
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0)" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bgGrad3)" />
+
+  <!-- Outdoor field lines & flag motif -->
+  <path d="M0,320 L800,220 L800,500 L0,500 Z" fill="#15803d" opacity="0.35" />
+  <path d="M0,0 L800,0 L800,80 L0,140 Z" fill="#dc2626" opacity="0.8" />
+  <path d="M0,140 L800,80 L800,160 L0,220 Z" fill="#ffffff" opacity="0.9" />
+
+  <!-- Paskibraka Emblem Center -->
+  <g transform="translate(400, 190)">
+    <circle cx="0" cy="0" r="66" fill="url(#goldGrad3)" />
+    <circle cx="0" cy="0" r="58" fill="#1e3a8a" />
+    <!-- Teratai & Paskibra symbol -->
+    <path d="M0,-28 C12,-10 24,0 24,18 C24,28 12,32 0,34 C-12,32 -24,28 -24,18 C-24,0 -12,-10 0,-28 Z" fill="#fef08a" />
+    <path d="M0,-20 C8,-6 16,2 16,14 C16,22 8,26 0,28 C-8,26 -16,22 -16,14 C-16,2 -8,-6 0,-20 Z" fill="#dc2626" />
+  </g>
+
+  <rect width="800" height="500" fill="url(#overlayGrad3)" />
+
+  <rect x="40" y="40" width="220" height="34" rx="17" fill="#facc15" />
+  <text x="150" y="62" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="12" font-weight="800" fill="#713f12" text-anchor="middle" letter-spacing="1">DIKLAT PASKIBRAKA</text>
+
+  <text x="40" y="380" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="24" font-weight="800" fill="#ffffff">Diklat Lapangan Calon Paskibraka Tala 2026</text>
+  <text x="40" y="415" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="15" font-weight="500" fill="#93c5fd">Lokasi: Lapangan Pertasi Kencana Pelaihari • 40 Peserta</text>
+  <text x="40" y="445" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="13" font-weight="400" fill="#cbd5e1">Instruktur Kodim 1009/TLA, Polres Tala &amp; Bakesbangpol</text>
+
+  <!-- Video indicator -->
+  <g transform="translate(720, 70)">
+    <circle cx="0" cy="0" r="24" fill="#dc2626" />
+    <polygon points="-5,-8 -5,8 8,0" fill="#ffffff" />
+  </g>
+</svg>

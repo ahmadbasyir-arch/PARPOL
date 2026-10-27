@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f766e" />
+      <stop offset="60%" stop-color="#115e59" />
+      <stop offset="100%" stop-color="#134e4a" />
+    </linearGradient>
+    <linearGradient id="goldGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde047" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+    <linearGradient id="overlayGrad2" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="rgba(15, 23, 42, 0.9)" />
+      <stop offset="55%" stop-color="rgba(15, 23, 42, 0.3)" />
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0)" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bgGrad2)" />
+  <path d="M0,0 L800,200 L800,450 L0,250 Z" fill="#042f2e" opacity="0.3" />
+
+  <!-- Circles & Network motif for harmony/tolerance -->
+  <g stroke="#5eead4" stroke-width="1.5" opacity="0.25" fill="none">
+    <circle cx="200" cy="180" r="90" />
+    <circle cx="280" cy="180" r="90" />
+    <circle cx="240" cy="240" r="90" />
+  </g>
+
+  <!-- Central icon -->
+  <g transform="translate(400, 190)">
+    <circle cx="0" cy="0" r="66" fill="url(#goldGrad2)" />
+    <circle cx="0" cy="0" r="58" fill="#134e4a" />
+    <!-- Hands & Heart / Community motif -->
+    <path d="M-22,-5 C-22,-18 -5,-25 0,-15 C5,-25 22,-18 22,-5 C22,12 0,26 0,26 C0,26 -22,12 -22,-5 Z" fill="#fde047" />
+  </g>
+
+  <rect width="800" height="500" fill="url(#overlayGrad2)" />
+
+  <rect x="40" y="40" width="230" height="34" rx="17" fill="#2dd4bf" />
+  <text x="155" y="62" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="12" font-weight="800" fill="#042f2e" text-anchor="middle" letter-spacing="1">MONITORING LAPANGAN</text>
+
+  <text x="40" y="380" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="24" font-weight="800" fill="#ffffff">Monev Desa Tangguh Ideologi &amp; Kerukunan</text>
+  <text x="40" y="415" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="15" font-weight="500" fill="#5eead4">Lokasi: Balai Desa Sumber Makmur, Kec. Takisung</text>
+  <text x="40" y="445" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="13" font-weight="400" fill="#cbd5e1">Bakesbangpol Kab. Tanah Laut • Dialog Tokoh Agama &amp; Pemuda</text>
+
+  <g transform="translate(710, 420) rotate(-12)">
+    <rect x="-65" y="-18" width="130" height="36" rx="6" fill="none" stroke="#2dd4bf" stroke-width="2" opacity="0.9"/>
+    <text x="0" y="5" font-family="Arial, sans-serif" font-size="12" font-weight="900" fill="#2dd4bf" text-anchor="middle" letter-spacing="1.5">TERVERIFIKASI</text>
+  </g>
+</svg>

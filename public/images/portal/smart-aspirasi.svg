@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="100%" height="100%">
+  <!-- Aspirasi & Pengaduan Icon -->
+  <defs>
+    <linearGradient id="aspirasiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#6d28d9" />
+    </linearGradient>
+  </defs>
+  <!-- Main bubble -->
+  <path d="M12,14 C12,9.6 15.6,6 20,6 L44,6 C48.4,6 52,9.6 52,14 L52,34 C52,38.4 48.4,42 44,42 L24,42 L14,50 L14,42 C12.8,42 12,41.2 12,40 Z" fill="url(#aspirasiGrad)" />
+  <!-- Three dots -->
+  <circle cx="24" cy="24" r="3" fill="#ffffff" />
+  <circle cx="32" cy="24" r="3" fill="#ffffff" />
+  <circle cx="40" cy="24" r="3" fill="#ffffff" />
+  <!-- Check badge -->
+  <circle cx="48" cy="44" r="9" fill="#10b981" />
+  <path d="M44,44 L47,47 L53,41" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
