@@ -53,6 +53,13 @@ class ParpolController extends Controller
         $totalSkAda = Parpol::where('sk3p3', 'Ada')->count();
         $totalSkBlm = Parpol::where('sk3p3', '!=', 'Ada')->count();
 
+        // Data Realisasi Pendidikan Politik (Banpol)
+        $dikpols = \App\Models\PendidikanPolitik::with('parpol')->get();
+        $totalDikpol = $dikpols->count();
+        $totalBiayaDikpol = $dikpols->sum('jumlah_biaya');
+        $totalPesertaDikpol = $dikpols->sum('peserta_jumlah');
+        $totalTempatDikpol = $dikpols->pluck('tempat_pelaksanaan')->unique()->count();
+
         $aspirasiTerbaru = Aspirasi::latest()->take(5)->get();
 
         return view('parpol.index', compact(
@@ -63,7 +70,12 @@ class ParpolController extends Controller
             'totalLo',
             'totalSkAda',
             'totalSkBlm',
-            'aspirasiTerbaru'
+            'aspirasiTerbaru',
+            'dikpols',
+            'totalDikpol',
+            'totalBiayaDikpol',
+            'totalPesertaDikpol',
+            'totalTempatDikpol'
         ));
     }
 

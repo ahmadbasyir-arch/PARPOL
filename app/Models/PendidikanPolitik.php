@@ -11,6 +11,7 @@ class PendidikanPolitik extends Model
         'parpol_id',
         'nama_kegiatan',
         'tanggal_pelaksanaan',
+        'tempat_pelaksanaan',
         'peserta_jumlah',
         'peserta_kader',
         'peserta_masyarakat',

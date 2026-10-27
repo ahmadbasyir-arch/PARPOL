@@ -259,6 +259,9 @@
                         <a class="nav-link" href="#galeri-partai"><i class="bi bi-grid-3x3-gap me-1"></i> Direktori Parpol (20)</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#dikpol"><i class="bi bi-mortarboard-fill me-1"></i> Pendidikan Politik</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#sebaran"><i class="bi bi-geo me-1"></i> Sebaran Kantor</a>
                     </li>
                     <li class="nav-item">
@@ -306,6 +309,7 @@
                     <ul class="footer-links">
                         <li><a href="#tabel-data">Tabel Dokumen Resmi (20 Parpol)</a></li>
                         <li><a href="#galeri-partai">Galeri Logo & Profil DPC/DPD</a></li>
+                        <li><a href="#dikpol">Matriks Pendidikan Politik (Banpol)</a></li>
                         <li><a href="#sebaran">Sebaran Kantor Kecamatan Pelaihari & Batu Ampar</a></li>
                         <li><a href="{{ route('parpol.cetak') }}" target="_blank">Unduh / Cetak Dokumen Lengkap (A4)</a></li>
                         <li><a href="#lapor">Layanan Pengkinian Data Pengurus Parpol</a></li>

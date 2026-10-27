@@ -532,6 +532,199 @@
         </div>
     </section>
 
+    <!-- ================= MATRIKS REALISASI PENDIDIKAN POLITIK (BANPOL) ================= -->
+    <section class="py-5" id="dikpol" style="background-color: #f8fafc;">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <span class="section-badge"><i class="bi bi-mortarboard-fill me-1"></i> Bantuan Keuangan &amp; Kaderisasi</span>
+                <h2 class="section-title">Matriks Realisasi Pendidikan Politik</h2>
+                <p class="section-subtitle">
+                    Transparansi pelaksanaan dan pertanggungjawaban kegiatan pendidikan politik partai politik di Kabupaten Tanah Laut T.A. 2026 yang didanai melalui pos Bantuan Keuangan Partai Politik (Banpol).
+                </p>
+            </div>
+
+            <!-- Banner & 4 Stat Cards -->
+            <div class="row g-3 mb-4">
+                <div class="col-6 col-lg-3">
+                    <div class="p-3 bg-white rounded-3 border text-center shadow-sm h-100">
+                        <div class="text-primary fs-3 mb-1"><i class="bi bi-journal-check"></i></div>
+                        <h4 class="fw-bold text-dark mb-0">{{ $totalDikpol }} Jenis Dikpol</h4>
+                        <span class="small text-muted">Agenda Terlaksana</span>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="p-3 bg-white rounded-3 border text-center shadow-sm h-100">
+                        <div class="text-success fs-3 mb-1"><i class="bi bi-cash-stack"></i></div>
+                        <h4 class="fw-bold text-success mb-0">Rp {{ number_format($totalBiayaDikpol, 0, ',', '.') }}</h4>
+                        <span class="small text-muted">100% Anggaran Terserap</span>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="p-3 bg-white rounded-3 border text-center shadow-sm h-100">
+                        <div class="text-warning fs-3 mb-1"><i class="bi bi-people-fill"></i></div>
+                        <h4 class="fw-bold text-dark mb-0">{{ $totalPesertaDikpol }} Peserta</h4>
+                        <span class="small text-muted">Kader &amp; Konstituen</span>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="p-3 bg-white rounded-3 border text-center shadow-sm h-100">
+                        <div class="text-danger fs-3 mb-1"><i class="bi bi-geo-alt-fill"></i></div>
+                        <h4 class="fw-bold text-dark mb-0">{{ $totalTempatDikpol }} Titik Lokasi</h4>
+                        <span class="small text-muted">Pelaihari &amp; Sekitarnya</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Regulasi Permendagri Banpol -->
+            <div class="alert alert-primary bg-white border border-primary-subtle shadow-sm rounded-3 p-3 mb-4 d-flex align-items-center gap-3">
+                <div class="fs-2 text-primary flex-shrink-0"><i class="bi bi-info-circle-fill"></i></div>
+                <div class="small">
+                    <strong>Dasar Hukum Pelaksanaan Banpol:</strong> Sesuai Permendagri No. 78 Tahun 2020, dana Bantuan Keuangan Partai Politik diprioritaskan minimal 60% untuk kegiatan <strong>Pendidikan Politik</strong> bagi anggota partai politik dan masyarakat guna meningkatkan partisipasi politik, kesadaran hak dan kewajiban warga negara, serta etika berdemokrasi di Kabupaten Tanah Laut.
+                </div>
+            </div>
+
+            <!-- Matriks Tabel Realisasi Pendidikan Politik -->
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+                <div class="card-header bg-dark text-white p-3 d-flex flex-wrap align-items-center justify-content-between gap-2">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-table text-warning fs-5"></i>
+                        <span class="fw-bold">Matriks Laporan Pelaksanaan Pendidikan Politik T.A. 2026</span>
+                    </div>
+                    <span class="badge bg-success bg-opacity-25 border border-success text-white px-3 py-1 small">
+                        <i class="bi bi-check-circle-fill me-1"></i> Data Terverifikasi Bakesbangpol
+                    </span>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0" style="font-size: 0.9rem;">
+                        <thead class="table-light text-uppercase small text-secondary" style="border-bottom: 2px solid #cbd5e1;">
+                            <tr>
+                                <th class="text-center" style="width: 45px;">No</th>
+                                <th style="min-width: 170px;">Partai Politik</th>
+                                <th style="min-width: 220px;">Jenis / Nama Kegiatan Dikpol</th>
+                                <th style="min-width: 190px;">Tempat Pelaksanaan</th>
+                                <th style="min-width: 150px;">Tanggal</th>
+                                <th class="text-center" style="min-width: 110px;">Jumlah Peserta</th>
+                                <th class="text-end" style="min-width: 140px;">Biaya (Rp)</th>
+                                <th class="text-center" style="min-width: 130px;">Dokumentasi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($dikpols as $idx => $d)
+                                <tr>
+                                    <td class="text-center fw-bold text-secondary">{{ $idx + 1 }}</td>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div style="width: 36px; height: 36px; border-radius: 8px; border: 1px solid #cbd5e1; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #ffffff;">
+                                                <img src="{{ asset($d->parpol->logo ?? 'images/parpol/pks.jpg') }}" alt="Logo {{ $d->parpol->akronim ?? 'PKS' }}" style="width: 100%; height: 100%; object-fit: cover;">
+                                            </div>
+                                            <div>
+                                                <strong class="text-dark d-block">{{ $d->parpol->akronim ?? 'PKS' }}</strong>
+                                                <span class="text-muted" style="font-size: 0.75rem;">{{ $d->parpol->nama_partai ?? 'Partai Keadilan Sejahtera' }}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <strong class="text-dark text-capitalize d-block">{{ $d->nama_kegiatan }}</strong>
+                                        @if ($d->keterangan)
+                                            <span class="text-muted small">{{ $d->keterangan }}</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div class="text-dark">
+                                            <i class="bi bi-geo-alt-fill text-danger me-1"></i> {{ $d->tempat_pelaksanaan ?? 'Kabupaten Tanah Laut' }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="text-dark">
+                                            <i class="bi bi-calendar-event text-primary me-1"></i> {{ $d->tanggal_pelaksanaan }}
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge bg-primary bg-opacity-10 text-primary border border-primary-subtle px-2 py-1 fw-bold">
+                                            {{ $d->peserta_jumlah }} Orang
+                                        </span>
+                                        <div class="text-muted mt-1" style="font-size: 0.75rem;">
+                                            <i class="bi bi-check2-circle text-success"></i> Kader Partai
+                                        </div>
+                                    </td>
+                                    <td class="text-end fw-bold text-dark">
+                                        Rp {{ number_format($d->jumlah_biaya, 0, ',', '.') }}
+                                    </td>
+                                    <td class="text-center">
+                                        @if ($d->dokumentasi)
+                                            <button type="button" class="btn btn-outline-primary btn-sm p-1 rounded-2" data-bs-toggle="modal" data-bs-target="#modalFotoDikpol{{ $d->id }}" title="Klik untuk melihat bukti foto kegiatan">
+                                                <img src="{{ asset($d->dokumentasi) }}" alt="Dokumentasi" class="rounded" style="width: 80px; height: 48px; object-fit: cover; display: block;">
+                                                <span class="d-block mt-1 text-primary fw-semibold" style="font-size: 0.7rem;"><i class="bi bi-zoom-in"></i> Lihat Foto</span>
+                                            </button>
+                                        @else
+                                            <span class="text-muted small">-</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="8" class="text-center py-4 text-muted">Belum ada data realisasi pendidikan politik.</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                        <tfoot class="table-light fw-bold" style="border-top: 2px solid #cbd5e1;">
+                            <tr>
+                                <td colspan="5" class="text-end text-uppercase text-secondary pe-3">Total Rekapitulasi Realisasi:</td>
+                                <td class="text-center text-primary fs-6">{{ $totalPesertaDikpol }} Orang</td>
+                                <td class="text-end text-success fs-6">Rp {{ number_format($totalBiayaDikpol, 0, ',', '.') }}</td>
+                                <td class="text-center text-muted small">{{ $totalDikpol }} Berkas Foto Fisik</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Petunjuk Tambahan / Alur Bagi LO Partai -->
+            <div class="p-3 bg-white rounded-3 border shadow-sm d-flex flex-wrap align-items-center justify-content-between gap-3">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="text-success fs-3"><i class="bi bi-file-earmark-arrow-up-fill"></i></div>
+                    <div>
+                        <h6 class="fw-bold text-dark mb-0">Ingin Mengajukan Pembaruan Laporan Dikpol Partai Anda?</h6>
+                        <span class="text-muted small">Pengurus atau Petugas Penghubung (LO) partai politik dapat melampirkan berkas berita acara dan LPJ ke tim Bakesbangpol.</span>
+                    </div>
+                </div>
+                <a href="#lapor" class="btn btn-outline-primary btn-sm fw-semibold px-3 py-2 rounded-3">
+                    <i class="bi bi-pencil-square me-1"></i> Form Layanan Pengkinian Data
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals untuk Pembesaran Foto Dokumentasi Dikpol -->
+    @foreach ($dikpols as $d)
+        @if ($d->dokumentasi)
+            <div class="modal fade" id="modalFotoDikpol{{ $d->id }}" tabindex="-1" aria-labelledby="modalFotoLabel{{ $d->id }}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content rounded-4 border-0 shadow-lg overflow-hidden">
+                        <div class="modal-header bg-dark text-white p-3">
+                            <div>
+                                <span class="badge bg-warning text-dark text-uppercase px-2 py-1 mb-1">Dokumentasi Pendidikan Politik</span>
+                                <h5 class="modal-title fw-bold mb-0 text-capitalize" id="modalFotoLabel{{ $d->id }}">{{ $d->nama_kegiatan }}</h5>
+                            </div>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body p-0 text-center bg-black">
+                            <img src="{{ asset($d->dokumentasi) }}" alt="Dokumentasi {{ $d->nama_kegiatan }}" class="img-fluid" style="max-height: 520px; object-fit: contain;">
+                        </div>
+                        <div class="modal-footer bg-light p-3 d-flex flex-wrap align-items-center justify-content-between">
+                            <div class="text-start small">
+                                <div><i class="bi bi-geo-alt-fill text-danger me-1"></i> <strong>Tempat:</strong> {{ $d->tempat_pelaksanaan ?? 'Kabupaten Tanah Laut' }}</div>
+                                <div><i class="bi bi-calendar-event text-primary me-1"></i> <strong>Tanggal:</strong> {{ $d->tanggal_pelaksanaan }} &bull; <strong>Peserta:</strong> {{ $d->peserta_jumlah }} Orang &bull; <strong>Biaya:</strong> Rp {{ number_format($d->jumlah_biaya, 0, ',', '.') }}</div>
+                            </div>
+                            <button type="button" class="btn btn-secondary btn-sm rounded-pill px-4" data-bs-dismiss="modal">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+    @endforeach
+
     <!-- ================= SEBARAN WILAYAH SEKRETARIAT ================= -->
     <section class="py-5" id="sebaran">
         <div class="container py-4">
@@ -917,7 +1110,12 @@
                                                             @endif
                                                         </td>
                                                         <td>
-                                                            <i class="bi bi-calendar3 text-primary me-1"></i> {{ $keg->tanggal_pelaksanaan }}
+                                                            <div><i class="bi bi-calendar3 text-primary me-1"></i> {{ $keg->tanggal_pelaksanaan }}</div>
+                                                            @if ($keg->tempat_pelaksanaan)
+                                                                <div class="small text-muted mt-1">
+                                                                    <i class="bi bi-geo-alt-fill text-danger me-1"></i> {{ $keg->tempat_pelaksanaan }}
+                                                                </div>
+                                                            @endif
                                                         </td>
                                                         <td class="text-center">
                                                             <span class="badge bg-primary rounded-pill px-2 py-1">{{ $keg->peserta_jumlah }} Orang</span>
