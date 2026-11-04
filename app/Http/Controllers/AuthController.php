@@ -39,6 +39,10 @@ class AuthController extends Controller
             'password.required' => 'Kata sandi wajib diisi.',
         ]);
 
+        // Sanitasi email & password untuk mencegah kegagalan akibat spasi/kapitalisasi tidak sengaja
+        $credentials['email'] = strtolower(trim($credentials['email']));
+        $credentials['password'] = trim($credentials['password']);
+
         $remember = $request->boolean('remember');
 
         if (Auth::attempt($credentials, $remember)) {
