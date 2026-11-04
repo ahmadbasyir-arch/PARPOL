@@ -36,7 +36,7 @@ class Parpol extends Model
     public function getLogoAttribute($value)
     {
         $latestLogos = [
-            1 => 'images/parpol/pkb.svg',
+            1 => 'images/parpol/pkb.png',
             2 => 'images/parpol/gerindra.png',
             3 => 'images/parpol/pdi-perjuangan.png',
             4 => 'images/parpol/golkar.jpg',

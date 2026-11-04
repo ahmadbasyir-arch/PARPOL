@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ParpolController;
+use App\Http\Controllers\PendidikanPolitikController;
 use App\Http\Controllers\PortalController;
 use App\Http\Controllers\WasbangController;
 use Illuminate\Support\Facades\Route;
@@ -54,4 +55,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 */
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+
+    // Manajemen Laporan Kegiatan Pendidikan Politik (Dikpol)
+    Route::post('/pendidikan-politik', [PendidikanPolitikController::class, 'store'])->name('dikpol.store');
+    Route::put('/pendidikan-politik/{id}', [PendidikanPolitikController::class, 'update'])->name('dikpol.update');
+    Route::delete('/pendidikan-politik/{id}', [PendidikanPolitikController::class, 'destroy'])->name('dikpol.destroy');
 });

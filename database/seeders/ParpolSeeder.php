@@ -17,7 +17,7 @@ class ParpolSeeder extends Seeder
                 'nomor_urut' => 1,
                 'nama_partai' => 'Partai Kebangkitan Bangsa',
                 'akronim' => 'PKB',
-                'logo' => 'images/parpol/pkb.svg',
+                'logo' => 'images/parpol/pkb.png',
                 'warna_primer' => '#007a3d',
                 'no_sk' => '13434/DPP/01/VII/2026',
                 'tanggal_sk' => '1 Juli 2026',
