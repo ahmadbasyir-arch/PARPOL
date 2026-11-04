@@ -16,6 +16,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
+    <!-- Flatpickr (Kalender Indonesia) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
+    
     <style>
         :root {
             --parpol-primary: #1e3a8a; /* Biru Pemerintahan Elegan */
@@ -265,6 +269,110 @@
             color: var(--parpol-gold);
             padding-left: 5px;
         }
+
+        /* Custom Styling Flatpickr Kalender Indonesia */
+        .flatpickr-calendar {
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            border-radius: 12px !important;
+            box-shadow: 0 15px 30px -5px rgba(15, 23, 42, 0.2), 0 10px 15px -5px rgba(15, 23, 42, 0.1) !important;
+            border: 1px solid #cbd5e1 !important;
+            z-index: 99999 !important;
+        }
+        .flatpickr-months {
+            background: #1e3a8a !important;
+            border-top-left-radius: 11px;
+            border-top-right-radius: 11px;
+            color: #ffffff !important;
+            padding: 8px 4px !important;
+        }
+        .flatpickr-current-month {
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            font-size: 105% !important;
+            padding-top: 4px !important;
+        }
+        .flatpickr-current-month .flatpickr-monthDropdown-months {
+            background: #1e3a8a !important;
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            border-radius: 6px;
+            padding: 2px 6px;
+        }
+        .flatpickr-current-month .flatpickr-monthDropdown-months option {
+            background-color: #0f172a !important;
+            color: #ffffff !important;
+        }
+        .flatpickr-current-month input.cur-year {
+            color: #ffffff !important;
+            font-weight: 700 !important;
+        }
+        .flatpickr-months .flatpickr-prev-month,
+        .flatpickr-months .flatpickr-next-month {
+            color: #ffffff !important;
+            fill: #ffffff !important;
+            padding: 8px !important;
+        }
+        .flatpickr-months .flatpickr-prev-month:hover svg,
+        .flatpickr-months .flatpickr-next-month:hover svg {
+            fill: #f59e0b !important;
+        }
+        .flatpickr-weekdays {
+            background: #f1f5f9 !important;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 4px 0 !important;
+        }
+        span.flatpickr-weekday {
+            color: #1e3a8a !important;
+            font-weight: 700 !important;
+            font-size: 85% !important;
+        }
+        .flatpickr-day {
+            border-radius: 8px !important;
+            font-weight: 500 !important;
+            color: #1e293b !important;
+        }
+        .flatpickr-day.selected,
+        .flatpickr-day.selected:hover,
+        .flatpickr-day.selected:focus {
+            background: #1e3a8a !important;
+            border-color: #1e3a8a !important;
+            color: #ffffff !important;
+            font-weight: 700 !important;
+        }
+        .flatpickr-day.today {
+            border-color: #0f766e !important;
+            background: #f0fdf4 !important;
+            color: #0f766e !important;
+            font-weight: 700 !important;
+        }
+        .flatpickr-day:hover {
+            background: #e2e8f0 !important;
+        }
+        
+        /* Integrasi Presisi Flatpickr di dalam Bootstrap Input-Group */
+        .input-group > .flatpickr-wrapper {
+            flex: 1 1 auto;
+            width: 1% !important;
+            min-width: 0;
+            position: relative;
+            display: flex !important;
+        }
+        .input-group > .flatpickr-wrapper > .flatpickr-input {
+            width: 100% !important;
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+            border-top-right-radius: 0.375rem !important;
+            border-bottom-right-radius: 0.375rem !important;
+            background-color: #ffffff !important;
+            cursor: pointer;
+        }
+        .flatpickr-calendar.static {
+            top: calc(100% + 4px) !important;
+            right: 0 !important;
+            left: auto !important;
+            z-index: 99999 !important;
+            position: absolute !important;
+        }
     </style>
     @stack('styles')
 </head>
@@ -490,6 +598,78 @@
 
     <!-- Bootstrap 5 Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Flatpickr JS & Bahasa Indonesia Localization -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/id.js"></script>
+    <script>
+        (function() {
+            // Kamus Baku Bahasa Indonesia untuk Kalender Flatpickr
+            const flatpickrIdLocale = {
+                weekdays: {
+                    shorthand: ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"],
+                    longhand: ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"]
+                },
+                months: {
+                    shorthand: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"],
+                    longhand: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"]
+                },
+                firstDayOfWeek: 1,
+                ordinal: function() { return ""; },
+                rangeSeparator: " s.d. "
+            };
+
+            function initIndonesianDatepickers() {
+                if (typeof flatpickr === 'undefined') return;
+
+                // Terapkan locale Indonesia
+                const activeLocale = (flatpickr.l10ns && flatpickr.l10ns.id) 
+                    ? flatpickr.l10ns.id 
+                    : flatpickrIdLocale;
+
+                flatpickr.localize(activeLocale);
+
+                document.querySelectorAll('.datepicker-id:not([data-fp-initialized])').forEach(function(el) {
+                    el.setAttribute('data-fp-initialized', 'true');
+                    flatpickr(el, {
+                        locale: activeLocale,
+                        altInput: true,
+                        altFormat: "j F Y",
+                        dateFormat: "Y-m-d",
+                        disableMobile: true,
+                        allowInput: false,
+                        static: true
+                    });
+                });
+            }
+
+            document.addEventListener('DOMContentLoaded', initIndonesianDatepickers);
+            document.addEventListener('shown.bs.modal', function() {
+                initIndonesianDatepickers();
+            });
+            document.addEventListener('hide.bs.modal', function() {
+                document.querySelectorAll('.datepicker-id').forEach(function(el) {
+                    if (el._flatpickr && el._flatpickr.isOpen) {
+                        el._flatpickr.close();
+                    }
+                });
+            });
+
+            // Helper tombol ikon kalender
+            window.openIndoDatePicker = function(btn) {
+                const group = btn.closest('.input-group');
+                if (!group) return;
+                const picker = group.querySelector('.datepicker-id');
+                if (picker && picker._flatpickr) {
+                    if (picker._flatpickr.isOpen) {
+                        picker._flatpickr.close();
+                    } else {
+                        picker._flatpickr.open();
+                    }
+                }
+            };
+        })();
+    </script>
     @stack('scripts')
 </body>
 </html>

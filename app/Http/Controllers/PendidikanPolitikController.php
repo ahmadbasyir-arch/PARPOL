@@ -74,7 +74,7 @@ class PendidikanPolitikController extends Controller
         PendidikanPolitik::create([
             'parpol_id' => $parpolId,
             'nama_kegiatan' => $validated['nama_kegiatan'],
-            'tanggal_pelaksanaan' => $validated['tanggal_pelaksanaan'],
+            'tanggal_pelaksanaan' => PendidikanPolitik::formatIndonesia($validated['tanggal_pelaksanaan']),
             'tempat_pelaksanaan' => $validated['tempat_pelaksanaan'],
             'peserta_jumlah' => $totalPeserta,
             'peserta_kader' => true,
@@ -142,7 +142,7 @@ class PendidikanPolitikController extends Controller
         }
 
         $kegiatan->nama_kegiatan = $validated['nama_kegiatan'];
-        $kegiatan->tanggal_pelaksanaan = $validated['tanggal_pelaksanaan'];
+        $kegiatan->tanggal_pelaksanaan = PendidikanPolitik::formatIndonesia($validated['tanggal_pelaksanaan']);
         $kegiatan->tempat_pelaksanaan = $validated['tempat_pelaksanaan'];
         $kegiatan->peserta_jumlah = (int) $validated['peserta_jumlah'];
         $kegiatan->jumlah_biaya = (int) $validated['jumlah_biaya'];

@@ -233,7 +233,7 @@
 <!-- ======================================================== -->
 <!-- MODAL: TAMBAH LAPORAN KEGIATAN BARU (SUPERADMIN)         -->
 <!-- ======================================================== -->
-<div class="modal fade" id="modalTambahDikpolAdmin" tabindex="-1" aria-labelledby="modalTambahDikpolAdminLabel" aria-hidden="true">
+<div class="modal fade" id="modalTambahDikpolAdmin" tabindex="-1" aria-labelledby="modalTambahDikpolAdminLabel" aria-hidden="true" data-bs-focus="false">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content border-0 shadow-lg rounded-4">
             <div class="modal-header bg-primary text-white p-3 px-4">
@@ -275,7 +275,20 @@
 
                         <div class="col-md-5">
                             <label class="form-label fw-bold small text-dark">Tanggal Pelaksanaan <span class="text-danger">*</span></label>
-                            <input type="text" name="tanggal_pelaksanaan" class="form-control rounded-3" placeholder="Contoh: 15 Maret 2026 atau 2026-03-15" required value="{{ old('tanggal_pelaksanaan') }}">
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-primary" style="cursor: pointer;" onclick="openIndoDatePicker(this)" title="Buka Kalender Bahasa Indonesia">
+                                    <i class="bi bi-calendar-event"></i>
+                                </span>
+                                <input type="text" 
+                                       name="tanggal_pelaksanaan" 
+                                       class="form-control datepicker-id bg-white" 
+                                       placeholder="Pilih Tanggal Pelaksanaan" 
+                                       required 
+                                       value="{{ old('tanggal_pelaksanaan', date('Y-m-d')) }}">
+                            </div>
+                            <small class="text-muted" style="font-size: 0.75rem;">
+                                <i class="bi bi-calendar-check me-1 text-primary"></i> Kalender Bahasa Indonesia
+                            </small>
                         </div>
 
                         <div class="col-md-6">
@@ -389,7 +402,7 @@
     </div>
 
     <!-- Modal Edit Dikpol Admin -->
-    <div class="modal fade" id="modalEditDikpolAdmin{{ $item->id }}" tabindex="-1" aria-labelledby="modalEditDikpolAdminLabel{{ $item->id }}" aria-hidden="true">
+    <div class="modal fade" id="modalEditDikpolAdmin{{ $item->id }}" tabindex="-1" aria-labelledby="modalEditDikpolAdminLabel{{ $item->id }}" aria-hidden="true" data-bs-focus="false">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content border-0 shadow-lg rounded-4">
                 <div class="modal-header bg-dark text-white p-3 px-4">
@@ -426,7 +439,20 @@
 
                             <div class="col-md-5">
                                 <label class="form-label fw-bold small text-dark">Tanggal Pelaksanaan <span class="text-danger">*</span></label>
-                                <input type="text" name="tanggal_pelaksanaan" class="form-control rounded-3" required value="{{ old('tanggal_pelaksanaan', $item->tanggal_pelaksanaan) }}">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light text-primary" style="cursor: pointer;" onclick="openIndoDatePicker(this)" title="Buka Kalender Bahasa Indonesia">
+                                        <i class="bi bi-calendar-event"></i>
+                                    </span>
+                                    <input type="text" 
+                                           name="tanggal_pelaksanaan" 
+                                           class="form-control datepicker-id bg-white" 
+                                           placeholder="Pilih Tanggal Pelaksanaan" 
+                                           required 
+                                           value="{{ old('tanggal_pelaksanaan', $item->tanggal_pelaksanaan_input) }}">
+                                </div>
+                                <small class="text-muted" style="font-size: 0.75rem;">
+                                    <i class="bi bi-clock-history me-1"></i> Tersimpan: {{ $item->tanggal_pelaksanaan }}
+                                </small>
                             </div>
 
                             <div class="col-md-6">
