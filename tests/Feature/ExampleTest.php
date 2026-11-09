@@ -101,4 +101,36 @@ class ExampleTest extends TestCase
             'kategori' => 'Pembaruan Data Pengurus',
         ]);
     }
+
+    /**
+     * Test login untuk akun Pengurus Partai Politik (SIPARPOL)
+     */
+    public function test_parpol_can_login(): void
+    {
+        $this->seed([\Database\Seeders\ParpolSeeder::class, \Database\Seeders\UserSeeder::class]);
+
+        $response = $this->post(route('login.post'), [
+            'email' => 'pks@tanahlautkab.go.id',
+            'password' => 'password123',
+        ]);
+
+        $response->assertRedirect(route('dashboard'));
+        $this->assertAuthenticated();
+    }
+
+    /**
+     * Test login untuk akun Admin Bakesbangpol (Poldagri)
+     */
+    public function test_admin_bakesbangpol_can_login(): void
+    {
+        $this->seed([\Database\Seeders\ParpolSeeder::class, \Database\Seeders\UserSeeder::class]);
+
+        $response = $this->post(route('login.post'), [
+            'email' => 'bakesbangpol@tanahlautkab.go.id',
+            'password' => 'password123',
+        ]);
+
+        $response->assertRedirect(route('dashboard'));
+        $this->assertAuthenticated();
+    }
 }
