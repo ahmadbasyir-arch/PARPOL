@@ -108,6 +108,39 @@
             object-fit: contain;
         }
 
+        .photo-gallery-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 15px 0 25px 0;
+            page-break-inside: avoid;
+        }
+
+        .photo-gallery-item {
+            flex: 1 1 calc(50% - 12px);
+            max-width: calc(50% - 12px);
+            border: 1px solid #94a3b8;
+            padding: 8px;
+            background: #fafafa;
+            text-align: center;
+            box-sizing: border-box;
+            page-break-inside: avoid;
+        }
+
+        .photo-gallery-item img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .photo-caption {
+            font-size: 8.5pt;
+            color: #475569;
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
         .rincian-box {
             border: 1px solid #333333;
             padding: 15px;
@@ -199,14 +232,34 @@
         </tbody>
     </table>
 
-    <!-- Foto Dokumentasi Lapangan -->
-    @if($kegiatan->foto)
-        <div class="photo-box">
-            <img src="{{ $kegiatan->foto_url }}" alt="Dokumentasi Kegiatan" class="photo-img">
-            <div class="small text-muted mt-2">
-                Dokumentasi Lapangan Otentik &bull; Lokasi: {{ $kegiatan->lokasi }} &bull; Tanggal: {{ $kegiatan->tanggal_formatted }}
+    <!-- Foto Dokumentasi Lapangan Otentik (Tersusun Rapi) -->
+    @php
+        $fotoList = $kegiatan->semua_foto_urls;
+    @endphp
+
+    @if(count($fotoList) > 0)
+        <h6 class="fw-bold mt-4 mb-2 text-uppercase">
+            <i class="bi bi-images me-1"></i> LAMPIRAN DOKUMENTASI KEGIATAN LAPANGAN (TOTAL: {{ count($fotoList) }} FOTO TERSIMPAN):
+        </h6>
+        @if(count($fotoList) === 1)
+            <div class="photo-box">
+                <img src="{{ $fotoList[0] }}" alt="Dokumentasi Kegiatan" class="photo-img">
+                <div class="small text-muted mt-2">
+                    Dokumentasi Lapangan Otentik &bull; Lokasi: {{ $kegiatan->lokasi }} &bull; Tanggal: {{ $kegiatan->hari_tanggal_formatted }}
+                </div>
             </div>
-        </div>
+        @else
+            <div class="photo-gallery-grid">
+                @foreach($fotoList as $idx => $fUrl)
+                    <div class="photo-gallery-item">
+                        <img src="{{ $fUrl }}" alt="Dokumentasi Kegiatan {{ $idx + 1 }}">
+                        <div class="photo-caption">
+                            Foto Dokumentasi {{ $idx + 1 }} &bull; {{ $kegiatan->lokasi }}
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @endif
     @endif
 
     <!-- Rincian & Kronologis Pelaksanaan -->
@@ -227,9 +280,8 @@
         <div style="width: 320px; text-align: center;">
             <p class="mb-1">Pelaihari, {{ date('d F Y') }}</p>
             <p class="fw-bold mb-5">Kepala Bidang Bina Ideologi, Wasbang<br>dan Karakter Bangsa</p>
-            <p class="fw-bold text-decoration-underline mb-0">H. AKHMAD SUBEKTI, S.Sos, M.AP</p>
-            <p class="small mb-0">Pembina (IV/a)</p>
-            <p class="small">NIP. 19760824 200212 1 003</p>
+            <p class="fw-bold text-decoration-underline mb-0">Auranti Muraya Purihaningrum, S.STP.</p>
+            <p class="small">NIP. 198605022004122001</p>
         </div>
     </div>
 

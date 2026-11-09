@@ -51,9 +51,15 @@ class AuthController extends Controller
             $user = Auth::user();
             $namaPengguna = $user->name;
 
-            if ($user->isAdmin()) {
+            if ($user->isKabidWasbang()) {
+                return redirect()->intended(route('wasbang.index'))
+                    ->with('wasbang_success', "Selamat datang, Ibu {$namaPengguna}! Anda berhasil masuk sebagai Kepala Bidang Wasbang Bakesbangpol Kab. Tanah Laut.");
+            } elseif ($user->isStafWasbang()) {
+                return redirect()->intended(route('wasbang.index'))
+                    ->with('wasbang_success', "Selamat datang, {$namaPengguna}! Anda berhasil masuk sebagai Staf Pelaksana Pengarsipan Bidang Wasbang.");
+            } elseif ($user->isAdmin()) {
                 return redirect()->intended(route('dashboard'))
-                    ->with('login_success', "Selamat datang, {$namaPengguna}! Anda masuk sebagai Administrator Bakesbangpol.");
+                    ->with('login_success', "Selamat datang, Bapak/Ibu {$namaPengguna}! Anda masuk sebagai Administrator / Kepala Badan Kesatuan Bangsa dan Politik.");
             } else {
                 $namaPartai = $user->parpol->nama_partai ?? 'Partai Politik';
                 return redirect()->intended(route('dashboard'))
@@ -73,8 +79,14 @@ class AuthController extends Controller
     {
         $user = Auth::user();
 
+        // 1. Pengguna Khusus Bidang Wasbang (Kabid Wasbang & Staf Wasbang)
+        if ($user->isKabidWasbang() || $user->isStafWasbang()) {
+            return redirect()->route('wasbang.index')
+                ->with('wasbang_success', "Selamat datang di Panel Pengarsipan & Pelaporan Bidang Wasbang, {$user->name}.");
+        }
+
+        // 2. Admin Bakesbangpol (Kepala Badan / Superadmin Kesbangpol)
         if ($user->isAdmin()) {
-            // Dashboard Khusus Admin Bakesbangpol
             $totalParpol = Parpol::count();
             $dikpols = PendidikanPolitik::with('parpol')->latest()->get();
             $totalBiaya = $dikpols->sum('jumlah_biaya');
@@ -89,21 +101,25 @@ class AuthController extends Controller
                 'totalPeserta',
                 'parpols'
             ));
-        } else {
-            // Dashboard Khusus Operator / LO Partai Politik
-            $parpol = $user->parpol;
-            $dikpols = PendidikanPolitik::where('parpol_id', $user->parpol_id)->latest()->get();
-            $totalBiaya = $dikpols->sum('jumlah_biaya');
-            $totalPeserta = $dikpols->sum('peserta_jumlah');
-
-            return view('dashboard.parpol', compact(
-                'user',
-                'parpol',
-                'dikpols',
-                'totalBiaya',
-                'totalPeserta'
-            ));
         }
+
+        // 3. Operator / LO Partai Politik
+        $parpol = $user->parpol;
+        if (!$parpol) {
+            return redirect()->route('parpol.home');
+        }
+
+        $dikpols = PendidikanPolitik::where('parpol_id', $user->parpol_id)->latest()->get();
+        $totalBiaya = $dikpols->sum('jumlah_biaya');
+        $totalPeserta = $dikpols->sum('peserta_jumlah');
+
+        return view('dashboard.parpol', compact(
+            'user',
+            'parpol',
+            'dikpols',
+            'totalBiaya',
+            'totalPeserta'
+        ));
     }
 
     /**

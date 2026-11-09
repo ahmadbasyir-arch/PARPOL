@@ -32,6 +32,9 @@ Route::post('/lapor-perubahan', [ParpolController::class, 'storePerubahan'])->na
 */
 Route::prefix('wasbang')->name('wasbang.')->group(function () {
     Route::get('/', [WasbangController::class, 'index'])->name('index');
+    Route::get('/login', [WasbangController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [WasbangController::class, 'login'])->name('login.post');
+    Route::post('/logout', [WasbangController::class, 'logout'])->name('logout');
     Route::post('/tambah', [WasbangController::class, 'store'])->name('store');
     Route::get('/cetak', [WasbangController::class, 'cetak'])->name('cetak');
     Route::get('/cetak/{id}', [WasbangController::class, 'cetakDetail'])->name('cetak.detail');

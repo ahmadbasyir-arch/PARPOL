@@ -209,20 +209,18 @@
 
     <!-- Tanda Tangan Pengesahan -->
     <div class="sign-area">
-        <div style="width: 300px; text-align: center;">
+        <div style="width: 320px; text-align: center;">
             <p class="mb-1">Mengetahui,</p>
             <p class="fw-bold mb-5">Kepala Badan Kesatuan Bangsa dan Politik<br>Kabupaten Tanah Laut</p>
-            <p class="fw-bold text-decoration-underline mb-0">Drs. H. M. SYAHRIN NOOR, M.Si</p>
-            <p class="small mb-0">Pembina Utama Muda (IV/c)</p>
-            <p class="small">NIP. 19700512 199603 1 004</p>
+            <p class="fw-bold text-decoration-underline mb-0">H. Bambang Kusdariman, S.I.P., M.Si.</p>
+            <p class="small">NIP. 19680818 199010 1 003</p>
         </div>
 
         <div style="width: 320px; text-align: center;">
             <p class="mb-1">Pelaihari, {{ date('d F Y') }}</p>
             <p class="fw-bold mb-5">Kepala Bidang Bina Ideologi, Wasbang<br>dan Karakter Bangsa</p>
-            <p class="fw-bold text-decoration-underline mb-0">H. AKHMAD SUBEKTI, S.Sos, M.AP</p>
-            <p class="small mb-0">Pembina (IV/a)</p>
-            <p class="small">NIP. 19760824 200212 1 003</p>
+            <p class="fw-bold text-decoration-underline mb-0">Auranti Muraya Purihaningrum, S.STP.</p>
+            <p class="small">NIP. 198605022004122001</p>
         </div>
     </div>
 

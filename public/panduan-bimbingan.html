@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Panduan & Bahan Bimbingan PKL - Bidang Wasbang Bakesbangpol Tanah Laut</title>
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 15mm 15mm 15mm 15mm;
+        }
+
+        body {
+            font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+            color: #1e293b;
+            line-height: 1.5;
+            font-size: 10.5pt;
+            background: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Dokumen Dinas / Akademis */
+        .header-kop {
+            border-bottom: 3px double #0f172a;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-logo {
+            width: 65px;
+            height: auto;
+        }
+
+        .header-text {
+            flex: 1;
+            text-align: center;
+        }
+
+        .header-text h4 {
+            margin: 0;
+            font-size: 11pt;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #475569;
+            text-transform: uppercase;
+        }
+
+        .header-text h2 {
+            margin: 2px 0;
+            font-size: 13pt;
+            font-weight: 800;
+            color: #0f172a;
+            text-transform: uppercase;
+        }
+
+        .header-text h3 {
+            margin: 0;
+            font-size: 11pt;
+            font-weight: 700;
+            color: #b91c1c;
+            text-transform: uppercase;
+        }
+
+        .header-text p {
+            margin: 2px 0 0 0;
+            font-size: 8pt;
+            color: #64748b;
+        }
+
+        /* Banner Judul */
+        .title-box {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #881337 100%);
+            color: #ffffff;
+            padding: 14px 18px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .title-badge {
+            display: inline-block;
+            background: #f59e0b;
+            color: #000000;
+            font-weight: 800;
+            font-size: 7.5pt;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .title-box h1 {
+            margin: 0 0 6px 0;
+            font-size: 12pt;
+            font-weight: 800;
+            line-height: 1.35;
+            text-transform: uppercase;
+        }
+
+        .title-box p {
+            margin: 0;
+            font-size: 8.5pt;
+            color: #cbd5e1;
+        }
+
+        /* Info Pejabat Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .info-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #b91c1c;
+            padding: 10px 12px;
+            border-radius: 6px;
+        }
+
+        .info-card.blue {
+            border-left-color: #2563eb;
+        }
+
+        .info-card-label {
+            font-size: 7.5pt;
+            color: #64748b;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .info-card-name {
+            font-size: 9.5pt;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 1px;
+        }
+
+        .info-card-sub {
+            font-size: 8pt;
+            color: #334155;
+        }
+
+        /* Bagian Bab */
+        .section-title {
+            font-size: 11pt;
+            font-weight: 800;
+            color: #0f172a;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 4px;
+            margin-top: 14px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .section-title span.num {
+            background: #b91c1c;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8pt;
+            font-weight: bold;
+        }
+
+        /* Kotak Dialog / Skrip Bicara */
+        .speech-box {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-left: 4px solid #f59e0b;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-style: italic;
+            color: #78350f;
+            font-size: 9pt;
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+        .speech-box strong {
+            font-style: normal;
+            color: #92400e;
+        }
+
+        /* Bullet Points & Penjelasan */
+        ul.custom-list {
+            margin: 4px 0 10px 0;
+            padding-left: 20px;
+        }
+
+        ul.custom-list li {
+            margin-bottom: 4px;
+            font-size: 9pt;
+        }
+
+        ul.custom-list li strong {
+            color: #0f172a;
+        }
+
+        /* Tabel Role */
+        table.role-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 8px 0 12px 0;
+            font-size: 8.5pt;
+        }
+
+        table.role-table th {
+            background: #0f172a;
+            color: #ffffff;
+            font-weight: 700;
+            text-align: left;
+            padding: 7px 10px;
+            border: 1px solid #334155;
+            font-size: 8pt;
+            text-transform: uppercase;
+        }
+
+        table.role-table td {
+            padding: 7px 10px;
+            border: 1px solid #cbd5e1;
+            vertical-align: top;
+        }
+
+        table.role-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .badge-role {
+            display: inline-block;
+            font-size: 7pt;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+        .badge-green { background: #dcfce7; color: #166534; }
+        .badge-blue { background: #dbeafe; color: #1e40af; }
+        .badge-red { background: #fee2e2; color: #991b1b; }
+        .badge-amber { background: #fef3c7; color: #92400e; }
+
+        /* Langkah Demo */
+        .step-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .step-item {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 8.5pt;
+        }
+
+        .step-header {
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 2px;
+        }
+
+        .step-desc {
+            color: #475569;
+            font-size: 8pt;
+            line-height: 1.4;
+        }
+
+        /* Tanya Jawab */
+        .qa-box {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 8px 12px;
+            margin-bottom: 6px;
+            font-size: 8.5pt;
+        }
+
+        .qa-q {
+            font-weight: 800;
+            color: #b91c1c;
+            margin-bottom: 3px;
+        }
+
+        .qa-a {
+            color: #1e293b;
+            line-height: 1.4;
+        }
+
+        /* Page break helper */
+        .page-break {
+            page-break-before: always;
+        }
+
+        /* Footer */
+        .footer-note {
+            margin-top: 16px;
+            border-top: 1px solid #cbd5e1;
+            padding-top: 8px;
+            font-size: 7.5pt;
+            color: #64748b;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- KOP RESMI DOKUMEN -->
+    <div class="header-kop">
+        <div class="header-text">
+            <h4>Pemerintah Kabupaten Tanah Laut</h4>
+            <h2>Badan Kesatuan Bangsa dan Politik</h2>
+            <h3>Bidang Bina Ideologi, Wawasan Kebangsaan dan Karakter Bangsa</h3>
+            <p>Jalan A. Yani No. 1, Pelaihari, Kabupaten Tanah Laut, Kalimantan Selatan &bull; Lembar Panduan Paparan Bimbingan PKL</p>
+        </div>
+    </div>
+
+    <!-- BOX JUDUL PKL -->
+    <div class="title-box">
+        <span class="title-badge">Usulan Judul & Rancang Bangun Sistem PKL</span>
+        <h1>Pengembangan Sistem Informasi Pengarsipan Dokumentasi Kegiatan Berbasis Web pada Bidang Bina Ideologi, Wawasan Kebangsaan, dan Karakter Bangsa (WASBANG) di Badan Kesatuan Bangsa dan Politik Kabupaten Tanah Laut</h1>
+        <p>Bahan Presentasi & Tanya-Jawab Bimbingan Dosen Pembimbing (Dospem) PKL</p>
+    </div>
+
+    <!-- PROFIL PIMPINAN & PEMBIMBING -->
+    <div class="info-grid">
+        <div class="info-card">
+            <div class="info-card-label">Pembimbing Lapangan / Kepala Bidang Wasbang:</div>
+            <div class="info-card-name">Auranti Muraya Purihaningrum, S.STP.</div>
+            <div class="info-card-sub">NIP. 198605022004122001 &bull; Pejabat Pengesah Berita Acara</div>
+        </div>
+        <div class="info-card blue">
+            <div class="info-card-label">Kepala Instansi / Kepala Badan Kesbangpol:</div>
+            <div class="info-card-name">H. Bambang Kusdariman, S.I.P., M.Si.</div>
+            <div class="info-card-sub">NIP. 19680818 199010 1 003 &bull; Mengetahui Rekapitulasi Dinas</div>
+        </div>
+    </div>
+
+    <!-- BAGIAN 1: PITCHING PEMBUKA -->
+    <div class="section-title">
+        <span class="num">1</span> Skrip Pembuka (Elevator Pitch di Depan Dosen Pembimbing)
+    </div>
+    <div class="speech-box">
+        "Selamat pagi / siang Bapak/Ibu Dosen Pembimbing. Terima kasih atas waktu dan bimbingannya.<br>
+        Pada kesempatan ini, saya ingin melaporkan progres PKL saya di <strong>Bakesbangpol Kabupaten Tanah Laut</strong>, khususnya pada <strong>Bidang Bina Ideologi, Wawasan Kebangsaan, dan Karakter Bangsa (WASBANG)</strong>.<br>
+        Berdasarkan arahan serta identifikasi permasalahan langsung bersama pembimbing lapangan saya, yaitu <strong>Ibu Auranti Muraya Purihaningrum, S.STP.</strong> selaku Kepala Bidang Wasbang, saya merancang sistem informasi pengarsipan dokumentasi kegiatan lapangan berbasis web untuk mengatasi kendala foto kegiatan yang selama ini masih tersusun secara berserakan di berbagai perangkat staf."
+    </div>
+
+    <!-- BAGIAN 2: LATAR BELAKANG MASALAH -->
+    <div class="section-title">
+        <span class="num">2</span> Latar Belakang & Identifikasi Masalah Riil di Lapangan
+    </div>
+    <ul class="custom-list">
+        <li><strong>Tingginya Frekuensi Kegiatan Luar Kantor:</strong> Bidang Wasbang rutin mengadakan kegiatan sosialisasi 4 Konsensus Dasar Kebangsaan ke kecamatan, Diklat Paskibraka Tanah Laut, forum pembauran kebangsaan, dan kemah bela negara.</li>
+        <li><strong>Dokumentasi Foto Berserakan:</strong> Sepulang staf dari lapangan, ratusan foto dokumentasi hanya mengendap di galeri HP pribadi staf, grup WhatsApp, atau flashdisk tanpa penamaan kronologis, tanggal pelaksanaan, dan notula resmi.</li>
+        <li><strong>Kesulitan Penyusunan Laporan Pertanggungjawaban (LPJ):</strong> Saat ada audit atau permintaan bukti otentik kegiatan untuk LPJ dan administrasi dinas, staf harus membongkar arsip lama secara manual, memakan waktu berhari-hari, dan berisiko foto terhapus.</li>
+        <li><strong>Kebutuhan Akses Peserta Luar:</strong> Peserta kegiatan (seperti siswa Paskibra, guru pembina, dan perwakilan ormas) sering membutuhkan foto dokumentasi kegiatan untuk arsip mereka, namun belum ada portal publik yang menyediakannya.</li>
+    </ul>
+
+    <!-- BAGIAN 3: SOLUSI & FITUR SISTEM -->
+    <div class="section-title">
+        <span class="num">3</span> Solusi & Fitur Utama Sistem yang Dikembangkan
+    </div>
+    <ul class="custom-list">
+        <li><strong>Sentralisasi Arsip Digital Berbasis Web:</strong> Satu pangkalan data terpusat untuk seluruh rekam jejak kegiatan dengan tanggal otomatis (konversi hari otomatis: Senin s.d. Minggu), lokasi, pelaksana, dan rincian acara.</li>
+        <li><strong>Galeri Multi-Foto & Multi-Media:</strong> Mendukung pengunggahan banyak foto sekaligus (foto sambutan, narasumber, audiens, foto bersama), rekaman video lapangan, serta berkas LPJ/Notula (PDF/Word).</li>
+        <li><strong>Cetak Berita Acara & Rekapitulasi Berstandar Pemkab:</strong>
+            <ul>
+                <li><em>Berita Acara Tunggal:</em> Menghasilkan lembar laporan dokumentasi per kegiatan siap cetak (A4) yang otomatis memuat susunan foto 2 kolom dan tanda tangan resmi <strong>Ibu Auranti Muraya Purihaningrum, S.STP.</strong> lengkap dengan NIP.</li>
+                <li><em>Rekapitulasi Dinas:</em> Menghasilkan tabel rekapitulasi semua kegiatan dengan format tata naskah dinas Pemkab Tanah Laut, lengkap dengan tanda tangan ganda: <strong>Kepala Badan (Bapak H. Bambang Kusdariman, S.I.P., M.Si.)</strong> dan <strong>Kepala Bidang Wasbang</strong>.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <!-- PAGE BREAK UNTUK HALAMAN KE-2 -->
+    <div class="page-break"></div>
+
+    <!-- BAGIAN 4: PEMBAGIAN ROLE PENGGUNA -->
+    <div class="section-title">
+        <span class="num">4</span> Hak Akses & Arsitektur Pengguna (Role-Based Access Control)
+    </div>
+    <p style="font-size: 8.5pt; color: #475569; margin: 2px 0 6px 0;">
+        Sistem membagi pengguna secara tegas menjadi 3 Role Akun Internal dan 1 Mode Publik (Free User):
+    </p>
+
+    <table class="role-table">
+        <thead>
+            <tr>
+                <th style="width: 20%;">Pengguna / Aktor</th>
+                <th style="width: 15%;">Status Login</th>
+                <th style="width: 65%;">Wewenang & Hak Akses dalam Sistem</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Tamu / Peserta Kegiatan</strong><br><span class="badge-role badge-green">Free User Publik</span></td>
+                <td><strong>Tanpa Login</strong><br>(Akses Bebas)</td>
+                <td>Dapat membuka katalog dokumentasi Wasbang, mencari kegiatan yang diikuti (misal: Diklat Paskibra), melihat galeri foto resolusi tinggi, membaca kronologi kegiatan, dan <strong>mengunduh foto dokumentasi secara bebas</strong>. Tombol hapus dan formulir input tidak ditampilkan.</td>
+            </tr>
+            <tr>
+                <td><strong>Staf Pelaksana Wasbang</strong><br><span class="badge-role badge-blue">Operator Lapangan</span></td>
+                <td>Login Khusus<br>Wasbang</td>
+                <td>Memiliki hak akses penuh untuk <strong>menginput agenda baru</strong>, mengunggah multi-foto sepulang dari dinas luar, melampirkan video dan berkas LPJ, serta mengelola/menghapus arsip kegiatan jika terdapat kesalahan data.</td>
+            </tr>
+            <tr>
+                <td><strong>Ibu Kabid Wasbang</strong><br><em>Auranti Muraya P., S.STP.</em><br><span class="badge-role badge-amber">Pimpinan Bidang</span></td>
+                <td>Login Khusus<br>Wasbang</td>
+                <td>Berperan sebagai <strong>Verifikator & Pengesah Laporan</strong>. Meninjau keotentikan foto dan rincian acara yang diinput staf, serta mencetak lembar Berita Acara resmi bertanda tangan NIP beliau untuk pertanggungjawaban dinas.</td>
+            </tr>
+            <tr>
+                <td><strong>Kepala Badan Kesbangpol</strong><br><em>H. Bambang Kusdariman</em><br><span class="badge-role badge-red">Kepala Instansi</span></td>
+                <td>Login Khusus<br>Wasbang / Eksekutif</td>
+                <td>Berperan dalam <strong>Supervisi Eksekutif</strong>. Memantau ketercapaian seluruh agenda wawasan kebangsaan di Kabupaten Tanah Laut dan mengesahkan lembar Rekapitulasi Arsip (*Mengetahui Kepala Badan*).</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- BAGIAN 5: SIMULASI ALUR LIVE DEMO -->
+    <div class="section-title">
+        <span class="num">5</span> Urutan Simulasi Live Demo di Depan Dosen Pembimbing
+    </div>
+    <div class="step-container">
+        <div class="step-item">
+            <div class="step-header">Langkah 1: Tunjukkan Halaman Terbuka Publik (Free User)</div>
+            <div class="step-desc">
+                Buka rute <code>http://127.0.0.1:8000/wasbang</code> dalam kondisi belum login. Tunjukkan banner hijau <em>"Mode Tamu & Peserta Kegiatan (Free Access • Tanpa Perlu Login)"</em>. Jelaskan bahwa peserta, siswa Paskibra, dan ormas bebas mencari foto acara dan mengunduhnya tanpa perlu registrasi.
+            </div>
+        </div>
+        <div class="step-item">
+            <div class="step-header">Langkah 2: Tunjukkan Mode Staf Pelaksana (Operator Pengarsipan)</div>
+            <div class="step-desc">
+                Klik tombol <em>Login Petugas Wasbang</em>, gunakan pintasan demo <strong>Staf Pelaksana Wasbang</strong>. Tunjukkan form input kegiatan dengan fitur multi-upload foto sekaligus, deteksi otomatis hari pelaksanaan dari kalender, serta tombol hapus arsip.
+            </div>
+        </div>
+        <div class="step-item">
+            <div class="step-header">Langkah 3: Tunjukkan Mode Ibu Kabid Wasbang (Pimpinan Bidang)</div>
+            <div class="step-desc">
+                Login dengan akun <strong>Ibu Kabid Wasbang (Auranti Muraya Purihaningrum, S.STP.)</strong>. Perlihatkan bahwa pimpinan memiliki panel verifikasi khusus dan akses cepat ke cetak berita acara tanpa dibebani teknis input data.
+            </div>
+        </div>
+        <div class="step-item">
+            <div class="step-header">Langkah 4: Tunjukkan Hasil Cetak Berita Acara & Rekapitulasi</div>
+            <div class="step-desc">
+                Klik tombol <em>Cetak Berita Acara</em> dan <em>Cetak Rekapitulasi Berkas (A4)</em>. Tunjukkan susunan foto 2 kolom yang presisi, kop dinas resmi, serta blok tanda tangan resmi Ibu Kabid dan Bapak Kepala Badan lengkap dengan NIP.
+            </div>
+        </div>
+    </div>
+
+    <!-- BAGIAN 6: TANYA JAWAB KRITIS DOSEN -->
+    <div class="section-title">
+        <span class="num">6</span> Kunci Jawaban Tanya-Jawab Kritis (Antisipasi Penguji / Dospem)
+    </div>
+    <div class="qa-box">
+        <div class="qa-q">Q: "Kenapa halaman login Wasbang dipisahkan dari login Partai Politik (SIPARPOL)?"</div>
+        <div class="qa-a"><strong>A:</strong> "Bakesbangpol Kabupaten Tanah Laut menaungi beberapa bidang. Rekan saya mengembangkan modul SIPARPOL khusus Bidang Politik Dalam Negeri (Poldagri), sedangkan saya fokus pada Bidang Wasbang. Pemisahan login dilakukan agar modul Wasbang mandiri secara operasional, antarmuka bernuansa merah-putih kebangsaan, dan tidak membingungkan pejabat maupun staf kantor yang bertugas."</div>
+    </div>
+    <div class="qa-box">
+        <div class="qa-q">Q: "Bagaimana sistem menjaga integritas data dan keamanan hak akses?"</div>
+        <div class="qa-a"><strong>A:</strong> "Sistem menerapkan proteksi Role-Based Access Control (RBAC) pada controller. Tamu atau pengguna tanpa hak akses staf otomatis diblokir jika mencoba mengakses fungsi simpan maupun hapus. Selain itu, sistem telah diuji menggunakan automated testing (PHPUnit) sebanyak 20 skenario pengujian dengan 76 assertions dan seluruhnya lulus 100%."</div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-note">
+        Dokumen Panduan Teknis & Bahan Konsultasi Bimbingan PKL &bull; Bidang Bina Ideologi, Wasbang & Karakter Bangsa Bakesbangpol Kab. Tanah Laut
+    </div>
+
+</body>
+</html>
+

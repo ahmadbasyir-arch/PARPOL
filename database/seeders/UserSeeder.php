@@ -14,11 +14,13 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // 1. Akun Superadmin Bakesbangpol Kab. Tanah Laut
+        // 1. Akun Kepala Badan Kesatuan Bangsa dan Politik Kab. Tanah Laut
         User::updateOrCreate(
-            ['email' => 'admin@parpol.or.id'],
+            ['email' => 'kaban@tanahlautkab.go.id'],
             [
-                'name' => 'Administrator DPP PARPOL',
+                'name' => 'H. Bambang Kusdariman, S.I.P., M.Si.',
+                'nip' => '19680818 199010 1 003',
+                'jabatan' => 'Kepala Badan Kesatuan Bangsa dan Politik Kabupaten Tanah Laut',
                 'password' => Hash::make('password123'),
                 'role' => 'admin',
                 'parpol_id' => null,
@@ -28,9 +30,49 @@ class UserSeeder extends Seeder
         User::updateOrCreate(
             ['email' => 'admin@tanahlautkab.go.id'],
             [
-                'name' => 'Administrator Bakesbangpol Kab. Tanah Laut',
+                'name' => 'H. Bambang Kusdariman, S.I.P., M.Si.',
+                'nip' => '19680818 199010 1 003',
+                'jabatan' => 'Kepala Badan Kesatuan Bangsa dan Politik Kabupaten Tanah Laut',
                 'password' => Hash::make('password123'),
                 'role' => 'admin',
+                'parpol_id' => null,
+            ]
+        );
+
+        // 2. Akun Kepala Bidang Bina Ideologi, Wawasan Kebangsaan & Karakter Bangsa
+        User::updateOrCreate(
+            ['email' => 'kabid.wasbang@tanahlautkab.go.id'],
+            [
+                'name' => 'Auranti Muraya Purihaningrum, S.STP.',
+                'nip' => '198605022004122001',
+                'jabatan' => 'Kepala Bidang Bina Ideologi, Wawasan Kebangsaan dan Karakter Bangsa',
+                'password' => Hash::make('password123'),
+                'role' => 'kabid_wasbang',
+                'parpol_id' => null,
+            ]
+        );
+
+        // 3. Akun Staf Pelaksana Bidang Wasbang (Operator Pengarsipan Dokumentasi Kegiatan)
+        User::updateOrCreate(
+            ['email' => 'wasbang@tanahlautkab.go.id'],
+            [
+                'name' => 'Staf Pelaksana Bidang Wasbang',
+                'nip' => '19951015 202203 1 002',
+                'jabatan' => 'Staf Pelaksana Pengarsipan Dokumentasi Lapangan',
+                'password' => Hash::make('password123'),
+                'role' => 'staf_wasbang',
+                'parpol_id' => null,
+            ]
+        );
+
+        User::updateOrCreate(
+            ['email' => 'staf.wasbang@tanahlautkab.go.id'],
+            [
+                'name' => 'Staf Pelaksana Bidang Wasbang',
+                'nip' => '19951015 202203 1 002',
+                'jabatan' => 'Staf Pelaksana Pengarsipan Dokumentasi Lapangan',
+                'password' => Hash::make('password123'),
+                'role' => 'staf_wasbang',
                 'parpol_id' => null,
             ]
         );
@@ -39,6 +81,20 @@ class UserSeeder extends Seeder
             ['email' => 'bakesbangpol@tanahlautkab.go.id'],
             [
                 'name' => 'Bakesbangpol Kab. Tanah Laut (Bidang Poldagri)',
+                'nip' => '19750412 199803 1 005',
+                'jabatan' => 'Admin Poldagri & Banpol',
+                'password' => Hash::make('password123'),
+                'role' => 'admin',
+                'parpol_id' => null,
+            ]
+        );
+
+        User::updateOrCreate(
+            ['email' => 'admin@parpol.or.id'],
+            [
+                'name' => 'Administrator DPP PARPOL',
+                'nip' => null,
+                'jabatan' => 'Administrator Sistem',
                 'password' => Hash::make('password123'),
                 'role' => 'admin',
                 'parpol_id' => null,

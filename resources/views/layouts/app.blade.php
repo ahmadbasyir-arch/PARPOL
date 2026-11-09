@@ -406,13 +406,23 @@
     <nav class="navbar navbar-expand-xl navbar-parpol shadow-sm sticky-top">
         <div class="container-fluid px-lg-4 px-2">
             <div class="d-flex align-items-center gap-2">
-                <a class="navbar-brand d-flex align-items-center gap-2 me-1" href="{{ route('parpol.home') }}">
-                    <img src="{{ asset('images/tanahlaut.png') }}" alt="Logo Kab. Tanah Laut" style="width: 36px; height: auto; object-fit: contain;" class="flex-shrink-0">
-                    <div>
-                        <div class="brand-title">SIPARPOL TANAH LAUT</div>
-                        <div class="brand-sub">Kab. Tanah Laut 2026</div>
-                    </div>
-                </a>
+                @if(request()->routeIs('wasbang.*'))
+                    <a class="navbar-brand d-flex align-items-center gap-2 me-1" href="{{ route('wasbang.index') }}">
+                        <img src="{{ asset('images/tanahlaut.png') }}" alt="Logo Kab. Tanah Laut" style="width: 36px; height: auto; object-fit: contain;" class="flex-shrink-0">
+                        <div>
+                            <div class="brand-title text-danger">PENGARSIPAN WASBANG</div>
+                            <div class="brand-sub">Bakesbangpol Kab. Tanah Laut</div>
+                        </div>
+                    </a>
+                @else
+                    <a class="navbar-brand d-flex align-items-center gap-2 me-1" href="{{ route('parpol.home') }}">
+                        <img src="{{ asset('images/tanahlaut.png') }}" alt="Logo Kab. Tanah Laut" style="width: 36px; height: auto; object-fit: contain;" class="flex-shrink-0">
+                        <div>
+                            <div class="brand-title">SIPARPOL TANAH LAUT</div>
+                            <div class="brand-sub">Kab. Tanah Laut 2026</div>
+                        </div>
+                    </a>
+                @endif
 
                 <!-- Dropdown Switcher Layanan Bidang -->
                 <div class="dropdown d-none d-md-block">
@@ -431,20 +441,20 @@
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item py-2 small d-flex align-items-center gap-2 active bg-primary" href="{{ route('parpol.home') }}">
-                                <i class="bi bi-bank2 text-white"></i>
+                            <a class="dropdown-item py-2 small d-flex align-items-center gap-2 {{ request()->routeIs('parpol.*') ? 'active bg-primary text-white' : '' }}" href="{{ route('parpol.home') }}">
+                                <i class="bi bi-bank2 {{ request()->routeIs('parpol.*') ? 'text-white' : 'text-primary' }}"></i>
                                 <div>
-                                    <div class="fw-bold">SIPARPOL (Poldagri)</div>
-                                    <small class="text-white-50" style="font-size: 0.7rem;">Data 20 Parpol &amp; Realisasi Dikpol</small>
+                                    <div class="fw-bold">SIPARPOL TANAH LAUT</div>
+                                    <small class="{{ request()->routeIs('parpol.*') ? 'text-white-50' : 'text-muted' }}" style="font-size: 0.7rem;">Data 20 Parpol &amp; Realisasi Dikpol</small>
                                 </div>
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item py-2 small d-flex align-items-center gap-2" href="{{ route('wasbang.index') }}">
-                                <i class="bi bi-flag-fill text-danger"></i>
+                            <a class="dropdown-item py-2 small d-flex align-items-center gap-2 {{ request()->routeIs('wasbang.*') ? 'active bg-danger text-white' : '' }}" href="{{ route('wasbang.index') }}">
+                                <i class="bi bi-flag-fill {{ request()->routeIs('wasbang.*') ? 'text-white' : 'text-danger' }}"></i>
                                 <div>
-                                    <div class="fw-bold text-dark">WASBANG TANAH LAUT</div>
-                                    <small class="text-muted" style="font-size: 0.7rem;">Pengarsipan Dokumentasi Lapangan</small>
+                                    <div class="fw-bold">WASBANG TANAH LAUT</div>
+                                    <small class="{{ request()->routeIs('wasbang.*') ? 'text-white-50' : 'text-muted' }}" style="font-size: 0.7rem;">Pengarsipan Dokumentasi Kegiatan</small>
                                 </div>
                             </a>
                         </li>
@@ -458,31 +468,58 @@
             
             <div class="collapse navbar-collapse" id="navbarMenu">
                 <ul class="navbar-nav ms-auto mb-2 mb-xl-0 align-items-xl-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('parpol.home') }}#beranda"><i class="bi bi-house-door me-1"></i> Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('parpol.home') }}#tabel-data"><i class="bi bi-table me-1"></i> Tabel Resmi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('parpol.home') }}#galeri-partai"><i class="bi bi-grid-3x3-gap me-1"></i> Direktori</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('parpol.home') }}#dikpol"><i class="bi bi-mortarboard-fill me-1"></i> Dikpol</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('parpol.home') }}#sebaran"><i class="bi bi-geo me-1"></i> Sebaran Kantor</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('parpol.home') }}#lapor"><i class="bi bi-pencil-square me-1"></i> Update Data</a>
-                    </li>
+                    @if(request()->routeIs('wasbang.*'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('wasbang.index') }}#beranda-wasbang"><i class="bi bi-house-door me-1"></i> Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('wasbang.index') }}#urgensi-sistem"><i class="bi bi-info-circle me-1"></i> Tentang Sistem</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('wasbang.index') }}#arsip-kegiatan"><i class="bi bi-images me-1"></i> Direktori Foto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('wasbang.index') }}#alur-pengarsipan"><i class="bi bi-diagram-3 me-1"></i> Alur Kerja</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-danger fw-bold" href="{{ route('wasbang.index') }}#tambah-kegiatan"><i class="bi bi-cloud-arrow-up-fill me-1"></i> Unggah Dokumentasi</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('parpol.home') }}#beranda"><i class="bi bi-house-door me-1"></i> Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('parpol.home') }}#tabel-data"><i class="bi bi-table me-1"></i> Tabel Resmi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('parpol.home') }}#galeri-partai"><i class="bi bi-grid-3x3-gap me-1"></i> Direktori</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('parpol.home') }}#dikpol"><i class="bi bi-mortarboard-fill me-1"></i> Dikpol</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('parpol.home') }}#sebaran"><i class="bi bi-geo me-1"></i> Sebaran Kantor</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('parpol.home') }}#lapor"><i class="bi bi-pencil-square me-1"></i> Update Data</a>
+                        </li>
+                    @endif
                 </ul>
 
                 <!-- Tombol Aksi di Pojok Kanan Atas -->
                 <div class="d-flex align-items-center gap-2 ms-xl-2 mt-2 mt-xl-0 flex-shrink-0">
-                    <a class="btn-parpol text-decoration-none" href="{{ route('parpol.cetak') }}" target="_blank" title="Cetak Dokumen Resmi">
-                        <i class="bi bi-printer-fill"></i> Cetak
-                    </a>
+                    @if(request()->routeIs('wasbang.*'))
+                        <a class="btn btn-outline-danger btn-sm fw-bold rounded-3 shadow-sm text-decoration-none bg-white" href="{{ asset('Panduan_Bimbingan_PKL_Wasbang.pdf') }}" download target="_blank" title="Unduh File Panduan Bimbingan PKL (PDF)">
+                            <i class="bi bi-file-earmark-pdf-fill text-danger me-1"></i> Panduan PDF
+                        </a>
+                        <a class="btn btn-warning text-dark fw-bold btn-sm rounded-3 shadow-sm text-decoration-none" href="{{ route('wasbang.cetak') }}" target="_blank" title="Cetak Rekapitulasi Berkas Arsip">
+                            <i class="bi bi-printer-fill me-1"></i> Rekap Arsip
+                        </a>
+                    @else
+                        <a class="btn-parpol text-decoration-none" href="{{ route('parpol.cetak') }}" target="_blank" title="Cetak Dokumen Resmi">
+                            <i class="bi bi-printer-fill"></i> Cetak
+                        </a>
+                    @endif
                     
                     @auth
                         <div class="dropdown">
@@ -491,36 +528,101 @@
                                     <span style="width: 20px; height: 20px; border-radius: 4px; background: #ffffff; display: inline-flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid #cbd5e1;" class="me-1 flex-shrink-0">
                                         <img src="{{ asset(auth()->user()->parpol->logo) }}" alt="{{ auth()->user()->parpol->akronim }}" style="width: 100%; height: 100%; object-fit: contain;">
                                     </span>
+                                    <span>{{ auth()->user()->parpol->akronim ?? 'Partai' }}</span>
+                                @elseif(auth()->user()->isKabidWasbang())
+                                    <i class="bi bi-person-check-fill text-danger fs-6 me-1"></i>
+                                    <span>Ibu Kabid Wasbang</span>
+                                @elseif(auth()->user()->isStafWasbang())
+                                    <i class="bi bi-person-badge-fill text-success fs-6 me-1"></i>
+                                    <span>Staf Wasbang</span>
                                 @else
                                     <i class="bi bi-shield-check text-primary fs-6 me-1"></i>
+                                    <span>Admin Bakesbangpol</span>
                                 @endif
-                                <span>{{ auth()->user()->isParpol() ? (auth()->user()->parpol->akronim ?? 'Partai') : 'Admin Bakesbangpol' }}</span>
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-3 mt-2" style="min-width: 220px;">
+                            <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-3 mt-2" style="min-width: 260px;">
                                 <li class="px-3 py-2 border-bottom bg-light">
-                                    <small class="text-muted d-block" style="font-size: 0.75rem;">{{ auth()->user()->isAdmin() ? 'Superadmin Bakesbangpol' : 'Operator / Pengurus Partai' }}</small>
-                                    <strong class="text-dark small">{{ auth()->user()->name }}</strong>
+                                    <small class="text-danger fw-bold d-block" style="font-size: 0.72rem;">{{ auth()->user()->role_label }}</small>
+                                    <strong class="text-dark small d-block">{{ auth()->user()->name }}</strong>
+                                    @if(auth()->user()->nip)
+                                        <small class="text-muted d-block" style="font-size: 0.72rem;">NIP. {{ auth()->user()->nip }}</small>
+                                    @endif
                                 </li>
-                                <li>
-                                    <a class="dropdown-item py-2 small" href="{{ route('dashboard') }}">
-                                        <i class="bi bi-speedometer2 text-primary me-2"></i> Dashboard Pelaporan
-                                    </a>
-                                </li>
+                                @if(auth()->user()->isKabidWasbang())
+                                    <li>
+                                        <a class="dropdown-item py-2 small" href="{{ route('wasbang.index') }}">
+                                            <i class="bi bi-speedometer2 text-danger me-2"></i> Dashboard Pelaporan Wasbang
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item py-2 small" href="{{ route('wasbang.cetak') }}" target="_blank">
+                                            <i class="bi bi-printer-fill text-warning me-2"></i> Rekapitulasi Berkas (Cetak A4)
+                                        </a>
+                                    </li>
+                                @elseif(auth()->user()->isStafWasbang())
+                                    <li>
+                                        <a class="dropdown-item py-2 small" href="{{ route('wasbang.index') }}">
+                                            <i class="bi bi-speedometer2 text-success me-2"></i> Dashboard Pengarsipan Wasbang
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item py-2 small" href="{{ route('wasbang.index') }}#tambah-kegiatan">
+                                            <i class="bi bi-cloud-arrow-up-fill text-danger me-2"></i> Unggah Dokumentasi Baru
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item py-2 small" href="{{ route('wasbang.cetak') }}" target="_blank">
+                                            <i class="bi bi-printer-fill text-warning me-2"></i> Rekapitulasi Berkas (Cetak A4)
+                                        </a>
+                                    </li>
+                                @elseif(auth()->user()->isAdmin())
+                                    <li>
+                                        <a class="dropdown-item py-2 small" href="{{ route('dashboard') }}">
+                                            <i class="bi bi-speedometer2 text-primary me-2"></i> Dashboard Bakesbangpol
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item py-2 small" href="{{ route('wasbang.index') }}">
+                                            <i class="bi bi-archive-fill text-danger me-2"></i> Pengarsipan Wasbang
+                                        </a>
+                                    </li>
+                                @else
+                                    <li>
+                                        <a class="dropdown-item py-2 small" href="{{ route('dashboard') }}">
+                                            <i class="bi bi-speedometer2 text-primary me-2"></i> Dashboard Pelaporan Parpol
+                                        </a>
+                                    </li>
+                                @endif
                                 <li><hr class="dropdown-divider my-1"></li>
                                 <li>
-                                    <form action="{{ route('logout') }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="dropdown-item py-2 small text-danger">
-                                            <i class="bi bi-box-arrow-right me-2"></i> Keluar (Logout)
-                                        </button>
-                                    </form>
+                                    @if(auth()->user()->isKabidWasbang() || auth()->user()->isStafWasbang())
+                                        <form action="{{ route('wasbang.logout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item py-2 small text-danger">
+                                                <i class="bi bi-box-arrow-right me-2"></i> Keluar (Logout)
+                                            </button>
+                                        </form>
+                                    @else
+                                        <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item py-2 small text-danger">
+                                                <i class="bi bi-box-arrow-right me-2"></i> Keluar (Logout)
+                                            </button>
+                                        </form>
+                                    @endif
                                 </li>
                             </ul>
                         </div>
                     @else
-                        <a class="btn-login-portal text-decoration-none" href="{{ route('login') }}">
-                            <i class="bi bi-box-arrow-in-right"></i> Login Portal
-                        </a>
+                        @if(request()->routeIs('wasbang.*'))
+                            <a class="btn btn-danger btn-sm fw-bold px-3 py-1 rounded-3 shadow-sm text-decoration-none" href="{{ route('wasbang.login') }}">
+                                <i class="bi bi-box-arrow-in-right me-1"></i> Login Wasbang
+                            </a>
+                        @else
+                            <a class="btn-login-portal text-decoration-none" href="{{ route('login') }}">
+                                <i class="bi bi-box-arrow-in-right"></i> Login Petugas
+                            </a>
+                        @endif
                     @endauth
                 </div>
             </div>

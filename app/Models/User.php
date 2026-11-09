@@ -20,6 +20,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'nip',
+        'jabatan',
         'email',
         'password',
         'role',
@@ -35,11 +37,45 @@ class User extends Authenticatable
     }
 
     /**
-     * Cek apakah user adalah Admin Bakesbangpol
+     * Cek apakah user adalah Kepala Badan / Superadmin Bakesbangpol
      */
     public function isAdmin(): bool
     {
-        return $this->role === 'admin';
+        return in_array($this->role, ['admin', 'kaban', 'superadmin']);
+    }
+
+    /**
+     * Cek apakah user adalah Kepala Badan Kesbangpol
+     */
+    public function isKaban(): bool
+    {
+        return $this->role === 'kaban' 
+            || str_contains(strtolower($this->jabatan ?? ''), 'kepala badan') 
+            || str_contains(strtolower($this->email ?? ''), 'kaban');
+    }
+
+    /**
+     * Cek apakah user adalah Kepala Bidang Wasbang
+     */
+    public function isKabidWasbang(): bool
+    {
+        return $this->role === 'kabid_wasbang';
+    }
+
+    /**
+     * Cek apakah user adalah Staf Pelaksana Bidang Wasbang
+     */
+    public function isStafWasbang(): bool
+    {
+        return $this->role === 'staf_wasbang';
+    }
+
+    /**
+     * Cek apakah user adalah Tim Internal Wasbang (Kabid atau Staf)
+     */
+    public function isWasbang(): bool
+    {
+        return in_array($this->role, ['staf_wasbang', 'kabid_wasbang', 'admin', 'kaban']);
     }
 
     /**
@@ -48,6 +84,20 @@ class User extends Authenticatable
     public function isParpol(): bool
     {
         return $this->role === 'parpol';
+    }
+
+    /**
+     * Label peran pengguna untuk tampilan UI
+     */
+    public function getRoleLabelAttribute(): string
+    {
+        return match ($this->role) {
+            'kaban', 'admin' => 'Kepala Badan / Admin Bakesbangpol',
+            'kabid_wasbang' => 'Kepala Bidang Wasbang',
+            'staf_wasbang' => 'Staf Pelaksana Wasbang',
+            'parpol' => 'Operator / Pengurus Partai',
+            default => 'Pengguna Bakesbangpol',
+        };
     }
 
     /**

@@ -6,11 +6,82 @@ use App\Models\WasbangKegiatan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 class WasbangController extends Controller
 {
+    /**
+     * Tampilkan Halaman Login Khusus Bidang WASBANG
+     */
+    public function showLoginForm()
+    {
+        if (Auth::check()) {
+            return redirect()->route('wasbang.index');
+        }
+
+        return view('wasbang.login');
+    }
+
+    /**
+     * Proses Login Khusus Bidang WASBANG
+     */
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ], [
+            'email.required' => 'Email akun Wasbang wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'password.required' => 'Kata sandi wajib diisi.',
+        ]);
+
+        $credentials['email'] = strtolower(trim($credentials['email']));
+        $credentials['password'] = trim($credentials['password']);
+
+        $remember = $request->boolean('remember');
+
+        if (Auth::attempt($credentials, $remember)) {
+            $request->session()->regenerate();
+            $user = Auth::user();
+
+            if ($user->isParpol()) {
+                return redirect()->route('dashboard')
+                    ->with('login_success', "Anda login dengan akun {$user->name}. Anda telah dialihkan ke Dashboard Partai Politik.");
+            }
+
+            $nama = $user->name;
+            if ($user->isKabidWasbang()) {
+                $msg = "Selamat datang, Ibu {$nama}! Anda berhasil masuk sebagai Kepala Bidang Wasbang Bakesbangpol Kab. Tanah Laut.";
+            } elseif ($user->isStafWasbang()) {
+                $msg = "Selamat datang, {$nama}! Anda berhasil masuk sebagai Staf Pelaksana Pengarsipan Bidang Wasbang.";
+            } else {
+                $msg = "Selamat datang, Bapak/Ibu {$nama}! Anda berhasil masuk ke Sistem Informasi Pengarsipan Wasbang.";
+            }
+
+            return redirect()->intended(route('wasbang.index'))->with('wasbang_success', $msg);
+        }
+
+        return back()->withErrors([
+            'email' => 'Alamat email atau kata sandi yang Anda masukkan tidak sesuai.',
+        ])->onlyInput('email');
+    }
+
+    /**
+     * Logout Khusus Pengguna Bidang WASBANG
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('wasbang.index')
+            ->with('wasbang_success', 'Anda telah berhasil keluar (logout) dari sistem pengarsipan Wasbang.');
+    }
+
     /**
      * Tampilkan Portal Pengarsipan Dokumentasi Kegiatan Luar Bidang Wasbang
      */
@@ -60,7 +131,12 @@ class WasbangController extends Controller
 
         // Statistik Pengarsipan
         $totalKegiatan = WasbangKegiatan::count();
-        $totalFoto = WasbangKegiatan::whereNotNull('foto')->count();
+        $totalFoto = WasbangKegiatan::all()->sum(function ($k) {
+            return $k->jumlah_foto;
+        });
+        if ($totalFoto === 0) {
+            $totalFoto = WasbangKegiatan::whereNotNull('foto')->count();
+        }
         $totalVideo = WasbangKegiatan::where(function ($q) {
             $q->whereNotNull('video')->orWhereNotNull('video_url');
         })->count();
@@ -77,7 +153,7 @@ class WasbangController extends Controller
             'Pembauran Kebangsaan & Kerukunan',
         ];
 
-        return view('wasbang.index', compact(
+        $viewData = compact(
             'kegiatans',
             'totalKegiatan',
             'totalFoto',
@@ -85,7 +161,31 @@ class WasbangController extends Controller
             'totalSelesai',
             'totalBerlangsung',
             'kategoriList'
-        ));
+        );
+
+        // Jika diminta tampilan publik atau pengguna belum login (Free User / Tamu / Peserta)
+        if ($request->get('view') === 'publik' || !Auth::check()) {
+            return view('wasbang.index', $viewData);
+        }
+
+        $user = Auth::user();
+
+        // 1. Ruang Kerja Khusus Ibu Kabid Wasbang (Auranti Muraya Purihaningrum, S.STP.)
+        if ($user->isKabidWasbang()) {
+            return view('wasbang.kabid', $viewData);
+        }
+
+        // 2. Ruang Kerja Eksekutif Kepala Badan Kesbangpol (H. Bambang Kusdariman, S.I.P., M.Si.)
+        if ($user->isKaban()) {
+            return view('wasbang.kaban', $viewData);
+        }
+
+        // 3. Panel Kerja Khusus Staf Pelaksana Wasbang (Operator Lapangan)
+        if ($user->isStafWasbang()) {
+            return view('wasbang.staf', $viewData);
+        }
+
+        return view('wasbang.index', $viewData);
     }
 
     /**
@@ -93,6 +193,12 @@ class WasbangController extends Controller
      */
     public function store(Request $request)
     {
+        // Pembatasan Akses: Hanya Staf Pelaksana Wasbang atau Admin/Kaban yang dapat mengarsipkan
+        if (!Auth::check() || (!Auth::user()->isStafWasbang() && !Auth::user()->isAdmin())) {
+            return redirect()->route('wasbang.login')
+                ->with('wasbang_error', 'Akses ditolak. Formulir pengunggahan dokumentasi kegiatan hanya dapat diakses oleh Staf Pelaksana Bidang Wasbang.');
+        }
+
         $validated = $request->validate([
             'nama_kegiatan' => 'required|string|max:255',
             'kategori' => 'required|string|max:100',
@@ -104,6 +210,8 @@ class WasbangController extends Controller
             'rincian' => 'required|string|max:10000',
             'status' => 'required|string|max:50',
             'foto' => 'nullable|file|mimes:jpeg,png,jpg,webp,svg|max:12288',
+            'foto_tambahan' => 'nullable|array',
+            'foto_tambahan.*' => 'file|mimes:jpeg,png,jpg,webp,svg|max:12288',
             'video' => 'nullable|file|mimes:mp4,mov,avi,webm,mkv|max:51200',
             'video_url' => 'nullable|url|max:255',
             'dokumen_laporan' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx|max:20480',
@@ -113,7 +221,8 @@ class WasbangController extends Controller
             'tanggal.required' => 'Tanggal pelaksanaan kegiatan wajib diisi.',
             'lokasi.required' => 'Lokasi kegiatan luar wajib diisi.',
             'rincian.required' => 'Rincian / laporan hasil kegiatan wajib diisi.',
-            'foto.mimes' => 'Format foto harus berupa JPG, PNG, WEBP, atau SVG.',
+            'foto.mimes' => 'Format foto sampul harus berupa JPG, PNG, WEBP, atau SVG.',
+            'foto_tambahan.*.mimes' => 'Format foto dokumentasi pendukung harus berupa JPG, PNG, WEBP, atau SVG.',
             'video.mimes' => 'Format video harus berupa MP4, WEBM, atau MOV.',
             'dokumen_laporan.mimes' => 'Format dokumen harus berupa PDF atau DOCX.',
         ]);
@@ -125,16 +234,38 @@ class WasbangController extends Controller
             $validated['pelaksana'] = 'Bidang Bina Ideologi, Wawasan Kebangsaan & Karakter Bangsa';
         }
 
-        // Handle upload foto
+        $destPathFoto = public_path('uploads/wasbang/foto');
+        if (!File::exists($destPathFoto)) {
+            File::makeDirectory($destPathFoto, 0755, true);
+        }
+
+        // Handle upload foto utama
         if ($request->hasFile('foto')) {
             $fotoFile = $request->file('foto');
             $fotoName = 'foto_' . time() . '_' . Str::slug(substr($validated['nama_kegiatan'], 0, 30)) . '.' . $fotoFile->getClientOriginalExtension();
-            $destPath = public_path('uploads/wasbang/foto');
-            if (!File::exists($destPath)) {
-                File::makeDirectory($destPath, 0755, true);
-            }
-            $fotoFile->move($destPath, $fotoName);
+            $fotoFile->move($destPathFoto, $fotoName);
             $validated['foto'] = 'uploads/wasbang/foto/' . $fotoName;
+        }
+
+        // Handle upload foto tambahan / dokumentasi galeri
+        $tambahanList = [];
+        if ($request->hasFile('foto_tambahan')) {
+            foreach ($request->file('foto_tambahan') as $idx => $extraFile) {
+                if ($extraFile && $extraFile->isValid()) {
+                    $extraName = 'foto_galeri_' . time() . '_' . ($idx + 1) . '_' . Str::slug(substr($validated['nama_kegiatan'], 0, 20)) . '.' . $extraFile->getClientOriginalExtension();
+                    $extraFile->move($destPathFoto, $extraName);
+                    $tambahanList[] = 'uploads/wasbang/foto/' . $extraName;
+                }
+            }
+        }
+
+        // Jika foto utama kosong tetapi ada foto tambahan, jadikan foto tambahan pertama sebagai foto utama
+        if (empty($validated['foto']) && !empty($tambahanList)) {
+            $validated['foto'] = array_shift($tambahanList);
+        }
+
+        if (!empty($tambahanList)) {
+            $validated['foto_tambahan'] = $tambahanList;
         }
 
         // Handle upload video
@@ -234,11 +365,27 @@ class WasbangController extends Controller
      */
     public function destroy($id)
     {
+        // Pembatasan Akses: Hanya Staf Pelaksana Wasbang atau Admin/Kaban yang dapat menghapus arsip
+        if (!Auth::check() || (!Auth::user()->isStafWasbang() && !Auth::user()->isAdmin())) {
+            return redirect()->route('wasbang.login')
+                ->with('wasbang_error', 'Akses ditolak. Penghapusan arsip kegiatan hanya dapat dilakukan oleh Staf Pelaksana Bidang Wasbang.');
+        }
+
         $kegiatan = WasbangKegiatan::findOrFail($id);
 
         // Hapus file dari disk jika ada
         if ($kegiatan->foto && str_starts_with($kegiatan->foto, 'uploads/')) {
             File::delete(public_path($kegiatan->foto));
+        }
+        if ($kegiatan->foto_tambahan) {
+            $tambahan = is_array($kegiatan->foto_tambahan) ? $kegiatan->foto_tambahan : json_decode($kegiatan->foto_tambahan, true);
+            if (is_array($tambahan)) {
+                foreach ($tambahan as $extraPhoto) {
+                    if (is_string($extraPhoto) && str_starts_with($extraPhoto, 'uploads/')) {
+                        File::delete(public_path($extraPhoto));
+                    }
+                }
+            }
         }
         if ($kegiatan->video && str_starts_with($kegiatan->video, 'uploads/')) {
             File::delete(public_path($kegiatan->video));

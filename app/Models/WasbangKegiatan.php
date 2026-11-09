@@ -153,4 +153,47 @@ class WasbangKegiatan extends Model
         }
         return null;
     }
+
+    /**
+     * Daftar Semua URL Foto Dokumentasi (Foto Utama + Foto-Foto Galeri Tambahan)
+     * Memastikan seluruh foto kegiatan tersusun rapi dalam satu galeri
+     */
+    public function getSemuaFotoUrlsAttribute()
+    {
+        $urls = [];
+
+        if ($this->foto) {
+            $urls[] = $this->foto_url;
+        }
+
+        $tambahan = $this->foto_tambahan;
+        if (is_string($tambahan)) {
+            $decoded = json_decode($tambahan, true);
+            if (is_array($decoded)) {
+                $tambahan = $decoded;
+            }
+        }
+
+        if (is_array($tambahan)) {
+            foreach ($tambahan as $item) {
+                if (empty($item)) continue;
+                $url = (str_starts_with($item, 'http://') || str_starts_with($item, 'https://'))
+                    ? $item
+                    : asset($item);
+                if (!in_array($url, $urls)) {
+                    $urls[] = $url;
+                }
+            }
+        }
+
+        return $urls;
+    }
+
+    /**
+     * Total jumlah foto dokumentasi untuk kegiatan ini
+     */
+    public function getJumlahFotoAttribute()
+    {
+        return count($this->semua_foto_urls);
+    }
 }

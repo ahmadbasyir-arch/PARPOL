@@ -129,11 +129,11 @@
 
                             <div class="collapse mt-3" id="quickDemo">
                                 <div class="p-3 bg-light rounded-3 border small">
-                                    <p class="text-muted mb-2">Klik tombol di bawah untuk mengisi form login secara otomatis:</p>
+                                    <p class="text-muted mb-2">Klik tombol di bawah untuk mengisi form login demonstrasi:</p>
                                     
                                     <div class="d-flex flex-column gap-2 mb-2">
                                         <button type="button" class="btn btn-dark btn-sm text-start" onclick="fillLogin('bakesbangpol@tanahlautkab.go.id', 'password123')">
-                                            <i class="bi bi-shield-check text-warning me-1"></i> <strong>Admin Bakesbangpol</strong> (Superadmin)
+                                            <i class="bi bi-shield-check text-warning me-1"></i> <strong>Admin Bakesbangpol</strong> (Poldagri)
                                         </button>
                                         <button type="button" class="btn btn-outline-primary btn-sm text-start" onclick="fillLogin('pks@tanahlautkab.go.id', 'password123')">
                                             <i class="bi bi-person-badge me-1"></i> <strong>DPD PKS</strong> (Telah Terisi 6 Dikpol)
@@ -147,6 +147,16 @@
                                         <button type="button" class="btn btn-outline-dark btn-sm text-start" onclick="fillLogin('pdiperjuangan@tanahlautkab.go.id', 'password123')">
                                             <i class="bi bi-person-badge me-1"></i> <strong>DPC PDI Perjuangan</strong>
                                         </button>
+                                    </div>
+
+                                    <!-- Alert Alihkan ke Login Wasbang -->
+                                    <div class="mt-3 p-2 rounded-3 bg-danger-subtle border border-danger-subtle text-danger small">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <span><i class="bi bi-flag-fill me-1"></i> Petugas Bidang Wasbang?</span>
+                                            <a href="{{ route('wasbang.login') }}" class="btn btn-sm btn-danger py-0 px-2 fw-semibold" style="font-size: 0.72rem;">
+                                                Ke Login Wasbang &rarr;
+                                            </a>
+                                        </div>
                                     </div>
 
                                     <!-- Dropdown 20 Partai Lainnya -->

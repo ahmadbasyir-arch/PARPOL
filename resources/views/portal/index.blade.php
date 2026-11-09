@@ -164,9 +164,32 @@
                     <span class="badge bg-light text-dark border px-3 py-2 rounded-pill fw-semibold" style="font-size: 0.8rem;">
                         <i class="bi bi-geo-alt-fill text-danger me-1"></i> Kab. Tanah Laut
                     </span>
-                    <a href="{{ route('login') }}" class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-semibold">
-                        <i class="bi bi-box-arrow-in-right me-1"></i> Login Petugas
-                    </a>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-semibold dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-box-arrow-in-right me-1"></i> Login Petugas
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 mt-1" style="min-width: 250px;">
+                            <li>
+                                <a class="dropdown-item py-2 small d-flex align-items-center gap-2" href="{{ route('wasbang.login') }}">
+                                    <i class="bi bi-flag-fill text-danger fs-5"></i>
+                                    <div>
+                                        <div class="fw-bold text-dark">Login Petugas WASBANG</div>
+                                        <small class="text-muted" style="font-size: 0.72rem;">Pengarsipan Dokumentasi Lapangan</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider my-1"></li>
+                            <li>
+                                <a class="dropdown-item py-2 small d-flex align-items-center gap-2" href="{{ route('login') }}">
+                                    <i class="bi bi-bank2 text-primary fs-5"></i>
+                                    <div>
+                                        <div class="fw-bold text-dark">Login SIPARPOL</div>
+                                        <small class="text-muted" style="font-size: 0.72rem;">Poldagri &amp; Partai Politik</small>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -241,12 +264,12 @@
                         <a href="{{ route('wasbang.index') }}" class="service-card wasbang shadow-sm">
                             <div class="d-flex align-items-center gap-3">
                                 <div class="icon-box icon-wasbang shadow-sm">
-                                    <i class="bi bi-flag-fill"></i>
+                                    <i class="bi bi-archive-fill"></i>
                                 </div>
                                 <div>
                                     <h6 class="fw-bold text-dark mb-1">WASBANG</h6>
                                     <p class="text-muted small mb-0" style="font-size: 0.78rem;">
-                                        Dokumentasi Kegiatan Luar &bull; Pengarsipan
+                                        Pengarsipan Dokumentasi Kegiatan Lapangan
                                     </p>
                                 </div>
                             </div>

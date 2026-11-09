@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Pengarsipan Dokumentasi Laporan Kegiatan Luar | Bidang Wasbang Bakesbangpol Kab. Tanah Laut')
+@section('title', 'Sistem Informasi Pengarsipan Dokumentasi Kegiatan | Bidang Wasbang Bakesbangpol Kab. Tanah Laut')
 
 @push('styles')
 <style>
@@ -260,36 +260,48 @@
             <div class="col-lg-8">
                 <div class="wasbang-badge">
                     <i class="bi bi-shield-fill-check text-warning"></i>
-                    WASBANG TANAH LAUT &bull; Bidang Bina Ideologi, Wawasan Kebangsaan &amp; Karakter Bangsa
+                    WASBANG TANAH LAUT &bull; Bidang Bina Ideologi, Wawasan Kebangsaan & Karakter Bangsa
                 </div>
                 <h1 class="hero-title-wasbang">
-                    Pengarsipan Dokumentasi <br>
-                    <span class="highlight">Laporan Kegiatan Luar Lapangan</span>
+                    Sistem Informasi Pengarsipan <br>
+                    <span class="highlight">Dokumentasi Kegiatan Lapangan</span>
                 </h1>
                 <p class="hero-lead-wasbang">
-                    Sistem informasi pengarsipan resmi kegiatan lapangan Badan Kesatuan Bangsa dan Politik (Bakesbangpol) Kabupaten Tanah Laut — lengkap dengan dokumentasi foto, rekaman video, hari/tanggal/bulan, lokasi, sasaran, rincian pelaksanaan, serta fitur unduh berkas dan cetak berita acara.
+                    Pengembangan sistem pengarsipan resmi pada <strong>Badan Kesatuan Bangsa dan Politik Kabupaten Tanah Laut</strong>. Mengatasi permasalahan dokumentasi foto kegiatan yang sebelumnya berserakan dan belum terorganisir menjadi sistem digital terpadu, lengkap dengan multi-foto galeri, rekam jejak pelaksanaan, serta kemudahan cetak berita acara resmi.
                 </p>
                 <div class="d-flex flex-wrap gap-2 pt-2">
                     <a href="#arsip-kegiatan" class="btn btn-danger px-4 py-2 fw-semibold rounded-3 shadow-sm">
-                        <i class="bi bi-journal-album me-1"></i> Lihat Arsip Kegiatan
+                        <i class="bi bi-images me-1"></i> Telusuri Arsip Foto
                     </a>
                     <a href="#tambah-kegiatan" class="btn btn-outline-light px-4 py-2 fw-semibold rounded-3">
-                        <i class="bi bi-plus-circle me-1"></i> Tambah Dokumentasi Baru
+                        <i class="bi bi-cloud-arrow-up-fill me-1"></i> Unggah Dokumentasi Baru
+                    </a>
+                    <a href="#urgensi-sistem" class="btn btn-outline-warning px-3 py-2 fw-semibold rounded-3 text-white">
+                        <i class="bi bi-info-circle me-1"></i> Tentang Sistem Ini
                     </a>
                     <a href="{{ route('wasbang.cetak') }}" target="_blank" class="btn btn-warning px-4 py-2 fw-semibold rounded-3 text-dark">
-                        <i class="bi bi-printer-fill me-1"></i> Cetak Rekapitulasi Berkas
+                        <i class="bi bi-printer-fill me-1"></i> Rekap Arsip
+                    </a>
+                    <a href="{{ asset('Panduan_Bimbingan_PKL_Wasbang.pdf') }}" download="Panduan_Bimbingan_PKL_Wasbang.pdf" target="_blank" class="btn btn-outline-light px-3 py-2 fw-semibold rounded-3 text-white">
+                        <i class="bi bi-file-earmark-pdf-fill text-danger me-1"></i> Unduh Panduan PDF
                     </a>
                 </div>
             </div>
             <div class="col-lg-4 d-none d-lg-block text-center">
                 <div class="p-4 bg-white bg-opacity-10 rounded-4 border border-white border-opacity-10 backdrop-blur">
                     <div class="logo-emblem-wasbang mx-auto mb-3" style="width: 72px; height: 72px; font-size: 2.2rem; border-radius: 20px;">
-                        <i class="bi bi-flag-fill"></i>
+                        <i class="bi bi-archive-fill"></i>
                     </div>
                     <h5 class="fw-bold text-white mb-1">BAKESBANGPOL TALA</h5>
-                    <p class="small text-white-50 mb-3">Bidang Ideologi &amp; Wawasan Kebangsaan</p>
+                    <p class="small text-white-50 mb-3">Bidang Bina Ideologi, Wasbang &amp; Karakter Bangsa</p>
+                    <div class="p-2 bg-black bg-opacity-30 rounded-3 mb-3 text-start small border border-white border-opacity-10">
+                        <div class="text-white-50" style="font-size: 0.72rem;">Kepala Badan:</div>
+                        <strong class="text-white d-block" style="font-size: 0.8rem;">H. Bambang Kusdariman, S.I.P., M.Si.</strong>
+                        <div class="text-white-50 mt-1" style="font-size: 0.72rem;">Kepala Bidang Wasbang:</div>
+                        <strong class="text-warning d-block" style="font-size: 0.8rem;">Auranti Muraya Purihaningrum, S.STP.</strong>
+                    </div>
                     <div class="badge bg-danger px-3 py-2 text-uppercase letter-spacing-1">
-                        Dokumentasi Lapangan Terverifikasi
+                        Sistem Informasi Pengarsipan Web
                     </div>
                 </div>
             </div>
@@ -303,7 +315,7 @@
         <div class="row g-4 text-center">
             <div class="col-md-3 col-6 border-end-md">
                 <div class="stat-number-wasbang">{{ $totalKegiatan }}</div>
-                <div class="stat-label-wasbang">Total Kegiatan Lapangan</div>
+                <div class="stat-label-wasbang">Total Agenda Kegiatan</div>
             </div>
             <div class="col-md-3 col-6 border-end-md">
                 <div class="stat-number-wasbang text-success">{{ $totalFoto }}</div>
@@ -315,7 +327,82 @@
             </div>
             <div class="col-md-3 col-6">
                 <div class="stat-number-wasbang text-warning">{{ $totalSelesai }}</div>
-                <div class="stat-label-wasbang">Kegiatan Terlaksana</div>
+                <div class="stat-label-wasbang">Kegiatan Terarsip Rapi</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Seksi Urgensi & Solusi Sistem Informasi Pengarsipan -->
+<section class="py-5 bg-white border-bottom" id="urgensi-sistem">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-5">
+                <span class="badge bg-danger-subtle text-danger fw-bold px-3 py-2 rounded-pill text-uppercase mb-2">
+                    <i class="bi bi-lightbulb-fill me-1"></i> Latar Belakang Masalah &amp; Solusi
+                </span>
+                <h3 class="fw-extrabold text-dark mb-3" style="font-size: 1.85rem; line-height: 1.3;">
+                    Mengatasi Foto Kegiatan yang Berserakan Menjadi Terpusat &amp; Siap Cetak
+                </h3>
+                <p class="text-secondary" style="line-height: 1.7; font-size: 0.95rem;">
+                    Selama pelaksanaan kegiatan lapangan (sosialisasi ideologi, diklat paskibraka, wawasan nusantara, dsb.), foto-foto dokumentasi sebelumnya sering tersimpan secara acak di memori telepon staf, grup percakapan, atau flashdisk tanpa catatan waktu dan kronologi yang jelas.
+                </p>
+                <div class="p-3 bg-light rounded-3 border-start border-4 border-danger mb-3">
+                    <strong class="text-dark d-block mb-1">
+                        <i class="bi bi-quote me-1 text-danger"></i> Fokus Utama Sistem:
+                    </strong>
+                    <span class="small text-muted">
+                        "Mengarsipkan foto dan dokumen kegiatan bidang Wasbang Bakesbangpol Kab. Tanah Laut secara terstruktur, mempermudah pelacakan bukti otentik, dan mempercepat penyusunan Berita Acara / Laporan Pertanggungjawaban (LPJ)."
+                    </span>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="p-4 rounded-4 border bg-light h-100">
+                            <div class="text-danger fs-2 mb-2">
+                                <i class="bi bi-folder-check"></i>
+                            </div>
+                            <h6 class="fw-bold text-dark mb-2">1. Sentralisasi Arsip Digital</h6>
+                            <p class="small text-muted mb-0">
+                                Seluruh foto dokumentasi, video kegiatan, dan berkas notula/laporan tersimpan dalam satu basis data terpusat, aman, dan tidak tercecer di perangkat pribadi.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-4 rounded-4 border bg-light h-100">
+                            <div class="text-danger fs-2 mb-2">
+                                <i class="bi bi-images"></i>
+                            </div>
+                            <h6 class="fw-bold text-dark mb-2">2. Galeri Album Multi-Foto</h6>
+                            <p class="small text-muted mb-0">
+                                Setiap agenda kegiatan mendukung multi-upload foto (sesi sambutan, narasumber, audiens, dan dokumentasi penutup) dalam satu album kegiatan.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-4 rounded-4 border bg-light h-100">
+                            <div class="text-danger fs-2 mb-2">
+                                <i class="bi bi-search-heart"></i>
+                            </div>
+                            <h6 class="fw-bold text-dark mb-2">3. Pencarian &amp; Filter Presisi</h6>
+                            <p class="small text-muted mb-0">
+                                Memungkinkan staf dan pimpinan menemukan kembali arsip dalam hitungan detik berdasarkan 6 kategori bidang, bulan, tahun, maupun lokasi kecamatan.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-4 rounded-4 border bg-light h-100">
+                            <div class="text-danger fs-2 mb-2">
+                                <i class="bi bi-printer-fill"></i>
+                            </div>
+                            <h6 class="fw-bold text-dark mb-2">4. Berita Acara Siap Cetak</h6>
+                            <p class="small text-muted mb-0">
+                                Menghasilkan Lembar Berita Acara resmi dengan Kop Surat Pemkab Tanah Laut, galeri foto dokumentasi tersusun rapi, dan kolom pengesahan pejabat.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -346,6 +433,120 @@
             </div>
         @endif
 
+        <!-- Banner Hak Akses 4 Pengguna (Ibu Auranti, Staf Wasbang, Pak Bambang, Tamu/Peserta Free User) -->
+        @auth
+            @if(auth()->user()->isKabidWasbang())
+                <!-- 1. Role: Ibu Auranti Muraya Purihaningrum (Kepala Bidang Wasbang) -->
+                <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden" style="background: linear-gradient(135deg, #450a0a 0%, #1e1b4b 100%); color: #ffffff; border-left: 6px solid #f59e0b !important;">
+                    <div class="card-body p-4 d-flex flex-wrap align-items-center justify-content-between gap-3">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="p-3 rounded-circle bg-warning text-dark fs-3 shadow-sm">
+                                <i class="bi bi-person-check-fill"></i>
+                            </div>
+                            <div>
+                                <span class="badge bg-warning text-dark fw-bold px-3 py-1 rounded-pill mb-1 text-uppercase" style="font-size: 0.72rem;">
+                                    <i class="bi bi-patch-check-fill me-1"></i> Mode Kepala Bidang &bull; Verifikator &amp; Pengesah Laporan
+                                </span>
+                                <h5 class="fw-bold m-0 text-white">Selamat Datang, Ibu {{ auth()->user()->name }}</h5>
+                                <small class="text-white-50 d-block mt-1">
+                                    NIP. {{ auth()->user()->nip }} &bull; Kepala Bidang Bina Ideologi, Wawasan Kebangsaan &amp; Karakter Bangsa
+                                </small>
+                                <p class="small text-white-50 m-0 mt-2" style="max-width: 680px;">
+                                    Anda memiliki wewenang untuk meninjau seluruh dokumentasi kegiatan luar lapangan, memverifikasi keotentikan foto dan rincian acara, serta mencetak lembar Berita Acara resmi bertanda tangan Anda untuk laporan pertanggungjawaban dinas.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="{{ route('wasbang.cetak') }}" target="_blank" class="btn btn-warning btn-sm px-3 py-2 fw-bold text-dark rounded-3 shadow-sm">
+                                <i class="bi bi-printer-fill me-1"></i> Cetak Rekapitulasi Berkas (A4)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @elseif(auth()->user()->isStafWasbang())
+                <!-- 2. Role: Staf Pelaksana Wasbang (Operator Lapangan) -->
+                <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden" style="background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); color: #ffffff; border-left: 6px solid #22c55e !important;">
+                    <div class="card-body p-4 d-flex flex-wrap align-items-center justify-content-between gap-3">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="p-3 rounded-circle bg-success text-white fs-3 shadow-sm">
+                                <i class="bi bi-person-badge-fill"></i>
+                            </div>
+                            <div>
+                                <span class="badge bg-success text-white fw-bold px-3 py-1 rounded-pill mb-1 text-uppercase" style="font-size: 0.72rem;">
+                                    <i class="bi bi-pencil-square me-1"></i> Mode Staf Pelaksana &bull; Operator Pengarsipan Lapangan
+                                </span>
+                                <h5 class="fw-bold m-0 text-white">Selamat Datang, {{ auth()->user()->name }}</h5>
+                                <small class="text-white-50 d-block mt-1">
+                                    NIP. {{ auth()->user()->nip ?? '-' }} &bull; Petugas Pengarsipan Dokumentasi Bidang Wasbang
+                                </small>
+                                <p class="small text-white-50 m-0 mt-2" style="max-width: 680px;">
+                                    Anda memiliki hak akses penuh untuk mengunggah dokumentasi album foto dan video hasil dinas luar, mengelola kronologi rincian berita acara, serta memperbarui atau menghapus arsip kegiatan.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="#tambah-kegiatan" class="btn btn-success btn-sm px-3 py-2 fw-bold rounded-3 shadow-sm">
+                                <i class="bi bi-cloud-arrow-up-fill me-1"></i> Unggah Dokumentasi Baru
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @elseif(auth()->user()->isAdmin())
+                <!-- 3. Role: Bapak H. Bambang Kusdariman (Kepala Badan Kesbangpol) -->
+                <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden" style="background: linear-gradient(135deg, #090d16 0%, #1e1b4b 100%); color: #ffffff; border-left: 6px solid #3b82f6 !important;">
+                    <div class="card-body p-4 d-flex flex-wrap align-items-center justify-content-between gap-3">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="p-3 rounded-circle bg-primary text-white fs-3 shadow-sm">
+                                <i class="bi bi-shield-shaded"></i>
+                            </div>
+                            <div>
+                                <span class="badge bg-primary text-white fw-bold px-3 py-1 rounded-pill mb-1 text-uppercase" style="font-size: 0.72rem;">
+                                    <i class="bi bi-building-fill-check me-1"></i> Mode Kepala Badan &bull; Supervisi Eksekutif
+                                </span>
+                                <h5 class="fw-bold m-0 text-white">Selamat Datang, Bapak {{ auth()->user()->name }}</h5>
+                                <small class="text-white-50 d-block mt-1">
+                                    NIP. {{ auth()->user()->nip }} &bull; Kepala Badan Kesatuan Bangsa dan Politik Kabupaten Tanah Laut
+                                </small>
+                                <p class="small text-white-50 m-0 mt-2" style="max-width: 680px;">
+                                    Anda berada dalam hak akses pengawasan eksekutif terhadap seluruh ketercapaian program kegiatan bidang Wasbang dan pengesahan Berita Acara Rekapitulasi (*Mengetahui Kepala Badan*).
+                                </p>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="{{ route('wasbang.cetak') }}" target="_blank" class="btn btn-primary btn-sm px-3 py-2 fw-bold rounded-3 shadow-sm">
+                                <i class="bi bi-printer-fill me-1"></i> Cetak Rekapitulasi Eksekutif
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @else
+            <!-- 4. Role: Tamu / Peserta Kegiatan (Free User / Tanpa Login) -->
+            <div class="card border-0 shadow-sm rounded-4 mb-4 bg-white border border-light-subtle overflow-hidden" style="border-left: 6px solid #b91c1c !important;">
+                <div class="card-body p-4 d-flex flex-wrap align-items-center justify-content-between gap-3">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="p-3 rounded-circle bg-danger-subtle text-danger fs-3 shadow-sm">
+                            <i class="bi bi-people-fill"></i>
+                        </div>
+                        <div>
+                            <span class="badge bg-success-subtle text-success border border-success-subtle fw-bold px-3 py-1 rounded-pill mb-1 text-uppercase" style="font-size: 0.72rem;">
+                                <i class="bi bi-unlock-fill me-1"></i> Mode Tamu &amp; Peserta Kegiatan (Free Access &bull; Tanpa Perlu Login)
+                            </span>
+                            <h5 class="fw-bold m-0 text-dark">Portal Galeri Dokumentasi Terbuka Wasbang</h5>
+                            <p class="small text-muted m-0 mt-1" style="max-width: 720px;">
+                                Selamat datang Bapak/Ibu tamu undangan, siswa-siswi sekolah, organisasi kepemudaan, dan peserta kegiatan. Anda dapat <strong>mencari dokumentasi acara</strong> yang telah diikuti, melihat album foto lapangan, membaca kronologi hasil kegiatan, dan <strong>mengunduh foto dokumentasi secara bebas</strong> tanpa harus memiliki akun.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="{{ route('wasbang.login') }}" class="btn btn-outline-danger btn-sm px-3 py-2 fw-bold rounded-3">
+                            <i class="bi bi-box-arrow-in-right me-1"></i> Login Khusus Petugas Wasbang
+                        </a>
+                    </div>
+                </div>
+            </div>
+        @endauth
+
         <!-- Header Seksi -->
         <div class="row align-items-end mb-4">
             <div class="col-md-8">
@@ -360,9 +561,21 @@
                 </p>
             </div>
             <div class="col-md-4 text-md-end mt-3 mt-md-0">
-                <a href="#tambah-kegiatan" class="btn btn-danger rounded-3 px-3 py-2 fw-semibold shadow-sm">
-                    <i class="bi bi-cloud-arrow-up-fill me-1"></i> Upload Dokumentasi Baru
-                </a>
+                @auth
+                    @if(auth()->user()->isStafWasbang() || auth()->user()->isAdmin())
+                        <a href="#tambah-kegiatan" class="btn btn-danger rounded-3 px-3 py-2 fw-semibold shadow-sm">
+                            <i class="bi bi-cloud-arrow-up-fill me-1"></i> Upload Dokumentasi Baru
+                        </a>
+                    @else
+                        <a href="{{ route('wasbang.cetak') }}" target="_blank" class="btn btn-warning text-dark rounded-3 px-3 py-2 fw-bold shadow-sm">
+                            <i class="bi bi-printer-fill me-1"></i> Cetak Rekapitulasi Berkas
+                        </a>
+                    @endif
+                @else
+                    <a href="{{ route('wasbang.login') }}" class="btn btn-outline-danger rounded-3 px-3 py-2 fw-semibold">
+                        <i class="bi bi-box-arrow-in-right me-1"></i> Login Petugas Wasbang
+                    </a>
+                @endauth
             </div>
         </div>
 
@@ -483,9 +696,9 @@
                                         </span>
                                     @endif
 
-                                    @if($kegiatan->foto)
-                                        <span class="badge bg-dark bg-opacity-75 text-white" title="Dokumentasi Foto Tersedia">
-                                            <i class="bi bi-camera-fill"></i>
+                                    @if($kegiatan->jumlah_foto > 0)
+                                        <span class="badge bg-dark bg-opacity-75 text-white" title="Total Dokumentasi Foto Tersimpan">
+                                            <i class="bi bi-images me-1"></i> {{ $kegiatan->jumlah_foto }} Foto
                                         </span>
                                     @endif
                                     @if($kegiatan->video || $kegiatan->video_url)
@@ -615,10 +828,14 @@
                                         <i class="bi bi-printer"></i>
                                     </a>
 
-                                    <!-- Tombol Hapus Arsip -->
-                                    <button type="button" class="btn btn-sm btn-outline-danger rounded-2" data-bs-toggle="modal" data-bs-target="#modalHapus{{ $kegiatan->id }}" title="Hapus Arsip">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
+                                    <!-- Tombol Hapus Arsip (Khusus Staf Pelaksana Wasbang & Admin) -->
+                                    @auth
+                                        @if(auth()->user()->isStafWasbang() || auth()->user()->isAdmin())
+                                            <button type="button" class="btn btn-sm btn-outline-danger rounded-2" data-bs-toggle="modal" data-bs-target="#modalHapus{{ $kegiatan->id }}" title="Hapus Arsip Kegiatan">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        @endif
+                                    @endauth
                                 </div>
                             </div>
                         </div>
@@ -644,16 +861,43 @@
                                 </div>
 
                                 <div class="modal-body p-4">
-                                    <!-- Foto Utama / Media Preview -->
-                                    @if($kegiatan->foto)
-                                        <div class="mb-4 text-center bg-light rounded-3 p-2 border">
-                                            <img src="{{ $kegiatan->foto_url }}" alt="{{ $kegiatan->nama_kegiatan }}" class="img-fluid rounded-3 shadow-sm" style="max-height: 400px; width: 100%; object-fit: contain;">
-                                            <div class="d-flex justify-content-between align-items-center mt-2 px-2 small text-muted">
-                                                <span><i class="bi bi-camera me-1"></i> Dokumentasi Foto Lapangan</span>
-                                                <a href="{{ route('wasbang.download', ['id' => $kegiatan->id, 'type' => 'foto']) }}" class="btn btn-sm btn-outline-primary py-1 px-3 rounded-pill">
-                                                    <i class="bi bi-download me-1"></i> Unduh Resolusi Asli
-                                                </a>
+                                    <!-- Album Galeri Dokumentasi Foto Kegiatan -->
+                                    @if($kegiatan->jumlah_foto > 0)
+                                        <div class="mb-4">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <h6 class="fw-bold text-dark m-0">
+                                                    <i class="bi bi-images text-danger me-1"></i> Album Foto Dokumentasi ({{ $kegiatan->jumlah_foto }} Foto Tersimpan)
+                                                </h6>
+                                                @if($kegiatan->foto)
+                                                    <a href="{{ route('wasbang.download', ['id' => $kegiatan->id, 'type' => 'foto']) }}" class="btn btn-sm btn-outline-danger py-1 px-3 rounded-pill" style="font-size: 0.78rem;">
+                                                        <i class="bi bi-download me-1"></i> Unduh Foto Utama
+                                                    </a>
+                                                @endif
                                             </div>
+
+                                            <!-- Foto Utama Besar -->
+                                            <div class="text-center bg-dark rounded-3 p-2 mb-3">
+                                                <img id="mainModalImg{{ $kegiatan->id }}" src="{{ $kegiatan->foto_url ?? $kegiatan->semua_foto_urls[0] }}" alt="{{ $kegiatan->nama_kegiatan }}" class="img-fluid rounded-2 shadow-sm" style="max-height: 400px; width: 100%; object-fit: contain;">
+                                            </div>
+
+                                            <!-- Thumbnail Strip Jika Lebih dari 1 Foto -->
+                                            @if($kegiatan->jumlah_foto > 1)
+                                                <div class="p-2 bg-light rounded-3 border">
+                                                    <small class="text-muted d-block mb-2 fw-semibold" style="font-size: 0.76rem;">
+                                                        <i class="bi bi-hand-index-thumb me-1"></i> Klik foto di bawah untuk menampilkan ke layar utama:
+                                                    </small>
+                                                    <div class="d-flex flex-wrap gap-2">
+                                                        @foreach($kegiatan->semua_foto_urls as $idx => $fUrl)
+                                                            <div class="position-relative" style="width: 80px; height: 60px; border-radius: 8px; overflow: hidden; border: 2px solid {{ $idx === 0 ? '#b91c1c' : '#cbd5e1' }}; cursor: pointer;">
+                                                                <img src="{{ $fUrl }}" alt="Foto {{ $idx + 1 }}" style="width: 100%; height: 100%; object-fit: cover;" onclick="document.getElementById('mainModalImg{{ $kegiatan->id }}').src = '{{ $fUrl }}';">
+                                                                <a href="{{ $fUrl }}" target="_blank" class="position-absolute top-0 end-0 bg-dark bg-opacity-75 text-white p-1" style="font-size: 0.65rem; border-bottom-left-radius: 4px;" title="Buka Tab Baru">
+                                                                    <i class="bi bi-arrows-fullscreen"></i>
+                                                                </a>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            @endif
                                         </div>
                                     @endif
 
@@ -774,185 +1018,258 @@
     </div>
 </section>
 
-<!-- Formulir Tambah Arsip Dokumentasi Baru -->
+<!-- Formulir Tambah Arsip / Panel Hak Akses Pengguna -->
 <section class="py-5 bg-white border-top" id="tambah-kegiatan">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">
-                <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
-                    <div class="p-4 text-white" style="background: linear-gradient(135deg, #0f172a, #881337);">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="logo-emblem-wasbang" style="width: 48px; height: 48px; font-size: 1.5rem;">
-                                <i class="bi bi-cloud-arrow-up-fill"></i>
+
+                @auth
+                    @if(auth()->user()->isStafWasbang() || auth()->user()->isAdmin())
+                        <!-- Form Khusus Staf Pelaksana Wasbang (Operator) & Superadmin -->
+                        <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                            <div class="p-4 text-white" style="background: linear-gradient(135deg, #0f172a, #881337);">
+                                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="logo-emblem-wasbang" style="width: 48px; height: 48px; font-size: 1.5rem;">
+                                            <i class="bi bi-cloud-arrow-up-fill"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="fw-bold m-0 text-white">Formulir Pengarsipan Dokumentasi Kegiatan Lapangan</h4>
+                                            <small class="text-white-50">Silakan input data pelaksanaan kegiatan di luar beserta foto dokumentasi, video, dan rinciannya.</small>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-success px-3 py-2 rounded-pill small">
+                                        <i class="bi bi-check-circle-fill me-1"></i> Mode Operator Aktif
+                                    </span>
+                                </div>
                             </div>
-                            <div>
-                                <h4 class="fw-bold m-0 text-white">Formulir Pengarsipan Dokumentasi Kegiatan Luar</h4>
-                                <small class="text-white-50">Silakan input data pelaksanaan kegiatan di luar beserta foto dokumentasi, video, dan rinciannya.</small>
+
+                            <div class="p-4 p-md-5 bg-light bg-opacity-50">
+                                <form action="{{ route('wasbang.store') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+
+                                    <div class="row g-4">
+                                        <!-- Nama Kegiatan -->
+                                        <div class="col-md-12">
+                                            <label class="form-label fw-bold text-dark">
+                                                Nama Kegiatan Lapangan <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" name="nama_kegiatan" class="form-control form-control-lg rounded-3 @error('nama_kegiatan') is-invalid @enderror" placeholder="Contoh: Sosialisasi Wawasan Kebangsaan di SMAN 1 Pelaihari" value="{{ old('nama_kegiatan') }}" required>
+                                            @error('nama_kegiatan')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <!-- Kategori & Status -->
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-bold text-dark">
+                                                Kategori Bidang Wasbang <span class="text-danger">*</span>
+                                            </label>
+                                            <select name="kategori" class="form-select form-select-lg rounded-3 @error('kategori') is-invalid @enderror" required>
+                                                <option value="">-- Pilih Kategori --</option>
+                                                @foreach($kategoriList as $kat)
+                                                    <option value="{{ $kat }}" {{ old('kategori') == $kat ? 'selected' : '' }}>
+                                                        {{ $kat }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('kategori')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-bold text-dark">
+                                                Status Pelaksanaan <span class="text-danger">*</span>
+                                            </label>
+                                            <select name="status" class="form-select form-select-lg rounded-3" required>
+                                                <option value="Selesai Dilaksanakan" {{ old('status') == 'Selesai Dilaksanakan' ? 'selected' : '' }}>
+                                                    Selesai Dilaksanakan
+                                                </option>
+                                                <option value="Sedang Dilaksanakan" {{ old('status') == 'Sedang Dilaksanakan' ? 'selected' : '' }}>
+                                                    Sedang Berlangsung / Dilaksanakan
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <!-- Tanggal Pelaksanaan & Waktu -->
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-bold text-dark">
+                                                Tanggal Pelaksanaan (Hari/Bulan/Tahun) <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="date" name="tanggal" id="inputTanggal" class="form-control form-control-lg rounded-3 @error('tanggal') is-invalid @enderror" value="{{ old('tanggal', date('Y-m-d')) }}" required>
+                                            <small class="text-muted d-block mt-1" id="previewHariText">
+                                                <i class="bi bi-info-circle me-1"></i> Nama hari akan dihitung secara otomatis dari tanggal yang dipilih.
+                                            </small>
+                                            @error('tanggal')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-bold text-dark">
+                                                Waktu / Jam Pelaksanaan
+                                            </label>
+                                            <input type="text" name="waktu" class="form-control form-control-lg rounded-3" placeholder="Contoh: 08:30 - 12:30 WITA" value="{{ old('waktu') }}">
+                                        </div>
+
+                                        <!-- Lokasi Lapangan & Sasaran Peserta -->
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-bold text-dark">
+                                                Lokasi Luar Lapangan <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" name="lokasi" class="form-control form-control-lg rounded-3 @error('lokasi') is-invalid @enderror" placeholder="Contoh: Lapangan Terbuka Pertasi Kencana, Desa Sumber Makmur..." value="{{ old('lokasi') }}" required>
+                                            @error('lokasi')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-bold text-dark">
+                                                Sasaran / Peserta Kegiatan
+                                            </label>
+                                            <input type="text" name="sasaran_peserta" class="form-control form-control-lg rounded-3" placeholder="Contoh: 120 Siswa SMA/SMK dan Guru Pendamping" value="{{ old('sasaran_peserta') }}">
+                                        </div>
+
+                                        <!-- Tim Pelaksana -->
+                                        <div class="col-md-12">
+                                            <label class="form-label fw-bold text-dark">
+                                                Unit / Tim Pelaksana Kegiatan
+                                            </label>
+                                            <input type="text" name="pelaksana" class="form-control rounded-3" placeholder="Contoh: Subbidang Bina Ideologi & Wawasan Kebangsaan Bakesbangpol" value="{{ old('pelaksana', 'Bidang Bina Ideologi, Wawasan Kebangsaan & Karakter Bangsa') }}">
+                                        </div>
+
+                                        <!-- Rincian Kegiatan -->
+                                        <div class="col-md-12">
+                                            <label class="form-label fw-bold text-dark">
+                                                Rincian Lengkap / Laporan Berita Acara Pelaksanaan Luar <span class="text-danger">*</span>
+                                            </label>
+                                            <textarea name="rincian" rows="6" class="form-control rounded-3 @error('rincian') is-invalid @enderror" placeholder="Tuliskan deskripsi kronologi kegiatan lapangan, materi wawasan kebangsaan yang disampaikan, narasumber yang hadir, dinamika jalannya acara, kesimpulan/output, serta tindak lanjut pelaksanaan..." required>{{ old('rincian') }}</textarea>
+                                            @error('rincian')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-12"><hr class="my-2"></div>
+
+                                        <!-- Bagian Upload Media & Galeri Foto -->
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-bold text-dark">
+                                                <i class="bi bi-image text-danger me-1"></i> Foto Utama / Sampul Kegiatan
+                                            </label>
+                                            <input type="file" name="foto" class="form-control rounded-3 @error('foto') is-invalid @enderror" accept="image/*">
+                                            <small class="text-muted d-block mt-1">Foto utama untuk cover arsip (JPG, PNG, WEBP, maks. 12 MB).</small>
+                                            @error('foto')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-bold text-dark">
+                                                <i class="bi bi-images text-danger me-1"></i> Upload Foto-Foto Dokumentasi Kegiatan (Bisa Banyak Sekaligus)
+                                            </label>
+                                            <input type="file" name="foto_tambahan[]" class="form-control rounded-3 @error('foto_tambahan.*') is-invalid @enderror" accept="image/*" multiple>
+                                            <small class="text-muted d-block mt-1">Tahan tombol <strong>Ctrl</strong> atau <strong>Shift</strong> saat memilih file untuk mengunggah beberapa foto dokumentasi lapangan sekaligus.</small>
+                                            @error('foto_tambahan.*')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-bold text-dark">
+                                                <i class="bi bi-film text-danger me-1"></i> Upload Rekaman Video Lapangan (Opsional)
+                                            </label>
+                                            <input type="file" name="video" class="form-control rounded-3 @error('video') is-invalid @enderror" accept="video/mp4,video/webm,video/quicktime">
+                                            <small class="text-muted d-block mt-1">Format: MP4, MOV, WEBM (Maks. 50 MB).</small>
+                                            @error('video')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-bold text-dark">
+                                                <i class="bi bi-file-earmark-pdf-fill text-danger me-1"></i> Upload Berkas Laporan Resmi / LPJ (Opsional)
+                                            </label>
+                                            <input type="file" name="dokumen_laporan" class="form-control rounded-3 @error('dokumen_laporan') is-invalid @enderror" accept=".pdf,.doc,.docx,.xls,.xlsx">
+                                            <small class="text-muted d-block mt-1">Format: PDF, DOC, DOCX (Maks. 20 MB).</small>
+                                            @error('dokumen_laporan')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <!-- Tautan Video Eksternal (Opsional) -->
+                                        <div class="col-md-12">
+                                            <label class="form-label fw-bold text-muted small">
+                                                <i class="bi bi-link-45deg me-1"></i> Atau Masukkan Tautan Video Eksternal (Opsional jika video berukuran sangat besar)
+                                            </label>
+                                            <input type="url" name="video_url" class="form-control rounded-3" placeholder="https://youtube.com/watch?v=... atau link Google Drive" value="{{ old('video_url') }}">
+                                        </div>
+
+                                        <!-- Tombol Aksi Simpan -->
+                                        <div class="col-md-12 text-end pt-3">
+                                            <a href="#arsip-kegiatan" class="btn btn-outline-secondary px-4 py-2 rounded-3 me-2">Batal</a>
+                                            <button type="submit" class="btn btn-danger btn-lg px-5 py-2 rounded-3 shadow fw-bold">
+                                                <i class="bi bi-cloud-arrow-up-fill me-2"></i> Arsipkan Dokumentasi Kegiatan
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    @elseif(auth()->user()->isKabidWasbang())
+                        <!-- Panel Khusus Ibu Auranti Muraya Purihaningrum (Kepala Bidang) -->
+                        <div class="card border-0 shadow-sm rounded-4 overflow-hidden" style="background: linear-gradient(135deg, #450a0a, #1e1b4b); color: #ffffff;">
+                            <div class="card-body p-5 text-center">
+                                <div class="p-3 d-inline-block rounded-circle bg-warning text-dark fs-1 mb-3 shadow">
+                                    <i class="bi bi-person-check-fill"></i>
+                                </div>
+                                <h3 class="fw-bold text-white mb-2">Panel Pengesahan Kepala Bidang Wasbang</h3>
+                                <h6 class="text-warning mb-3">Ibu Auranti Muraya Purihaningrum, S.STP. &bull; NIP. 198605022004122001</h6>
+                                <p class="text-white-50 max-w-lg mx-auto mb-4" style="line-height: 1.8;">
+                                    Seluruh formulir penginputan dan pengunggahan dokumentasi foto kegiatan luar lapangan dilakukan secara langsung oleh <strong>Staf Pelaksana Lapangan</strong>. Sebagai Kepala Bidang, Anda bertugas memverifikasi kelengkapan bukti otentik, memantau rincian hasil kegiatan, dan mengesahkan Berita Acara resmi.
+                                </p>
+                                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                                    <a href="{{ route('wasbang.cetak') }}" target="_blank" class="btn btn-warning px-4 py-2 fw-bold text-dark rounded-3 shadow">
+                                        <i class="bi bi-printer-fill me-1"></i> Cetak Rekapitulasi Seluruh Arsip (A4)
+                                    </a>
+                                    <a href="#arsip-kegiatan" class="btn btn-outline-light px-4 py-2 fw-semibold rounded-3">
+                                        <i class="bi bi-journal-text me-1"></i> Tinjau Daftar Kegiatan
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    @endif
+
+                @else
+                    <!-- Khusus Tamu / Peserta Kegiatan (Free User / Non-Login) -->
+                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white border border-light-subtle">
+                        <div class="card-body p-5 text-center">
+                            <div class="p-3 d-inline-block rounded-circle bg-danger-subtle text-danger fs-1 mb-3">
+                                <i class="bi bi-lock-fill"></i>
+                            </div>
+                            <h4 class="fw-bold text-dark mb-2">Formulir Pengarsipan Khusus Staf Pelaksana</h4>
+                            <p class="text-muted max-w-lg mx-auto mb-4" style="line-height: 1.8;">
+                                Halaman penginputan dan pengunggahan dokumentasi baru hanya diperuntukkan bagi <strong>Staf Pelaksana Bidang Wasbang</strong> yang bertugas ke lapangan. Bagi Bapak/Ibu tamu undangan, siswa-siswi, dan peserta kegiatan (Free User), Anda dipersilakan untuk melihat galeri foto serta mengunduh dokumentasi kegiatan yang telah terlaksana secara bebas pada daftar di atas tanpa perlu login.
+                            </p>
+                            <div class="d-flex justify-content-center gap-2 flex-wrap">
+                                <a href="#arsip-kegiatan" class="btn btn-danger px-4 py-2 fw-semibold rounded-3">
+                                    <i class="bi bi-images me-1"></i> Lihat Galeri Foto Kegiatan Anda
+                                </a>
+                                <a href="{{ route('wasbang.login') }}" class="btn btn-outline-secondary px-4 py-2 fw-semibold rounded-3">
+                                    <i class="bi bi-box-arrow-in-right me-1"></i> Login Petugas Wasbang
+                                </a>
                             </div>
                         </div>
                     </div>
+                @endauth
 
-                    <div class="p-4 p-md-5 bg-light bg-opacity-50">
-                        <form action="{{ route('wasbang.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-
-                            <div class="row g-4">
-                                <!-- Nama Kegiatan -->
-                                <div class="col-md-12">
-                                    <label class="form-label fw-bold text-dark">
-                                        Nama Kegiatan Lapangan <span class="text-danger">*</span>
-                                    </label>
-                                    <input type="text" name="nama_kegiatan" class="form-control form-control-lg rounded-3 @error('nama_kegiatan') is-invalid @enderror" placeholder="Contoh: Sosialisasi Wawasan Kebangsaan di SMAN 1 Pelaihari" value="{{ old('nama_kegiatan') }}" required>
-                                    @error('nama_kegiatan')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <!-- Kategori & Status -->
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold text-dark">
-                                        Kategori Bidang Wasbang <span class="text-danger">*</span>
-                                    </label>
-                                    <select name="kategori" class="form-select form-select-lg rounded-3 @error('kategori') is-invalid @enderror" required>
-                                        <option value="">-- Pilih Kategori --</option>
-                                        @foreach($kategoriList as $kat)
-                                            <option value="{{ $kat }}" {{ old('kategori') == $kat ? 'selected' : '' }}>
-                                                {{ $kat }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('kategori')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold text-dark">
-                                        Status Pelaksanaan <span class="text-danger">*</span>
-                                    </label>
-                                    <select name="status" class="form-select form-select-lg rounded-3" required>
-                                        <option value="Selesai Dilaksanakan" {{ old('status') == 'Selesai Dilaksanakan' ? 'selected' : '' }}>
-                                            Selesai Dilaksanakan
-                                        </option>
-                                        <option value="Sedang Dilaksanakan" {{ old('status') == 'Sedang Dilaksanakan' ? 'selected' : '' }}>
-                                            Sedang Berlangsung / Dilaksanakan
-                                        </option>
-                                    </select>
-                                </div>
-
-                                <!-- Tanggal Pelaksanaan & Waktu -->
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold text-dark">
-                                        Tanggal Pelaksanaan (Hari/Bulan/Tahun) <span class="text-danger">*</span>
-                                    </label>
-                                    <input type="date" name="tanggal" id="inputTanggal" class="form-control form-control-lg rounded-3 @error('tanggal') is-invalid @enderror" value="{{ old('tanggal', date('Y-m-d')) }}" required>
-                                    <small class="text-muted d-block mt-1" id="previewHariText">
-                                        <i class="bi bi-info-circle me-1"></i> Nama hari akan dihitung secara otomatis dari tanggal yang dipilih.
-                                    </small>
-                                    @error('tanggal')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold text-dark">
-                                        Waktu / Jam Pelaksanaan
-                                    </label>
-                                    <input type="text" name="waktu" class="form-control form-control-lg rounded-3" placeholder="Contoh: 08:30 - 12:30 WITA" value="{{ old('waktu') }}">
-                                </div>
-
-                                <!-- Lokasi Lapangan & Sasaran Peserta -->
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold text-dark">
-                                        Lokasi Luar Lapangan <span class="text-danger">*</span>
-                                    </label>
-                                    <input type="text" name="lokasi" class="form-control form-control-lg rounded-3 @error('lokasi') is-invalid @enderror" placeholder="Contoh: Lapangan Terbuka Pertasi Kencana, Desa Sumber Makmur..." value="{{ old('lokasi') }}" required>
-                                    @error('lokasi')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold text-dark">
-                                        Sasaran / Peserta Kegiatan
-                                    </label>
-                                    <input type="text" name="sasaran_peserta" class="form-control form-control-lg rounded-3" placeholder="Contoh: 120 Siswa SMA/SMK dan Guru Pendamping" value="{{ old('sasaran_peserta') }}">
-                                </div>
-
-                                <!-- Tim Pelaksana -->
-                                <div class="col-md-12">
-                                    <label class="form-label fw-bold text-dark">
-                                        Unit / Tim Pelaksana Kegiatan
-                                    </label>
-                                    <input type="text" name="pelaksana" class="form-control rounded-3" placeholder="Contoh: Subbidang Bina Ideologi & Wawasan Kebangsaan Bakesbangpol" value="{{ old('pelaksana', 'Bidang Bina Ideologi, Wawasan Kebangsaan & Karakter Bangsa') }}">
-                                </div>
-
-                                <!-- Rincian Kegiatan -->
-                                <div class="col-md-12">
-                                    <label class="form-label fw-bold text-dark">
-                                        Rincian Lengkap / Laporan Berita Acara Pelaksanaan Luar <span class="text-danger">*</span>
-                                    </label>
-                                    <textarea name="rincian" rows="6" class="form-control rounded-3 @error('rincian') is-invalid @enderror" placeholder="Tuliskan deskripsi kronologi kegiatan lapangan, materi wawasan kebangsaan yang disampaikan, narasumber yang hadir, dinamika jalannya acara, kesimpulan/output, serta tindak lanjut pelaksanaan..." required>{{ old('rincian') }}</textarea>
-                                    @error('rincian')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-12"><hr class="my-2"></div>
-
-                                <!-- Bagian Upload Media -->
-                                <div class="col-md-4">
-                                    <label class="form-label fw-bold text-dark">
-                                        <i class="bi bi-camera-fill text-danger me-1"></i> Upload Foto Dokumentasi
-                                    </label>
-                                    <input type="file" name="foto" class="form-control rounded-3 @error('foto') is-invalid @enderror" accept="image/*">
-                                    <small class="text-muted d-block mt-1">Format: JPG, PNG, WEBP, SVG (Maks. 12 MB).</small>
-                                    @error('foto')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label class="form-label fw-bold text-dark">
-                                        <i class="bi bi-film text-danger me-1"></i> Upload File Video
-                                    </label>
-                                    <input type="file" name="video" class="form-control rounded-3 @error('video') is-invalid @enderror" accept="video/mp4,video/webm,video/quicktime">
-                                    <small class="text-muted d-block mt-1">Format: MP4, MOV, WEBM (Maks. 50 MB).</small>
-                                    @error('video')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label class="form-label fw-bold text-dark">
-                                        <i class="bi bi-file-earmark-pdf-fill text-danger me-1"></i> Upload Berkas Laporan Resmi
-                                    </label>
-                                    <input type="file" name="dokumen_laporan" class="form-control rounded-3 @error('dokumen_laporan') is-invalid @enderror" accept=".pdf,.doc,.docx">
-                                    <small class="text-muted d-block mt-1">Format: PDF, DOC, DOCX (Maks. 20 MB).</small>
-                                    @error('dokumen_laporan')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <!-- Tautan Video Eksternal (Opsional) -->
-                                <div class="col-md-12">
-                                    <label class="form-label fw-bold text-muted small">
-                                        <i class="bi bi-link-45deg me-1"></i> Atau Masukkan Tautan Video Eksternal (Opsional jika video berukuran sangat besar)
-                                    </label>
-                                    <input type="url" name="video_url" class="form-control rounded-3" placeholder="https://youtube.com/watch?v=... atau link Google Drive" value="{{ old('video_url') }}">
-                                </div>
-
-                                <!-- Tombol Aksi Simpan -->
-                                <div class="col-md-12 text-end pt-3">
-                                    <a href="#arsip-kegiatan" class="btn btn-outline-secondary px-4 py-2 rounded-3 me-2">Batal</a>
-                                    <button type="submit" class="btn btn-danger btn-lg px-5 py-2 rounded-3 shadow fw-bold">
-                                        <i class="bi bi-cloud-arrow-up-fill me-2"></i> Arsipkan Dokumentasi Kegiatan
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+            </div>
+        </div>
+    </div>
+</section>
             </div>
         </div>
     </div>
