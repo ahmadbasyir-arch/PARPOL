@@ -148,6 +148,8 @@ class ParpolSeeder extends Seeder
                 'kabupaten' => 'Tanah Laut',
                 'provinsi' => 'Kalimantan Selatan',
                 'sk3p3' => 'Ada',
+                'visi' => "Mewujudkan Indonesia yang berdaulat, adil, makmur dan menjadi bagian dari kepemimpinan dunia.",
+                'misi' => "1. Membangun masyarakat yang religius dan berpengetahuan.\n2. Membangun pemerintahan efektif.\n3. Mengembangkan kekuatan pertahanan nasional.\n4. Menjadikan Indonesia sebagai bangsa yang mengedepankan inovasi sains dan teknologi.\n5. Menumbuhkan dan memeratakan ekonomi dengan mewujudkan sumber pertumbuhan ekonomi baru.\n6. Mendorong pembangunan yang menopang kelestarian lingkungan.\n7. Berperan aktif dalam kepemimpinan nasional dan internasional.",
             ],
             [
                 'nomor_urut' => 7,
@@ -169,6 +171,8 @@ class ParpolSeeder extends Seeder
                 'kabupaten' => 'Tanah Laut',
                 'provinsi' => 'Kalimantan Selatan',
                 'sk3p3' => 'Ada',
+                'visi' => "Menjadi Partai Islam rahmatan lil 'alamin yang kokoh dan terdepan dalam melayani rakyat dan Negara Kesatuan Republik Indonesia.",
+                'misi' => "1. Meningkatkan pertumbuhan jumlah Anggota Partai dan mengokohkan integritas, solidaritas, akseptabilitas, profesionalitas untuk menghadirkan kepemimpinan bangsa yang beriman dan bertakwa serta berakhlak mulia.\n\n2. Mengokohkan soliditas Partai berskala nasional, mandiri, dan terbuka agar mampu menjalankan fungsi edukasi, advokasi, kaderisasi kepemimpinan, serta menerapkan sistem manajemen partai modern untuk meningkatkan sinergi, kinerja, dan kredibilitas.\n\n3. Meningkatkan kepeloporan Partai dalam pelayanan, pemberdayaan, dan pembelaan terhadap ketahanan keluarga, pemuda, kepentingan masyarakat, dan lingkungan hidup, serta memperkuat kemitraan strategis di berbagai sektor pengabdian untuk meningkatkan kualitas kehidupan yang produktif, inovatif, dan patriotik.\n\n4. Memenangkan Pemilu 2024 dan meningkatkan kontribusi Partai dalam menggagas dan memperjuangkan kebijakan publik yang berpihak kepada kemaslahatan rakyat, bangsa, dan negara yang bersih dari korupsi, kolusi, dan nepotisme, serta turut berperan dalam pengembangan demokratisasi di kawasan, dan pengembangan kerjasama internasional untuk memperkokoh posisi Indonesia.",
             ],
             [
                 'nomor_urut' => 8,
