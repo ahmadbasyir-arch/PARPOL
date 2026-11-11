@@ -1090,15 +1090,20 @@
                                         <div class="row g-4">
                                             @if ($p->visi)
                                                 <div class="col-12">
-                                                    <div class="card border-0 shadow-sm rounded-3" style="border-left: 5px solid #0d6efd !important; background-color: #f8fafc;">
+                                                    <div class="card border-0 shadow-sm rounded-4" style="border-left: 6px solid #0d6efd !important; background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
                                                         <div class="card-body p-4">
-                                                            <div class="d-flex align-items-center gap-2 mb-3">
-                                                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 34px; height: 34px;">
-                                                                    <i class="bi bi-eye-fill"></i>
+                                                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3 pb-2 border-bottom">
+                                                                <div class="d-flex align-items-center gap-2">
+                                                                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                                                        <i class="bi bi-eye-fill fs-5"></i>
+                                                                    </div>
+                                                                    <h5 class="fw-bold text-primary mb-0" style="font-size: 1.25rem; letter-spacing: 0.5px;">VISI PARTAI</h5>
                                                                 </div>
-                                                                <h5 class="fw-bold text-primary mb-0">VISI PARTAI</h5>
+                                                                <span class="badge bg-primary text-white px-3 py-2 fw-semibold" style="font-size: 0.85rem;">
+                                                                    <i class="bi bi-star-fill me-1"></i> Cita-Cita Politik Resmi
+                                                                </span>
                                                             </div>
-                                                            <div class="text-dark lh-lg" style="white-space: pre-line; font-size: 0.95rem;">{{ $p->visi }}</div>
+                                                            <div class="fw-normal" style="white-space: pre-line; font-size: 1.15rem; line-height: 1.85; color: #0f172a;">{{ $p->visi }}</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1106,15 +1111,20 @@
 
                                             @if ($p->misi)
                                                 <div class="col-12">
-                                                    <div class="card border-0 shadow-sm rounded-3" style="border-left: 5px solid #198754 !important; background-color: #f8fafc;">
+                                                    <div class="card border-0 shadow-sm rounded-4" style="border-left: 6px solid #198754 !important; background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
                                                         <div class="card-body p-4">
-                                                            <div class="d-flex align-items-center gap-2 mb-3">
-                                                                <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 34px; height: 34px;">
-                                                                    <i class="bi bi-list-check"></i>
+                                                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3 pb-2 border-bottom">
+                                                                <div class="d-flex align-items-center gap-2">
+                                                                    <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                                                        <i class="bi bi-list-check fs-5"></i>
+                                                                    </div>
+                                                                    <h5 class="fw-bold text-success mb-0" style="font-size: 1.25rem; letter-spacing: 0.5px;">MISI PARTAI</h5>
                                                                 </div>
-                                                                <h5 class="fw-bold text-success mb-0">MISI PARTAI</h5>
+                                                                <span class="badge bg-success text-white px-3 py-2 fw-semibold" style="font-size: 0.85rem;">
+                                                                    <i class="bi bi-check2-circle me-1"></i> Agenda &amp; Aksi Strategis
+                                                                </span>
                                                             </div>
-                                                            <div class="text-dark lh-lg" style="white-space: pre-line; font-size: 0.95rem;">{{ $p->misi }}</div>
+                                                            <div class="fw-normal" style="white-space: pre-line; font-size: 1.15rem; line-height: 1.85; color: #0f172a;">{{ $p->misi }}</div>
                                                         </div>
                                                     </div>
                                                 </div>

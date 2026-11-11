@@ -105,41 +105,41 @@
 
         <!-- Panel Landasan Ideologi & Visi-Misi Partai -->
         <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
-            <div class="card-header bg-white p-3 px-4 d-flex flex-wrap align-items-center justify-content-between gap-2 border-bottom">
+            <div class="card-header bg-white p-3 p-md-4 d-flex flex-wrap align-items-center justify-content-between gap-3 border-bottom">
                 <div class="d-flex align-items-center gap-3">
-                    <div class="bg-primary text-white rounded-circle p-2 d-flex align-items-center justify-content-center shadow-sm" style="width: 38px; height: 38px;">
-                        <i class="bi bi-compass-fill fs-5"></i>
+                    <div class="bg-primary text-white rounded-circle p-2 d-flex align-items-center justify-content-center shadow-sm flex-shrink-0" style="width: 48px; height: 48px;">
+                        <i class="bi bi-compass-fill fs-4"></i>
                     </div>
                     <div>
-                        <h6 class="fw-bold mb-0 text-dark">Visi &amp; Misi Resmi Partai Anda ({{ $parpol->akronim }})</h6>
-                        <small class="text-muted">Landasan AD/ART &amp; narasi resmi yang tampil pada portal publik SIPARPOL Bakesbangpol</small>
+                        <h5 class="fw-bold mb-1 text-dark" style="font-size: 1.25rem;">Visi &amp; Misi Resmi Partai Anda ({{ $parpol->akronim }})</h5>
+                        <p class="text-secondary mb-0" style="font-size: 0.95rem;">Landasan AD/ART &amp; narasi resmi yang tampil pada portal publik SIPARPOL Bakesbangpol</p>
                     </div>
                 </div>
-                <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-3 shadow-sm d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modalEditVisiMisi">
+                <button type="button" class="btn btn-primary rounded-pill px-4 py-2 shadow-sm d-flex align-items-center gap-2 fw-semibold" style="font-size: 1rem;" data-bs-toggle="modal" data-bs-target="#modalEditVisiMisi">
                     <i class="bi bi-pencil-square"></i> Edit Visi &amp; Misi
                 </button>
             </div>
 
-            <div class="card-body p-4 bg-white">
+            <div class="card-body p-3 p-md-4 bg-white">
                 <div class="row g-4">
                     <!-- Kartu Visi -->
-                    <div class="col-lg-6">
-                        <div class="p-4 rounded-3 h-100" style="background-color: #f8fafc; border-left: 5px solid #0d6efd;">
-                            <div class="d-flex align-items-center justify-content-between mb-3">
+                    <div class="col-12">
+                        <div class="p-4 rounded-4" style="background-color: #f8fafc; border-left: 6px solid #0d6efd; border-top: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3 pb-2 border-bottom">
                                 <div class="d-flex align-items-center gap-2">
-                                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 30px; height: 30px; font-size: 0.85rem;">
-                                        <i class="bi bi-eye-fill"></i>
+                                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                        <i class="bi bi-eye-fill fs-5"></i>
                                     </div>
-                                    <span class="fw-bold text-primary text-uppercase" style="letter-spacing: 0.5px;">Visi Partai</span>
+                                    <h5 class="fw-bold text-primary mb-0" style="font-size: 1.25rem; letter-spacing: 0.5px;">VISI PARTAI</h5>
                                 </div>
-                                <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1 small">
-                                    Cita-Cita Politik
+                                <span class="badge bg-primary text-white px-3 py-2 fw-semibold" style="font-size: 0.9rem;">
+                                    <i class="bi bi-star-fill me-1"></i> Cita-Cita Politik Resmi
                                 </span>
                             </div>
                             @if (!empty($parpol->visi))
-                                <div class="text-secondary lh-lg" style="white-space: pre-line; font-size: 0.93rem;">{{ $parpol->visi }}</div>
+                                <div class="fw-normal" style="white-space: pre-line; font-size: 1.15rem; line-height: 1.85; color: #0f172a;">{{ $parpol->visi }}</div>
                             @else
-                                <div class="text-muted fst-italic py-3">
+                                <div class="text-muted fst-italic py-3" style="font-size: 1.05rem;">
                                     <i class="bi bi-info-circle me-1"></i> Narasi visi belum diisi. Klik tombol "Edit Visi &amp; Misi" di atas untuk melengkapi.
                                 </div>
                             @endif
@@ -147,23 +147,23 @@
                     </div>
 
                     <!-- Kartu Misi -->
-                    <div class="col-lg-6">
-                        <div class="p-4 rounded-3 h-100" style="background-color: #f8fafc; border-left: 5px solid #198754;">
-                            <div class="d-flex align-items-center justify-content-between mb-3">
+                    <div class="col-12">
+                        <div class="p-4 rounded-4" style="background-color: #f8fafc; border-left: 6px solid #198754; border-top: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3 pb-2 border-bottom">
                                 <div class="d-flex align-items-center gap-2">
-                                    <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 30px; height: 30px; font-size: 0.85rem;">
-                                        <i class="bi bi-list-check"></i>
+                                    <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                        <i class="bi bi-list-check fs-5"></i>
                                     </div>
-                                    <span class="fw-bold text-success text-uppercase" style="letter-spacing: 0.5px;">Misi Partai</span>
+                                    <h5 class="fw-bold text-success mb-0" style="font-size: 1.25rem; letter-spacing: 0.5px;">MISI PARTAI</h5>
                                 </div>
-                                <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1 small">
-                                    Agenda &amp; Aksi Strategis
+                                <span class="badge bg-success text-white px-3 py-2 fw-semibold" style="font-size: 0.9rem;">
+                                    <i class="bi bi-check2-circle me-1"></i> Agenda &amp; Aksi Strategis
                                 </span>
                             </div>
                             @if (!empty($parpol->misi))
-                                <div class="text-secondary lh-lg" style="white-space: pre-line; font-size: 0.93rem;">{{ $parpol->misi }}</div>
+                                <div class="fw-normal" style="white-space: pre-line; font-size: 1.15rem; line-height: 1.85; color: #0f172a;">{{ $parpol->misi }}</div>
                             @else
-                                <div class="text-muted fst-italic py-3">
+                                <div class="text-muted fst-italic py-3" style="font-size: 1.05rem;">
                                     <i class="bi bi-info-circle me-1"></i> Narasi misi belum diisi. Klik tombol "Edit Visi &amp; Misi" di atas untuk melengkapi.
                                 </div>
                             @endif
@@ -529,20 +529,20 @@
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="visiInput" class="form-label fw-bold text-dark">
+                    <div class="mb-4">
+                        <label for="visiInput" class="form-label fw-bold text-dark fs-5">
                             <i class="bi bi-eye-fill text-primary me-1"></i> Narasi Visi Partai
                         </label>
-                        <textarea name="visi" id="visiInput" rows="5" class="form-control rounded-3" placeholder="Tuliskan visi resmi partai...">{{ old('visi', $parpol->visi) }}</textarea>
-                        <div class="form-text">Jelaskan cita-cita besar dan arah perjuangan partai politik Anda.</div>
+                        <textarea name="visi" id="visiInput" rows="6" class="form-control rounded-3 p-3" style="font-size: 1.1rem; line-height: 1.75; color: #0f172a;" placeholder="Tuliskan visi resmi partai...">{{ old('visi', $parpol->visi) }}</textarea>
+                        <div class="form-text fs-6">Jelaskan cita-cita besar dan arah perjuangan partai politik Anda.</div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="misiInput" class="form-label fw-bold text-dark">
+                        <label for="misiInput" class="form-label fw-bold text-dark fs-5">
                             <i class="bi bi-list-check text-success me-1"></i> Narasi Misi Partai
                         </label>
-                        <textarea name="misi" id="misiInput" rows="8" class="form-control rounded-3" placeholder="Tuliskan misi dan agenda aksi strategis partai...">{{ old('misi', $parpol->misi) }}</textarea>
-                        <div class="form-text">Gunakan penomoran (1, 2, 3...) atau baris baru untuk memudahkan pembacaan.</div>
+                        <textarea name="misi" id="misiInput" rows="10" class="form-control rounded-3 p-3" style="font-size: 1.1rem; line-height: 1.75; color: #0f172a;" placeholder="Tuliskan misi dan agenda aksi strategis partai...">{{ old('misi', $parpol->misi) }}</textarea>
+                        <div class="form-text fs-6">Gunakan penomoran (1, 2, 3...) atau baris baru untuk memudahkan pembacaan di portal publik.</div>
                     </div>
                 </div>
                 <div class="modal-footer bg-light p-3">
