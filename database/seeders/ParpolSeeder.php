@@ -194,6 +194,8 @@ class ParpolSeeder extends Seeder
                 'kabupaten' => 'Tanah Laut',
                 'provinsi' => 'Kalimantan Selatan',
                 'sk3p3' => 'Ada',
+                'visi' => "“Terwujudnya bangsa Indonesia yang bersatu, berdaulat, adil dan makmur berdasarkan Pancasila dan Undang-Undang Dasar Negara Republik Indonesia 1945”.",
+                'misi' => "1. Tata Kelola & Kepemimpinan: Mewujudkan pemerintahan yang demokratis, bersih, berwibawa, transparan, serta melahirkan pemimpin berhati nurani yang jujur dan tegas.\n\n2. Hukum & HAM: Menegakkan supremasi hukum yang berkeadilan, memberikan kepastian hukum, serta menjunjung tinggi HAM.\n\n3. Pembangunan SDM & Ekonomi: Meningkatkan kualitas SDM yang berakhlak dan cerdas dengan melibatkan peran perempuan serta pemuda, serta membangun ekonomi berkeadilan dan berwawasan lingkungan.\n\n4. Reformasi & Daerah: Memberantas korupsi secara total serta mengembangkan otonomi daerah untuk pemerataan pembangunan.",
             ],
             [
                 'nomor_urut' => 9,
@@ -215,6 +217,8 @@ class ParpolSeeder extends Seeder
                 'kabupaten' => 'Tanah Laut',
                 'provinsi' => 'Kalimantan Selatan',
                 'sk3p3' => 'Ada',
+                'visi' => "“Mewujudkan Indonesia yang Beradab, Adil, Makmur, dan Bermartabat melalui Perjuangan Politik yang Demokratis, Berintegritas, dan Berpihak pada Rakyat”\n\nVisi ini mencerminkan komitmen Fraksi PAN untuk membangun Indonesia yang tidak hanya maju secara ekonomi, tetapi juga unggul dalam nilai-nilai kemanusiaan, keadilan sosial, dan moralitas publik. Kemajuan sejati hanya dapat dicapai ketika seluruh rakyat Indonesia merasakan manfaat pembangunan secara merata dan berkeadilan.",
+                'misi' => "1. Memperjuangkan Keadilan Sosial dan Pemerataan Pembangunan:\nMendorong kebijakan yang memastikan hasil pembangunan dapat dinikmati oleh seluruh lapisan masyarakat, terutama kelompok rentan dan daerah tertinggal.\n\n2. Memperkuat Demokrasi dan Supremasi Hukum:\nMengawal proses demokratisasi yang sehat, transparan, dan akuntabel serta memastikan penegakan hukum yang adil tanpa pandang bulu.\n\n3. Membela Aspirasi dan Kepentingan Rakyat:\nMenjadi jembatan antara aspirasi rakyat dengan kebijakan negara melalui fungsi legislasi, pengawasan, dan anggaran yang responsif.\n\n4. Mendorong Pembangunan Ekonomi yang Inklusif:\nMemperjuangkan kebijakan ekonomi yang memberikan ruang bagi UMKM, koperasi, dan ekonomi kerakyatan untuk berkembang.\n\n5. Menjaga Persatuan dan Kesatuan Bangsa:\nMemelihara kebhinekaan dan toleransi sebagai kekuatan bangsa dalam menghadapi tantangan global dan dinamika sosial.",
             ],
             [
                 'nomor_urut' => 10,
@@ -236,6 +240,8 @@ class ParpolSeeder extends Seeder
                 'kabupaten' => 'Tanah Laut',
                 'provinsi' => 'Kalimantan Selatan',
                 'sk3p3' => 'Ada',
+                'visi' => "1. Kehidupan Masyarakat Islami: Terwujudnya kehidupan masyarakat Indonesia yang Islami.\n2. Keadilan dan Hukum: Tegakkan keadilan dan kepastian hukum.\n3. Semboyan Perjuangan: Bela umat, bela ulama, bela Islam, bela rakyat, dan bela Negara Kesatuan Republik Indonesia (NKRI).",
+                'misi' => "1. Keimanan dan Karakter: Beriman, bertakwa, berkepribadian tinggi, cerdas, mandiri, dan maju.\n2. Kesejahteraan dan Keadilan: Berkeadilan serta berkemakmuran bagi seluruh rakyat.\n3. Kehidupan Demokratis: Mengembangkan kehidupan demokratis berdasarkan kerakyatan yang dipimpin oleh hikmah kebijaksanaan dalam permusyawaratan/perwakilan.\n4. Perdamaian Dunia: Turut serta menciptakan perdamaian dunia berdasarkan nilai-nilai Islam.",
             ],
             [
                 'nomor_urut' => 11,
@@ -257,6 +263,8 @@ class ParpolSeeder extends Seeder
                 'kabupaten' => 'Tanah Laut',
                 'provinsi' => 'Kalimantan Selatan',
                 'sk3p3' => 'Ada',
+                'visi' => "Visi untuk Indonesia Masa Depan:\n• Indonesia menjadi Negara Maju di Abad 21.\n• Indonesia menjadi Negara Kuat di tahun 2045.\n• Indonesia menjadi Emerging Economy di tahun 2030.\n\nVisi untuk Partai Demokrat Masa Depan:\nMenjadi partai politik masa depan yang:\n1. Kuat, berintegritas dan berkapasitas.\n2. Relevan dan adaptif dengan perkembangan zaman.\n3. Konsisten pada nilai, idealisme dan platform perjuangan partai yang menjunjung tinggi perdamaian, keadilan, kesejahteraan, demokrasi dan kelestarian lingkungan.\n4. Menyatu dengan rakyat dan terus memperjuangkan kepentingan dan aspirasi rakyat.\n5. Mempertahankan jati diri sebagai partai Nasionalis-Religius, Partai Terbuka, Partai Tengah, Partai Pluralis dan Partai Pro Rakyat Kecil.",
+                'misi' => "Sebagai salah satu kekuatan politik nasional, Partai Demokrat berpartisipasi dan berkontribusi dalam kehidupan bernegara dan pembangunan nasional, menuju terwujudnya Indonesia yang makin maju, makin damai, makin adil, makin sejahtera dan makin demokratis.\n\nMisi Partai Demokrat:\n1. Memenangkan pemilihan umum pada tingkat nasional, baik pemilu legislatif maupun pemilu presiden dan wakil presiden.\n2. Memenangkan pemilihan umum tingkat daerah, baik pemilu legislatif maupun pemilu kepala daerah.\n3. Mempersiapkan kader-kader Demokrat untuk maju sebagai peserta pemilihan umum, baik pusat maupun daerah, baik legislatif maupun eksekutif.\n4. Menjalin komunikasi secara berkelanjutan dengan rakyat guna mengetahui persoalan, harapan dan aspirasi mereka, untuk selanjutnya diperjuangkan di berbagai medan pengabdian dan penugasan partai.\n5. Menjalankan kehidupan internal partai sesuai dengan undang-undang dan anggaran dasar serta anggaran rumah tangga, menuju masa depan Partai Demokrat yang makin kuat, makin modern, makin dicintai rakyat dan makin kontributif bagi pembangunan bangsa.",
             ],
             [
                 'nomor_urut' => 12,
@@ -278,6 +286,8 @@ class ParpolSeeder extends Seeder
                 'kabupaten' => 'Tanah Laut',
                 'provinsi' => 'Kalimantan Selatan',
                 'sk3p3' => 'Ada',
+                'visi' => "Indonesia yang berkarakter kerakyatan, berkemanusiaan, berkeragaman, berkeadilan, berkemajuan dan bermartabat.",
+                'misi' => "1. Menggalang kekuatan nasional melalui sebuah kepemimpinan politik yang ideologis, terorganisir, dan terstruktur.\n\n2. Menggalang perjuangan politik dengan nilai solidaritas nasional melanjutkan agenda reformasi dan demokratisasi.\n\n3. Membangun kembali semangat republikanisme, merajut kembali rasa kebangsaan yang terserak, menanam kembali benih-benih idealisme, mendirikan kembali benteng-benteng kebhinnekaan dan membangun kembali pondasi gotong royong.\n\n4. Mendorong martabat Indonesia dalam pergaulan internasional, sesuai prinsip politik bebas aktif dengan melibatkan kondisi geopolitik internasional yang sedang berkembang.",
             ],
             [
                 'nomor_urut' => 13,
