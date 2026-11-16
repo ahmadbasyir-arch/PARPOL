@@ -8,27 +8,27 @@
 
         <!-- Welcome Banner -->
         <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden" style="background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);">
-            <div class="card-body p-4 p-md-5 text-white">
-                <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+            <div class="card-body p-3 p-sm-4 p-md-5 text-white">
+                <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3">
                     <div class="d-flex align-items-center gap-3">
-                        <div class="bg-white rounded-3 p-2 shadow d-flex align-items-center justify-content-center" style="width: 68px; height: 68px;">
+                        <div class="bg-white rounded-3 p-2 shadow d-flex align-items-center justify-content-center flex-shrink-0" style="width: 64px; height: 64px;">
                             <img src="{{ asset('images/tanahlaut.png') }}" alt="Lambang Kabupaten Tanah Laut" style="width: 100%; height: 100%; object-fit: contain;">
                         </div>
                         <div>
-                            <span class="badge bg-warning text-dark text-uppercase px-2 py-1 mb-1 fw-bold">Hak Akses: Superadmin</span>
-                            <h3 class="fw-bold mb-1">{{ $user->name }}</h3>
+                            <span class="badge bg-warning text-dark text-uppercase px-2 py-1 mb-1 fw-bold" style="font-size: 0.72rem;">Hak Akses: Superadmin</span>
+                            <h3 class="fw-bold mb-1 fs-4 fs-md-3">{{ $user->name }}</h3>
                             <p class="text-white-50 mb-0 small">
                                 Panel Verifikasi Bantuan Keuangan &amp; Pelaporan Kegiatan Parpol Kabupaten Tanah Laut
                             </p>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center gap-2">
-                        <a href="{{ route('parpol.home') }}" class="btn btn-outline-light btn-sm rounded-pill px-3">
-                            <i class="bi bi-eye me-1"></i> Lihat Portal Publik
+                    <div class="d-flex align-items-center gap-2 mt-2 mt-md-0 w-100 w-md-auto justify-content-start justify-content-md-end">
+                        <a href="{{ route('parpol.home') }}" class="btn btn-outline-light btn-sm rounded-pill px-3 flex-fill flex-md-grow-0 text-center">
+                            <i class="bi bi-eye me-1"></i> Portal Publik
                         </a>
-                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                        <form action="{{ route('logout') }}" method="POST" class="d-inline flex-fill flex-md-grow-0">
                             @csrf
-                            <button type="submit" class="btn btn-danger btn-sm rounded-pill px-3">
+                            <button type="submit" class="btn btn-danger btn-sm rounded-pill px-3 w-100 text-center">
                                 <i class="bi bi-box-arrow-right me-1"></i> Logout
                             </button>
                         </form>
@@ -67,56 +67,56 @@
             </div>
         @endif
 
-        <!-- 4 Kartu Statistik Ringkas -->
-        <div class="row g-3 mb-4">
+        <!-- 4 Kartu Statistik Ringkas (Grid 2 Kolom Kompak di Ponsel) -->
+        <div class="row g-2 g-md-3 mb-4">
             <div class="col-6 col-lg-3">
-                <div class="card border-0 shadow-sm rounded-3 p-3 h-100 bg-white">
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="bg-primary bg-opacity-10 text-primary rounded-3 p-3 fs-3">
+                <div class="card border-0 shadow-sm rounded-3 p-2 p-sm-3 h-100 bg-white">
+                    <div class="d-flex flex-column flex-sm-row align-items-center text-center text-sm-start gap-2 gap-sm-3">
+                        <div class="bg-primary bg-opacity-10 text-primary rounded-3 p-2 p-sm-3 fs-5 fs-sm-4 flex-shrink-0">
                             <i class="bi bi-bank2"></i>
                         </div>
                         <div>
-                            <span class="text-muted small d-block">Total Parpol Terdaftar</span>
-                            <h4 class="fw-bold mb-0 text-dark">{{ $totalParpol }} Partai</h4>
+                            <span class="text-muted small d-block" style="font-size: 0.72rem;">Parpol Terdaftar</span>
+                            <h5 class="fw-bold mb-0 text-dark fs-6 fs-md-5">{{ $totalParpol }} Partai</h5>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-6 col-lg-3">
-                <div class="card border-0 shadow-sm rounded-3 p-3 h-100 bg-white">
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="bg-success bg-opacity-10 text-success rounded-3 p-3 fs-3">
+                <div class="card border-0 shadow-sm rounded-3 p-2 p-sm-3 h-100 bg-white">
+                    <div class="d-flex flex-column flex-sm-row align-items-center text-center text-sm-start gap-2 gap-sm-3">
+                        <div class="bg-success bg-opacity-10 text-success rounded-3 p-2 p-sm-3 fs-5 fs-sm-4 flex-shrink-0">
                             <i class="bi bi-cash-stack"></i>
                         </div>
                         <div>
-                            <span class="text-muted small d-block">Total Biaya Terserap</span>
-                            <h4 class="fw-bold mb-0 text-success">Rp {{ number_format($totalBiaya, 0, ',', '.') }}</h4>
+                            <span class="text-muted small d-block" style="font-size: 0.72rem;">Biaya Terserap</span>
+                            <h5 class="fw-bold mb-0 text-success fs-6 fs-md-5">Rp {{ number_format($totalBiaya, 0, ',', '.') }}</h5>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-6 col-lg-3">
-                <div class="card border-0 shadow-sm rounded-3 p-3 h-100 bg-white">
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="bg-warning bg-opacity-10 text-warning rounded-3 p-3 fs-3">
+                <div class="card border-0 shadow-sm rounded-3 p-2 p-sm-3 h-100 bg-white">
+                    <div class="d-flex flex-column flex-sm-row align-items-center text-center text-sm-start gap-2 gap-sm-3">
+                        <div class="bg-warning bg-opacity-10 text-warning rounded-3 p-2 p-sm-3 fs-5 fs-sm-4 flex-shrink-0">
                             <i class="bi bi-mortarboard-fill"></i>
                         </div>
                         <div>
-                            <span class="text-muted small d-block">Kegiatan Dikpol Masuk</span>
-                            <h4 class="fw-bold mb-0 text-dark">{{ $dikpols->count() }} Kegiatan</h4>
+                            <span class="text-muted small d-block" style="font-size: 0.72rem;">Kegiatan Masuk</span>
+                            <h5 class="fw-bold mb-0 text-dark fs-6 fs-md-5">{{ $dikpols->count() }} Kegiatan</h5>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-6 col-lg-3">
-                <div class="card border-0 shadow-sm rounded-3 p-3 h-100 bg-white">
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="bg-info bg-opacity-10 text-info rounded-3 p-3 fs-3">
+                <div class="card border-0 shadow-sm rounded-3 p-2 p-sm-3 h-100 bg-white">
+                    <div class="d-flex flex-column flex-sm-row align-items-center text-center text-sm-start gap-2 gap-sm-3">
+                        <div class="bg-info bg-opacity-10 text-info rounded-3 p-2 p-sm-3 fs-5 fs-sm-4 flex-shrink-0">
                             <i class="bi bi-people-fill"></i>
                         </div>
                         <div>
-                            <span class="text-muted small d-block">Peserta Kaderisasi</span>
-                            <h4 class="fw-bold mb-0 text-dark">{{ $totalPeserta }} Orang</h4>
+                            <span class="text-muted small d-block" style="font-size: 0.72rem;">Kaderisasi</span>
+                            <h5 class="fw-bold mb-0 text-dark fs-6 fs-md-5">{{ $totalPeserta }} Orang</h5>
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,7 @@
 
         <!-- Tabel Laporan Masuk yang Membutuhkan Verifikasi -->
         <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
-            <div class="card-header bg-white p-3 d-flex flex-wrap align-items-center justify-content-between gap-2 border-bottom">
+            <div class="card-header bg-white p-3 d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-2 border-bottom">
                 <div class="d-flex align-items-center gap-2">
                     <i class="bi bi-clipboard2-check-fill text-primary fs-5"></i>
                     <div>
@@ -133,14 +133,20 @@
                         <small class="text-muted">Kelola dan entri laporan kegiatan untuk seluruh 20 partai politik</small>
                     </div>
                 </div>
-                <div class="d-flex align-items-center gap-2">
+                <div class="d-flex align-items-center gap-2 w-100 w-sm-auto justify-content-between justify-content-sm-end">
                     <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-2 small d-none d-md-inline-block">
                         Total {{ $dikpols->count() }} Laporan
                     </span>
-                    <button type="button" class="btn btn-primary btn-sm rounded-pill px-3 shadow-sm d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modalTambahDikpolAdmin">
+                    <button type="button" class="btn btn-primary btn-sm rounded-pill px-3 py-2 shadow-sm d-flex align-items-center justify-content-center gap-1 w-100 w-sm-auto" data-bs-toggle="modal" data-bs-target="#modalTambahDikpolAdmin">
                         <i class="bi bi-plus-circle-fill"></i> Tambah Laporan Kegiatan Baru
                     </button>
                 </div>
+            </div>
+
+            <!-- Petunjuk Geser Layar Sentuh di Ponsel -->
+            <div class="swipe-hint d-md-none mb-0 rounded-0 border-0 border-bottom">
+                <i class="bi bi-arrow-left-right text-primary fs-6"></i>
+                <span>Geser tabel ke samping untuk melihat detail LPJ & aksi</span>
             </div>
 
             <div class="table-responsive">

@@ -75,16 +75,16 @@
 <body>
 
     <!-- Tombol Aksi Layar -->
-    <div class="no-print mb-4 p-3 bg-light border rounded d-flex justify-content-between align-items-center">
+    <div class="no-print mb-4 p-3 bg-light border rounded d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2">
         <div>
             <h5 class="m-0 fw-bold">Pratinjau Cetak Format Dokumen Resmi</h5>
             <span class="small text-muted">Format A4 Landscape &bull; Rekapitulasi {{ count($parpols) }} Partai Politik Kab. Tanah Laut</span>
         </div>
-        <div class="d-flex gap-2">
-            <a href="{{ route('parpol.home') }}" class="btn btn-outline-secondary btn-sm">
-                &larr; Kembali ke Website
+        <div class="d-flex gap-2 w-100 w-sm-auto">
+            <a href="{{ route('parpol.home') }}" class="btn btn-outline-secondary btn-sm flex-fill flex-sm-grow-0 text-center">
+                &larr; Kembali
             </a>
-            <button onclick="window.print()" class="btn btn-primary btn-sm fw-bold">
+            <button onclick="window.print()" class="btn btn-primary btn-sm fw-bold flex-fill flex-sm-grow-0 text-center">
                 Cetak / Simpan PDF
             </button>
         </div>
@@ -99,7 +99,8 @@
     </div>
 
     <!-- Tabel Rekapitulasi -->
-    <table class="table-doc">
+    <div class="table-responsive">
+        <table class="table-doc">
         <thead>
             <tr>
                 <th style="width: 40px;">NO</th>
@@ -161,6 +162,7 @@
             @endforeach
         </tbody>
     </table>
+    </div>
 
     <div class="sign-area">
         <div>Pelaihari, 2026</div>

@@ -20,21 +20,28 @@
             --portal-gold: #f59e0b;
         }
 
-        body {
+        html, body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #0b1120;
             color: #1e293b;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow-x: hidden;
+            overflow-x: hidden !important;
+            max-width: 100vw !important;
+            width: 100% !important;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
         }
 
         /* Top Bar */
         .portal-topbar {
             background: #ffffff;
             border-bottom: 1px solid #e2e8f0;
-            padding: 12px 0;
+            padding: 10px 0;
             z-index: 20;
         }
 
@@ -45,7 +52,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 40px 15px 60px 15px;
+            padding: 30px 12px 50px 12px;
             background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(15, 23, 42, 0.94) 100%), url('{{ asset('images/bakesbangpol-bg.jpg') }}');
             background-size: cover;
             background-position: center;
@@ -60,10 +67,10 @@
             background: rgba(245, 158, 11, 0.15);
             border: 1px solid rgba(245, 158, 11, 0.4);
             color: #fbbf24;
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             font-weight: 700;
-            letter-spacing: 1.5px;
-            padding: 6px 16px;
+            letter-spacing: 1.2px;
+            padding: 5px 14px;
             border-radius: 30px;
             text-transform: uppercase;
         }
@@ -71,11 +78,19 @@
         /* Card Selector Bidang */
         .portal-card-container {
             background: #ffffff;
-            border-radius: 24px;
+            border-radius: 20px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            padding: 36px;
-            margin-top: 25px;
+            padding: 20px 16px;
+            margin-top: 20px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @media (min-width: 768px) {
+            .portal-card-container {
+                border-radius: 24px;
+                padding: 36px;
+                margin-top: 25px;
+            }
         }
 
         .service-card {

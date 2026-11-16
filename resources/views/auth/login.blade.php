@@ -3,20 +3,20 @@
 @section('title', 'Login SIPARPOL - Bakesbangpol Kab. Tanah Laut')
 
 @section('content')
-<div class="py-5" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f766e 100%); min-height: 85vh;">
-    <div class="container py-4">
+<div class="py-4 py-md-5" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f766e 100%); min-height: 85vh;">
+    <div class="container py-2 py-md-4">
         <div class="row justify-content-center align-items-center">
-            <div class="col-12 col-md-8 col-lg-5">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-5 col-xl-4">
                 
                 <!-- Card Utama Login -->
                 <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
                     
                     <!-- Header Card -->
-                    <div class="card-header bg-dark text-white p-4 text-center border-0" style="background: linear-gradient(135deg, #1e293b 0%, #0f766e 100%);">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-3 mb-3 shadow p-2" style="width: 68px; height: 68px;">
+                    <div class="card-header bg-dark text-white p-3 p-md-4 text-center border-0" style="background: linear-gradient(135deg, #1e293b 0%, #0f766e 100%);">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-3 mb-2 mb-md-3 shadow p-2" style="width: 60px; height: 60px;">
                             <img src="{{ asset('images/tanahlaut.png') }}" alt="Lambang Kabupaten Tanah Laut" style="width: 100%; height: 100%; object-fit: contain;">
                         </div>
-                        <h4 class="fw-bold mb-1">Masuk ke SIPARPOL</h4>
+                        <h4 class="fw-bold mb-1 fs-5 fs-md-4">Masuk ke SIPARPOL</h4>
                         <p class="text-white-50 small mb-0">
                             Sistem Pelaporan Bantuan Keuangan &amp; Pendidikan Politik<br>
                             <strong>Bakesbangpol Kabupaten Tanah Laut</strong>
@@ -24,7 +24,7 @@
                     </div>
 
                     <!-- Body Card -->
-                    <div class="card-body p-4 p-md-5 bg-white">
+                    <div class="card-body p-3 p-sm-4 p-md-5 bg-white">
 
                         <!-- Pesan Kesalahan Validasi -->
                         @if ($errors->any())
@@ -65,7 +65,8 @@
                                            value="{{ old('email') }}" 
                                            placeholder="nama@tanahlautkab.go.id" 
                                            required 
-                                           autofocus>
+                                           autofocus
+                                           style="min-height: 48px; font-size: 16px;">
                                 </div>
                                 <div class="form-text text-muted" style="font-size: 0.78rem;">
                                     Gunakan email resmi partai atau email administrator Bakesbangpol.
@@ -91,8 +92,9 @@
                                            id="password" 
                                            name="password" 
                                            placeholder="••••••••" 
-                                           required>
-                                    <button class="btn btn-light border border-start-0 text-muted" type="button" id="togglePassword">
+                                           required
+                                           style="min-height: 48px; font-size: 16px;">
+                                    <button class="btn btn-light border border-start-0 text-muted px-3" type="button" id="togglePassword">
                                         <i class="bi bi-eye-slash" id="toggleIcon"></i>
                                     </button>
                                 </div>
@@ -109,7 +111,7 @@
                             </div>
 
                             <!-- Tombol Submit -->
-                            <button type="submit" class="btn btn-success w-100 py-2 fw-bold rounded-3 shadow-sm d-flex align-items-center justify-content-center gap-2 mb-3">
+                            <button type="submit" class="btn btn-success w-100 py-3 fw-bold rounded-3 shadow-sm d-flex align-items-center justify-content-center gap-2 mb-3" style="min-height: 50px; font-size: 1.05rem;">
                                 <i class="bi bi-box-arrow-in-right fs-5"></i> Masuk Sekarang
                             </button>
 
