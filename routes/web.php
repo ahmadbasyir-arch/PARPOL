@@ -63,4 +63,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/pendidikan-politik', [PendidikanPolitikController::class, 'store'])->name('dikpol.store');
     Route::put('/pendidikan-politik/{id}', [PendidikanPolitikController::class, 'update'])->name('dikpol.update');
     Route::delete('/pendidikan-politik/{id}', [PendidikanPolitikController::class, 'destroy'])->name('dikpol.destroy');
+
+    // Pembaruan Visi & Misi oleh Pengurus Partai
+    Route::put('/parpol/visi-misi', [ParpolController::class, 'updateVisiMisi'])->name('parpol.updateVisiMisi');
 });

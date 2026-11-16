@@ -27,6 +27,8 @@ class Parpol extends Model
         'kabupaten',
         'provinsi',
         'sk3p3',
+        'visi',
+        'misi',
     ];
 
     /**

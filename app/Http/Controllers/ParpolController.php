@@ -139,4 +139,34 @@ class ParpolController extends Controller
         return redirect()->to(url()->previous() . '#lapor')
             ->with('lapor_success', 'Permohonan pembaruan data DPC ' . $validated['nama_partai'] . ' berhasil diajukan. Tim verifikator akan menghubungi nomor LO untuk konfirmasi berkas SK.');
     }
+
+    /**
+     * Perbarui Visi & Misi resmi partai (oleh Pengurus Partai dari Dashboard)
+     */
+    public function updateVisiMisi(Request $request)
+    {
+        $user = auth()->user();
+        if (!$user) {
+            return redirect()->route('login');
+        }
+
+        $validated = $request->validate([
+            'parpol_id' => 'required|exists:parpols,id',
+            'visi' => 'nullable|string',
+            'misi' => 'nullable|string',
+        ]);
+
+        // Pastikan hanya admin atau operator partai yang bersangkutan yang dapat mengedit
+        if (!$user->isAdmin() && $user->parpol_id != $validated['parpol_id']) {
+            return back()->withErrors(['Akses ditolak: Anda hanya berwenang memperbarui data visi & misi partai Anda sendiri.']);
+        }
+
+        $parpol = Parpol::findOrFail($validated['parpol_id']);
+        $parpol->update([
+            'visi' => $validated['visi'],
+            'misi' => $validated['misi'],
+        ]);
+
+        return back()->with('success', 'Visi & Misi resmi partai ' . $parpol->akronim . ' berhasil diperbarui dan disinkronkan ke portal publik!');
+    }
 }
