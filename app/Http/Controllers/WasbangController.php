@@ -87,11 +87,6 @@ class WasbangController extends Controller
      */
     public function index(Request $request)
     {
-        // Auto-seed jika database wasbang masih kosong
-        if (WasbangKegiatan::count() === 0) {
-            Artisan::call('db:seed', ['--class' => 'WasbangKegiatanSeeder', '--force' => true]);
-        }
-
         $query = WasbangKegiatan::query();
 
         // Filter Pencarian

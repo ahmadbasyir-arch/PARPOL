@@ -80,17 +80,18 @@
         letter-spacing: 0.5px;
     }
 
-    /* Activity Card */
+    /* Activity Card Modern Redesign */
     .card-kegiatan {
         background: #ffffff;
-        border-radius: 16px;
+        border-radius: 18px;
         border: 1px solid #e2e8f0;
-        box-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.05);
+        box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
         transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         overflow: hidden;
         display: flex;
         flex-direction: column;
         height: 100%;
+        position: relative;
     }
 
     .card-kegiatan:hover {
@@ -102,7 +103,7 @@
     .media-thumb-container {
         position: relative;
         width: 100%;
-        height: 220px;
+        height: 210px;
         background: #0f172a;
         overflow: hidden;
     }
@@ -111,92 +112,119 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.4s ease;
+        transition: transform 0.45s ease;
     }
 
     .card-kegiatan:hover .media-thumb-img {
-        transform: scale(1.05);
+        transform: scale(1.06);
+    }
+
+    .media-overlay-gradient {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 40%, rgba(15, 23, 42, 0.75) 100%);
+        pointer-events: none;
+    }
+
+    .doc-placeholder-box {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #fee2e2 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
     }
 
     .media-badge-top {
         position: absolute;
         top: 12px;
         left: 12px;
+        right: 12px;
         z-index: 10;
         display: flex;
+        justify-content: space-between;
+        align-items: center;
         gap: 6px;
-        flex-wrap: wrap;
     }
 
     .media-badge-bottom {
         position: absolute;
-        bottom: 12px;
+        bottom: 10px;
         right: 12px;
         z-index: 10;
         display: flex;
+        align-items: center;
         gap: 6px;
+        flex-wrap: wrap;
     }
 
-    .kategori-pill {
-        background: rgba(15, 23, 42, 0.85);
-        backdrop-filter: blur(4px);
-        color: #fef08a;
-        font-size: 0.75rem;
+    .badge-kategori-glass {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        color: #991b1b;
+        font-size: 0.73rem;
         font-weight: 700;
         padding: 5px 12px;
         border-radius: 30px;
-        border: 1px solid rgba(254, 240, 138, 0.3);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+        border: 1px solid rgba(239, 68, 68, 0.2);
     }
 
-    .status-pill-selesai {
-        background: #166534;
-        color: #dcfce7;
+    .badge-status-selesai {
+        background: #dcfce7;
+        color: #15803d;
+        border: 1px solid #bbf7d0;
         font-size: 0.72rem;
         font-weight: 700;
-        padding: 4px 10px;
+        padding: 4px 11px;
         border-radius: 20px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.06);
     }
 
-    .status-pill-berlangsung {
-        background: #854d0e;
-        color: #fef9c3;
+    .badge-status-berlangsung {
+        background: #fef9c3;
+        color: #854d0e;
+        border: 1px solid #fef08a;
         font-size: 0.72rem;
         font-weight: 700;
-        padding: 4px 10px;
+        padding: 4px 11px;
         border-radius: 20px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.06);
     }
 
     .card-body-wasbang {
-        padding: 20px;
+        padding: 22px;
         display: flex;
         flex-direction: column;
         flex-grow: 1;
     }
 
-    .date-badge-box {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        background: #fef2f2;
-        border: 1px solid #fee2e2;
-        color: #991b1b;
-        font-size: 0.82rem;
-        font-weight: 700;
-        padding: 5px 12px;
-        border-radius: 8px;
-        margin-bottom: 12px;
-    }
-
     .kegiatan-title {
-        font-size: 1.15rem;
+        font-size: 1.12rem;
         font-weight: 800;
         color: #0f172a;
-        line-height: 1.4;
+        line-height: 1.45;
+        margin-bottom: 12px;
+        min-height: 3.25rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .meta-box-wasbang {
+        background: #f8fafc;
+        border: 1px solid #edf2f7;
+        border-radius: 12px;
+        padding: 10px 12px;
         margin-bottom: 12px;
     }
 
     .meta-item {
-        font-size: 0.85rem;
+        font-size: 0.83rem;
         color: #475569;
         margin-bottom: 6px;
         display: flex;
@@ -204,39 +232,41 @@
         gap: 8px;
     }
 
+    .meta-item:last-child {
+        margin-bottom: 0;
+    }
+
     .meta-item i {
-        margin-top: 3px;
+        margin-top: 2px;
         font-size: 0.95rem;
     }
 
     .rincian-preview {
-        font-size: 0.88rem;
+        font-size: 0.85rem;
         color: #64748b;
         line-height: 1.6;
-        margin-top: 10px;
         margin-bottom: 16px;
         display: -webkit-box;
-        -webkit-line-clamp: 3;
+        -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
 
     .card-footer-wasbang {
         padding: 14px 20px;
-        background: #f8fafc;
+        background: #fafbfc;
         border-top: 1px solid #f1f5f9;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
+        flex-direction: column;
         gap: 8px;
     }
 
     /* Filter Panel */
     .filter-panel {
         background: #ffffff;
-        border-radius: 16px;
+        border-radius: 18px;
         border: 1px solid #e2e8f0;
-        padding: 22px;
+        padding: 24px;
         margin-bottom: 30px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
     }
@@ -640,21 +670,81 @@
 
         <!-- Grid Kartu Kegiatan -->
         @if($kegiatans->isEmpty())
-            <div class="text-center py-5 custom-card p-5">
-                <div class="text-danger mb-3" style="font-size: 3.5rem;">
-                    <i class="bi bi-folder2-open"></i>
-                </div>
-                <h4 class="fw-bold text-dark">Tidak Ada Arsip Dokumentasi yang Ditemukan</h4>
-                <p class="text-muted max-w-md mx-auto">
-                    Kriteria pencarian Anda tidak cocok dengan kegiatan yang tersimpan. Silakan reset filter pencarian atau unggah laporan dokumentasi baru.
-                </p>
-                <div class="d-flex justify-content-center gap-2 mt-3">
-                    <a href="{{ route('wasbang.index') }}" class="btn btn-outline-danger rounded-3 px-3">
-                        <i class="bi bi-arrow-counterclockwise me-1"></i> Reset Filter
-                    </a>
-                    <a href="#tambah-kegiatan" class="btn btn-danger rounded-3 px-3">
-                        <i class="bi bi-plus-circle me-1"></i> Tambah Dokumentasi Baru
-                    </a>
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4 bg-white border border-light-subtle">
+                <div class="p-5 text-center">
+                    <div class="mx-auto mb-3" style="width: 84px; height: 84px; background: linear-gradient(135deg, #fee2e2, #fecaca); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.6rem; color: #b91c1c; box-shadow: 0 10px 25px -5px rgba(185, 28, 28, 0.25);">
+                        <i class="bi bi-folder2-open"></i>
+                    </div>
+
+                    @if(request()->hasAny(['q', 'kategori', 'bulan', 'status']))
+                        <span class="badge bg-secondary-subtle text-secondary fw-bold px-3 py-1.5 rounded-pill text-uppercase mb-2" style="font-size: 0.75rem;">
+                            <i class="bi bi-search me-1"></i> Filter Pencarian
+                        </span>
+                        <h3 class="fw-bold text-dark mb-2">Tidak Ditemukan Arsip yang Cocok</h3>
+                        <p class="text-muted max-w-lg mx-auto mb-4" style="line-height: 1.7; font-size: 0.95rem;">
+                            Kriteria pencarian yang Anda masukkan tidak cocok dengan kegiatan yang tersimpan. Silakan reset filter untuk menampilkan kembali seluruh arsip.
+                        </p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="{{ route('wasbang.index') }}" class="btn btn-danger rounded-3 px-4 py-2 fw-semibold">
+                                <i class="bi bi-arrow-counterclockwise me-1"></i> Reset Filter Pencarian
+                            </a>
+                        </div>
+                    @else
+                        <span class="badge bg-danger-subtle text-danger fw-bold px-3 py-1.5 rounded-pill text-uppercase mb-2" style="font-size: 0.75rem;">
+                            <i class="bi bi-info-circle-fill me-1"></i> Arsip Belum Terisi
+                        </span>
+                        <h3 class="fw-bold text-dark mb-2">Belum Ada Dokumentasi Kegiatan yang Diarsipkan</h3>
+                        <p class="text-muted mx-auto mb-4" style="max-width: 680px; line-height: 1.75; font-size: 0.95rem;">
+                            Arsip dokumentasi foto kegiatan dinas luar lapangan beserta berkas surat-menyurat kedinasan (Surat Tugas, Notula, LPJ) saat ini masih kosong. Seluruh dokumentasi kegiatan baru akan ditampilkan secara otomatis di galeri ini segera setelah diunggah oleh petugas Wasbang melalui formulir pengarsipan.
+                        </p>
+
+                        <div class="d-flex justify-content-center gap-2 flex-wrap mb-4">
+                            @auth
+                                @if(auth()->user()->isStafWasbang() || auth()->user()->isAdmin())
+                                    <a href="#tambah-kegiatan" class="btn btn-danger rounded-3 px-4 py-2.5 fw-bold shadow-sm">
+                                        <i class="bi bi-cloud-arrow-up-fill me-2"></i> Unggah Dokumentasi &amp; Surat Menyurat Baru
+                                    </a>
+                                @elseif(auth()->user()->isKabidWasbang())
+                                    <a href="{{ route('wasbang.kabid') }}" class="btn btn-danger rounded-3 px-4 py-2.5 fw-bold shadow-sm">
+                                        <i class="bi bi-shield-check me-2"></i> Buka Ruang Kerja Kepala Bidang
+                                    </a>
+                                @else
+                                    <a href="{{ route('wasbang.kaban') }}" class="btn btn-primary rounded-3 px-4 py-2.5 fw-bold shadow-sm">
+                                        <i class="bi bi-shield-check me-2"></i> Buka Ruang Kerja Kepala Badan
+                                    </a>
+                                @endif
+                            @else
+                                <a href="{{ route('wasbang.login') }}" class="btn btn-danger rounded-3 px-4 py-2.5 fw-bold shadow-sm">
+                                    <i class="bi bi-box-arrow-in-right me-2"></i> Login Petugas Wasbang untuk Mengunggah
+                                </a>
+                            @endauth
+                        </div>
+
+                        <!-- 3 Poin Keunggulan Pengarsipan Wasbang -->
+                        <div class="row g-3 justify-content-center text-start mt-2 pt-3 border-top" style="max-width: 860px; margin: 0 auto;">
+                            <div class="col-md-4">
+                                <div class="p-3 rounded-3 bg-light border h-100">
+                                    <div class="text-danger fs-4 mb-2"><i class="bi bi-camera-fill"></i></div>
+                                    <h6 class="fw-bold text-dark mb-1" style="font-size: 0.9rem;">Album Foto Lapangan Otentik</h6>
+                                    <p class="text-muted small m-0" style="line-height: 1.5;">Menyimpan multi-foto dokumentasi resolusi tinggi sebagai bukti otentik kegiatan dinas luar.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-3 rounded-3 bg-light border h-100">
+                                    <div class="text-primary fs-4 mb-2"><i class="bi bi-file-earmark-text-fill"></i></div>
+                                    <h6 class="fw-bold text-dark mb-1" style="font-size: 0.9rem;">Surat Menyurat &amp; LPJ Terpadu</h6>
+                                    <p class="text-muted small m-0" style="line-height: 1.5;">Berkas surat tugas, notula, dan laporan LPJ tersimpan rapi dan dapat diunduh kapan pun.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-3 rounded-3 bg-light border h-100">
+                                    <div class="text-warning fs-4 mb-2"><i class="bi bi-printer-fill"></i></div>
+                                    <h6 class="fw-bold text-dark mb-1" style="font-size: 0.9rem;">Cetak Berita Acara A4</h6>
+                                    <p class="text-muted small m-0" style="line-height: 1.5;">Format cetak lembar Berita Acara resmi dengan kop dinas dan kolom tanda tangan pimpinan.</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         @else
@@ -667,45 +757,50 @@
                             <div class="media-thumb-container">
                                 @if($kegiatan->foto)
                                     <img src="{{ $kegiatan->foto_url }}" alt="{{ $kegiatan->nama_kegiatan }}" class="media-thumb-img">
+                                    <div class="media-overlay-gradient"></div>
                                 @else
-                                    <div class="w-100 h-100 d-flex flex-column align-items-center justify-content-center bg-dark text-white p-3 text-center">
-                                        <i class="bi bi-image fs-1 text-secondary mb-2"></i>
-                                        <span class="small text-muted">Dokumentasi Foto Belum Diunggah</span>
+                                    <div class="doc-placeholder-box">
+                                        <div class="p-3 rounded-circle bg-white shadow-sm text-danger fs-2 mb-2">
+                                            <i class="bi bi-file-earmark-text-fill"></i>
+                                        </div>
+                                        <strong class="text-dark small d-block">Berkas Surat / LPJ Tersedia</strong>
+                                        <span class="text-muted" style="font-size: 0.72rem;">Dokumentasi Administrasi Terlampir</span>
                                     </div>
+                                    <div class="media-overlay-gradient"></div>
                                 @endif
 
                                 <!-- Top Badges -->
                                 <div class="media-badge-top">
-                                    <span class="kategori-pill">
-                                        <i class="bi bi-bookmark-fill me-1"></i> {{ $kegiatan->kategori }}
+                                    <span class="badge-kategori-glass">
+                                        <i class="bi bi-tag-fill me-1 text-danger"></i> {{ $kegiatan->kategori }}
                                     </span>
+
+                                    @if($kegiatan->status === 'Sedang Dilaksanakan')
+                                        <span class="badge-status-berlangsung">
+                                            <i class="bi bi-hourglass-split me-1"></i> Sedang Berlangsung
+                                        </span>
+                                    @else
+                                        <span class="badge-status-selesai">
+                                            <i class="bi bi-check2-circle me-1"></i> Selesai
+                                        </span>
+                                    @endif
                                 </div>
 
                                 <!-- Bottom Status & Media Badges -->
                                 <div class="media-badge-bottom">
-                                    @if($kegiatan->status === 'Sedang Dilaksanakan')
-                                        <span class="status-pill-berlangsung">
-                                            <i class="bi bi-hourglass-split me-1"></i> Sedang Berlangsung
-                                        </span>
-                                    @else
-                                        <span class="status-pill-selesai">
-                                            <i class="bi bi-check2-circle me-1"></i> Selesai
-                                        </span>
-                                    @endif
-
                                     @if($kegiatan->jumlah_foto > 0)
-                                        <span class="badge bg-dark bg-opacity-75 text-white" title="Total Dokumentasi Foto Tersimpan">
-                                            <i class="bi bi-images me-1"></i> {{ $kegiatan->jumlah_foto }} Foto
-                                        </span>
-                                    @endif
-                                    @if($kegiatan->video || $kegiatan->video_url)
-                                        <span class="badge bg-danger text-white" title="Dokumentasi Video Tersedia">
-                                            <i class="bi bi-play-circle-fill"></i> Video
+                                        <span class="badge bg-dark bg-opacity-75 text-white rounded-pill px-2.5 py-1" style="font-size: 0.72rem;" title="Total Dokumentasi Foto Tersimpan">
+                                            <i class="bi bi-camera-fill text-warning me-1"></i> {{ $kegiatan->jumlah_foto }} Foto
                                         </span>
                                     @endif
                                     @if($kegiatan->dokumen_laporan)
-                                        <span class="badge bg-primary text-white" title="Berkas Laporan PDF Tersedia">
-                                            <i class="bi bi-file-earmark-pdf-fill"></i>
+                                        <span class="badge bg-primary bg-opacity-90 text-white rounded-pill px-2.5 py-1" style="font-size: 0.72rem;" title="Berkas Laporan PDF / LPJ Tersedia">
+                                            <i class="bi bi-file-earmark-check-fill me-1"></i> Ada Surat/LPJ
+                                        </span>
+                                    @endif
+                                    @if($kegiatan->video || $kegiatan->video_url)
+                                        <span class="badge bg-danger bg-opacity-90 text-white rounded-pill px-2.5 py-1" style="font-size: 0.72rem;" title="Dokumentasi Video Tersedia">
+                                            <i class="bi bi-play-circle-fill me-1"></i> Video
                                         </span>
                                     @endif
                                 </div>
@@ -713,50 +808,47 @@
 
                             <!-- Card Body -->
                             <div class="card-body-wasbang">
-                                <!-- Hari, Tanggal, Bulan, Tahun & Jam -->
-                                <div class="d-flex flex-wrap align-items-center justify-content-between gap-1 mb-2">
-                                    <div class="date-badge-box">
-                                        <i class="bi bi-calendar-event-fill"></i>
-                                        <span>{{ $kegiatan->hari_tanggal_formatted }}</span>
-                                    </div>
+                                <!-- Hari, Tanggal & Jam -->
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <span class="fw-bold text-danger" style="font-size: 0.82rem;">
+                                        <i class="bi bi-calendar3 me-1"></i> {{ $kegiatan->hari_tanggal_formatted }}
+                                    </span>
                                     @if($kegiatan->waktu)
-                                        <span class="small text-muted fw-semibold">
+                                        <span class="badge bg-light text-muted border" style="font-size: 0.72rem;">
                                             <i class="bi bi-clock me-1 text-danger"></i> {{ $kegiatan->waktu }}
                                         </span>
                                     @endif
                                 </div>
 
                                 <!-- Nama Kegiatan -->
-                                <h3 class="kegiatan-title">
+                                <h4 class="kegiatan-title" title="{{ $kegiatan->nama_kegiatan }}">
                                     {{ $kegiatan->nama_kegiatan }}
-                                </h3>
+                                </h4>
 
-                                <!-- Meta: Lokasi Luar Lapangan -->
-                                <div class="meta-item">
-                                    <i class="bi bi-geo-alt-fill text-danger flex-shrink-0"></i>
-                                    <div>
-                                        <strong class="text-dark">Lokasi Lapangan:</strong>
-                                        <span>{{ $kegiatan->lokasi }}</span>
-                                    </div>
-                                </div>
-
-                                <!-- Meta: Sasaran / Peserta -->
-                                @if($kegiatan->sasaran_peserta)
+                                <!-- Meta Box (Lokasi, Sasaran, Pelaksana) -->
+                                <div class="meta-box-wasbang">
                                     <div class="meta-item">
-                                        <i class="bi bi-people-fill text-primary flex-shrink-0"></i>
-                                        <div>
-                                            <strong class="text-dark">Sasaran / Peserta:</strong>
-                                            <span>{{ $kegiatan->sasaran_peserta }}</span>
+                                        <i class="bi bi-geo-alt-fill text-danger flex-shrink-0"></i>
+                                        <div class="text-truncate">
+                                            <strong class="text-dark">Lokasi:</strong>
+                                            <span>{{ $kegiatan->lokasi }}</span>
                                         </div>
                                     </div>
-                                @endif
-
-                                <!-- Meta: Pelaksana -->
-                                <div class="meta-item">
-                                    <i class="bi bi-shield-check text-success flex-shrink-0"></i>
-                                    <div>
-                                        <strong class="text-dark">Pelaksana:</strong>
-                                        <span class="text-muted small">{{ $kegiatan->pelaksana }}</span>
+                                    @if($kegiatan->sasaran_peserta)
+                                        <div class="meta-item">
+                                            <i class="bi bi-people-fill text-primary flex-shrink-0"></i>
+                                            <div class="text-truncate">
+                                                <strong class="text-dark">Sasaran:</strong>
+                                                <span>{{ $kegiatan->sasaran_peserta }}</span>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    <div class="meta-item">
+                                        <i class="bi bi-shield-check text-success flex-shrink-0"></i>
+                                        <div class="text-truncate">
+                                            <strong class="text-dark">Pelaksana:</strong>
+                                            <span>{{ $kegiatan->pelaksana }}</span>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -764,68 +856,26 @@
                                 <p class="rincian-preview">
                                     {{ $kegiatan->rincian }}
                                 </p>
-
-                                <div class="mt-auto pt-2">
-                                    <button type="button" class="btn btn-outline-danger btn-sm w-100 rounded-3 fw-semibold" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $kegiatan->id }}">
-                                        <i class="bi bi-eye-fill me-1"></i> Baca Rincian Lengkap &amp; Media
-                                    </button>
-                                </div>
                             </div>
 
-                            <!-- Card Footer: Unduh Berkas & Cetak -->
+                            <!-- Card Footer: Aksi Buka Galeri, Unduh Berkas & Cetak -->
                             <div class="card-footer-wasbang">
-                                <!-- Dropdown Unduh Media -->
-                                <div class="dropdown">
-                                    <button class="btn btn-sm btn-light border dropdown-toggle fw-semibold text-dark rounded-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bi bi-download text-danger me-1"></i> Unduh File
-                                    </button>
-                                    <ul class="dropdown-menu shadow-sm border-0 py-2">
-                                        @if($kegiatan->foto)
-                                            <li>
-                                                <a class="dropdown-item py-2" href="{{ route('wasbang.download', ['id' => $kegiatan->id, 'type' => 'foto']) }}">
-                                                    <i class="bi bi-camera text-primary me-2"></i> Unduh Foto Dokumentasi (.{{ pathinfo($kegiatan->foto, PATHINFO_EXTENSION) }})
-                                                </a>
-                                            </li>
-                                        @endif
+                                <button type="button" class="btn btn-outline-danger btn-sm w-100 rounded-3 fw-bold py-2 shadow-xs d-flex align-items-center justify-content-center gap-2" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $kegiatan->id }}">
+                                    <i class="bi bi-images"></i>
+                                    <span>Buka Album Foto &amp; Rincian</span>
+                                </button>
 
-                                        @if($kegiatan->video)
-                                            <li>
-                                                <a class="dropdown-item py-2" href="{{ route('wasbang.download', ['id' => $kegiatan->id, 'type' => 'video']) }}">
-                                                    <i class="bi bi-film text-danger me-2"></i> Unduh Video Dokumentasi (.{{ pathinfo($kegiatan->video, PATHINFO_EXTENSION) }})
-                                                </a>
-                                            </li>
-                                        @elseif($kegiatan->video_url)
-                                            <li>
-                                                <a class="dropdown-item py-2" href="{{ $kegiatan->video_url }}" target="_blank">
-                                                    <i class="bi bi-box-arrow-up-right text-danger me-2"></i> Buka Video Eksternal (Streaming)
-                                                </a>
-                                            </li>
-                                        @endif
+                                <div class="d-flex align-items-center gap-2 pt-1">
+                                    @if($kegiatan->dokumen_laporan)
+                                        <a href="{{ route('wasbang.download', ['id' => $kegiatan->id, 'type' => 'dokumen']) }}" class="btn btn-sm btn-light border text-primary fw-semibold rounded-2 flex-grow-1 text-truncate" title="Unduh Berkas Surat / LPJ (.{{ pathinfo($kegiatan->dokumen_laporan, PATHINFO_EXTENSION) }})">
+                                            <i class="bi bi-file-earmark-pdf-fill text-danger me-1"></i> Unduh Berkas
+                                        </a>
+                                    @endif
 
-                                        @if($kegiatan->dokumen_laporan)
-                                            <li>
-                                                <a class="dropdown-item py-2" href="{{ route('wasbang.download', ['id' => $kegiatan->id, 'type' => 'dokumen']) }}">
-                                                    <i class="bi bi-file-earmark-pdf text-danger me-2"></i> Unduh Berkas Laporan (.{{ pathinfo($kegiatan->dokumen_laporan, PATHINFO_EXTENSION) }})
-                                                </a>
-                                            </li>
-                                        @endif
-
-                                        <li><hr class="dropdown-divider my-1"></li>
-                                        <li>
-                                            <a class="dropdown-item py-2" href="{{ route('wasbang.cetak.detail', $kegiatan->id) }}" target="_blank">
-                                                <i class="bi bi-printer text-warning me-2"></i> Cetak / Simpan PDF Berita Acara
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="d-flex align-items-center gap-1">
-                                    <!-- Tombol Cetak Langsung -->
-                                    <a href="{{ route('wasbang.cetak.detail', $kegiatan->id) }}" target="_blank" class="btn btn-sm btn-outline-secondary rounded-2" title="Cetak Lembar Laporan Berita Acara">
-                                        <i class="bi bi-printer"></i>
+                                    <a href="{{ route('wasbang.cetak.detail', $kegiatan->id) }}" target="_blank" class="btn btn-sm btn-light border text-dark fw-semibold rounded-2 flex-grow-1 text-center text-truncate" title="Cetak Lembar Berita Acara Resmi (A4)">
+                                        <i class="bi bi-printer text-warning me-1"></i> Cetak BA
                                     </a>
 
-                                    <!-- Tombol Hapus Arsip (Khusus Staf Pelaksana Wasbang & Admin) -->
                                     @auth
                                         @if(auth()->user()->isStafWasbang() || auth()->user()->isAdmin())
                                             <button type="button" class="btn btn-sm btn-outline-danger rounded-2" data-bs-toggle="modal" data-bs-target="#modalHapus{{ $kegiatan->id }}" title="Hapus Arsip Kegiatan">
@@ -895,6 +945,31 @@
                                                     </div>
                                                 </div>
                                             @endif
+                                        </div>
+                                    @endif
+
+                                    <!-- Lampiran Berkas Surat Menyurat & Dokumen Laporan (LPJ / Surat Tugas) -->
+                                    @if($kegiatan->dokumen_laporan)
+                                        <div class="card border-0 rounded-3 p-3 mb-4" style="background: #eff6ff; border-left: 4px solid #3b82f6 !important;">
+                                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <div class="p-2.5 rounded-3 bg-white text-primary shadow-xs fs-3">
+                                                        <i class="bi bi-file-earmark-text-fill"></i>
+                                                    </div>
+                                                    <div>
+                                                        <h6 class="fw-bold text-dark m-0">Berkas Surat Menyurat &amp; Dokumen LPJ</h6>
+                                                        <small class="text-muted">Format .{{ pathinfo($kegiatan->dokumen_laporan, PATHINFO_EXTENSION) }} &bull; Bukti administrasi resmi kegiatan dinas luar lapangan</small>
+                                                    </div>
+                                                </div>
+                                                <a href="{{ route('wasbang.download', ['id' => $kegiatan->id, 'type' => 'dokumen']) }}" class="btn btn-sm btn-primary rounded-3 px-3 py-2 fw-semibold">
+                                                    <i class="bi bi-download me-1"></i> Unduh Berkas Surat / LPJ
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @elseif($kegiatan->jumlah_foto === 0)
+                                        <div class="alert alert-secondary border-0 rounded-3 mb-4 text-center py-3">
+                                            <i class="bi bi-camera text-muted fs-3 d-block mb-1"></i>
+                                            <span class="small text-muted">Dokumentasi foto dan berkas surat belum diunggah untuk kegiatan ini.</span>
                                         </div>
                                     @endif
 
