@@ -298,6 +298,120 @@ class WasbangController extends Controller
     }
 
     /**
+     * Perbarui data dokumentasi kegiatan luar lapangan yang telah tersimpan
+     */
+    public function update(Request $request, $id)
+    {
+        // Pembatasan Akses: Hanya Staf Pelaksana Wasbang atau Admin/Kaban yang dapat mengedit arsip
+        if (!Auth::check() || (!Auth::user()->isStafWasbang() && !Auth::user()->isAdmin())) {
+            return redirect()->route('wasbang.login')
+                ->with('wasbang_error', 'Akses ditolak. Pengeditan arsip kegiatan hanya dapat dilakukan oleh Staf Pelaksana Bidang Wasbang.');
+        }
+
+        $kegiatan = WasbangKegiatan::findOrFail($id);
+
+        $validated = $request->validate([
+            'nama_kegiatan' => 'required|string|max:255',
+            'kategori' => 'required|string|max:100',
+            'tanggal' => 'required|date',
+            'waktu' => 'nullable|string|max:50',
+            'lokasi' => 'required|string|max:255',
+            'sasaran_peserta' => 'nullable|string|max:255',
+            'pelaksana' => 'nullable|string|max:255',
+            'rincian' => 'required|string|max:10000',
+            'status' => 'required|string|max:50',
+            'foto' => 'nullable|file|mimes:jpeg,png,jpg,webp,svg|max:12288',
+            'foto_tambahan' => 'nullable|array',
+            'foto_tambahan.*' => 'file|mimes:jpeg,png,jpg,webp,svg|max:12288',
+            'video' => 'nullable|file|mimes:mp4,mov,avi,webm,mkv|max:51200',
+            'video_url' => 'nullable|url|max:255',
+            'dokumen_laporan' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx|max:20480',
+        ], [
+            'nama_kegiatan.required' => 'Nama kegiatan wajib diisi.',
+            'kategori.required' => 'Kategori kegiatan wajib dipilih.',
+            'tanggal.required' => 'Tanggal pelaksanaan kegiatan wajib diisi.',
+            'lokasi.required' => 'Lokasi kegiatan luar wajib diisi.',
+            'rincian.required' => 'Rincian / laporan hasil kegiatan wajib diisi.',
+            'foto.mimes' => 'Format foto sampul harus berupa JPG, PNG, WEBP, atau SVG.',
+            'foto_tambahan.*.mimes' => 'Format foto pendukung harus berupa JPG, PNG, WEBP, atau SVG.',
+            'video.mimes' => 'Format video harus berupa MP4, MOV, AVI, WEBM, atau MKV.',
+            'dokumen_laporan.mimes' => 'Format berkas laporan harus berupa PDF, DOC, DOCX, XLS, atau XLSX.',
+        ]);
+
+        $validated['hari'] = WasbangKegiatan::getHariIndonesia($validated['tanggal']);
+
+        if (empty($validated['pelaksana'])) {
+            $validated['pelaksana'] = 'Bidang Bina Ideologi, Wawasan Kebangsaan & Karakter Bangsa';
+        }
+
+        $destPathFoto = public_path('uploads/wasbang/foto');
+        if (!File::exists($destPathFoto)) {
+            File::makeDirectory($destPathFoto, 0755, true);
+        }
+
+        // Handle upload foto utama baru (jika ada)
+        if ($request->hasFile('foto')) {
+            if ($kegiatan->foto && str_starts_with($kegiatan->foto, 'uploads/')) {
+                File::delete(public_path($kegiatan->foto));
+            }
+            $fotoFile = $request->file('foto');
+            $fotoName = 'foto_' . time() . '_' . Str::slug(substr($validated['nama_kegiatan'], 0, 30)) . '.' . $fotoFile->getClientOriginalExtension();
+            $fotoFile->move($destPathFoto, $fotoName);
+            $validated['foto'] = 'uploads/wasbang/foto/' . $fotoName;
+        }
+
+        // Handle upload foto tambahan / galeri baru
+        if ($request->hasFile('foto_tambahan')) {
+            $existingTambahan = $kegiatan->foto_tambahan ? (is_array($kegiatan->foto_tambahan) ? $kegiatan->foto_tambahan : json_decode($kegiatan->foto_tambahan, true)) : [];
+            $tambahanList = is_array($existingTambahan) ? $existingTambahan : [];
+
+            foreach ($request->file('foto_tambahan') as $idx => $extraFile) {
+                if ($extraFile && $extraFile->isValid()) {
+                    $extraName = 'foto_galeri_' . time() . '_' . ($idx + 1) . '_' . Str::slug(substr($validated['nama_kegiatan'], 0, 20)) . '.' . $extraFile->getClientOriginalExtension();
+                    $extraFile->move($destPathFoto, $extraName);
+                    $tambahanList[] = 'uploads/wasbang/foto/' . $extraName;
+                }
+            }
+            $validated['foto_tambahan'] = $tambahanList;
+        }
+
+        // Handle upload video baru
+        if ($request->hasFile('video')) {
+            if ($kegiatan->video && str_starts_with($kegiatan->video, 'uploads/')) {
+                File::delete(public_path($kegiatan->video));
+            }
+            $videoFile = $request->file('video');
+            $videoName = 'video_' . time() . '_' . Str::slug(substr($validated['nama_kegiatan'], 0, 30)) . '.' . $videoFile->getClientOriginalExtension();
+            $destPath = public_path('uploads/wasbang/video');
+            if (!File::exists($destPath)) {
+                File::makeDirectory($destPath, 0755, true);
+            }
+            $videoFile->move($destPath, $videoName);
+            $validated['video'] = 'uploads/wasbang/video/' . $videoName;
+        }
+
+        // Handle upload dokumen laporan baru (jika mengganti berkas surat/LPJ)
+        if ($request->hasFile('dokumen_laporan')) {
+            if ($kegiatan->dokumen_laporan && str_starts_with($kegiatan->dokumen_laporan, 'uploads/')) {
+                File::delete(public_path($kegiatan->dokumen_laporan));
+            }
+            $dokFile = $request->file('dokumen_laporan');
+            $dokName = 'laporan_' . time() . '_' . Str::slug(substr($validated['nama_kegiatan'], 0, 30)) . '.' . $dokFile->getClientOriginalExtension();
+            $destPath = public_path('uploads/wasbang/laporan');
+            if (!File::exists($destPath)) {
+                File::makeDirectory($destPath, 0755, true);
+            }
+            $dokFile->move($destPath, $dokName);
+            $validated['dokumen_laporan'] = 'uploads/wasbang/laporan/' . $dokName;
+        }
+
+        $kegiatan->update($validated);
+
+        return redirect()->back()
+            ->with('wasbang_success', 'Perubahan dokumentasi kegiatan "' . $kegiatan->nama_kegiatan . '" berhasil disimpan.');
+    }
+
+    /**
      * Unduh file media (foto / video / laporan) secara langsung
      */
     public function downloadMedia($id, $type)

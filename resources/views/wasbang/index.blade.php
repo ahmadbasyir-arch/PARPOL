@@ -878,6 +878,9 @@
 
                                     @auth
                                         @if(auth()->user()->isStafWasbang() || auth()->user()->isAdmin())
+                                            <button type="button" class="btn btn-sm btn-outline-primary rounded-2" data-bs-toggle="modal" data-bs-target="#modalEditIndex{{ $kegiatan->id }}" title="Edit Dokumentasi &amp; Berkas">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </button>
                                             <button type="button" class="btn btn-sm btn-outline-danger rounded-2" data-bs-toggle="modal" data-bs-target="#modalHapus{{ $kegiatan->id }}" title="Hapus Arsip Kegiatan">
                                                 <i class="bi bi-trash"></i>
                                             </button>
@@ -1082,6 +1085,156 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Modal Edit Dokumentasi (Khusus Staf & Admin) -->
+                    @auth
+                        @if(auth()->user()->isStafWasbang() || auth()->user()->isAdmin())
+                            <div class="modal fade" id="modalEditIndex{{ $kegiatan->id }}" tabindex="-1" aria-labelledby="modalEditIndexLabel{{ $kegiatan->id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                                    <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+                                        <div class="modal-header text-white py-3 px-4" style="background: linear-gradient(135deg, #0f172a, #881337) !important;">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <i class="bi bi-pencil-square fs-4 text-warning"></i>
+                                                <div>
+                                                    <h5 class="modal-title fw-bold text-white m-0" id="modalEditIndexLabel{{ $kegiatan->id }}">Edit Dokumentasi: {{ $kegiatan->nama_kegiatan }}</h5>
+                                                    <small class="text-white-50">Perbarui rincian kegiatan luar lapangan, foto dokumentasi, atau berkas surat dinas / LPJ</small>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form action="{{ route('wasbang.update', $kegiatan->id) }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="modal-body p-4 p-md-5">
+                                                <div class="row g-4">
+                                                    <!-- Nama Kegiatan -->
+                                                    <div class="col-md-12">
+                                                        <label class="form-label fw-bold text-dark">Nama Kegiatan Luar Lapangan <span class="text-danger">*</span></label>
+                                                        <input type="text" name="nama_kegiatan" class="form-control rounded-3" value="{{ old('nama_kegiatan', $kegiatan->nama_kegiatan) }}" required>
+                                                    </div>
+
+                                                    <!-- Kategori & Status -->
+                                                    <div class="col-md-6">
+                                                        <label class="form-label fw-bold text-dark">Kategori Bidang Wasbang <span class="text-danger">*</span></label>
+                                                        <select name="kategori" class="form-select rounded-3" required>
+                                                            @foreach($kategoriList as $kat)
+                                                                <option value="{{ $kat }}" {{ old('kategori', $kegiatan->kategori) == $kat ? 'selected' : '' }}>{{ $kat }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label class="form-label fw-bold text-dark">Status Pelaksanaan <span class="text-danger">*</span></label>
+                                                        <select name="status" class="form-select rounded-3" required>
+                                                            <option value="Selesai Dilaksanakan" {{ old('status', $kegiatan->status) == 'Selesai Dilaksanakan' ? 'selected' : '' }}>Selesai Dilaksanakan</option>
+                                                            <option value="Sedang Dilaksanakan" {{ old('status', $kegiatan->status) == 'Sedang Dilaksanakan' ? 'selected' : '' }}>Sedang Dilaksanakan</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <!-- Tanggal & Jam -->
+                                                    <div class="col-md-6">
+                                                        <label class="form-label fw-bold text-dark">Tanggal Pelaksanaan <span class="text-danger">*</span></label>
+                                                        <input type="date" name="tanggal" class="form-control rounded-3" value="{{ old('tanggal', $kegiatan->tanggal ? $kegiatan->tanggal->format('Y-m-d') : date('Y-m-d')) }}" required>
+                                                        <small class="text-muted">Nama hari pelaksanaan akan disesuaikan otomatis oleh sistem.</small>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label class="form-label fw-bold text-dark">Waktu / Jam Pelaksanaan</label>
+                                                        <input type="text" name="waktu" class="form-control rounded-3" value="{{ old('waktu', $kegiatan->waktu) }}" placeholder="Contoh: 08:30 - 12:00 WITA">
+                                                    </div>
+
+                                                    <!-- Lokasi & Sasaran Peserta -->
+                                                    <div class="col-md-6">
+                                                        <label class="form-label fw-bold text-dark">Lokasi Kegiatan Luar <span class="text-danger">*</span></label>
+                                                        <input type="text" name="lokasi" class="form-control rounded-3" value="{{ old('lokasi', $kegiatan->lokasi) }}" required>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label class="form-label fw-bold text-dark">Sasaran Peserta / Undangan</label>
+                                                        <input type="text" name="sasaran_peserta" class="form-control rounded-3" value="{{ old('sasaran_peserta', $kegiatan->sasaran_peserta) }}" placeholder="Contoh: Siswa-Siswi SMA/SMK &amp; Santri Aliyah Pesantren">
+                                                    </div>
+
+                                                    <!-- Pelaksana -->
+                                                    <div class="col-md-12">
+                                                        <label class="form-label fw-bold text-dark">Pelaksana / Penanggung Jawab Kegiatan</label>
+                                                        <input type="text" name="pelaksana" class="form-control rounded-3" value="{{ old('pelaksana', $kegiatan->pelaksana) }}">
+                                                    </div>
+
+                                                    <!-- Rincian Berita Acara -->
+                                                    <div class="col-md-12">
+                                                        <label class="form-label fw-bold text-dark">Rincian / Laporan Kronologi Hasil Kegiatan <span class="text-danger">*</span></label>
+                                                        <textarea name="rincian" rows="4" class="form-control rounded-3" required>{{ old('rincian', $kegiatan->rincian) }}</textarea>
+                                                    </div>
+
+                                                    <div class="col-md-12"><hr class="my-1"></div>
+
+                                                    <!-- Foto Utama -->
+                                                    <div class="col-md-6">
+                                                        <label class="form-label fw-bold text-dark"><i class="bi bi-image text-danger me-1"></i> Foto Utama / Sampul</label>
+                                                        @if($kegiatan->foto)
+                                                            <div class="d-flex align-items-center gap-2 mb-2 p-2 bg-light rounded-3 border">
+                                                                <img src="{{ $kegiatan->foto_url }}" alt="Sampul" style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px;">
+                                                                <div class="small">
+                                                                    <span class="text-success fw-bold d-block"><i class="bi bi-check2-circle me-1"></i> Foto utama tersimpan</span>
+                                                                    <span class="text-muted" style="font-size: 0.72rem;">Unggah file baru jika ingin mengganti</span>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                        <input type="file" name="foto" class="form-control rounded-3" accept="image/*">
+                                                        <small class="text-muted d-block mt-1">Format: JPG, PNG, WEBP (Maks. 12 MB). Kosongkan jika tidak ingin mengubah.</small>
+                                                    </div>
+
+                                                    <!-- Foto Tambahan -->
+                                                    <div class="col-md-6">
+                                                        <label class="form-label fw-bold text-dark"><i class="bi bi-images text-success me-1"></i> Tambah Foto Galeri (Bisa Banyak Sekaligus)</label>
+                                                        @if($kegiatan->jumlah_foto > 1)
+                                                            <div class="mb-2 p-2 bg-light rounded-3 border small">
+                                                                <span class="text-primary fw-semibold"><i class="bi bi-images me-1"></i> {{ $kegiatan->jumlah_foto }} foto saat ini tersimpan dalam album.</span>
+                                                            </div>
+                                                        @endif
+                                                        <input type="file" name="foto_tambahan[]" class="form-control rounded-3" accept="image/*" multiple>
+                                                        <small class="text-muted d-block mt-1">Tahan tombol <strong>Ctrl</strong> untuk memilih beberapa foto tambahan baru.</small>
+                                                    </div>
+
+                                                    <!-- Berkas Notula / LPJ -->
+                                                    <div class="col-md-6">
+                                                        <label class="form-label fw-bold text-dark"><i class="bi bi-file-earmark-pdf-fill text-danger me-1"></i> Berkas Notula / LPJ Resmi</label>
+                                                        @if($kegiatan->dokumen_laporan)
+                                                            <div class="d-flex align-items-center justify-content-between p-2 bg-primary-subtle rounded-3 border mb-2">
+                                                                <span class="small text-primary fw-semibold text-truncate me-2"><i class="bi bi-file-earmark-check-fill me-1"></i> Berkas saat ini terlampir (.{{ pathinfo($kegiatan->dokumen_laporan, PATHINFO_EXTENSION) }})</span>
+                                                                <a href="{{ route('wasbang.download', ['id' => $kegiatan->id, 'type' => 'dokumen']) }}" class="btn btn-primary btn-sm py-0 px-2" style="font-size: 0.75rem;">Unduh</a>
+                                                            </div>
+                                                        @endif
+                                                        <input type="file" name="dokumen_laporan" class="form-control rounded-3" accept=".pdf,.doc,.docx,.xls,.xlsx">
+                                                        <small class="text-muted d-block mt-1">Format: PDF/Word (Maks. 20 MB). Kosongkan jika tidak ingin mengganti berkas.</small>
+                                                    </div>
+
+                                                    <!-- Video -->
+                                                    <div class="col-md-6">
+                                                        <label class="form-label fw-bold text-dark"><i class="bi bi-camera-reels text-primary me-1"></i> Rekaman Video Kegiatan</label>
+                                                        @if($kegiatan->video)
+                                                            <div class="mb-2 p-2 bg-light rounded-3 border small">
+                                                                <span class="text-info-emphasis fw-semibold"><i class="bi bi-play-circle-fill me-1"></i> Video saat ini tersimpan di server</span>
+                                                            </div>
+                                                        @endif
+                                                        <input type="file" name="video" class="form-control rounded-3 mb-2" accept="video/mp4,video/webm">
+                                                        <input type="url" name="video_url" class="form-control rounded-3" placeholder="Atau tautan video streaming: https://..." value="{{ old('video_url', $kegiatan->video_url) }}">
+                                                        <small class="text-muted d-block mt-1">Unggah file video baru atau perbarui tautan eksternal.</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer bg-light p-3 d-flex justify-content-between">
+                                                <button type="button" class="btn btn-secondary px-3" data-bs-dismiss="modal">Batalkan</button>
+                                                <button type="submit" class="btn btn-danger px-4 fw-bold shadow-sm">
+                                                    <i class="bi bi-check-circle-fill me-1"></i> Simpan Perubahan Dokumentasi
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endauth
 
                 @endforeach
             </div>

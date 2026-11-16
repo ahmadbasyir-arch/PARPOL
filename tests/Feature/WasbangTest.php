@@ -182,6 +182,67 @@ class WasbangTest extends TestCase
     }
 
     /**
+     * Test Staf Wasbang dapat mengedit / memperbarui arsip kegiatan
+     */
+    public function test_staf_wasbang_can_update_activity(): void
+    {
+        $this->seed(WasbangKegiatanSeeder::class);
+        $kegiatan = WasbangKegiatan::first();
+
+        $staf = User::create([
+            'name' => 'Staf Pelaksana Bidang Wasbang',
+            'email' => 'wasbang@tanahlautkab.go.id',
+            'nip' => '19951015 202203 1 002',
+            'password' => bcrypt('password123'),
+            'role' => 'staf_wasbang',
+        ]);
+
+        $updateData = [
+            'nama_kegiatan' => 'Penjaringan Calon Paskibraka di SMA & Pesantren Kintap (Revisi)',
+            'kategori' => 'Penjaringan & Seleksi Paskibraka (SMA/SMK/Pesantren)',
+            'tanggal' => '2026-11-12',
+            'waktu' => '08:00 - 13:00 WITA',
+            'lokasi' => 'SMAN 1 Kintap & Pesantren Al-Kautsar',
+            'sasaran_peserta' => 'Siswa SMA dan Santri Aliyah Kintap',
+            'pelaksana' => 'Tim Bidang BIW, Pelatih & Pamong',
+            'rincian' => 'Data rincian telah diperbarui oleh staf lapangan setelah perbaikan administrasi.',
+            'status' => 'Selesai Dilaksanakan',
+        ];
+
+        $response = $this->actingAs($staf)->put(route('wasbang.update', $kegiatan->id), $updateData);
+
+        $response->assertRedirect();
+        $this->assertDatabaseHas('wasbang_kegiatans', [
+            'id' => $kegiatan->id,
+            'nama_kegiatan' => 'Penjaringan Calon Paskibraka di SMA & Pesantren Kintap (Revisi)',
+            'lokasi' => 'SMAN 1 Kintap & Pesantren Al-Kautsar',
+        ]);
+    }
+
+    /**
+     * Test tamu / Free User tidak dapat mengupdate arsip kegiatan
+     */
+    public function test_guest_cannot_update_activity(): void
+    {
+        $this->seed(WasbangKegiatanSeeder::class);
+        $kegiatan = WasbangKegiatan::first();
+
+        $response = $this->put(route('wasbang.update', $kegiatan->id), [
+            'nama_kegiatan' => 'Hacker Update Tanpa Izin',
+            'kategori' => 'Wawasan Kebangsaan',
+            'tanggal' => '2026-11-12',
+            'lokasi' => 'Pelaihari',
+            'rincian' => 'Tidak sah',
+            'status' => 'Selesai Dilaksanakan',
+        ]);
+
+        $response->assertRedirect(route('wasbang.login'));
+        $this->assertDatabaseMissing('wasbang_kegiatans', [
+            'nama_kegiatan' => 'Hacker Update Tanpa Izin',
+        ]);
+    }
+
+    /**
      * Test halaman login Wasbang dapat diakses secara mandiri dan tidak memuat partai politik
      */
     public function test_wasbang_login_page_renders_cleanly_without_parpol(): void
