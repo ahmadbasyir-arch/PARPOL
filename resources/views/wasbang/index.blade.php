@@ -1127,7 +1127,7 @@
                                             <label class="form-label fw-bold text-dark">
                                                 Nama Kegiatan Lapangan <span class="text-danger">*</span>
                                             </label>
-                                            <input type="text" name="nama_kegiatan" class="form-control form-control-lg rounded-3 @error('nama_kegiatan') is-invalid @enderror" placeholder="Contoh: Sosialisasi Wawasan Kebangsaan di SMAN 1 Pelaihari" value="{{ old('nama_kegiatan') }}" required>
+                                            <input type="text" name="nama_kegiatan" class="form-control form-control-lg rounded-3 @error('nama_kegiatan') is-invalid @enderror" placeholder="Contoh: Penjaringan Calon Paskibraka di SMA/Pesantren Kintap / Menghadiri Acara..." value="{{ old('nama_kegiatan') }}" required>
                                             @error('nama_kegiatan')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -1191,7 +1191,7 @@
                                             <label class="form-label fw-bold text-dark">
                                                 Lokasi Luar Lapangan <span class="text-danger">*</span>
                                             </label>
-                                            <input type="text" name="lokasi" class="form-control form-control-lg rounded-3 @error('lokasi') is-invalid @enderror" placeholder="Contoh: Lapangan Terbuka Pertasi Kencana, Desa Sumber Makmur..." value="{{ old('lokasi') }}" required>
+                                            <input type="text" name="lokasi" class="form-control form-control-lg rounded-3 @error('lokasi') is-invalid @enderror" placeholder="Contoh: SMAN 1 Kintap / MA Pondok Pesantren / Kantor Camat..." value="{{ old('lokasi') }}" required>
                                             @error('lokasi')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -1201,7 +1201,7 @@
                                             <label class="form-label fw-bold text-dark">
                                                 Sasaran / Peserta Kegiatan
                                             </label>
-                                            <input type="text" name="sasaran_peserta" class="form-control form-control-lg rounded-3" placeholder="Contoh: 120 Siswa SMA/SMK dan Guru Pendamping" value="{{ old('sasaran_peserta') }}">
+                                            <input type="text" name="sasaran_peserta" class="form-control form-control-lg rounded-3" placeholder="Contoh: Siswa-Siswi SMA/SMK &amp; Santri Aliyah Pesantren / Tamu Undangan" value="{{ old('sasaran_peserta') }}">
                                         </div>
 
                                         <!-- Tim Pelaksana -->
@@ -1209,7 +1209,7 @@
                                             <label class="form-label fw-bold text-dark">
                                                 Unit / Tim Pelaksana Kegiatan
                                             </label>
-                                            <input type="text" name="pelaksana" class="form-control rounded-3" placeholder="Contoh: Subbidang Bina Ideologi & Wawasan Kebangsaan Bakesbangpol" value="{{ old('pelaksana', 'Bidang Bina Ideologi, Wawasan Kebangsaan & Karakter Bangsa') }}">
+                                            <input type="text" name="pelaksana" class="form-control rounded-3" placeholder="Contoh: Tim Bidang BIW Bakesbangpol bersama Pelatih &amp; Pamong Paskibraka" value="{{ old('pelaksana', 'Bidang Bina Ideologi, Wawasan Kebangsaan & Karakter Bangsa') }}">
                                         </div>
 
                                         <!-- Rincian Kegiatan -->
@@ -1217,7 +1217,7 @@
                                             <label class="form-label fw-bold text-dark">
                                                 Rincian Lengkap / Laporan Berita Acara Pelaksanaan Luar <span class="text-danger">*</span>
                                             </label>
-                                            <textarea name="rincian" rows="6" class="form-control rounded-3 @error('rincian') is-invalid @enderror" placeholder="Tuliskan deskripsi kronologi kegiatan lapangan, materi wawasan kebangsaan yang disampaikan, narasumber yang hadir, dinamika jalannya acara, kesimpulan/output, serta tindak lanjut pelaksanaan..." required>{{ old('rincian') }}</textarea>
+                                            <textarea name="rincian" rows="6" class="form-control rounded-3 @error('rincian') is-invalid @enderror" placeholder="Tuliskan deskripsi kronologi kegiatan lapangan (seperti penjaringan seleksi postur dan wawasan Paskibraka ke sekolah/pesantren, atau rangkuman saat menghadiri acara dinas)..." required>{{ old('rincian') }}</textarea>
                                             @error('rincian')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror

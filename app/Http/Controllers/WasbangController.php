@@ -138,14 +138,18 @@ class WasbangController extends Controller
         $totalSelesai = WasbangKegiatan::where('status', 'Selesai Dilaksanakan')->count();
         $totalBerlangsung = WasbangKegiatan::where('status', 'Sedang Dilaksanakan')->count();
 
-        // Kategori List
+        // Kategori List (Disesuaikan dengan Tupoksi Wasbang, Penjaringan Paskibraka SMA/Pesantren, & Menghadiri Acara)
         $kategoriList = [
+            'Penjaringan & Seleksi Paskibraka (SMA/SMK/Pesantren)',
+            'Paskibraka & Kepemimpinan Pemuda',
+            'Menghadiri Acara Kedinasan & Undangan Luar',
             'Wawasan Kebangsaan',
             'Bina Ideologi Pancasila',
             'Karakter Bangsa & Moralitas',
             'Bela Negara & Ketahanan Bangsa',
-            'Paskibraka & Kepemimpinan Pemuda',
             'Pembauran Kebangsaan & Kerukunan',
+            'Monitoring, Evaluasi & Kunjungan Lapangan',
+            'Lainnya / Kegiatan Lapangan Terpadu',
         ];
 
         $viewData = compact(
