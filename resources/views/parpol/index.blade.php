@@ -118,8 +118,8 @@
     }
 
     .table-parpol tbody td {
-        padding: 16px 16px;
-        vertical-align: top;
+        padding: 10px 14px;
+        vertical-align: middle !important;
         font-size: 0.88rem;
         border-bottom: 1px solid #e2e8f0;
         color: #334155;
@@ -135,12 +135,12 @@
 
     /* Fluid Logo Box - Never Squished / Gepeng */
     .logo-box {
-        width: 64px !important;
-        min-width: 64px !important;
-        max-width: 64px !important;
-        height: 64px !important;
-        min-height: 64px !important;
-        max-height: 64px !important;
+        width: 60px !important;
+        min-width: 60px !important;
+        max-width: 60px !important;
+        height: 60px !important;
+        min-height: 60px !important;
+        max-height: 60px !important;
         flex-shrink: 0 !important;
         aspect-ratio: 1 / 1 !important;
         background: #ffffff;
@@ -162,6 +162,27 @@
         max-height: 100% !important;
         object-fit: contain !important;
         border-radius: 8px;
+    }
+
+    @media (max-width: 767.98px) {
+        .table-parpol thead th {
+            padding: 10px 12px;
+            font-size: 0.78rem;
+        }
+        .table-parpol tbody td {
+            padding: 8px 10px !important;
+            vertical-align: middle !important;
+        }
+        .logo-box {
+            width: 48px !important;
+            min-width: 48px !important;
+            max-width: 48px !important;
+            height: 48px !important;
+            min-height: 48px !important;
+            max-height: 48px !important;
+            border-radius: 10px !important;
+            padding: 3px !important;
+        }
     }
 
     /* Party Cards */
@@ -187,7 +208,7 @@
     }
 
     .party-card-header {
-        padding: 14px 18px;
+        padding: 10px 16px;
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
         display: flex;
@@ -198,7 +219,7 @@
     }
 
     .party-card-body {
-        padding: 18px;
+        padding: 14px;
         flex: 1 1 auto;
         display: flex;
         flex-direction: column;
@@ -207,13 +228,27 @@
     }
 
     .party-card-footer {
-        padding: 14px 18px;
+        padding: 10px 16px;
         background: #f8fafc;
         border-top: 1px solid #e2e8f0;
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
         width: 100%;
         box-sizing: border-box;
+    }
+
+    @media (max-width: 767.98px) {
+        .party-card-header, .party-card-footer {
+            padding: 8px 12px;
+        }
+        .party-card-body {
+            padding: 10px 12px;
+        }
+        .logo-card-wrapper {
+            width: 58px !important;
+            height: 58px !important;
+            margin-bottom: 8px !important;
+        }
     }
 
 
@@ -340,15 +375,24 @@
             <div class="card border-0 shadow-sm rounded-4 p-3 mb-4 bg-white border">
                 <div class="row g-3 align-items-center">
                     <div class="col-12 col-md-6">
-                        <div class="input-group">
+                        <form action="{{ route('parpol.home') }}#tabel-data" method="GET" class="input-group">
+                            @if(request('per_page'))
+                                <input type="hidden" name="per_page" value="{{ request('per_page') }}">
+                            @endif
+                            @if(request('kecamatan'))
+                                <input type="hidden" name="kecamatan" value="{{ request('kecamatan') }}">
+                            @endif
                             <span class="input-group-text bg-light border-end-0"><i class="bi bi-search text-muted"></i></span>
-                            <input type="text" id="liveSearchInput" class="form-control border-start-0 ps-0" placeholder="Ketik nama partai (misal: PKB, Gerindra, Golkar, PKS) atau nama pengurus..." onkeyup="filterParpolTable()">
-                        </div>
+                            <input type="text" name="q" id="liveSearchInput" value="{{ request('q') }}" class="form-control border-start-0 ps-0" placeholder="Ketik nama partai atau pengurus (Enter untuk cari)..." onkeyup="filterParpolTable()">
+                            @if(request('q'))
+                                <a href="{{ request()->fullUrlWithQuery(['q' => null, 'page' => 1]) }}#tabel-data" class="btn btn-outline-secondary border-start-0" title="Hapus Filter"><i class="bi bi-x-lg"></i></a>
+                            @endif
+                        </form>
                     </div>
                     <div class="col-12 col-md-6 text-md-end d-flex flex-wrap gap-2 justify-content-start justify-content-md-end">
-                        <button class="btn btn-sm btn-outline-primary active filter-btn flex-fill flex-md-grow-0" onclick="filterByKecamatan('all', this)">Semua ({{ $totalParpol }})</button>
-                        <button class="btn btn-sm btn-outline-primary filter-btn flex-fill flex-md-grow-0" onclick="filterByKecamatan('Pelaihari', this)">Kec. Pelaihari ({{ $totalPelaihari }})</button>
-                        <button class="btn btn-sm btn-outline-primary filter-btn flex-fill flex-md-grow-0" onclick="filterByKecamatan('Batu Ampar', this)">Kec. Batu Ampar ({{ $totalBatuAmpar }})</button>
+                        <a href="{{ request()->fullUrlWithQuery(['kecamatan' => null, 'page' => 1]) }}#tabel-data" class="btn btn-sm {{ !request('kecamatan') ? 'btn-primary text-white active' : 'btn-outline-primary' }} filter-btn flex-fill flex-md-grow-0">Semua ({{ $totalParpol }})</a>
+                        <a href="{{ request()->fullUrlWithQuery(['kecamatan' => 'Pelaihari', 'page' => 1]) }}#tabel-data" class="btn btn-sm {{ request('kecamatan') == 'Pelaihari' ? 'btn-primary text-white active' : 'btn-outline-primary' }} filter-btn flex-fill flex-md-grow-0">Kec. Pelaihari ({{ $totalPelaihari }})</a>
+                        <a href="{{ request()->fullUrlWithQuery(['kecamatan' => 'Batu Ampar', 'page' => 1]) }}#tabel-data" class="btn btn-sm {{ request('kecamatan') == 'Batu Ampar' ? 'btn-primary text-white active' : 'btn-outline-primary' }} filter-btn flex-fill flex-md-grow-0">Kec. Batu Ampar ({{ $totalBatuAmpar }})</a>
                     </div>
                 </div>
             </div>
@@ -365,35 +409,35 @@
                     <thead>
                         <tr>
                             <th class="text-center" style="width: 50px;">NO</th>
-                            <th style="min-width: 240px;">PARPOL</th>
-                            <th style="min-width: 220px;">LEGALITAS</th>
-                            <th style="min-width: 260px;">PENGURUS</th>
-                            <th style="min-width: 240px;">ALAMAT KANTOR</th>
+                            <th style="min-width: 220px;">PARPOL</th>
+                            <th style="min-width: 200px;">LEGALITAS</th>
+                            <th style="min-width: 240px;">PENGURUS</th>
+                            <th style="min-width: 220px;">ALAMAT KANTOR</th>
                             <th class="text-center" style="width: 80px;">SK3P3</th>
-                            <th class="text-center" style="width: 100px;">AKSI</th>
+                            <th class="text-center" style="width: 90px;">AKSI</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($parpols as $p)
                             <tr class="parpol-row" data-kecamatan="{{ $p->kecamatan }}" data-search="{{ strtolower($p->nama_partai . ' ' . $p->akronim . ' ' . $p->ketua . ' ' . $p->sekretaris . ' ' . $p->bendahara . ' ' . $p->lo_nama . ' ' . $p->alamat . ' ' . $p->no_sk) }}">
                                 <!-- NO -->
-                                <td class="text-center fw-bold fs-5 text-secondary">
+                                <td class="text-center fw-bold fs-6 text-secondary py-2 text-nowrap">
                                     {{ $p->nomor_urut }}
                                 </td>
 
                                 <!-- PARPOL & LOGO -->
-                                <td>
-                                    <div class="d-flex align-items-center gap-3" style="min-width: 220px;">
+                                <td class="py-2">
+                                    <div class="d-flex align-items-center gap-2 gap-sm-3" style="min-width: 190px;">
                                         <div class="logo-box flex-shrink-0">
                                             <img src="{{ asset($p->logo) }}?v=16" alt="Logo {{ $p->akronim }}">
                                         </div>
-                                        <div>
-                                            <h6 class="fw-bold text-dark mb-0">{{ $p->akronim }}</h6>
-                                            <span class="small text-muted">{{ $p->nama_partai }}</span>
+                                        <div class="lh-sm">
+                                            <h6 class="fw-bold text-dark mb-0.5 text-break" style="font-size: clamp(0.9rem, 3.5vw, 0.98rem);">{{ $p->akronim }}</h6>
+                                            <span class="small text-muted d-block" style="font-size: 0.78rem;">{{ $p->nama_partai }}</span>
                                             @if ($p->pendidikanPolitik->count() > 0)
-                                                <div>
-                                                    <span class="badge bg-success bg-opacity-10 text-success border border-success-subtle rounded-pill px-2 py-0 mt-1" style="font-size: 0.72rem;">
-                                                        <i class="bi bi-mortarboard-fill me-1"></i> Ada Laporan Dikpol ({{ $p->pendidikanPolitik->count() }} Kegiatan)
+                                                <div class="mt-1">
+                                                    <span class="badge bg-success bg-opacity-10 text-success border border-success-subtle rounded-pill px-2 py-0.5" style="font-size: 0.7rem;">
+                                                        <i class="bi bi-mortarboard-fill me-1"></i> {{ $p->pendidikanPolitik->count() }} Dikpol
                                                     </span>
                                                 </div>
                                             @endif
@@ -402,12 +446,12 @@
                                 </td>
 
                                 <!-- LEGALITAS -->
-                                <td>
-                                    <div class="small">
-                                        <span class="text-muted d-block">No SK Kepengurusan:</span>
-                                        <strong class="text-dark">{{ $p->no_sk }}</strong>
+                                <td class="py-2">
+                                    <div class="small lh-sm">
+                                        <span class="text-muted d-block" style="font-size: 0.72rem;">No SK Kepengurusan:</span>
+                                        <strong class="text-dark d-block text-break" style="font-size: 0.82rem;">{{ $p->no_sk }}</strong>
                                         @if ($p->tanggal_sk)
-                                            <div class="text-muted mt-1">
+                                            <div class="text-muted mt-1" style="font-size: 0.75rem;">
                                                 <i class="bi bi-calendar-check me-1 text-primary"></i> {{ $p->tanggal_sk }}
                                             </div>
                                         @endif
@@ -415,45 +459,34 @@
                                 </td>
 
                                 <!-- PENGURUS -->
-                                <td>
-                                    <div class="small">
-                                        <div class="mb-1">
-                                            <span class="text-muted">Ketua:</span> <strong>{{ $p->ketua }}</strong>
-                                            @if ($p->no_hp_ketua && $p->no_hp_ketua != '-')
-                                                <span class="text-muted">({{ $p->no_hp_ketua }})</span>
-                                            @endif
-                                        </div>
-                                        <div class="mb-1">
-                                            <span class="text-muted">Sekretaris:</span> <strong>{{ $p->sekretaris }}</strong>
-                                        </div>
-                                        <div class="mb-1">
-                                            <span class="text-muted">Bendahara:</span> <strong>{{ $p->bendahara }}</strong>
-                                        </div>
-                                        <div class="mt-2 pt-1 border-top">
-                                            <span class="text-muted">LO:</span> 
-                                            <strong class="text-primary">{{ $p->lo_nama }}</strong>
-                                            @if ($p->lo_hp)
-                                                <div class="text-dark mt-1">
-                                                    <i class="bi bi-telephone-fill text-secondary me-1"></i> <strong>{{ $p->lo_hp }}</strong>
-                                                </div>
-                                            @endif
-                                        </div>
+                                <td class="py-2">
+                                    <div class="small lh-sm" style="min-width: 220px;">
+                                        <div class="mb-1"><span class="text-muted">Ketua:</span> <strong>{{ $p->ketua }}</strong></div>
+                                        <div class="mb-1"><span class="text-muted">Sekretaris:</span> <strong>{{ $p->sekretaris }}</strong></div>
+                                        <div class="mb-1"><span class="text-muted">Bendahara:</span> <strong>{{ $p->bendahara }}</strong></div>
+                                        @if ($p->lo_nama && $p->lo_nama != '-')
+                                            <div class="mt-1 pt-1 border-top text-muted" style="font-size: 0.76rem;">
+                                                <span>LO:</span> <strong class="text-primary">{{ $p->lo_nama }}</strong>
+                                                @if ($p->lo_hp)
+                                                    <span class="ms-1 text-dark fw-semibold">({{ $p->lo_hp }})</span>
+                                                @endif
+                                            </div>
+                                        @endif
                                     </div>
                                 </td>
 
                                 <!-- ALAMAT -->
-                                <td>
-                                    <div class="small">
-                                        <i class="bi bi-geo-alt-fill text-danger me-1"></i>
-                                        {{ $p->alamat }}
+                                <td class="py-2">
+                                    <div class="small lh-sm" style="min-width: 200px;">
+                                        <div class="text-secondary"><i class="bi bi-geo-alt-fill text-danger me-1"></i> {{ Str::limit($p->alamat, 60) }}</div>
                                         <div class="mt-1">
-                                            <span class="badge bg-light text-secondary border">Kec. {{ $p->kecamatan }}</span>
+                                            <span class="badge bg-light text-secondary border" style="font-size: 0.72rem;">Kec. {{ $p->kecamatan }}</span>
                                         </div>
                                     </div>
                                 </td>
 
                                 <!-- SK3P3 -->
-                                <td class="text-center">
+                                <td class="text-center py-2">
                                     @if (strtolower($p->sk3p3) === 'ada')
                                         <span class="badge-sk">
                                             <i class="bi bi-check2-circle me-1"></i> Ada
@@ -466,8 +499,8 @@
                                 </td>
 
                                 <!-- AKSI -->
-                                <td class="text-center">
-                                    <button class="btn btn-sm btn-outline-primary w-100 mb-1" data-bs-toggle="modal" data-bs-target="#modalParpol{{ $p->id }}">
+                                <td class="text-center py-2">
+                                    <button class="btn btn-sm btn-outline-primary w-100 py-1" data-bs-toggle="modal" data-bs-target="#modalParpol{{ $p->id }}" style="font-size: 0.8rem; white-space: nowrap;">
                                         <i class="bi bi-eye"></i> Detail
                                     </button>
                                 </td>
@@ -476,6 +509,69 @@
                     </tbody>
                 </table>
             </div>
+
+            <!-- Navigasi Halaman Pagination (Sebelumnya / Selanjutnya) -->
+            @if ($parpols->hasPages())
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 p-3 mt-3 bg-white border rounded-4 shadow-sm">
+                    <div class="text-muted small text-center text-md-start">
+                        Menampilkan <strong class="text-dark">{{ $parpols->firstItem() }}</strong> - <strong class="text-dark">{{ $parpols->lastItem() }}</strong> dari <strong class="text-dark">{{ $parpols->total() }}</strong> Partai Politik
+                        <span class="badge bg-light text-secondary border ms-1">Halaman {{ $parpols->currentPage() }} dari {{ $parpols->lastPage() }}</span>
+                    </div>
+
+                    <nav aria-label="Navigasi Halaman Parpol" class="w-100 w-md-auto">
+                        <ul class="pagination pagination-sm justify-content-center justify-content-md-end mb-0 gap-1 flex-wrap">
+                            {{-- Tombol Sebelumnya --}}
+                            @if ($parpols->onFirstPage())
+                                <li class="page-item disabled">
+                                    <span class="page-link rounded-pill px-3 py-2 fw-semibold text-muted bg-light border">
+                                        <i class="bi bi-chevron-left me-1"></i> Sebelumnya
+                                    </span>
+                                </li>
+                            @else
+                                <li class="page-item">
+                                    <a class="page-link rounded-pill px-3 py-2 fw-semibold border text-primary" href="{{ $parpols->previousPageUrl() }}#tabel-data">
+                                        <i class="bi bi-chevron-left me-1"></i> Sebelumnya
+                                    </a>
+                                </li>
+                            @endif
+
+                            {{-- Nomor Halaman --}}
+                            @foreach ($parpols->getUrlRange(1, $parpols->lastPage()) as $page => $url)
+                                <li class="page-item {{ $page == $parpols->currentPage() ? 'active' : '' }}">
+                                    <a class="page-link rounded-circle px-3 py-2 fw-bold border text-center" href="{{ $url }}#tabel-data" style="width: 38px; height: 38px; display: inline-flex; align-items: center; justify-content: center;">
+                                        {{ $page }}
+                                    </a>
+                                </li>
+                            @endforeach
+
+                            {{-- Tombol Selanjutnya --}}
+                            @if ($parpols->hasMorePages())
+                                <li class="page-item">
+                                    <a class="page-link rounded-pill px-3 py-2 fw-semibold border text-primary" href="{{ $parpols->nextPageUrl() }}#tabel-data">
+                                        Selanjutnya <i class="bi bi-chevron-right ms-1"></i>
+                                    </a>
+                                </li>
+                            @else
+                                <li class="page-item disabled">
+                                    <span class="page-link rounded-pill px-3 py-2 fw-semibold text-muted bg-light border">
+                                        Selanjutnya <i class="bi bi-chevron-right ms-1"></i>
+                                    </span>
+                                </li>
+                            @endif
+                        </ul>
+                    </nav>
+
+                    {{-- Opsi Per Halaman --}}
+                    <div class="d-flex align-items-center gap-1 small text-muted justify-content-center">
+                        <span>Per Hal:</span>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <a href="{{ request()->fullUrlWithQuery(['per_page' => 5, 'page' => 1]) }}#tabel-data" class="btn btn-sm {{ request('per_page') == 5 ? 'btn-primary text-white' : 'btn-outline-secondary' }}">5</a>
+                            <a href="{{ request()->fullUrlWithQuery(['per_page' => 10, 'page' => 1]) }}#tabel-data" class="btn btn-sm {{ (request('per_page') == 10 || !request('per_page')) ? 'btn-primary text-white' : 'btn-outline-secondary' }}">10</a>
+                            <a href="{{ request()->fullUrlWithQuery(['per_page' => 20, 'page' => 1]) }}#tabel-data" class="btn btn-sm {{ request('per_page') == 20 ? 'btn-primary text-white' : 'btn-outline-secondary' }}">Semua</a>
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
     </section>
 
@@ -504,12 +600,12 @@
                             </div>
 
                             <div class="party-card-body text-center">
-                                <div class="mx-auto mb-3" style="width: 80px; height: 80px; padding: 4px; background: #ffffff; border-radius: 14px; border: 1.5px solid #cbd5e1; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.06); overflow: hidden;">
+                                <div class="mx-auto mb-2 mb-sm-3 logo-card-wrapper" style="width: 72px; height: 72px; padding: 4px; background: #ffffff; border-radius: 14px; border: 1.5px solid #cbd5e1; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.06); overflow: hidden;">
                                     <img src="{{ asset($p->logo) }}?v=16" alt="Logo {{ $p->akronim }}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
                                 </div>
 
                                 <h5 class="fw-bold text-dark mb-1">{{ $p->akronim }}</h5>
-                                <p class="text-muted small mb-2" style="min-height: 38px;">{{ $p->nama_partai }}</p>
+                                <p class="text-muted small mb-2 lh-sm">{{ $p->nama_partai }}</p>
 
                                 @if ($p->pendidikanPolitik->count() > 0)
                                     <div class="mb-2">
@@ -525,7 +621,7 @@
                                     </div>
                                 @endif
 
-                                <div class="text-start p-3 rounded-3 bg-light border small mb-3 mt-auto">
+                                <div class="text-start p-2.5 rounded-3 bg-light border small mb-2 mt-auto">
                                     <div class="mb-1 text-break">
                                         <span class="text-muted">Ketua:</span> <strong class="text-dark">{{ $p->ketua }}</strong>
                                     </div>
@@ -559,6 +655,68 @@
                     </div>
                 @endforeach
             </div>
+
+            <!-- Navigasi Halaman Pagination (Galeri) -->
+            @if ($parpols->hasPages())
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 p-3 mt-4 bg-light border rounded-4 shadow-sm">
+                    <div class="text-muted small text-center text-md-start">
+                        Menampilkan <strong class="text-dark">{{ $parpols->firstItem() }}</strong> - <strong class="text-dark">{{ $parpols->lastItem() }}</strong> dari <strong class="text-dark">{{ $parpols->total() }}</strong> Partai Politik
+                        <span class="badge bg-white text-secondary border ms-1">Halaman {{ $parpols->currentPage() }} dari {{ $parpols->lastPage() }}</span>
+                    </div>
+
+                    <nav aria-label="Navigasi Galeri Parpol" class="w-100 w-md-auto">
+                        <ul class="pagination pagination-sm justify-content-center justify-content-md-end mb-0 gap-1 flex-wrap">
+                            {{-- Tombol Sebelumnya --}}
+                            @if ($parpols->onFirstPage())
+                                <li class="page-item disabled">
+                                    <span class="page-link rounded-pill px-3 py-1.5 fw-semibold text-muted bg-white border">
+                                        <i class="bi bi-chevron-left me-1"></i> Sebelumnya
+                                    </span>
+                                </li>
+                            @else
+                                <li class="page-item">
+                                    <a class="page-link rounded-pill px-3 py-1.5 fw-semibold border text-primary bg-white" href="{{ $parpols->previousPageUrl() }}#galeri-partai">
+                                        <i class="bi bi-chevron-left me-1"></i> Sebelumnya
+                                    </a>
+                                </li>
+                            @endif
+
+                            {{-- Nomor Halaman --}}
+                            @foreach ($parpols->getUrlRange(1, $parpols->lastPage()) as $page => $url)
+                                <li class="page-item {{ $page == $parpols->currentPage() ? 'active' : '' }}">
+                                    <a class="page-link rounded-circle px-3 py-1.5 fw-bold border text-center" href="{{ $url }}#galeri-partai" style="width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center;">
+                                        {{ $page }}
+                                    </a>
+                                </li>
+                            @endforeach
+
+                            {{-- Tombol Selanjutnya --}}
+                            @if ($parpols->hasMorePages())
+                                <li class="page-item">
+                                    <a class="page-link rounded-pill px-3 py-1.5 fw-semibold border text-primary bg-white" href="{{ $parpols->nextPageUrl() }}#galeri-partai">
+                                        Selanjutnya <i class="bi bi-chevron-right ms-1"></i>
+                                    </a>
+                                </li>
+                            @else
+                                <li class="page-item disabled">
+                                    <span class="page-link rounded-pill px-3 py-1.5 fw-semibold text-muted bg-white border">
+                                        Selanjutnya <i class="bi bi-chevron-right ms-1"></i>
+                                    </span>
+                                </li>
+                            @endif
+                        </ul>
+                    </nav>
+
+                    <div class="d-flex align-items-center gap-1 small text-muted justify-content-center">
+                        <span>Per Hal:</span>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <a href="{{ request()->fullUrlWithQuery(['per_page' => 5, 'page' => 1]) }}#galeri-partai" class="btn btn-sm {{ request('per_page') == 5 ? 'btn-primary text-white' : 'btn-outline-secondary' }}">5</a>
+                            <a href="{{ request()->fullUrlWithQuery(['per_page' => 10, 'page' => 1]) }}#galeri-partai" class="btn btn-sm {{ (request('per_page') == 10 || !request('per_page')) ? 'btn-primary text-white' : 'btn-outline-secondary' }}">10</a>
+                            <a href="{{ request()->fullUrlWithQuery(['per_page' => 20, 'page' => 1]) }}#galeri-partai" class="btn btn-sm {{ request('per_page') == 20 ? 'btn-primary text-white' : 'btn-outline-secondary' }}">Semua</a>
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
     </section>
 
@@ -916,7 +1074,7 @@
                                     <label class="form-label small fw-bold">Pilih Partai Politik <span class="text-danger">*</span></label>
                                     <select class="form-select form-select-lg" name="nama_partai" required style="min-height: 48px; font-size: 16px;">
                                         <option value="">-- Pilih Partai Politik (20 Parpol) --</option>
-                                        @foreach ($parpols as $p)
+                                        @foreach (($allParpols ?? $parpols) as $p)
                                             <option value="{{ $p->akronim }} - {{ $p->nama_partai }}">{{ $p->nomor_urut }}. {{ $p->akronim }}</option>
                                         @endforeach
                                     </select>
@@ -956,7 +1114,7 @@
     </section>
 
     <!-- ================= MODAL DETAIL PROFIL TIAP PARTAI ================= -->
-    @foreach ($parpols as $p)
+    @foreach (($allParpols ?? $parpols) as $p)
         @php
             $hasVisiMisi = !empty($p->visi) || !empty($p->misi);
             $hasDikpol = $p->pendidikanPolitik->count() > 0;

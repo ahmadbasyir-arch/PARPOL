@@ -165,25 +165,27 @@
 
     <!-- Header Portal -->
     <header class="portal-topbar">
-        <div class="container-fluid px-lg-5 px-3">
-            <div class="d-flex align-items-center justify-content-between">
-                <div class="d-flex align-items-center gap-3">
-                    <img src="{{ asset('images/tanahlaut.png') }}" alt="Logo Kab. Tanah Laut" style="width: 38px; height: auto; object-fit: contain;">
+        <div class="container-fluid px-2 px-sm-3 px-lg-5">
+            <div class="d-flex align-items-center justify-content-between gap-2">
+                <div class="d-flex align-items-center gap-2 gap-sm-3 min-w-0">
+                    <img src="{{ asset('images/tanahlaut.png') }}" alt="Logo Kab. Tanah Laut" style="width: 32px; height: auto; object-fit: contain;" class="flex-shrink-0">
                     <div>
-                        <h6 class="fw-bold mb-0 text-dark">Portal Bakesbangpol</h6>
-                        <small class="text-muted" style="font-size: 0.75rem;">Kabupaten Tanah Laut</small>
+                        <h6 class="fw-bold mb-0 text-dark text-nowrap" style="font-size: clamp(0.85rem, 3.8vw, 1.05rem);">Portal Bakesbangpol</h6>
+                        <small class="text-muted d-none d-sm-block" style="font-size: 0.72rem;">Kabupaten Tanah Laut</small>
                     </div>
                 </div>
 
-                <div class="d-flex align-items-center gap-2">
-                    <span class="badge bg-light text-dark border px-3 py-2 rounded-pill fw-semibold" style="font-size: 0.8rem;">
+                <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                    <span class="badge bg-light text-dark border px-3 py-2 rounded-pill fw-semibold d-none d-md-inline-flex" style="font-size: 0.8rem;">
                         <i class="bi bi-geo-alt-fill text-danger me-1"></i> Kab. Tanah Laut
                     </span>
                     <div class="dropdown">
-                        <button class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-semibold dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-box-arrow-in-right me-1"></i> Login Petugas
+                        <button class="btn btn-outline-primary btn-sm rounded-pill px-2.5 px-sm-3 py-1.5 fw-semibold dropdown-toggle d-flex align-items-center gap-1 shadow-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 0.82rem; white-space: nowrap;">
+                            <i class="bi bi-box-arrow-in-right"></i>
+                            <span class="d-none d-sm-inline">Login Petugas</span>
+                            <span class="d-inline d-sm-none">Login</span>
                         </button>
-                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 mt-1" style="min-width: 250px;">
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 mt-1" style="min-width: 250px; max-width: 90vw;">
                             <li>
                                 <a class="dropdown-item py-2 small d-flex align-items-center gap-2" href="{{ route('wasbang.login') }}">
                                     <i class="bi bi-flag-fill text-danger fs-5"></i>

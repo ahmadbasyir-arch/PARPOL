@@ -43,7 +43,14 @@ class ParpolController extends Controller
             $query->where('kecamatan', $request->kecamatan);
         }
 
-        $parpols = $query->orderBy('nomor_urut')->get();
+        // Pagination (default 10 partai per halaman, opsi 5 atau 10)
+        $perPage = (int) $request->input('per_page', 10);
+        if (!in_array($perPage, [5, 10, 20])) {
+            $perPage = 10;
+        }
+
+        $parpols = $query->orderBy('nomor_urut')->paginate($perPage)->withQueryString();
+        $allParpols = Parpol::with('pendidikanPolitik')->orderBy('nomor_urut')->get();
 
         // Statistik Keseluruhan
         $totalParpol = Parpol::count();
@@ -64,6 +71,7 @@ class ParpolController extends Controller
 
         return view('parpol.index', compact(
             'parpols',
+            'allParpols',
             'totalParpol',
             'totalPelaihari',
             'totalBatuAmpar',
