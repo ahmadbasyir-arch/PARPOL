@@ -282,9 +282,6 @@
                     <a href="{{ route('wasbang.cetak') }}" target="_blank" class="btn btn-warning px-4 py-2 fw-semibold rounded-3 text-dark">
                         <i class="bi bi-printer-fill me-1"></i> Rekap Arsip
                     </a>
-                    <a href="{{ asset('Panduan_Bimbingan_PKL_Wasbang.pdf') }}" download="Panduan_Bimbingan_PKL_Wasbang.pdf" target="_blank" class="btn btn-outline-light px-3 py-2 fw-semibold rounded-3 text-white">
-                        <i class="bi bi-file-earmark-pdf-fill text-danger me-1"></i> Unduh Panduan PDF
-                    </a>
                 </div>
             </div>
             <div class="col-lg-4 d-none d-lg-block text-center">

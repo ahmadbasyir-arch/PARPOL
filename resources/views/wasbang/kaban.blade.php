@@ -103,9 +103,6 @@
                     <a href="{{ route('wasbang.cetak') }}" target="_blank" class="btn btn-primary px-4 py-2 fw-bold rounded-3 shadow-sm">
                         <i class="bi bi-printer-fill me-1"></i> Cetak Rekapitulasi Eksekutif (Kaban &amp; Kabid)
                     </a>
-                    <a href="{{ asset('Panduan_Bimbingan_PKL_Wasbang.pdf') }}" download target="_blank" class="btn btn-outline-light px-3 py-2 fw-semibold rounded-3">
-                        <i class="bi bi-file-earmark-pdf-fill text-danger me-1"></i> Panduan PDF
-                    </a>
                     <a href="{{ route('wasbang.index', ['view' => 'publik']) }}" class="btn btn-outline-info px-3 py-2 fw-semibold rounded-3 text-white">
                         <i class="bi bi-eye-fill me-1"></i> Buka Tampilan Publik
                     </a>

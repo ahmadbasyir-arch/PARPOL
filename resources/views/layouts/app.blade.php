@@ -537,9 +537,6 @@
                 <!-- Tombol Aksi di Pojok Kanan Atas -->
                 <div class="d-flex align-items-center gap-2 ms-xl-2 mt-2 mt-xl-0 flex-shrink-0">
                     @if(request()->routeIs('wasbang.*'))
-                        <a class="btn btn-outline-danger btn-sm fw-bold rounded-3 shadow-sm text-decoration-none bg-white" href="{{ asset('Panduan_Bimbingan_PKL_Wasbang.pdf') }}" download target="_blank" title="Unduh File Panduan Bimbingan PKL (PDF)">
-                            <i class="bi bi-file-earmark-pdf-fill text-danger me-1"></i> Panduan PDF
-                        </a>
                         <a class="btn btn-warning text-dark fw-bold btn-sm rounded-3 shadow-sm text-decoration-none" href="{{ route('wasbang.cetak') }}" target="_blank" title="Cetak Rekapitulasi Berkas Arsip">
                             <i class="bi bi-printer-fill me-1"></i> Rekap Arsip
                         </a>
