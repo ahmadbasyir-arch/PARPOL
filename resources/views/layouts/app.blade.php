@@ -39,6 +39,34 @@
             scroll-behavior: smooth;
         }
 
+        @if(request()->routeIs('wasbang.*'))
+        /* ========================================================
+           Khusus Modul Wasbang: Skala Zoom 75%
+           Menyesuaikan agar saat browser zoom 100%, tampilannya
+           proporsional, rapi, dan pas setara zoom 75%.
+           ======================================================== */
+        body.wasbang-scoped {
+            zoom: 0.75;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        @supports not (zoom: 1) {
+            body.wasbang-scoped {
+                transform: scale(0.75);
+                transform-origin: top center;
+                width: 133.3333%;
+            }
+        }
+
+        @media print {
+            body.wasbang-scoped {
+                zoom: 1 !important;
+                transform: none !important;
+                width: auto !important;
+            }
+        }
+        @endif
+
         /* Top Bar */
         .top-bar {
             background-color: var(--parpol-secondary);
@@ -376,7 +404,7 @@
     </style>
     @stack('styles')
 </head>
-<body>
+<body class="{{ request()->routeIs('wasbang.*') ? 'wasbang-scoped' : '' }}">
 
     <!-- Bar Informasi Wilayah -->
     <div class="top-bar d-none d-lg-block">
