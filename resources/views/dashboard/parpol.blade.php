@@ -3,32 +3,32 @@
 @section('title', 'Dashboard Pengurus ' . ($parpol->akronim ?? 'Partai') . ' - SIPARPOL')
 
 @section('content')
-<div class="py-5 bg-light" style="min-height: 85vh;">
-    <div class="container py-3">
+<div class="py-3 py-md-4 bg-light" style="min-height: 85vh;">
+    <div class="container py-1 py-md-2">
 
         <!-- Welcome Banner Partai -->
         <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden" style="background: linear-gradient(135deg, #1e293b 0%, #0f766e 100%);">
             <div class="card-body p-3 p-sm-4 p-md-5 text-white">
                 <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3">
-                    <div class="d-flex align-items-center gap-3">
+                    <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3 flex-grow-1 min-w-0">
                         <div class="shadow-sm flex-shrink-0" style="width: 72px; height: 72px; background: #ffffff; border-radius: 14px; border: 2px solid rgba(255, 255, 255, 0.4); display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 4px;">
                             <img src="{{ asset($parpol->logo) }}?v=16" alt="{{ $parpol->akronim }}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
                         </div>
-                        <div>
-                            <span class="badge bg-warning text-dark text-uppercase px-2 py-1 mb-1 fw-bold" style="font-size: 0.72rem;">Nomor Urut {{ sprintf('%02d', $parpol->nomor_urut) }} &bull; Pengurus DPC/DPD</span>
-                            <h3 class="fw-bold mb-1 fs-4 fs-md-3">{{ $parpol->nama_partai }} ({{ $parpol->akronim }})</h3>
-                            <p class="text-white-50 mb-0 small">
+                        <div class="flex-grow-1 min-w-0">
+                            <span class="badge bg-warning text-dark text-uppercase px-2.5 py-1 mb-2 fw-bold text-wrap text-start lh-base" style="font-size: 0.75rem; white-space: normal;">Nomor Urut {{ sprintf('%02d', $parpol->nomor_urut) }} &bull; Pengurus DPC/DPD</span>
+                            <h3 class="fw-bold mb-1 fs-4 fs-md-3 text-break">{{ $parpol->nama_partai }} ({{ $parpol->akronim }})</h3>
+                            <p class="text-white-50 mb-0 small text-break">
                                 <i class="bi bi-geo-alt me-1"></i> {{ $parpol->alamat }}, Kec. {{ $parpol->kecamatan }} &bull; Akun: <strong>{{ $user->email }}</strong>
                             </p>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center gap-2 mt-2 mt-md-0 w-100 w-md-auto justify-content-start justify-content-md-end">
-                        <a href="{{ route('parpol.home') }}" class="btn btn-outline-light btn-sm rounded-pill px-3 flex-fill flex-md-grow-0 text-center">
+                    <div class="d-flex align-items-center gap-2 mt-2 mt-md-0 w-100 w-md-auto justify-content-start justify-content-md-end flex-shrink-0">
+                        <a href="{{ route('parpol.home') }}" class="btn btn-outline-light btn-sm rounded-pill px-3 py-2 flex-fill flex-md-grow-0 text-center fw-semibold">
                             <i class="bi bi-eye me-1"></i> Portal Publik
                         </a>
                         <form action="{{ route('logout') }}" method="POST" class="d-inline flex-fill flex-md-grow-0">
                             @csrf
-                            <button type="submit" class="btn btn-danger btn-sm rounded-pill px-3 w-100 text-center">
+                            <button type="submit" class="btn btn-danger btn-sm rounded-pill px-3 py-2 w-100 text-center fw-semibold">
                                 <i class="bi bi-box-arrow-right me-1"></i> Logout
                             </button>
                         </form>
