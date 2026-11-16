@@ -254,6 +254,16 @@
             }
         }
 
+        @media (min-width: 576px) {
+            .w-sm-auto { width: auto !important; }
+        }
+        @media (min-width: 768px) {
+            .w-md-auto { width: auto !important; }
+        }
+        @media (min-width: 992px) {
+            .w-lg-auto { width: auto !important; }
+        }
+
         .nav-link {
             font-weight: 600;
             color: #334155 !important;

@@ -105,19 +105,21 @@
 
         <!-- Panel Landasan Ideologi & Visi-Misi Partai -->
         <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
-            <div class="card-header bg-white p-3 p-md-4 d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-3 border-bottom">
-                <div class="d-flex align-items-center gap-3">
+            <div class="card-header bg-white p-3 p-md-4 d-flex flex-column flex-md-row align-items-stretch align-items-md-center justify-content-between gap-3 border-bottom">
+                <div class="d-flex align-items-center gap-3 flex-grow-1 min-w-0">
                     <div class="bg-primary text-white rounded-circle p-2 d-flex align-items-center justify-content-center shadow-sm flex-shrink-0" style="width: 44px; height: 44px;">
                         <i class="bi bi-compass-fill fs-4"></i>
                     </div>
-                    <div>
+                    <div class="flex-grow-1">
                         <h5 class="fw-bold mb-1 text-dark fs-5 fs-md-4">Visi &amp; Misi Resmi Partai Anda ({{ $parpol->akronim }})</h5>
                         <p class="text-secondary mb-0 small">Landasan AD/ART &amp; narasi resmi yang tampil pada portal publik SIPARPOL Bakesbangpol</p>
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary rounded-pill px-4 py-2 shadow-sm d-flex align-items-center justify-content-center gap-2 fw-semibold w-100 w-sm-auto flex-shrink-0" style="font-size: 0.95rem;" data-bs-toggle="modal" data-bs-target="#modalEditVisiMisi">
-                    <i class="bi bi-pencil-square"></i> Edit Visi &amp; Misi
-                </button>
+                <div class="flex-shrink-0">
+                    <button type="button" class="btn btn-primary rounded-pill px-4 py-2 shadow-sm d-flex align-items-center justify-content-center gap-2 fw-semibold w-100 w-md-auto" style="font-size: 0.92rem; white-space: nowrap;" data-bs-toggle="modal" data-bs-target="#modalEditVisiMisi">
+                        <i class="bi bi-pencil-square"></i> Edit Visi &amp; Misi
+                    </button>
+                </div>
             </div>
 
             <div class="card-body p-3 p-md-4 bg-white">
@@ -175,14 +177,16 @@
 
         <!-- Daftar Kegiatan Yang Diinput Oleh Partai Ini -->
         <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
-            <div class="card-header bg-white p-3 d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-2 border-bottom">
-                <div class="d-flex align-items-center gap-2">
+            <div class="card-header bg-white p-3 d-flex flex-column flex-md-row align-items-stretch align-items-md-center justify-content-between gap-2 border-bottom">
+                <div class="d-flex align-items-center gap-2 flex-grow-1">
                     <i class="bi bi-mortarboard-fill text-primary fs-5"></i>
                     <h6 class="fw-bold mb-0">Realisasi Kegiatan Pendidikan Politik Partai Anda</h6>
                 </div>
-                <button type="button" class="btn btn-primary btn-sm rounded-pill px-3 py-2 shadow-sm d-flex align-items-center justify-content-center gap-1 w-100 w-sm-auto" data-bs-toggle="modal" data-bs-target="#modalTambahDikpol">
-                    <i class="bi bi-plus-circle-fill"></i> Tambah Laporan Baru
-                </button>
+                <div class="flex-shrink-0">
+                    <button type="button" class="btn btn-primary btn-sm rounded-pill px-3 py-2 shadow-sm d-flex align-items-center justify-content-center gap-1 w-100 w-md-auto" data-bs-toggle="modal" data-bs-target="#modalTambahDikpol">
+                        <i class="bi bi-plus-circle-fill"></i> Tambah Laporan Baru
+                    </button>
+                </div>
             </div>
 
             <!-- Petunjuk Geser Layar Sentuh di Ponsel -->
