@@ -390,8 +390,14 @@ class WasbangController extends Controller
             $validated['video'] = 'uploads/wasbang/video/' . $videoName;
         }
 
-        // Handle upload dokumen laporan baru (jika mengganti berkas surat/LPJ)
-        if ($request->hasFile('dokumen_laporan')) {
+        // Handle hapus dokumen laporan (jika dicentang staf)
+        if ($request->boolean('hapus_dokumen')) {
+            if ($kegiatan->dokumen_laporan && str_starts_with($kegiatan->dokumen_laporan, 'uploads/')) {
+                File::delete(public_path($kegiatan->dokumen_laporan));
+            }
+            $validated['dokumen_laporan'] = null;
+        } elseif ($request->hasFile('dokumen_laporan')) {
+            // Handle upload dokumen laporan baru (mengganti berkas surat/SPJ/LPJ lama)
             if ($kegiatan->dokumen_laporan && str_starts_with($kegiatan->dokumen_laporan, 'uploads/')) {
                 File::delete(public_path($kegiatan->dokumen_laporan));
             }

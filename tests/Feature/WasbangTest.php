@@ -220,6 +220,57 @@ class WasbangTest extends TestCase
     }
 
     /**
+     * Test Staf Wasbang dapat mengganti dan menghapus berkas surat dinas / SPJ / LPJ
+     */
+    public function test_staf_wasbang_can_replace_and_delete_spj_document(): void
+    {
+        $this->seed(WasbangKegiatanSeeder::class);
+        $kegiatan = WasbangKegiatan::first();
+
+        $staf = User::create([
+            'name' => 'Staf Pelaksana Bidang Wasbang',
+            'email' => 'wasbang@tanahlautkab.go.id',
+            'nip' => '19951015 202203 1 002',
+            'password' => bcrypt('password123'),
+            'role' => 'staf_wasbang',
+        ]);
+
+        // 1. Unggah berkas SPJ baru
+        $fakeDoc = UploadedFile::fake()->create('surat_tugas_spj_kintap.pdf', 500, 'application/pdf');
+
+        $responseUpload = $this->actingAs($staf)->put(route('wasbang.update', $kegiatan->id), [
+            'nama_kegiatan' => $kegiatan->nama_kegiatan,
+            'kategori' => $kegiatan->kategori,
+            'tanggal' => '2026-11-12',
+            'lokasi' => $kegiatan->lokasi,
+            'rincian' => $kegiatan->rincian,
+            'status' => 'Selesai Dilaksanakan',
+            'dokumen_laporan' => $fakeDoc,
+        ]);
+
+        $responseUpload->assertRedirect();
+        $kegiatan->refresh();
+        $this->assertNotNull($kegiatan->dokumen_laporan);
+        $this->assertStringStartsWith('uploads/wasbang/laporan/', $kegiatan->dokumen_laporan);
+        $this->assertStringEndsWith('.pdf', $kegiatan->dokumen_laporan);
+
+        // 2. Hapus berkas SPJ via checkbox hapus_dokumen
+        $responseDelete = $this->actingAs($staf)->put(route('wasbang.update', $kegiatan->id), [
+            'nama_kegiatan' => $kegiatan->nama_kegiatan,
+            'kategori' => $kegiatan->kategori,
+            'tanggal' => '2026-11-12',
+            'lokasi' => $kegiatan->lokasi,
+            'rincian' => $kegiatan->rincian,
+            'status' => 'Selesai Dilaksanakan',
+            'hapus_dokumen' => '1',
+        ]);
+
+        $responseDelete->assertRedirect();
+        $kegiatan->refresh();
+        $this->assertNull($kegiatan->dokumen_laporan);
+    }
+
+    /**
      * Test tamu / Free User tidak dapat mengupdate arsip kegiatan
      */
     public function test_guest_cannot_update_activity(): void
