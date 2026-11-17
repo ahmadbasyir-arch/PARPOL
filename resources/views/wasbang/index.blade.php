@@ -9,9 +9,15 @@
         background: radial-gradient(circle at 85% 15%, rgba(185, 28, 28, 0.35), transparent 50%),
                     linear-gradient(135deg, #0f172a 0%, #1e1b4b 45%, #450a0a 100%);
         color: #ffffff;
-        padding: 65px 0 85px;
+        padding: 40px 0 60px;
         position: relative;
         border-bottom: 4px solid #b91c1c;
+    }
+
+    @media (min-width: 992px) {
+        .hero-wasbang {
+            padding: 65px 0 85px;
+        }
     }
 
     .wasbang-badge {
@@ -31,11 +37,12 @@
     }
 
     .hero-title-wasbang {
-        font-size: 2.7rem;
+        font-size: clamp(1.55rem, 5.2vw, 2.7rem);
         font-weight: 800;
-        line-height: 1.2;
-        letter-spacing: -0.8px;
+        line-height: 1.25;
+        letter-spacing: -0.5px;
         margin-bottom: 16px;
+        word-break: break-word;
     }
 
     .hero-title-wasbang .highlight {
@@ -45,10 +52,10 @@
     }
 
     .hero-lead-wasbang {
-        font-size: 1.08rem;
+        font-size: clamp(0.9rem, 2.8vw, 1.08rem);
         color: #e2e8f0;
-        line-height: 1.7;
-        margin-bottom: 26px;
+        line-height: 1.65;
+        margin-bottom: 24px;
         max-width: 720px;
     }
 
@@ -299,17 +306,17 @@
                 <p class="hero-lead-wasbang">
                     Pengembangan sistem pengarsipan resmi pada <strong>Badan Kesatuan Bangsa dan Politik Kabupaten Tanah Laut</strong>. Mengatasi permasalahan dokumentasi foto kegiatan yang sebelumnya berserakan dan belum terorganisir menjadi sistem digital terpadu, lengkap dengan multi-foto galeri, rekam jejak pelaksanaan, serta kemudahan cetak berita acara resmi.
                 </p>
-                <div class="d-flex flex-wrap gap-2 pt-2">
-                    <a href="#arsip-kegiatan" class="btn btn-danger px-4 py-2 fw-semibold rounded-3 shadow-sm">
+                <div class="d-flex flex-column flex-sm-row flex-wrap gap-2 pt-2">
+                    <a href="#arsip-kegiatan" class="btn btn-danger px-3 px-sm-4 py-2.5 fw-semibold rounded-3 shadow-sm text-center">
                         <i class="bi bi-images me-1"></i> Telusuri Arsip Foto
                     </a>
-                    <a href="#tambah-kegiatan" class="btn btn-outline-light px-4 py-2 fw-semibold rounded-3">
+                    <a href="#tambah-kegiatan" class="btn btn-outline-light px-3 px-sm-4 py-2.5 fw-semibold rounded-3 text-center">
                         <i class="bi bi-cloud-arrow-up-fill me-1"></i> Unggah Dokumentasi Baru
                     </a>
-                    <a href="#urgensi-sistem" class="btn btn-outline-warning px-3 py-2 fw-semibold rounded-3 text-white">
+                    <a href="#urgensi-sistem" class="btn btn-outline-warning px-3 px-sm-4 py-2.5 fw-semibold rounded-3 text-white text-center">
                         <i class="bi bi-info-circle me-1"></i> Tentang Sistem Ini
                     </a>
-                    <a href="{{ route('wasbang.cetak') }}" target="_blank" class="btn btn-warning px-4 py-2 fw-semibold rounded-3 text-dark">
+                    <a href="{{ route('wasbang.cetak') }}" target="_blank" class="btn btn-warning px-3 px-sm-4 py-2.5 fw-semibold rounded-3 text-dark text-center">
                         <i class="bi bi-printer-fill me-1"></i> Rekap Arsip
                     </a>
                 </div>
@@ -1434,8 +1441,14 @@
                                             <label class="form-label fw-bold text-dark">
                                                 <i class="bi bi-image text-danger me-1"></i> Foto Utama / Sampul Kegiatan
                                             </label>
-                                            <input type="file" name="foto" class="form-control rounded-3 @error('foto') is-invalid @enderror" accept="image/*">
+                                            <input type="file" name="foto" id="inputFotoUtama" class="form-control rounded-3 @error('foto') is-invalid @enderror" accept="image/*">
                                             <small class="text-muted d-block mt-1">Foto utama untuk cover arsip (JPG, PNG, WEBP, maks. 12 MB).</small>
+                                            <div id="previewFotoUtamaContainer" class="mt-2 d-none">
+                                                <div class="position-relative d-inline-block">
+                                                    <img id="previewFotoUtama" src="" alt="Pratinjau Foto Utama" class="rounded-3 border shadow-sm" style="max-height: 120px; max-width: 100%; object-fit: cover;">
+                                                    <span class="badge bg-success position-absolute bottom-0 start-0 m-1" style="font-size: 0.68rem;"><i class="bi bi-check-circle me-1"></i> Pratinjau Foto</span>
+                                                </div>
+                                            </div>
                                             @error('foto')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -1445,8 +1458,9 @@
                                             <label class="form-label fw-bold text-dark">
                                                 <i class="bi bi-images text-danger me-1"></i> Upload Foto-Foto Dokumentasi Kegiatan (Bisa Banyak Sekaligus)
                                             </label>
-                                            <input type="file" name="foto_tambahan[]" class="form-control rounded-3 @error('foto_tambahan.*') is-invalid @enderror" accept="image/*" multiple>
+                                            <input type="file" name="foto_tambahan[]" id="inputFotoTambahan" class="form-control rounded-3 @error('foto_tambahan.*') is-invalid @enderror" accept="image/*" multiple>
                                             <small class="text-muted d-block mt-1">Tahan tombol <strong>Ctrl</strong> atau <strong>Shift</strong> saat memilih file untuk mengunggah beberapa foto dokumentasi lapangan sekaligus.</small>
+                                            <div id="previewFotoTambahanContainer" class="mt-2 d-flex flex-wrap gap-2 d-none"></div>
                                             @error('foto_tambahan.*')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -1574,6 +1588,44 @@
         if (inputTanggal) {
             inputTanggal.addEventListener('change', updateHariPreview);
             updateHariPreview();
+        }
+
+        // Pratinjau Instan Foto Utama
+        const inputFotoUtama = document.getElementById('inputFotoUtama');
+        const previewFotoUtama = document.getElementById('previewFotoUtama');
+        const previewFotoUtamaContainer = document.getElementById('previewFotoUtamaContainer');
+
+        if (inputFotoUtama && previewFotoUtama && previewFotoUtamaContainer) {
+            inputFotoUtama.addEventListener('change', function() {
+                const file = this.files && this.files[0];
+                if (file) {
+                    previewFotoUtama.src = URL.createObjectURL(file);
+                    previewFotoUtamaContainer.classList.remove('d-none');
+                } else {
+                    previewFotoUtamaContainer.classList.add('d-none');
+                }
+            });
+        }
+
+        // Pratinjau Instan Foto Tambahan (Multi-foto)
+        const inputFotoTambahan = document.getElementById('inputFotoTambahan');
+        const previewFotoTambahanContainer = document.getElementById('previewFotoTambahanContainer');
+
+        if (inputFotoTambahan && previewFotoTambahanContainer) {
+            inputFotoTambahan.addEventListener('change', function() {
+                previewFotoTambahanContainer.innerHTML = '';
+                if (this.files && this.files.length > 0) {
+                    previewFotoTambahanContainer.classList.remove('d-none');
+                    Array.from(this.files).forEach(function(file, index) {
+                        const col = document.createElement('div');
+                        col.className = 'position-relative';
+                        col.innerHTML = '<img src="' + URL.createObjectURL(file) + '" class="rounded-2 border shadow-sm" style="width: 60px; height: 60px; object-fit: cover;" title="' + file.name + '"><span class="badge bg-dark position-absolute bottom-0 end-0 m-0.5" style="font-size: 0.6rem;">' + (index + 1) + '</span>';
+                        previewFotoTambahanContainer.appendChild(col);
+                    });
+                } else {
+                    previewFotoTambahanContainer.classList.add('d-none');
+                }
+            });
         }
     });
 </script>

@@ -1124,14 +1124,14 @@
             <div class="modal-dialog modal-dialog-centered {{ $hasExtraTabs ? 'modal-xl' : 'modal-lg' }}">
                 <div class="modal-content rounded-4 border-0 shadow">
                     <div class="modal-header bg-dark text-white p-3 p-md-4">
-                        <div class="d-flex align-items-center gap-2 gap-sm-3">
+                        <div class="d-flex align-items-center gap-2 gap-sm-3 flex-grow-1 min-w-0 pe-2">
                             <div style="width: 48px; height: 48px; background: #ffffff; border-radius: 10px; padding: 2px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1.5px solid rgba(255,255,255,0.2);" class="flex-shrink-0">
                                 <img src="{{ asset($p->logo) }}?v=16" alt="Logo {{ $p->akronim }}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;">
                             </div>
-                            <div>
+                            <div class="flex-grow-1 min-w-0">
                                 <span class="badge bg-danger text-uppercase px-2 py-1 mb-1" style="font-size: 0.7rem;">Nomor Urut {{ $p->nomor_urut }}</span>
-                                <h4 class="modal-title fw-bold mb-0 fs-5 fs-sm-4" id="modalLabel{{ $p->id }}">{{ $p->akronim }}</h4>
-                                <span class="small text-light opacity-75 d-block text-truncate" style="max-width: 220px;">{{ $p->nama_partai }}</span>
+                                <h4 class="modal-title fw-bold mb-0 fs-5 fs-sm-4 text-break" id="modalLabel{{ $p->id }}">{{ $p->akronim }}</h4>
+                                <span class="small text-light opacity-75 d-block text-wrap lh-sm text-break">{{ $p->nama_partai }}</span>
                             </div>
                         </div>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>

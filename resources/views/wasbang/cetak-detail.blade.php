@@ -162,15 +162,15 @@
 <body>
 
     <!-- Tombol Aksi Layar -->
-    <div class="no-print mb-4 d-flex justify-content-between align-items-center bg-light p-3 border rounded">
+    <div class="no-print mb-4 d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2 bg-light p-3 border rounded">
         <div>
             <a href="{{ route('wasbang.index') }}" class="btn btn-outline-secondary btn-sm me-2">
                 <i class="bi bi-arrow-left me-1"></i> Kembali ke Arsip
             </a>
             <span class="text-muted small">Format Berita Acara &amp; Lembar Laporan Kegiatan Luar</span>
         </div>
-        <div>
-            <button onclick="window.print()" class="btn btn-danger btn-sm px-4 fw-bold shadow-sm">
+        <div class="w-100 w-sm-auto text-end">
+            <button onclick="window.print()" class="btn btn-danger btn-sm px-4 fw-bold shadow-sm w-100 w-sm-auto">
                 <i class="bi bi-printer-fill me-1"></i> Cetak / Simpan PDF
             </button>
         </div>

@@ -6,6 +6,7 @@
     <title>Cetak Data Partai Politik Kab. Tanah Laut Tahun 2026</title>
     <link rel="icon" type="image/png" href="{{ asset('images/tanahlaut.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         body {
             font-family: 'Times New Roman', Times, serif;
@@ -90,6 +91,14 @@
         </div>
     </div>
 
+    <!-- Banner Panduan Khusus Layar Ponsel (Otomatis Sembunyi Saat Cetak) -->
+    <div class="no-print alert alert-info py-2 px-3 small d-md-none rounded-3 mb-3 d-flex align-items-center gap-2">
+        <i class="bi bi-info-circle-fill text-primary fs-5 flex-shrink-0"></i>
+        <div>
+            <strong>Info Tampilan Ponsel:</strong> Dokumen rekapitulasi ini diformat untuk kertas <strong>A4 Landscape</strong>. Geser tabel ke samping untuk membaca seluruh kolom, atau klik <em>"Cetak / Simpan PDF"</em>.
+        </div>
+    </div>
+
     <!-- Judul Dokumen Resmi -->
     <div class="d-flex align-items-center justify-content-center gap-3 mb-3">
         <img src="{{ asset('images/tanahlaut.png') }}" alt="Logo Kab. Tanah Laut" style="width: 58px; height: auto;">
@@ -98,9 +107,9 @@
         </div>
     </div>
 
-    <!-- Tabel Rekapitulasi -->
-    <div class="table-responsive">
-        <table class="table-doc">
+    <!-- Tabel Rekapitulasi (Dapat Digeser Halus di Ponsel) -->
+    <div class="table-responsive shadow-sm border rounded-3 p-1 mb-4" style="-webkit-overflow-scrolling: touch;">
+        <table class="table-doc" style="min-width: 840px;">
         <thead>
             <tr>
                 <th style="width: 40px;">NO</th>

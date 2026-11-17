@@ -115,17 +115,25 @@
 <body>
 
     <!-- Tombol Navigasi Cetak (Disembunyikan saat dicetak) -->
-    <div class="no-print mb-4 d-flex justify-content-between align-items-center bg-light p-3 border rounded">
+    <div class="no-print mb-4 d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2 bg-light p-3 border rounded">
         <div>
             <a href="{{ route('wasbang.index') }}" class="btn btn-outline-secondary btn-sm me-2">
-                <i class="bi bi-arrow-left me-1"></i> Kembali ke Halaman Wasbang
+                <i class="bi bi-arrow-left me-1"></i> Kembali ke Wasbang
             </a>
             <span class="text-muted small">Cetak / Ekspor Rekapitulasi Laporan Dokumentasi Kegiatan Luar</span>
         </div>
-        <div>
-            <button onclick="window.print()" class="btn btn-danger btn-sm px-4 fw-bold shadow-sm">
+        <div class="w-100 w-sm-auto text-end">
+            <button onclick="window.print()" class="btn btn-danger btn-sm px-4 fw-bold shadow-sm w-100 w-sm-auto">
                 <i class="bi bi-printer-fill me-1"></i> Cetak Dokumen (PDF)
             </button>
+        </div>
+    </div>
+
+    <!-- Banner Panduan Khusus Layar Ponsel (Otomatis Sembunyi Saat Cetak) -->
+    <div class="no-print alert alert-info py-2 px-3 small d-md-none rounded-3 mb-3 d-flex align-items-center gap-2">
+        <i class="bi bi-info-circle-fill text-primary fs-5 flex-shrink-0"></i>
+        <div>
+            <strong>Info Tampilan Ponsel:</strong> Format cetak dokumen ini dirancang untuk kertas <strong>A4 Landscape</strong>. Geser tabel ke samping untuk membaca seluruh kolom berita acara kegiatan.
         </div>
     </div>
 
@@ -147,8 +155,9 @@
         Tahun Anggaran 2026 &bull; Tanggal Cetak: {{ date('d F Y') }}
     </div>
 
-    <!-- Tabel Rekapitulasi -->
-    <table class="table-doc">
+    <!-- Tabel Rekapitulasi (Dapat Digeser Halus di Ponsel) -->
+    <div class="table-responsive shadow-sm border rounded-3 p-1 mb-4" style="-webkit-overflow-scrolling: touch;">
+        <table class="table-doc" style="min-width: 900px;">
         <thead>
             <tr>
                 <th style="width: 4%;">No</th>
@@ -206,6 +215,7 @@
             @endforelse
         </tbody>
     </table>
+    </div>
 
     <!-- Tanda Tangan Pengesahan -->
     <div class="sign-area">
