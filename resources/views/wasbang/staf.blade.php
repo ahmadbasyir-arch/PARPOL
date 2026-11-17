@@ -348,16 +348,57 @@
                 </div>
             </div>
 
+            <!-- Filter & Pencarian Cepat Staf Operator -->
+            <div class="p-3 bg-light border-bottom">
+                <form action="{{ route('wasbang.index') }}" method="GET" class="row g-2 align-items-center">
+                    <div class="col-lg-4 col-md-5">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+                            <input type="text" name="q" class="form-control border-start-0" placeholder="Cari kegiatan, lokasi (mis: Kintap, Jorong)..." value="{{ request('q') }}">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4">
+                        <select name="kategori" class="form-select form-select-sm">
+                            <option value="">-- Semua Kategori Bidang --</option>
+                            @foreach($kategoriList as $kat)
+                                <option value="{{ $kat }}" {{ request('kategori') == $kat ? 'selected' : '' }}>{{ $kat }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <select name="bulan" class="form-select form-select-sm">
+                            <option value="">-- Semua Bulan --</option>
+                            @for($m = 1; $m <= 12; $m++)
+                                <option value="{{ $m }}" {{ request('bulan') == $m ? 'selected' : '' }}>
+                                    {{ \App\Models\WasbangKegiatan::getBulanIndonesia($m) }}
+                                </option>
+                            @endfor
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-12 d-flex gap-2 justify-content-md-start justify-content-lg-end">
+                        <button type="submit" class="btn btn-success btn-sm px-3 fw-semibold shadow-sm">
+                            <i class="bi bi-funnel-fill me-1"></i> Saring Data
+                        </button>
+                        @if(request()->hasAny(['q', 'kategori', 'bulan', 'status']))
+                            <a href="{{ route('wasbang.index') }}" class="btn btn-outline-secondary btn-sm" title="Reset Filter">
+                                <i class="bi bi-arrow-counterclockwise"></i> Reset
+                            </a>
+                        @endif
+                    </div>
+                </form>
+            </div>
+
             <div class="table-responsive">
                 <table class="table table-hover table-staf align-middle m-0">
                     <thead>
                         <tr>
-                            <th style="width: 5%;">No</th>
-                            <th style="width: 14%;">Tanggal &amp; Hari</th>
-                            <th style="width: 30%;">Nama Kegiatan</th>
-                            <th style="width: 18%;">Kategori &amp; Lokasi</th>
-                            <th style="width: 13%;">Foto Tersimpan</th>
-                            <th style="width: 20%;" class="text-center">Aksi Kelola</th>
+                            <th style="width: 4%;">No</th>
+                            <th style="width: 13%;">Tanggal &amp; Hari</th>
+                            <th style="width: 26%;">Nama Kegiatan Lapangan</th>
+                            <th style="width: 17%;">Kategori &amp; Lokasi</th>
+                            <th style="width: 11%;">Media Foto</th>
+                            <th style="width: 14%;">Berkas SPJ/LPJ</th>
+                            <th style="width: 15%;" class="text-center">Aksi Kelola</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -369,29 +410,46 @@
                                     <small class="text-muted">Hari {{ $kegiatan->hari ?? '-' }}</small>
                                 </td>
                                 <td>
-                                    <div class="fw-bold text-dark mb-1">{{ $kegiatan->nama_kegiatan }}</div>
-                                    <small class="text-muted">{{ Str::limit($kegiatan->rincian, 70) }}</small>
+                                    <div class="fw-bold text-dark mb-1" style="font-size: 0.92rem;">{{ $kegiatan->nama_kegiatan }}</div>
+                                    <small class="text-muted d-block text-truncate" style="max-width: 280px;">{{ Str::limit($kegiatan->rincian, 70) }}</small>
                                 </td>
                                 <td>
                                     <span class="badge bg-light text-dark border fw-semibold mb-1" style="font-size: 0.72rem;">
                                         {{ $kegiatan->kategori }}
                                     </span>
-                                    <div class="small text-muted">{{ $kegiatan->lokasi }}</div>
+                                    <div class="small text-muted"><i class="bi bi-geo-alt-fill text-danger me-1"></i> {{ $kegiatan->lokasi }}</div>
                                 </td>
                                 <td>
                                     <span class="badge bg-success-subtle text-success border border-success-subtle fw-bold px-2 py-1">
                                         <i class="bi bi-images me-1"></i> {{ $kegiatan->jumlah_foto }} Foto
                                     </span>
+                                    @if($kegiatan->video || $kegiatan->video_url)
+                                        <span class="badge bg-info-subtle text-info border border-info-subtle px-2 py-0.5 mt-1 d-inline-block small" style="font-size: 0.68rem;">
+                                            <i class="bi bi-camera-video me-1"></i> Video
+                                        </span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($kegiatan->dokumen_laporan)
+                                        <a href="{{ route('wasbang.download', ['id' => $kegiatan->id, 'type' => 'dokumen']) }}" class="badge bg-primary-subtle text-primary border border-primary-subtle text-decoration-none py-1.5 px-2 d-inline-flex align-items-center gap-1 shadow-sm" title="Unduh Berkas Surat/SPJ (.{{ pathinfo($kegiatan->dokumen_laporan, PATHINFO_EXTENSION) }})">
+                                            <i class="bi bi-file-earmark-check-fill text-danger"></i>
+                                            <span>Ada Berkas</span>
+                                        </a>
+                                    @else
+                                        <span class="badge bg-light text-muted border py-1.5 px-2 small" title="Belum ada berkas surat tugas atau SPJ perjalanan dinas yang diunggah">
+                                            <i class="bi bi-dash-circle me-1"></i> Belum Ada
+                                        </span>
+                                    @endif
                                 </td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center gap-1 flex-wrap">
                                         <!-- Cetak Detail -->
-                                        <a href="{{ route('wasbang.cetak.detail', $kegiatan->id) }}" target="_blank" class="btn btn-warning btn-sm text-dark" title="Cetak Berita Acara">
+                                        <a href="{{ route('wasbang.cetak.detail', $kegiatan->id) }}" target="_blank" class="btn btn-warning btn-sm text-dark shadow-sm" title="Cetak Berita Acara">
                                             <i class="bi bi-printer-fill"></i>
                                         </a>
 
                                         <!-- Lihat Modal -->
-                                        <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalStaf{{ $kegiatan->id }}" title="Lihat Foto & Rincian">
+                                        <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalStaf{{ $kegiatan->id }}" title="Lihat Foto &amp; Rincian Lengkap">
                                             <i class="bi bi-eye"></i>
                                         </button>
 
@@ -413,9 +471,14 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="text-center py-5">
+                                <td colspan="7" class="text-center py-5">
                                     <i class="bi bi-inbox fs-1 text-muted d-block mb-2"></i>
-                                    <h6 class="fw-bold text-muted">Belum ada arsip kegiatan. Silakan gunakan formulir di atas.</h6>
+                                    <h6 class="fw-bold text-muted">Belum ada arsip kegiatan yang sesuai dengan pencarian Anda.</h6>
+                                    @if(request()->hasAny(['q', 'kategori', 'bulan', 'status']))
+                                        <a href="{{ route('wasbang.index') }}" class="btn btn-sm btn-outline-primary mt-2">
+                                            <i class="bi bi-arrow-counterclockwise me-1"></i> Tampilkan Semua Kegiatan
+                                        </a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforelse
@@ -436,20 +499,92 @@
                     <div>
                         <span class="badge bg-success text-white fw-bold px-2 py-1 mb-1">{{ $kegiatan->kategori }}</span>
                         <h5 class="modal-title fw-bold text-white m-0">{{ $kegiatan->nama_kegiatan }}</h5>
-                        <small class="text-white-50">{{ $kegiatan->hari_tanggal_formatted }} &bull; {{ $kegiatan->lokasi }}</small>
+                        <small class="text-white-50"><i class="bi bi-calendar3 me-1"></i> {{ $kegiatan->hari_tanggal_formatted }} &bull; {{ $kegiatan->lokasi }}</small>
                     </div>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4">
                     @if($kegiatan->jumlah_foto > 0)
                         <div class="mb-3 text-center bg-dark rounded-3 p-2">
-                            <img src="{{ $kegiatan->foto_url ?? $kegiatan->semua_foto_urls[0] }}" alt="{{ $kegiatan->nama_kegiatan }}" class="img-fluid rounded-2" style="max-height: 380px; width: 100%; object-fit: contain;">
+                            <img id="modalImgStaf{{ $kegiatan->id }}" src="{{ $kegiatan->foto_url ?? $kegiatan->semua_foto_urls[0] }}" alt="{{ $kegiatan->nama_kegiatan }}" class="img-fluid rounded-2 shadow-sm" style="max-height: 380px; width: 100%; object-fit: contain;">
                         </div>
+                        @if($kegiatan->jumlah_foto > 1)
+                            <div class="p-2 bg-light rounded-3 border mb-3">
+                                <small class="text-muted d-block mb-2 fw-semibold">Pilih foto dokumentasi lapangan:</small>
+                                <div class="d-flex flex-wrap gap-2">
+                                    @foreach($kegiatan->semua_foto_urls as $idx => $fUrl)
+                                        <div style="width: 70px; height: 50px; border-radius: 6px; overflow: hidden; border: 2px solid #cbd5e1; cursor: pointer;">
+                                            <img src="{{ $fUrl }}" alt="Foto {{ $idx + 1 }}" style="width: 100%; height: 100%; object-fit: cover;" onclick="document.getElementById('modalImgStaf{{ $kegiatan->id }}').src = '{{ $fUrl }}';">
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
                     @endif
-                    <p class="small text-muted">{{ $kegiatan->rincian }}</p>
+
+                    <!-- Tabel Rincian Data Kegiatan -->
+                    <div class="table-responsive mb-3">
+                        <table class="table table-bordered table-sm align-middle">
+                            <tbody>
+                                <tr>
+                                    <th class="bg-light" style="width: 30%;">Waktu Pelaksanaan</th>
+                                    <td>{{ $kegiatan->waktu ?? 'Waktu tentatif kedinasan' }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Lokasi Kegiatan</th>
+                                    <td>{{ $kegiatan->lokasi }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Sasaran Peserta</th>
+                                    <td>{{ $kegiatan->sasaran_peserta ?? '-' }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Pelaksana / Tim</th>
+                                    <td>{{ $kegiatan->pelaksana ?? 'Bidang Wasbang' }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Status Pelaksanaan</th>
+                                    <td>
+                                        <span class="badge {{ $kegiatan->status === 'Sedang Dilaksanakan' ? 'bg-warning text-dark' : 'bg-success text-white' }} px-2 py-1">
+                                            {{ $kegiatan->status }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Berkas Surat / SPJ / LPJ</th>
+                                    <td>
+                                        @if($kegiatan->dokumen_laporan)
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <span class="text-success fw-bold small">
+                                                    <i class="bi bi-file-earmark-check-fill me-1"></i> {{ basename($kegiatan->dokumen_laporan) }}
+                                                </span>
+                                                <a href="{{ route('wasbang.download', ['id' => $kegiatan->id, 'type' => 'dokumen']) }}" class="btn btn-outline-primary btn-sm py-0 px-2 fw-semibold" style="font-size: 0.78rem;">
+                                                    <i class="bi bi-download me-1"></i> Unduh Berkas
+                                                </a>
+                                            </div>
+                                        @else
+                                            <span class="text-muted small"><i class="bi bi-dash-circle me-1"></i> Belum ada berkas surat dinas / SPJ yang diunggah.</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Rincian Hasil Lapangan</th>
+                                    <td style="white-space: pre-line;">{{ $kegiatan->rincian }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="modal-footer bg-light p-3">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <div class="modal-footer bg-light p-3 d-flex justify-content-between">
+                    <div>
+                        <button type="button" class="btn btn-outline-success btn-sm px-3 fw-semibold" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalEditStaf{{ $kegiatan->id }}">
+                            <i class="bi bi-pencil-square me-1"></i> Edit Data / Berkas
+                        </button>
+                        <a href="{{ route('wasbang.cetak.detail', $kegiatan->id) }}" target="_blank" class="btn btn-warning btn-sm fw-bold text-dark ms-1 shadow-sm">
+                            <i class="bi bi-printer-fill me-1"></i> Cetak Berita Acara
+                        </a>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-sm px-3" data-bs-dismiss="modal">Tutup</button>
                 </div>
             </div>
         </div>
