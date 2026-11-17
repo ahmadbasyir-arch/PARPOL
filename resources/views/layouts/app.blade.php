@@ -118,12 +118,152 @@
             width: 100%;
         }
 
-        /* Navigasi navbar Wasbang agar rapi 1 baris */
-        body.wasbang-scoped .navbar-nav .nav-link {
-            padding-left: 0.65rem !important;
-            padding-right: 0.65rem !important;
-            font-size: 0.88rem !important;
-            white-space: nowrap;
+        /* ========================================================
+           Khusus Tampilan Layar PC / Desktop Wasbang (min-width: 1024px)
+           - Memastikan semua elemen navbar muat dalam 1 baris penuh (max-width: 100%)
+           - Tombol paling kanan (Login / User Profile / Rekap) tidak terpotong
+           - Tanpa horizontal scrollbar
+           - Kode tampilan versi ponsel (mobile) tetap aman & tidak terganggu
+           ======================================================== */
+        @media (min-width: 1024px) {
+            html.wasbang-html,
+            body.wasbang-scoped {
+                overflow-x: hidden !important;
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+
+            /* Container navbar Wasbang: padding pas & proporsional di PC/Laptop */
+            body.wasbang-scoped .navbar-parpol .container-fluid {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+                max-width: 100% !important;
+            }
+
+            /* Logo & Judul Brand Wasbang di Desktop */
+            body.wasbang-scoped .navbar-brand {
+                margin-right: 0.35rem !important;
+                gap: 0.35rem !important;
+            }
+            body.wasbang-scoped .navbar-brand img {
+                width: 32px !important;
+                height: auto !important;
+            }
+            body.wasbang-scoped .navbar-brand .brand-title {
+                font-size: 0.92rem !important;
+                letter-spacing: 0.4px !important;
+                word-spacing: 1px !important;
+            }
+            body.wasbang-scoped .navbar-brand .brand-sub {
+                font-size: 0.62rem !important;
+                letter-spacing: 0.7px !important;
+            }
+
+            /* Tombol Pindah Bidang Ramping di Desktop */
+            body.wasbang-scoped .btn-outline-secondary.dropdown-toggle {
+                padding: 3px 7px !important;
+                font-size: 0.72rem !important;
+            }
+
+            /* Navbar expand 1 baris penuh di desktop */
+            body.wasbang-scoped .navbar-expand-xl .navbar-collapse {
+                display: flex !important;
+                flex-basis: auto !important;
+                background: transparent !important;
+                border: none !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+                margin-top: 0 !important;
+            }
+            body.wasbang-scoped .navbar-expand-xl .navbar-toggler {
+                display: none !important;
+            }
+
+            /* Rapatkan jarak (gap/margin) antar menu navigasi Wasbang */
+            body.wasbang-scoped .navbar-nav {
+                gap: 0.3rem !important;
+                margin-bottom: 0 !important;
+                align-items: center !important;
+            }
+
+            /* Padding & Font Nav Links Wasbang di Desktop */
+            body.wasbang-scoped .navbar-nav .nav-link {
+                padding: 5px 7px !important;
+                font-size: 0.81rem !important;
+                white-space: nowrap !important;
+                border-radius: 6px !important;
+            }
+            body.wasbang-scoped .navbar-nav .nav-link i {
+                font-size: 0.83rem !important;
+                margin-right: 3px !important;
+            }
+
+            /* Kontainer Tombol Aksi di Pojok Kanan Navbar Wasbang */
+            body.wasbang-scoped .navbar-collapse > .d-flex {
+                margin-left: auto !important;
+                gap: 0.4rem !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                margin-top: 0 !important;
+                padding-top: 0 !important;
+                border-top: none !important;
+                flex-shrink: 0 !important;
+            }
+
+            /* Tombol Rekap Arsip di Wasbang */
+            body.wasbang-scoped .btn-warning.btn-sm,
+            body.wasbang-scoped .btn-cetak-rekap {
+                padding: 5px 9px !important;
+                font-size: 0.78rem !important;
+                white-space: nowrap !important;
+                border-radius: 6px !important;
+            }
+
+            /* Tombol Login Wasbang di Paling Kanan */
+            body.wasbang-scoped .btn-danger.btn-sm {
+                padding: 5px 12px !important;
+                font-size: 0.78rem !important;
+                white-space: nowrap !important;
+                border-radius: 6px !important;
+                flex-shrink: 0 !important;
+            }
+
+            /* Tombol Profil Pengguna (Bapak Kaban / Ibu Kabid / Staf Wasbang) */
+            body.wasbang-scoped .btn-user-portal {
+                padding: 5px 9px !important;
+                font-size: 0.78rem !important;
+                max-width: 175px !important;
+                white-space: nowrap !important;
+                border-radius: 6px !important;
+                flex-shrink: 0 !important;
+            }
+            body.wasbang-scoped .btn-user-portal .text-truncate {
+                max-width: 125px !important;
+            }
+
+            /* Top Bar Wasbang */
+            body.wasbang-scoped .top-bar .container-fluid {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            body.wasbang-scoped .navbar-parpol .container-fluid {
+                padding-left: 1.5rem !important;
+                padding-right: 1.5rem !important;
+            }
+            body.wasbang-scoped .navbar-nav {
+                gap: 0.65rem !important;
+            }
+            body.wasbang-scoped .navbar-nav .nav-link {
+                padding: 6px 9px !important;
+                font-size: 0.84rem !important;
+            }
+            body.wasbang-scoped .navbar-collapse > .d-flex {
+                gap: 0.55rem !important;
+                margin-left: 0.85rem !important;
+            }
         }
 
         body.wasbang-scoped .top-bar {
@@ -630,7 +770,7 @@
 
     <!-- Navigasi Utama -->
     <nav class="navbar navbar-expand-xl navbar-parpol shadow-sm sticky-top">
-        <div class="container-fluid px-3 px-md-4 px-xl-5 px-xxl-5">
+        <div class="container-fluid {{ request()->routeIs('wasbang.*') ? 'px-2 px-xl-3' : 'px-3 px-md-4 px-xl-5 px-xxl-5' }}">
             <div class="d-flex align-items-center gap-2">
                 @if(request()->routeIs('wasbang.*'))
                     <a class="navbar-brand d-flex align-items-center gap-2 me-1" href="{{ route('wasbang.index') }}">
@@ -693,7 +833,7 @@
             </button>
             
             <div class="collapse navbar-collapse" id="navbarMenu">
-                <ul class="navbar-nav ms-auto mb-2 mb-xl-0 align-items-xl-center gap-1 gap-xl-4 gap-xxl-5">
+                <ul class="navbar-nav ms-auto mb-2 mb-xl-0 align-items-xl-center {{ request()->routeIs('wasbang.*') ? 'gap-1 gap-xl-2' : 'gap-1 gap-xl-4 gap-xxl-5' }}">
                     @if(request()->routeIs('wasbang.*'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('wasbang.index') }}#beranda-wasbang"><i class="bi bi-house-door me-1"></i> Beranda</a>
@@ -780,7 +920,7 @@
                 </ul>
 
                 <!-- Tombol Aksi di Pojok Kanan Atas (1 Kolom Vertikal di HP, Sebaris di Desktop) -->
-                <div class="d-flex flex-column flex-xl-row align-items-stretch align-items-xl-center gap-2 gap-xl-3 ms-xl-4 ms-xxl-5 mt-3 mt-xl-0 pt-3 pt-xl-0 border-top border-xl-0 flex-shrink-0">
+                <div class="d-flex flex-column flex-xl-row align-items-stretch align-items-xl-center {{ request()->routeIs('wasbang.*') ? 'gap-2 gap-xl-2 ms-xl-2 ms-xxl-3' : 'gap-2 gap-xl-3 ms-xl-4 ms-xxl-5' }} mt-3 mt-xl-0 pt-3 pt-xl-0 border-top border-xl-0 flex-shrink-0">
                     @if(request()->routeIs('wasbang.*'))
                         <a class="btn btn-warning text-dark fw-bold btn-sm rounded-3 shadow-sm text-decoration-none d-flex align-items-center justify-content-center" href="{{ route('wasbang.cetak') }}" target="_blank" title="Cetak Rekapitulasi Berkas Arsip">
                             <i class="bi bi-printer-fill me-1"></i> <span class="d-none d-xxl-inline">Rekap Arsip</span><span class="d-inline d-xxl-none">Arsip</span>
