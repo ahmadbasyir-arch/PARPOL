@@ -8,27 +8,27 @@
 
         <!-- Welcome Banner Partai -->
         <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden" style="background: linear-gradient(135deg, #1e293b 0%, #0f766e 100%);">
-            <div class="card-body p-4 p-md-5 text-white">
-                <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+            <div class="card-body p-3 p-sm-4 p-md-5 text-white">
+                <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3">
                     <div class="d-flex align-items-center gap-3">
-                        <div class="shadow-sm flex-shrink-0" style="width: 80px; height: 80px; background: #ffffff; border-radius: 16px; border: 2px solid rgba(255, 255, 255, 0.4); display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 6px;">
+                        <div class="shadow-sm flex-shrink-0" style="width: 72px; height: 72px; background: #ffffff; border-radius: 14px; border: 2px solid rgba(255, 255, 255, 0.4); display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 4px;">
                             <img src="{{ asset($parpol->logo) }}?v=16" alt="{{ $parpol->akronim }}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
                         </div>
                         <div>
-                            <span class="badge bg-warning text-dark text-uppercase px-2 py-1 mb-1 fw-bold">Nomor Urut {{ sprintf('%02d', $parpol->nomor_urut) }} &bull; Pengurus DPC/DPD</span>
-                            <h3 class="fw-bold mb-1">{{ $parpol->nama_partai }} ({{ $parpol->akronim }})</h3>
+                            <span class="badge bg-warning text-dark text-uppercase px-2 py-1 mb-1 fw-bold" style="font-size: 0.72rem;">Nomor Urut {{ sprintf('%02d', $parpol->nomor_urut) }} &bull; Pengurus DPC/DPD</span>
+                            <h3 class="fw-bold mb-1 fs-4 fs-md-3">{{ $parpol->nama_partai }} ({{ $parpol->akronim }})</h3>
                             <p class="text-white-50 mb-0 small">
                                 <i class="bi bi-geo-alt me-1"></i> {{ $parpol->alamat }}, Kec. {{ $parpol->kecamatan }} &bull; Akun: <strong>{{ $user->email }}</strong>
                             </p>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center gap-2">
-                        <a href="{{ route('parpol.home') }}" class="btn btn-outline-light btn-sm rounded-pill px-3">
+                    <div class="d-flex align-items-center gap-2 mt-2 mt-md-0 w-100 w-md-auto justify-content-start justify-content-md-end">
+                        <a href="{{ route('parpol.home') }}" class="btn btn-outline-light btn-sm rounded-pill px-3 flex-fill flex-md-grow-0 text-center">
                             <i class="bi bi-eye me-1"></i> Portal Publik
                         </a>
-                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                        <form action="{{ route('logout') }}" method="POST" class="d-inline flex-fill flex-md-grow-0">
                             @csrf
-                            <button type="submit" class="btn btn-danger btn-sm rounded-pill px-3">
+                            <button type="submit" class="btn btn-danger btn-sm rounded-pill px-3 w-100 text-center">
                                 <i class="bi bi-box-arrow-right me-1"></i> Logout
                             </button>
                         </form>
@@ -67,79 +67,79 @@
             </div>
         @endif
 
-        <!-- Statistik Partai -->
-        <div class="row g-3 mb-4">
+        <!-- Statistik Partai (Grid 2 Kolom Kompak di Ponsel) -->
+        <div class="row g-2 g-md-3 mb-4">
             <div class="col-6 col-lg-3">
-                <div class="card border-0 shadow-sm rounded-3 p-3 h-100 bg-white">
-                    <span class="text-muted small d-block">Kegiatan Terlaporkan</span>
-                    <h4 class="fw-bold mb-0 text-primary">{{ $dikpols->count() }} Agenda</h4>
-                    <span class="small text-muted">Pendidikan Politik T.A. 2026</span>
+                <div class="card border-0 shadow-sm rounded-3 p-2 p-sm-3 h-100 bg-white">
+                    <span class="text-muted small d-block" style="font-size: 0.72rem;">Kegiatan Masuk</span>
+                    <h5 class="fw-bold mb-0 text-primary fs-6 fs-md-5">{{ $dikpols->count() }} Agenda</h5>
+                    <span class="small text-muted" style="font-size: 0.7rem;">Dikpol T.A. 2026</span>
                 </div>
             </div>
             <div class="col-6 col-lg-3">
-                <div class="card border-0 shadow-sm rounded-3 p-3 h-100 bg-white">
-                    <span class="text-muted small d-block">Total Anggaran Terealisasi</span>
-                    <h4 class="fw-bold mb-0 text-success">Rp {{ number_format($totalBiaya, 0, ',', '.') }}</h4>
-                    <span class="small text-muted">Dana Banpol Terserap</span>
+                <div class="card border-0 shadow-sm rounded-3 p-2 p-sm-3 h-100 bg-white">
+                    <span class="text-muted small d-block" style="font-size: 0.72rem;">Realisasi Biaya</span>
+                    <h5 class="fw-bold mb-0 text-success fs-6 fs-md-5">Rp {{ number_format($totalBiaya, 0, ',', '.') }}</h5>
+                    <span class="small text-muted" style="font-size: 0.7rem;">Dana Banpol</span>
                 </div>
             </div>
             <div class="col-6 col-lg-3">
-                <div class="card border-0 shadow-sm rounded-3 p-3 h-100 bg-white">
-                    <span class="text-muted small d-block">Total Kader &amp; Warga</span>
-                    <h4 class="fw-bold mb-0 text-warning">{{ $totalPeserta }} Peserta</h4>
-                    <span class="small text-muted">Pendidikan Demokrasi</span>
+                <div class="card border-0 shadow-sm rounded-3 p-2 p-sm-3 h-100 bg-white">
+                    <span class="text-muted small d-block" style="font-size: 0.72rem;">Partisipasi Peserta</span>
+                    <h5 class="fw-bold mb-0 text-warning fs-6 fs-md-5">{{ $totalPeserta }} Peserta</h5>
+                    <span class="small text-muted" style="font-size: 0.7rem;">Kader &amp; Warga</span>
                 </div>
             </div>
             <div class="col-6 col-lg-3">
-                <div class="card border-0 shadow-sm rounded-3 p-3 h-100 bg-white">
-                    <span class="text-muted small d-block">Status Verifikasi</span>
-                    <h4 class="fw-bold mb-0 text-dark">
-                        <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1 fs-6">
-                            Lengkap
+                <div class="card border-0 shadow-sm rounded-3 p-2 p-sm-3 h-100 bg-white">
+                    <span class="text-muted small d-block" style="font-size: 0.72rem;">Status Verifikasi</span>
+                    <h5 class="fw-bold mb-0 text-dark fs-6 fs-md-5">
+                        <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1" style="font-size: 0.72rem;">
+                            Terverifikasi
                         </span>
-                    </h4>
-                    <span class="small text-muted">Telah Diaudit Bakesbangpol</span>
+                    </h5>
+                    <span class="small text-muted" style="font-size: 0.7rem;">Bakesbangpol</span>
                 </div>
             </div>
         </div>
 
         <!-- Panel Landasan Ideologi & Visi-Misi Partai -->
         <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
-            <div class="card-header bg-white p-3 p-md-4 d-flex flex-wrap align-items-center justify-content-between gap-3 border-bottom">
+            <div class="card-header bg-white p-3 p-md-4 d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-3 border-bottom">
                 <div class="d-flex align-items-center gap-3">
-                    <div class="bg-primary text-white rounded-circle p-2 d-flex align-items-center justify-content-center shadow-sm flex-shrink-0" style="width: 48px; height: 48px;">
+                    <div class="bg-primary text-white rounded-circle p-2 d-flex align-items-center justify-content-center shadow-sm flex-shrink-0" style="width: 44px; height: 44px;">
                         <i class="bi bi-compass-fill fs-4"></i>
                     </div>
                     <div>
-                        <h5 class="fw-bold mb-1 text-dark" style="font-size: 1.25rem;">Visi &amp; Misi Resmi Partai Anda ({{ $parpol->akronim }})</h5>
-                        <p class="text-secondary mb-0" style="font-size: 0.95rem;">Landasan AD/ART &amp; narasi resmi yang tampil pada portal publik SIPARPOL Bakesbangpol</p>
+                        <h5 class="fw-bold mb-1 text-dark fs-5 fs-md-4">Visi &amp; Misi Resmi Partai Anda ({{ $parpol->akronim }})</h5>
+                        <p class="text-secondary mb-0 small">Landasan AD/ART &amp; narasi resmi yang tampil pada portal publik SIPARPOL Bakesbangpol</p>
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary rounded-pill px-4 py-2 shadow-sm d-flex align-items-center gap-2 fw-semibold" style="font-size: 1rem;" data-bs-toggle="modal" data-bs-target="#modalEditVisiMisi">
+                <button type="button" class="btn btn-primary rounded-pill px-4 py-2 shadow-sm d-flex align-items-center justify-content-center gap-2 fw-semibold w-100 w-sm-auto flex-shrink-0" style="font-size: 0.95rem;" data-bs-toggle="modal" data-bs-target="#modalEditVisiMisi">
                     <i class="bi bi-pencil-square"></i> Edit Visi &amp; Misi
                 </button>
             </div>
 
             <div class="card-body p-3 p-md-4 bg-white">
-                <div class="row g-4">
+                <div class="row g-3 g-md-4">
                     <!-- Kartu Visi -->
                     <div class="col-12">
-                        <div class="p-4 rounded-4" style="background-color: #f8fafc; border-left: 6px solid #0d6efd; border-top: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
+                        <div class="p-3 p-md-4 rounded-4" style="background-color: #f8fafc; border-left: 6px solid #0d6efd; border-top: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
                             <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3 pb-2 border-bottom">
                                 <div class="d-flex align-items-center gap-2">
-                                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
                                         <i class="bi bi-eye-fill fs-5"></i>
                                     </div>
-                                    <h5 class="fw-bold text-primary mb-0" style="font-size: 1.25rem; letter-spacing: 0.5px;">VISI PARTAI</h5>
+                                    <h5 class="fw-bold text-primary mb-0" style="font-size: 1.15rem; letter-spacing: 0.5px;">VISI PARTAI</h5>
                                 </div>
-                                <span class="badge bg-primary text-white px-3 py-2 fw-semibold" style="font-size: 0.9rem;">
+                                <span class="badge bg-primary text-white px-3 py-2 fw-semibold" style="font-size: 0.82rem;">
                                     <i class="bi bi-star-fill me-1"></i> Cita-Cita Politik Resmi
                                 </span>
                             </div>
                             @if (!empty($parpol->visi))
-                                <div class="fw-normal" style="white-space: pre-line; font-size: 1.15rem; line-height: 1.85; color: #0f172a;">{{ $parpol->visi }}</div>
+                                <div class="fw-normal" style="white-space: pre-line; font-size: 1.1rem; line-height: 1.8; color: #0f172a; word-break: break-word;">{{ $parpol->visi }}</div>
                             @else
-                                <div class="text-muted fst-italic py-3" style="font-size: 1.05rem;">
+                                <div class="text-muted fst-italic py-3" style="font-size: 1rem;">
                                     <i class="bi bi-info-circle me-1"></i> Narasi visi belum diisi. Klik tombol "Edit Visi &amp; Misi" di atas untuk melengkapi.
                                 </div>
                             @endif
@@ -148,22 +148,22 @@
 
                     <!-- Kartu Misi -->
                     <div class="col-12">
-                        <div class="p-4 rounded-4" style="background-color: #f8fafc; border-left: 6px solid #198754; border-top: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
+                        <div class="p-3 p-md-4 rounded-4" style="background-color: #f8fafc; border-left: 6px solid #198754; border-top: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
                             <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3 pb-2 border-bottom">
                                 <div class="d-flex align-items-center gap-2">
-                                    <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                    <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
                                         <i class="bi bi-list-check fs-5"></i>
                                     </div>
-                                    <h5 class="fw-bold text-success mb-0" style="font-size: 1.25rem; letter-spacing: 0.5px;">MISI PARTAI</h5>
+                                    <h5 class="fw-bold text-success mb-0" style="font-size: 1.15rem; letter-spacing: 0.5px;">MISI PARTAI</h5>
                                 </div>
-                                <span class="badge bg-success text-white px-3 py-2 fw-semibold" style="font-size: 0.9rem;">
+                                <span class="badge bg-success text-white px-3 py-2 fw-semibold" style="font-size: 0.82rem;">
                                     <i class="bi bi-check2-circle me-1"></i> Agenda &amp; Aksi Strategis
                                 </span>
                             </div>
                             @if (!empty($parpol->misi))
-                                <div class="fw-normal" style="white-space: pre-line; font-size: 1.15rem; line-height: 1.85; color: #0f172a;">{{ $parpol->misi }}</div>
+                                <div class="fw-normal" style="white-space: pre-line; font-size: 1.1rem; line-height: 1.8; color: #0f172a; word-break: break-word;">{{ $parpol->misi }}</div>
                             @else
-                                <div class="text-muted fst-italic py-3" style="font-size: 1.05rem;">
+                                <div class="text-muted fst-italic py-3" style="font-size: 1rem;">
                                     <i class="bi bi-info-circle me-1"></i> Narasi misi belum diisi. Klik tombol "Edit Visi &amp; Misi" di atas untuk melengkapi.
                                 </div>
                             @endif
@@ -175,14 +175,20 @@
 
         <!-- Daftar Kegiatan Yang Diinput Oleh Partai Ini -->
         <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
-            <div class="card-header bg-white p-3 d-flex flex-wrap align-items-center justify-content-between gap-2 border-bottom">
+            <div class="card-header bg-white p-3 d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-2 border-bottom">
                 <div class="d-flex align-items-center gap-2">
                     <i class="bi bi-mortarboard-fill text-primary fs-5"></i>
                     <h6 class="fw-bold mb-0">Realisasi Kegiatan Pendidikan Politik Partai Anda</h6>
                 </div>
-                <button type="button" class="btn btn-primary btn-sm rounded-pill px-3 shadow-sm d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modalTambahDikpol">
+                <button type="button" class="btn btn-primary btn-sm rounded-pill px-3 py-2 shadow-sm d-flex align-items-center justify-content-center gap-1 w-100 w-sm-auto" data-bs-toggle="modal" data-bs-target="#modalTambahDikpol">
                     <i class="bi bi-plus-circle-fill"></i> Tambah Laporan Baru
                 </button>
+            </div>
+
+            <!-- Petunjuk Geser Layar Sentuh di Ponsel -->
+            <div class="swipe-hint d-md-none mb-0 rounded-0 border-0 border-bottom">
+                <i class="bi bi-arrow-left-right text-primary fs-6"></i>
+                <span>Geser tabel ke samping untuk melihat rincian biaya & aksi</span>
             </div>
 
             <div class="table-responsive">

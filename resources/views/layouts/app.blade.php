@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title', 'Data Partai Politik Kab. Tanah Laut Tahun 2026 | Portal Resmi')</title>
     <link rel="icon" type="image/png" href="{{ asset('images/tanahlaut.png') }}">
@@ -31,12 +31,63 @@
             --parpol-gray: #64748b;
         }
 
-        body {
+        html, body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             color: #1e293b;
             background-color: #f1f5f9;
-            overflow-x: hidden;
+            overflow-x: hidden !important;
+            max-width: 100vw !important;
+            width: 100% !important;
             scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Container Fluid & Row Mobile Reset */
+        @media (max-width: 575.98px) {
+            .container, .container-fluid {
+                padding-left: 14px !important;
+                padding-right: 14px !important;
+            }
+        }
+
+        /* Swipe Hint Mobile Indicator */
+        .swipe-hint {
+            display: none;
+        }
+
+        @media (max-width: 991.98px) {
+            .swipe-hint {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 0.78rem;
+                font-weight: 600;
+                color: #334155;
+                background: linear-gradient(90deg, #eff6ff 0%, #f8fafc 100%);
+                border: 1px solid #bfdbfe;
+                padding: 7px 12px;
+                border-radius: 8px;
+                margin-bottom: 10px;
+                user-select: none;
+            }
+        }
+
+        /* Smooth Touch Table Responsive */
+        .table-responsive {
+            -webkit-overflow-scrolling: touch !important;
+            overflow-x: auto !important;
+            max-width: 100% !important;
+            overscroll-behavior-x: contain;
+            position: relative;
         }
 
         @if(request()->routeIs('wasbang.*'))
@@ -112,7 +163,7 @@
 
         .navbar-brand .brand-title {
             font-weight: 800;
-            font-size: 1.05rem;
+            font-size: clamp(0.82rem, 3.8vw, 1.05rem);
             color: var(--parpol-secondary);
             line-height: 1.15;
             letter-spacing: -0.3px;
@@ -120,12 +171,87 @@
         }
 
         .navbar-brand .brand-sub {
-            font-size: 0.65rem;
+            font-size: clamp(0.58rem, 2.5vw, 0.65rem);
             font-weight: 600;
             color: var(--parpol-accent);
             letter-spacing: 0.6px;
             text-transform: uppercase;
             white-space: nowrap;
+        }
+
+        .navbar-toggler {
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            border: 1.5px solid #cbd5e1 !important;
+            background-color: #f8fafc;
+            color: #1e3a8a;
+            flex-shrink: 0;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.25) !important;
+            outline: none;
+        }
+
+        @media (max-width: 1199.98px) {
+            .navbar-collapse {
+                background: #ffffff;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 16px 32px rgba(15, 23, 42, 0.1);
+                padding: 16px 14px;
+                margin-top: 12px;
+            }
+            .nav-link {
+                padding: 11px 14px !important;
+                font-size: 0.94rem;
+                border-radius: 8px;
+                margin-bottom: 3px;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
+            .nav-link:hover, .nav-link:focus {
+                background-color: #eff6ff;
+            }
+            .navbar-parpol .btn-parpol,
+            .navbar-parpol .btn-login-portal,
+            .navbar-parpol .btn-user-portal {
+                width: 100% !important;
+                justify-content: center;
+                padding: 10px 16px !important;
+                min-height: 44px;
+                font-size: 0.92rem;
+                border-radius: 8px;
+            }
+            .navbar-parpol .dropdown {
+                width: 100%;
+            }
+            .navbar-parpol .dropdown-menu {
+                width: 100%;
+                border: 1px solid #cbd5e1;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .form-control, .form-select, .input-group-text {
+                min-height: 46px;
+                font-size: 16px !important; /* Mencegah auto-zoom di browser iOS Safari */
+            }
+            textarea.form-control {
+                min-height: 100px;
+            }
+            .btn {
+                min-height: 44px;
+            }
+            .btn-sm {
+                min-height: 38px;
+            }
         }
 
         .nav-link {
@@ -532,17 +658,33 @@
                             <a class="nav-link" href="{{ route('parpol.home') }}#lapor"><i class="bi bi-pencil-square me-1"></i> Update Data</a>
                         </li>
                     @endif
+
+                    <!-- Switcher Bidang Versi Mobile (Tampil Hanya di Layar HP) -->
+                    <li class="nav-item d-md-none mt-2 pt-2 border-top">
+                        <span class="text-muted small px-3 fw-bold d-block mb-1" style="font-size: 0.72rem;">PINDAH LAYANAN BAKESBANGPOL:</span>
+                        <div class="d-flex flex-column gap-1 px-2">
+                            <a href="{{ route('portal.home') }}" class="btn btn-sm btn-light text-start text-dark py-2 px-3 rounded-2 border d-flex align-items-center gap-2">
+                                <i class="bi bi-house-door text-secondary"></i> Halaman Utama Portal
+                            </a>
+                            <a href="{{ route('parpol.home') }}" class="btn btn-sm {{ request()->routeIs('parpol.*') ? 'btn-primary' : 'btn-light text-dark' }} text-start py-2 px-3 rounded-2 border d-flex align-items-center gap-2">
+                                <i class="bi bi-bank2"></i> SIPARPOL Kab. Tanah Laut
+                            </a>
+                            <a href="{{ route('wasbang.index') }}" class="btn btn-sm {{ request()->routeIs('wasbang.*') ? 'btn-danger' : 'btn-light text-dark' }} text-start py-2 px-3 rounded-2 border d-flex align-items-center gap-2">
+                                <i class="bi bi-flag-fill"></i> Layanan WASBANG
+                            </a>
+                        </div>
+                    </li>
                 </ul>
 
-                <!-- Tombol Aksi di Pojok Kanan Atas -->
-                <div class="d-flex align-items-center gap-2 ms-xl-2 mt-2 mt-xl-0 flex-shrink-0">
+                <!-- Tombol Aksi di Pojok Kanan Atas (1 Kolom Vertikal di HP, Sebaris di Desktop) -->
+                <div class="d-flex flex-column flex-xl-row align-items-stretch align-items-xl-center gap-2 ms-xl-2 mt-3 mt-xl-0 pt-3 pt-xl-0 border-top border-xl-0 flex-shrink-0">
                     @if(request()->routeIs('wasbang.*'))
-                        <a class="btn btn-warning text-dark fw-bold btn-sm rounded-3 shadow-sm text-decoration-none" href="{{ route('wasbang.cetak') }}" target="_blank" title="Cetak Rekapitulasi Berkas Arsip">
+                        <a class="btn btn-warning text-dark fw-bold btn-sm rounded-3 shadow-sm text-decoration-none d-flex align-items-center justify-content-center" href="{{ route('wasbang.cetak') }}" target="_blank" title="Cetak Rekapitulasi Berkas Arsip">
                             <i class="bi bi-printer-fill me-1"></i> Rekap Arsip
                         </a>
                     @else
-                        <a class="btn-parpol text-decoration-none" href="{{ route('parpol.cetak') }}" target="_blank" title="Cetak Dokumen Resmi">
-                            <i class="bi bi-printer-fill"></i> Cetak
+                        <a class="btn-parpol text-decoration-none d-flex align-items-center justify-content-center" href="{{ route('parpol.cetak') }}" target="_blank" title="Cetak Dokumen Resmi">
+                            <i class="bi bi-printer-fill me-1"></i> Cetak Dokumen
                         </a>
                     @endif
                     
@@ -640,12 +782,12 @@
                         </div>
                     @else
                         @if(request()->routeIs('wasbang.*'))
-                            <a class="btn btn-danger btn-sm fw-bold px-3 py-1 rounded-3 shadow-sm text-decoration-none" href="{{ route('wasbang.login') }}">
+                            <a class="btn btn-danger btn-sm fw-bold px-3 py-2 rounded-3 shadow-sm text-decoration-none d-flex align-items-center justify-content-center" href="{{ route('wasbang.login') }}">
                                 <i class="bi bi-box-arrow-in-right me-1"></i> Login Wasbang
                             </a>
                         @else
-                            <a class="btn-login-portal text-decoration-none" href="{{ route('login') }}">
-                                <i class="bi bi-box-arrow-in-right"></i> Login Petugas
+                            <a class="btn-login-portal text-decoration-none d-flex align-items-center justify-content-center" href="{{ route('login') }}">
+                                <i class="bi bi-box-arrow-in-right me-1"></i> Login Petugas
                             </a>
                         @endif
                     @endauth
