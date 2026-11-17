@@ -401,7 +401,7 @@ class WasbangTest extends TestCase
     }
 
     /**
-     * Test Kepala Badan melihat Ruang Kerja Eksekutif saat membuka /wasbang
+     * Test Kepala Badan melihat Ruang Kerja Eksekutif dan Navbar Bapak Kepala Badan saat membuka /wasbang
      */
     public function test_kaban_sees_executive_workspace(): void
     {
@@ -414,6 +414,9 @@ class WasbangTest extends TestCase
         $response->assertSee('RUANG KERJA EKSEKUTIF', false);
         $response->assertSee('H. Bambang Kusdariman, S.I.P., M.Si.');
         $response->assertSee('Matriks Capaian Pelaksanaan Kegiatan Bidang Wasbang');
+        $response->assertSee('Bapak Kepala Badan');
+        $response->assertSee('Kepala Badan Kesbangpol Kab. Tanah Laut');
+        $response->assertSee('Ruang Kerja Eksekutif Kaban');
     }
 
     /**

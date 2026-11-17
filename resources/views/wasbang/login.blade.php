@@ -153,10 +153,10 @@
                                             <small class="d-block text-muted mt-1" style="font-size: 0.73rem;">Petugas Input &amp; Pengarsip Foto Kegiatan Lapangan</small>
                                         </button>
 
-                                        <!-- Akun Kepala Badan Kesbangpol -->
+                                        <!-- Akun Bapak Kepala Badan Kesbangpol -->
                                         <button type="button" class="btn btn-outline-primary btn-sm text-start" onclick="fillLoginWasbang('kaban@tanahlautkab.go.id', 'password123')">
                                             <div class="d-flex align-items-center justify-content-between">
-                                                <span><i class="bi bi-shield-check me-1"></i> <strong>Kepala Badan (Kaban)</strong></span>
+                                                <span><i class="bi bi-person-check-fill text-primary me-1"></i> <strong>Bapak Kepala Badan</strong></span>
                                                 <span class="badge bg-primary text-white small">Pimpinan Instansi</span>
                                             </div>
                                             <small class="d-block text-muted mt-1" style="font-size: 0.73rem;">H. Bambang Kusdariman, S.I.P., M.Si. (NIP. 19680818 199010 1 003)</small>

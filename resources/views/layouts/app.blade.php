@@ -723,6 +723,9 @@
                                         <img src="{{ asset(auth()->user()->parpol->logo) }}" alt="{{ auth()->user()->parpol->akronim }}" style="width: 100%; height: 100%; object-fit: contain;">
                                     </span>
                                     <span>{{ auth()->user()->parpol->akronim ?? 'Partai' }}</span>
+                                @elseif(auth()->user()->isKaban())
+                                    <i class="bi bi-person-check-fill text-primary fs-6 me-1"></i>
+                                    <span>Bapak Kepala Badan</span>
                                 @elseif(auth()->user()->isKabidWasbang())
                                     <i class="bi bi-person-check-fill text-danger fs-6 me-1"></i>
                                     <span>Ibu Kabid Wasbang</span>
@@ -736,13 +739,34 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-3 mt-2" style="min-width: 260px;">
                                 <li class="px-3 py-2 border-bottom bg-light">
-                                    <small class="text-danger fw-bold d-block" style="font-size: 0.72rem;">{{ auth()->user()->role_label }}</small>
+                                    <small class="{{ auth()->user()->isKaban() ? 'text-primary' : (auth()->user()->isKabidWasbang() ? 'text-danger' : (auth()->user()->isStafWasbang() ? 'text-success' : 'text-danger')) }} fw-bold d-block" style="font-size: 0.72rem;">{{ auth()->user()->role_label }}</small>
                                     <strong class="text-dark small d-block">{{ auth()->user()->name }}</strong>
                                     @if(auth()->user()->nip)
                                         <small class="text-muted d-block" style="font-size: 0.72rem;">NIP. {{ auth()->user()->nip }}</small>
                                     @endif
                                 </li>
-                                @if(auth()->user()->isKabidWasbang())
+                                @if(auth()->user()->isKaban())
+                                    <li>
+                                        <a class="dropdown-item py-2 small" href="{{ route('wasbang.index') }}">
+                                            <i class="bi bi-shield-shaded text-primary me-2"></i> Ruang Kerja Eksekutif Kaban
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item py-2 small" href="{{ route('wasbang.cetak') }}" target="_blank">
+                                            <i class="bi bi-printer-fill text-warning me-2"></i> Rekapitulasi Eksekutif (Cetak A4)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item py-2 small" href="{{ route('wasbang.index', ['view' => 'publik']) }}">
+                                            <i class="bi bi-eye-fill text-info me-2"></i> Tampilan Galeri Publik Wasbang
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item py-2 small" href="{{ route('dashboard') }}">
+                                            <i class="bi bi-speedometer2 text-secondary me-2"></i> Panel Utama Bakesbangpol
+                                        </a>
+                                    </li>
+                                @elseif(auth()->user()->isKabidWasbang())
                                     <li>
                                         <a class="dropdown-item py-2 small" href="{{ route('wasbang.index') }}">
                                             <i class="bi bi-speedometer2 text-danger me-2"></i> Dashboard Pelaporan Wasbang
@@ -789,7 +813,7 @@
                                 @endif
                                 <li><hr class="dropdown-divider my-1"></li>
                                 <li>
-                                    @if(auth()->user()->isKabidWasbang() || auth()->user()->isStafWasbang())
+                                    @if(auth()->user()->isKaban() || auth()->user()->isKabidWasbang() || auth()->user()->isStafWasbang())
                                         <form action="{{ route('wasbang.logout') }}" method="POST">
                                             @csrf
                                             <button type="submit" class="dropdown-item py-2 small text-danger">
