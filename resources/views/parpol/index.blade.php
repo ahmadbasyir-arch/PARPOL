@@ -324,27 +324,32 @@
         color: var(--parpol-primary, #0d6efd) !important;
     }
 
-    /* Modal Banner Logo (Visi Misi) - Memanjang Penuh di Mobile, Kotak Proporsional di Desktop */
+    /* Modal Banner Logo (Visi Misi) - Kotak Persegi Pas Mengelilingi Logo & Ditengah di Mobile */
     .modal-banner-logo {
-        width: 100%;
-        min-height: 64px;
-        padding: 12px 16px;
+        width: 80px;
+        height: 80px;
+        min-width: 80px;
+        min-height: 80px;
+        padding: 10px;
         background: #ffffff;
-        border-radius: 12px;
+        border-radius: 16px;
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
         border: 1.5px solid rgba(255, 255, 255, 0.3);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        aspect-ratio: 1/1;
         flex-shrink: 0;
+        margin-left: auto !important;
+        margin-right: auto !important;
         transition: all 0.2s ease;
     }
     .modal-banner-logo img {
-        max-height: 52px;
-        max-width: 140px;
-        width: auto;
-        height: auto;
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
         object-fit: contain;
         aspect-ratio: 1/1;
         display: block;
@@ -352,22 +357,14 @@
 
     @media (min-width: 576px) {
         .modal-banner-logo {
-            width: 60px !important;
-            height: 60px !important;
-            min-width: 60px !important;
-            min-height: 60px !important;
-            padding: 4px !important;
-            border-radius: 12px !important;
-            aspect-ratio: 1/1 !important;
-            flex-shrink: 0 !important;
-        }
-        .modal-banner-logo img {
-            width: 100% !important;
-            height: 100% !important;
-            max-height: 100% !important;
-            max-width: 100% !important;
-            object-fit: contain !important;
-            aspect-ratio: 1/1 !important;
+            width: 70px;
+            height: 70px;
+            min-width: 70px;
+            min-height: 70px;
+            padding: 6px;
+            border-radius: 14px;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
         }
     }
 </style>
@@ -1357,8 +1354,8 @@
                                         <!-- Banner Header Visi Misi (Responsif Mobile) -->
                                         <div class="p-3 p-sm-4 mb-4 rounded-3 text-white d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-3 shadow-sm overflow-hidden" style="background: linear-gradient(135deg, #0f2b48 0%, #064e3b 100%);">
                                             <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3 w-100 flex-grow-1 min-w-0">
-                                                <!-- Wadah Logo Memanjang Penuh di Mobile, Tetap Proporsional di Desktop -->
-                                                <div class="modal-banner-logo w-100 w-sm-auto shadow-sm">
+                                                <!-- Wadah Persegi Logo di Tengah (mx-auto di Mobile) -->
+                                                <div class="modal-banner-logo mx-auto mx-sm-0 shadow-sm">
                                                     <img src="{{ asset($p->logo) }}?v=16" alt="Logo {{ $p->akronim }}">
                                                 </div>
                                                 <div class="flex-grow-1 min-w-0 w-100">
