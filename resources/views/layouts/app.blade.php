@@ -793,21 +793,24 @@
                     
                     @auth
                         <div class="dropdown">
-                            <button class="btn btn-user-portal dropdown-toggle d-inline-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="max-width: 165px;" title="{{ auth()->user()->parpol->nama_partai ?? auth()->user()->name }}">
+                            <button class="btn btn-user-portal dropdown-toggle d-inline-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="max-width: 220px;" title="{{ auth()->user()->parpol->nama_partai ?? auth()->user()->name }}">
                                 @if(auth()->user()->isParpol() && auth()->user()->parpol)
                                     <span style="width: 20px; height: 20px; border-radius: 4px; background: #ffffff; display: inline-flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid #cbd5e1;" class="me-1 flex-shrink-0">
                                         <img src="{{ asset(auth()->user()->parpol->logo) }}" alt="{{ auth()->user()->parpol->akronim }}" style="width: 100%; height: 100%; object-fit: contain;">
                                     </span>
                                     <span class="text-truncate" style="max-width: 105px;">{{ str_replace('PARTAI ', '', auth()->user()->parpol->akronim ?? 'Partai') }}</span>
+                                @elseif(auth()->user()->isKaban())
+                                    <i class="bi bi-person-check-fill text-primary fs-6 me-1 flex-shrink-0"></i>
+                                    <span class="text-truncate" style="max-width: 150px;">Bapak Kepala Badan</span>
                                 @elseif(auth()->user()->isKabidWasbang())
                                     <i class="bi bi-person-check-fill text-danger fs-6 me-1 flex-shrink-0"></i>
-                                    <span class="text-truncate" style="max-width: 105px;">Ibu Kabid</span>
+                                    <span class="text-truncate" style="max-width: 150px;">Ibu Kabid Wasbang</span>
                                 @elseif(auth()->user()->isStafWasbang())
                                     <i class="bi bi-person-badge-fill text-success fs-6 me-1 flex-shrink-0"></i>
-                                    <span class="text-truncate" style="max-width: 105px;">Staf Wasbang</span>
+                                    <span class="text-truncate" style="max-width: 150px;">Staf Wasbang</span>
                                 @else
                                     <i class="bi bi-shield-check text-primary fs-6 me-1 flex-shrink-0"></i>
-                                    <span class="text-truncate" style="max-width: 105px;">Admin</span>
+                                    <span class="text-truncate" style="max-width: 150px;">Admin Bakesbangpol</span>
                                 @endif
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-3 mt-2" style="min-width: 260px;">
