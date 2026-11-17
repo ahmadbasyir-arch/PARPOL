@@ -270,6 +270,59 @@
         padding: 20px;
         height: 100%;
     }
+
+    /* Modal Nav Pills - Teks & Ikon Putih Bersih Saat Tab Aktif */
+    .modal-nav-pills .nav-link {
+        color: #334155 !important;
+        background-color: transparent !important;
+        border-radius: 8px !important;
+        font-size: 0.92rem;
+        font-weight: 700;
+        transition: all 0.2s ease;
+        padding: 9px 14px !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .modal-nav-pills .nav-link i {
+        font-size: 1rem;
+        transition: color 0.2s ease;
+    }
+
+    .modal-nav-pills .nav-link:not(.active) i.bi-shield-check {
+        color: #10b981 !important;
+    }
+
+    .modal-nav-pills .nav-link:not(.active) i.bi-compass-fill {
+        color: var(--parpol-primary, #0d6efd) !important;
+    }
+
+    .modal-nav-pills .nav-link:not(.active) i.bi-mortarboard-fill {
+        color: #f59e0b !important;
+    }
+
+    .modal-nav-pills .nav-link:hover {
+        color: var(--parpol-primary, #0d6efd) !important;
+        background-color: #eff6ff !important;
+    }
+
+    .modal-nav-pills .nav-link.active {
+        background-color: var(--parpol-primary, #0d6efd) !important;
+        color: #ffffff !important;
+        box-shadow: 0 4px 12px rgba(13, 110, 253, 0.25) !important;
+    }
+
+    .modal-nav-pills .nav-link.active i,
+    .modal-nav-pills .nav-link.active span:not(.badge) {
+        color: #ffffff !important;
+    }
+
+    .modal-nav-pills .nav-link.active .badge {
+        background-color: #ffffff !important;
+        color: var(--parpol-primary, #0d6efd) !important;
+    }
 </style>
 @endpush
 
@@ -1149,14 +1202,14 @@
                                 @if ($hasVisiMisi)
                                     <li class="nav-item flex-fill" role="presentation">
                                         <button class="nav-link fw-bold py-2 w-100 text-center" id="visimisi-tab{{ $p->id }}" data-bs-toggle="tab" data-bs-target="#visimisi-content{{ $p->id }}" type="button" role="tab" aria-controls="visimisi-content{{ $p->id }}" aria-selected="false">
-                                            <i class="bi bi-compass-fill me-1 text-primary"></i> Visi &amp; Misi
+                                            <i class="bi bi-compass-fill me-1"></i> Visi &amp; Misi
                                         </button>
                                     </li>
                                 @endif
                                 @if ($hasDikpol)
                                     <li class="nav-item flex-fill" role="presentation">
                                         <button class="nav-link fw-bold py-2 w-100 text-center" id="dikpol-tab{{ $p->id }}" data-bs-toggle="tab" data-bs-target="#dikpol-content{{ $p->id }}" type="button" role="tab" aria-controls="dikpol-content{{ $p->id }}" aria-selected="false">
-                                            <i class="bi bi-mortarboard-fill me-1 text-warning"></i> Dikpol 2026
+                                            <i class="bi bi-mortarboard-fill me-1"></i> Dikpol 2026
                                             <span class="badge bg-danger ms-1">{{ $p->pendidikanPolitik->count() }}</span>
                                         </button>
                                     </li>
@@ -1254,22 +1307,22 @@
                                 @if ($hasVisiMisi)
                                     <!-- Tab 2: Visi & Misi Partai -->
                                     <div class="tab-pane fade" id="visimisi-content{{ $p->id }}" role="tabpanel" aria-labelledby="visimisi-tab{{ $p->id }}">
-                                        <!-- Banner Header Visi Misi -->
-                                        <div class="p-3 mb-4 rounded-3 text-white d-flex flex-wrap align-items-center justify-content-between gap-3 shadow-sm" style="background: linear-gradient(135deg, #0f2b48 0%, #064e3b 100%);">
-                                            <div class="d-flex align-items-center gap-3">
-                                                <div style="width: 48px; height: 48px; background: #ffffff; border-radius: 8px; padding: 2px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-                                                    <img src="{{ asset($p->logo) }}?v=16" alt="Logo {{ $p->akronim }}" style="width: 100%; height: 100%; object-fit: contain;">
+                                        <!-- Banner Header Visi Misi (Responsif Mobile) -->
+                                        <div class="p-3 p-sm-4 mb-4 rounded-3 text-white d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-3 shadow-sm overflow-hidden" style="background: linear-gradient(135deg, #0f2b48 0%, #064e3b 100%);">
+                                            <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3 w-100 flex-grow-1 min-w-0">
+                                                <div style="width: 56px; height: 56px; min-width: 56px; min-height: 56px; background: #ffffff; border-radius: 12px; padding: 4px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1.5px solid rgba(255,255,255,0.3); aspect-ratio: 1/1;" class="flex-shrink-0 shadow-sm">
+                                                    <img src="{{ asset($p->logo) }}?v=16" alt="Logo {{ $p->akronim }}" style="width: 100%; height: 100%; object-fit: contain; aspect-ratio: 1/1;">
                                                 </div>
-                                                <div>
-                                                    <span class="badge bg-warning text-dark fw-bold text-uppercase px-2 py-1 mb-1">
-                                                        <i class="bi bi-compass-fill me-1"></i> Landasan Ideologi & Cita-Cita Politik
+                                                <div class="flex-grow-1 min-w-0 w-100">
+                                                    <span class="badge bg-warning text-dark fw-bold text-uppercase px-2.5 py-1 mb-2 text-wrap text-start lh-base d-inline-block" style="font-size: 0.72rem; white-space: normal; word-break: break-word;">
+                                                        <i class="bi bi-compass-fill me-1"></i> Landasan Ideologi &amp; Cita-Cita Politik
                                                     </span>
-                                                    <h5 class="fw-bold mb-0">Visi &amp; Misi Resmi {{ $p->nama_partai }} ({{ $p->akronim }})</h5>
-                                                    <div class="small opacity-75">Nomor Urut {{ $p->nomor_urut }} &bull; DPD Kabupaten Tanah Laut</div>
+                                                    <h5 class="fw-bold mb-1 fs-5 fs-sm-4 text-wrap text-break lh-sm text-white">Visi &amp; Misi Resmi {{ $p->nama_partai }} ({{ $p->akronim }})</h5>
+                                                    <div class="small opacity-75 text-wrap text-break">Nomor Urut {{ $p->nomor_urut }} &bull; DPD Kabupaten Tanah Laut</div>
                                                 </div>
                                             </div>
-                                            <div>
-                                                <span class="badge bg-light text-dark px-3 py-2 fw-semibold">
+                                            <div class="w-100 w-sm-auto text-start text-sm-end flex-shrink-0 mt-1 mt-sm-0">
+                                                <span class="badge bg-light text-dark px-3 py-2 fw-semibold text-wrap text-start lh-base" style="font-size: 0.78rem; white-space: normal;">
                                                     <i class="bi bi-check-circle-fill text-success me-1"></i> Dokumen AD/ART Resmi
                                                 </span>
                                             </div>
@@ -1324,17 +1377,17 @@
                                 @if ($hasDikpol)
                                     <!-- Tab 3: Realisasi Pendidikan Politik -->
                                     <div class="tab-pane fade" id="dikpol-content{{ $p->id }}" role="tabpanel" aria-labelledby="dikpol-tab{{ $p->id }}">
-                                        <!-- Banner Header Laporan -->
-                                        <div class="p-3 mb-4 rounded-3 text-white d-flex flex-wrap align-items-center justify-content-between gap-3 shadow-sm" style="background: linear-gradient(135deg, #1e3a8a, #0f172a);">
-                                            <div>
-                                                <span class="badge bg-warning text-dark fw-bold text-uppercase px-2 py-1 mb-1">
+                                        <!-- Banner Header Laporan (Responsif Mobile) -->
+                                        <div class="p-3 p-sm-4 mb-4 rounded-3 text-white d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-3 shadow-sm overflow-hidden" style="background: linear-gradient(135deg, #1e3a8a, #0f172a);">
+                                            <div class="flex-grow-1 min-w-0 w-100">
+                                                <span class="badge bg-warning text-dark fw-bold text-uppercase px-2.5 py-1 mb-2 text-wrap text-start lh-base d-inline-block" style="font-size: 0.72rem; white-space: normal; word-break: break-word;">
                                                     <i class="bi bi-file-earmark-bar-graph-fill me-1"></i> Bantuan Keuangan Parpol (Banpol) T.A. 2026
                                                 </span>
-                                                <h5 class="fw-bold mb-1">Realisasi Pendidikan Politik DPD {{ $p->akronim }}</h5>
-                                                <div class="small opacity-75">Periode Pelaksanaan: <strong>Januari s.d. Agustus T.A. 2026</strong> &bull; Kabupaten Tanah Laut</div>
+                                                <h5 class="fw-bold mb-1 fs-5 fs-sm-4 text-wrap text-break lh-sm text-white">Realisasi Pendidikan Politik DPD {{ $p->akronim }}</h5>
+                                                <div class="small opacity-75 text-wrap text-break">Periode Pelaksanaan: <strong>Januari s.d. Agustus T.A. 2026</strong> &bull; Kabupaten Tanah Laut</div>
                                             </div>
-                                            <div>
-                                                <span class="badge bg-success bg-opacity-25 border border-success text-white px-3 py-2 fs-6">
+                                            <div class="w-100 w-sm-auto text-start text-sm-end flex-shrink-0 mt-1 mt-sm-0">
+                                                <span class="badge bg-success bg-opacity-25 border border-success text-white px-3 py-2 small fw-semibold text-wrap text-start lh-base" style="white-space: normal;">
                                                     <i class="bi bi-check2-circle me-1"></i> 100% Selesai Dilaporkan
                                                 </span>
                                             </div>

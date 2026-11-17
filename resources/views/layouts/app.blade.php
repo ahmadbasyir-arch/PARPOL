@@ -266,7 +266,7 @@
             .w-lg-auto { width: auto !important; }
         }
 
-        .nav-link {
+        .navbar-nav .nav-link {
             font-weight: 600;
             color: #334155 !important;
             padding: 8px 12px !important;
@@ -278,7 +278,7 @@
             align-items: center;
         }
 
-        .nav-link:hover {
+        .navbar-nav .nav-link:hover {
             color: var(--parpol-primary) !important;
             background-color: #eff6ff;
         }
