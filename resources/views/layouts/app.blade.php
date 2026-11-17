@@ -190,18 +190,20 @@
 
         .navbar-brand .brand-title {
             font-weight: 800;
-            font-size: clamp(0.82rem, 3.8vw, 1.05rem);
+            font-size: clamp(0.9rem, 3.6vw, 1.15rem);
             color: var(--parpol-secondary);
-            line-height: 1.15;
-            letter-spacing: -0.3px;
+            line-height: 1.25;
+            letter-spacing: 0.8px;
+            word-spacing: 3px;
             white-space: nowrap;
         }
 
         .navbar-brand .brand-sub {
-            font-size: clamp(0.58rem, 2.5vw, 0.65rem);
+            font-size: clamp(0.6rem, 2.5vw, 0.68rem);
             font-weight: 600;
             color: var(--parpol-accent);
-            letter-spacing: 0.6px;
+            letter-spacing: 1.2px;
+            word-spacing: 1.5px;
             text-transform: uppercase;
             white-space: nowrap;
         }
@@ -281,20 +283,62 @@
             }
         }
 
-        .nav-link {
+        @media (min-width: 576px) {
+            .w-sm-auto { width: auto !important; }
+        }
+        @media (min-width: 768px) {
+            .w-md-auto { width: auto !important; }
+        }
+        @media (min-width: 992px) {
+            .w-lg-auto { width: auto !important; }
+        }
+
+        .navbar-nav .nav-link {
             font-weight: 600;
             color: #334155 !important;
-            padding: 6px 9px !important;
-            border-radius: 6px;
+            padding: 8px 12px !important;
+            border-radius: 8px;
             transition: all 0.2s ease;
-            font-size: 0.83rem;
+            font-size: 0.88rem;
             white-space: nowrap;
             display: inline-flex;
             align-items: center;
         }
 
-        .nav-link:hover {
+        .navbar-nav .nav-link:hover {
             color: var(--parpol-primary) !important;
+            background-color: #eff6ff;
+        }
+
+        /* Padding Horizontal Nyaman Kontainer Navbar Desktop (px-6 s.d. px-8) */
+        @media (min-width: 1200px) {
+            .navbar-parpol .container-fluid {
+                padding-left: 2.5rem !important;
+                padding-right: 2.5rem !important;
+            }
+        }
+        @media (min-width: 1400px) {
+            .navbar-parpol .container-fluid {
+                padding-left: 3.5rem !important;
+                padding-right: 3.5rem !important;
+            }
+        }
+
+        .navbar-nav .dropdown-menu {
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.05);
+            padding: 8px;
+        }
+
+        .navbar-nav .dropdown-item {
+            border-radius: 8px;
+            padding: 8px 12px;
+            transition: all 0.15s ease;
+        }
+
+        .navbar-nav .dropdown-item:hover,
+        .navbar-nav .dropdown-item:focus {
             background-color: #eff6ff;
         }
 
@@ -302,13 +346,13 @@
             background-color: var(--parpol-primary);
             color: #ffffff;
             font-weight: 600;
-            padding: 6px 12px;
+            padding: 6px 10px;
             border-radius: 6px;
             border: 1px solid var(--parpol-primary);
             box-shadow: 0 2px 6px rgba(30, 58, 138, 0.2);
             transition: all 0.2s ease;
             white-space: nowrap;
-            font-size: 0.82rem;
+            font-size: 0.81rem;
             display: inline-flex;
             align-items: center;
             gap: 5px;
@@ -326,13 +370,13 @@
             background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
             color: #0f172a !important;
             font-weight: 700;
-            padding: 6px 14px;
+            padding: 6px 12px;
             border-radius: 6px;
             border: 1px solid #d97706;
             box-shadow: 0 2px 6px rgba(245, 158, 11, 0.25);
             transition: all 0.2s ease;
             white-space: nowrap;
-            font-size: 0.82rem;
+            font-size: 0.81rem;
             display: inline-flex;
             align-items: center;
             gap: 5px;
@@ -351,17 +395,18 @@
             background-color: #ffffff;
             color: #1e293b !important;
             font-weight: 600;
-            padding: 6px 12px;
+            padding: 6px 10px;
             border-radius: 6px;
             border: 1.5px solid #0f766e;
             box-shadow: 0 2px 5px rgba(15, 118, 110, 0.15);
             transition: all 0.2s ease;
             white-space: nowrap;
-            font-size: 0.82rem;
+            font-size: 0.81rem;
             display: inline-flex;
             align-items: center;
             gap: 5px;
             flex-shrink: 0;
+            max-width: 175px;
         }
 
         .btn-user-portal:hover {
@@ -585,7 +630,7 @@
 
     <!-- Navigasi Utama -->
     <nav class="navbar navbar-expand-xl navbar-parpol shadow-sm sticky-top">
-        <div class="container-fluid px-lg-4 px-2">
+        <div class="container-fluid px-3 px-md-4 px-xl-5 px-xxl-5">
             <div class="d-flex align-items-center gap-2">
                 @if(request()->routeIs('wasbang.*'))
                     <a class="navbar-brand d-flex align-items-center gap-2 me-1" href="{{ route('wasbang.index') }}">
@@ -648,7 +693,7 @@
             </button>
             
             <div class="collapse navbar-collapse" id="navbarMenu">
-                <ul class="navbar-nav ms-auto mb-2 mb-xl-0 align-items-xl-center">
+                <ul class="navbar-nav ms-auto mb-2 mb-xl-0 align-items-xl-center gap-1 gap-xl-4 gap-xxl-5">
                     @if(request()->routeIs('wasbang.*'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('wasbang.index') }}#beranda-wasbang"><i class="bi bi-house-door me-1"></i> Beranda</a>
@@ -669,17 +714,48 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('parpol.home') }}#beranda"><i class="bi bi-house-door me-1"></i> Beranda</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('parpol.home') }}#tabel-data"><i class="bi bi-table me-1"></i> Tabel Resmi</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('parpol.home') }}#galeri-partai"><i class="bi bi-grid-3x3-gap me-1"></i> Direktori</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('parpol.home') }}#dikpol"><i class="bi bi-mortarboard-fill me-1"></i> Dikpol</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('parpol.home') }}#sebaran"><i class="bi bi-geo me-1"></i> Sebaran Kantor</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownDataLayanan" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-layers-fill me-1 text-primary"></i> Data &amp; Layanan
+                            </a>
+                            <ul class="dropdown-menu shadow-sm border-0 rounded-3 mt-1 py-2" aria-labelledby="navbarDropdownDataLayanan" style="min-width: 250px;">
+                                <li>
+                                    <a class="dropdown-item py-2 px-3 small d-flex align-items-center gap-2" href="{{ route('parpol.home') }}#tabel-data">
+                                        <i class="bi bi-table text-primary fs-6"></i>
+                                        <div>
+                                            <span class="fw-semibold d-block text-dark">Tabel Resmi Parpol</span>
+                                            <small class="text-muted" style="font-size: 0.72rem;">Rekapitulasi 20 Partai Politik</small>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item py-2 px-3 small d-flex align-items-center gap-2" href="{{ route('parpol.home') }}#galeri-partai">
+                                        <i class="bi bi-grid-3x3-gap text-primary fs-6"></i>
+                                        <div>
+                                            <span class="fw-semibold d-block text-dark">Direktori Kartu Profil</span>
+                                            <small class="text-muted" style="font-size: 0.72rem;">Katalog &amp; Visi Misi Parpol</small>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item py-2 px-3 small d-flex align-items-center gap-2" href="{{ route('parpol.home') }}#dikpol">
+                                        <i class="bi bi-mortarboard-fill text-primary fs-6"></i>
+                                        <div>
+                                            <span class="fw-semibold d-block text-dark">Realisasi Dikpol</span>
+                                            <small class="text-muted" style="font-size: 0.72rem;">Pendidikan Politik &amp; Banpol</small>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item py-2 px-3 small d-flex align-items-center gap-2" href="{{ route('parpol.home') }}#sebaran">
+                                        <i class="bi bi-geo text-primary fs-6"></i>
+                                        <div>
+                                            <span class="fw-semibold d-block text-dark">Sebaran Kantor DPC</span>
+                                            <small class="text-muted" style="font-size: 0.72rem;">Titik Koordinat &amp; Peta Wilayah</small>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('parpol.home') }}#lapor"><i class="bi bi-pencil-square me-1"></i> Update Data</a>
@@ -704,37 +780,34 @@
                 </ul>
 
                 <!-- Tombol Aksi di Pojok Kanan Atas (1 Kolom Vertikal di HP, Sebaris di Desktop) -->
-                <div class="d-flex flex-column flex-xl-row align-items-stretch align-items-xl-center gap-2 ms-xl-2 mt-3 mt-xl-0 pt-3 pt-xl-0 border-top border-xl-0 flex-shrink-0">
+                <div class="d-flex flex-column flex-xl-row align-items-stretch align-items-xl-center gap-2 gap-xl-3 ms-xl-4 ms-xxl-5 mt-3 mt-xl-0 pt-3 pt-xl-0 border-top border-xl-0 flex-shrink-0">
                     @if(request()->routeIs('wasbang.*'))
                         <a class="btn btn-warning text-dark fw-bold btn-sm rounded-3 shadow-sm text-decoration-none d-flex align-items-center justify-content-center" href="{{ route('wasbang.cetak') }}" target="_blank" title="Cetak Rekapitulasi Berkas Arsip">
-                            <i class="bi bi-printer-fill me-1"></i> Rekap Arsip
+                            <i class="bi bi-printer-fill me-1"></i> <span class="d-none d-xxl-inline">Rekap Arsip</span><span class="d-inline d-xxl-none">Arsip</span>
                         </a>
                     @else
                         <a class="btn-parpol text-decoration-none d-flex align-items-center justify-content-center" href="{{ route('parpol.cetak') }}" target="_blank" title="Cetak Dokumen Resmi">
-                            <i class="bi bi-printer-fill me-1"></i> Cetak Dokumen
+                            <i class="bi bi-printer-fill me-1"></i> <span class="d-none d-xxl-inline">Cetak Dokumen</span><span class="d-inline d-xxl-none">Cetak</span>
                         </a>
                     @endif
                     
                     @auth
                         <div class="dropdown">
-                            <button class="btn btn-user-portal dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn btn-user-portal dropdown-toggle d-inline-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="max-width: 165px;" title="{{ auth()->user()->parpol->nama_partai ?? auth()->user()->name }}">
                                 @if(auth()->user()->isParpol() && auth()->user()->parpol)
                                     <span style="width: 20px; height: 20px; border-radius: 4px; background: #ffffff; display: inline-flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid #cbd5e1;" class="me-1 flex-shrink-0">
                                         <img src="{{ asset(auth()->user()->parpol->logo) }}" alt="{{ auth()->user()->parpol->akronim }}" style="width: 100%; height: 100%; object-fit: contain;">
                                     </span>
-                                    <span>{{ auth()->user()->parpol->akronim ?? 'Partai' }}</span>
-                                @elseif(auth()->user()->isKaban())
-                                    <i class="bi bi-person-check-fill text-primary fs-6 me-1"></i>
-                                    <span>Bapak Kepala Badan</span>
+                                    <span class="text-truncate" style="max-width: 105px;">{{ str_replace('PARTAI ', '', auth()->user()->parpol->akronim ?? 'Partai') }}</span>
                                 @elseif(auth()->user()->isKabidWasbang())
-                                    <i class="bi bi-person-check-fill text-danger fs-6 me-1"></i>
-                                    <span>Ibu Kabid Wasbang</span>
+                                    <i class="bi bi-person-check-fill text-danger fs-6 me-1 flex-shrink-0"></i>
+                                    <span class="text-truncate" style="max-width: 105px;">Ibu Kabid</span>
                                 @elseif(auth()->user()->isStafWasbang())
-                                    <i class="bi bi-person-badge-fill text-success fs-6 me-1"></i>
-                                    <span>Staf Wasbang</span>
+                                    <i class="bi bi-person-badge-fill text-success fs-6 me-1 flex-shrink-0"></i>
+                                    <span class="text-truncate" style="max-width: 105px;">Staf Wasbang</span>
                                 @else
-                                    <i class="bi bi-shield-check text-primary fs-6 me-1"></i>
-                                    <span>Admin Bakesbangpol</span>
+                                    <i class="bi bi-shield-check text-primary fs-6 me-1 flex-shrink-0"></i>
+                                    <span class="text-truncate" style="max-width: 105px;">Admin</span>
                                 @endif
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-3 mt-2" style="min-width: 260px;">

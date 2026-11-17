@@ -3,32 +3,32 @@
 @section('title', 'Dashboard Administrator Bakesbangpol - SIPARPOL')
 
 @section('content')
-<div class="py-5 bg-light" style="min-height: 85vh;">
-    <div class="container py-3">
+<div class="py-3 py-md-4 bg-light" style="min-height: 85vh;">
+    <div class="container py-1 py-md-2">
 
         <!-- Welcome Banner -->
         <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden" style="background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);">
             <div class="card-body p-3 p-sm-4 p-md-5 text-white">
                 <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3">
-                    <div class="d-flex align-items-center gap-3">
+                    <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3 flex-grow-1 min-w-0">
                         <div class="bg-white rounded-3 p-2 shadow d-flex align-items-center justify-content-center flex-shrink-0" style="width: 64px; height: 64px;">
                             <img src="{{ asset('images/tanahlaut.png') }}" alt="Lambang Kabupaten Tanah Laut" style="width: 100%; height: 100%; object-fit: contain;">
                         </div>
-                        <div>
-                            <span class="badge bg-warning text-dark text-uppercase px-2 py-1 mb-1 fw-bold" style="font-size: 0.72rem;">Hak Akses: Superadmin</span>
-                            <h3 class="fw-bold mb-1 fs-4 fs-md-3">{{ $user->name }}</h3>
-                            <p class="text-white-50 mb-0 small">
+                        <div class="flex-grow-1 min-w-0">
+                            <span class="badge bg-warning text-dark text-uppercase px-2.5 py-1 mb-2 fw-bold text-wrap text-start lh-base" style="font-size: 0.75rem; white-space: normal;">Hak Akses: Superadmin</span>
+                            <h3 class="fw-bold mb-1 fs-4 fs-md-3 text-break">{{ $user->name }}</h3>
+                            <p class="text-white-50 mb-0 small text-break">
                                 Panel Verifikasi Bantuan Keuangan &amp; Pelaporan Kegiatan Parpol Kabupaten Tanah Laut
                             </p>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center gap-2 mt-2 mt-md-0 w-100 w-md-auto justify-content-start justify-content-md-end">
-                        <a href="{{ route('parpol.home') }}" class="btn btn-outline-light btn-sm rounded-pill px-3 flex-fill flex-md-grow-0 text-center">
+                    <div class="d-flex align-items-center gap-2 mt-2 mt-md-0 w-100 w-md-auto justify-content-start justify-content-md-end flex-shrink-0">
+                        <a href="{{ route('parpol.home') }}" class="btn btn-outline-light btn-sm rounded-pill px-3 py-2 flex-fill flex-md-grow-0 text-center fw-semibold">
                             <i class="bi bi-eye me-1"></i> Portal Publik
                         </a>
                         <form action="{{ route('logout') }}" method="POST" class="d-inline flex-fill flex-md-grow-0">
                             @csrf
-                            <button type="submit" class="btn btn-danger btn-sm rounded-pill px-3 w-100 text-center">
+                            <button type="submit" class="btn btn-danger btn-sm rounded-pill px-3 py-2 w-100 text-center fw-semibold">
                                 <i class="bi bi-box-arrow-right me-1"></i> Logout
                             </button>
                         </form>

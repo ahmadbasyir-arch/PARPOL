@@ -165,46 +165,80 @@
 
     <!-- Header Portal -->
     <header class="portal-topbar">
-        <div class="container-fluid px-lg-5 px-3">
-            <div class="d-flex align-items-center justify-content-between">
-                <div class="d-flex align-items-center gap-3">
-                    <img src="{{ asset('images/tanahlaut.png') }}" alt="Logo Kab. Tanah Laut" style="width: 38px; height: auto; object-fit: contain;">
+        <div class="container-fluid px-2 px-sm-3 px-lg-5">
+            <div class="d-flex align-items-center justify-content-between gap-2">
+                <div class="d-flex align-items-center gap-2 gap-sm-3 min-w-0">
+                    <img src="{{ asset('images/tanahlaut.png') }}" alt="Logo Kab. Tanah Laut" style="width: 32px; height: auto; object-fit: contain;" class="flex-shrink-0">
                     <div>
-                        <h6 class="fw-bold mb-0 text-dark">Portal Bakesbangpol</h6>
-                        <small class="text-muted" style="font-size: 0.75rem;">Kabupaten Tanah Laut</small>
+                        <h6 class="fw-bold mb-0 text-dark text-nowrap" style="font-size: clamp(0.85rem, 3.8vw, 1.05rem);">Portal Bakesbangpol</h6>
+                        <small class="text-muted d-none d-sm-block" style="font-size: 0.72rem;">Kabupaten Tanah Laut</small>
                     </div>
                 </div>
 
-                <div class="d-flex align-items-center gap-2">
-                    <span class="badge bg-light text-dark border px-3 py-2 rounded-pill fw-semibold" style="font-size: 0.8rem;">
+                <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                    <span class="badge bg-light text-dark border px-3 py-2 rounded-pill fw-semibold d-none d-md-inline-flex" style="font-size: 0.8rem;">
                         <i class="bi bi-geo-alt-fill text-danger me-1"></i> Kab. Tanah Laut
                     </span>
-                    <div class="dropdown">
-                        <button class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-semibold dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-box-arrow-in-right me-1"></i> Login Petugas
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 mt-1" style="min-width: 250px;">
-                            <li>
-                                <a class="dropdown-item py-2 small d-flex align-items-center gap-2" href="{{ route('wasbang.login') }}">
-                                    <i class="bi bi-flag-fill text-danger fs-5"></i>
-                                    <div>
-                                        <div class="fw-bold text-dark">Login Petugas WASBANG</div>
-                                        <small class="text-muted" style="font-size: 0.72rem;">Pengarsipan Dokumentasi Lapangan</small>
-                                    </div>
-                                </a>
-                            </li>
-                            <li><hr class="dropdown-divider my-1"></li>
-                            <li>
-                                <a class="dropdown-item py-2 small d-flex align-items-center gap-2" href="{{ route('login') }}">
-                                    <i class="bi bi-bank2 text-primary fs-5"></i>
-                                    <div>
-                                        <div class="fw-bold text-dark">Login SIPARPOL</div>
-                                        <small class="text-muted" style="font-size: 0.72rem;">Poldagri &amp; Partai Politik</small>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    @auth
+                        <div class="dropdown">
+                            <button class="btn btn-outline-success btn-sm rounded-pill px-2.5 px-sm-3 py-1.5 fw-semibold dropdown-toggle d-flex align-items-center gap-1.5 shadow-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 0.82rem; white-space: nowrap;">
+                                <i class="bi bi-person-check-fill text-success"></i>
+                                <span class="d-none d-sm-inline">{{ Str::limit(auth()->user()->name, 16) }}</span>
+                                <span class="d-inline d-sm-none">Akun</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 mt-1" style="min-width: 240px; max-width: 90vw;">
+                                <li class="px-3 py-2 border-bottom bg-light">
+                                    <small class="text-muted d-block" style="font-size: 0.72rem;">{{ auth()->user()->role_label }}</small>
+                                    <strong class="text-dark small d-block text-truncate">{{ auth()->user()->name }}</strong>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item py-2 small d-flex align-items-center gap-2" href="{{ auth()->user()->isKabidWasbang() || auth()->user()->isStafWasbang() ? route('wasbang.index') : route('dashboard') }}">
+                                        <i class="bi bi-speedometer2 text-primary"></i>
+                                        <span>Buka Dashboard</span>
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider my-1"></li>
+                                <li>
+                                    <form action="{{ auth()->user()->isKabidWasbang() || auth()->user()->isStafWasbang() ? route('wasbang.logout') : route('logout') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item py-2 small text-danger d-flex align-items-center gap-2 w-100 border-0 bg-transparent text-start">
+                                            <i class="bi bi-box-arrow-right"></i>
+                                            <span>Keluar (Logout)</span>
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @else
+                        <div class="dropdown">
+                            <button class="btn btn-outline-primary btn-sm rounded-pill px-2.5 px-sm-3 py-1.5 fw-semibold dropdown-toggle d-flex align-items-center gap-1 shadow-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 0.82rem; white-space: nowrap;">
+                                <i class="bi bi-box-arrow-in-right"></i>
+                                <span class="d-none d-sm-inline">Login Petugas</span>
+                                <span class="d-inline d-sm-none">Login</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 mt-1" style="min-width: 250px; max-width: 90vw;">
+                                <li>
+                                    <a class="dropdown-item py-2 small d-flex align-items-center gap-2" href="{{ route('wasbang.login') }}">
+                                        <i class="bi bi-flag-fill text-danger fs-5"></i>
+                                        <div>
+                                            <div class="fw-bold text-dark">Login Petugas WASBANG</div>
+                                            <small class="text-muted" style="font-size: 0.72rem;">Pengarsipan Dokumentasi Lapangan</small>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider my-1"></li>
+                                <li>
+                                    <a class="dropdown-item py-2 small d-flex align-items-center gap-2" href="{{ route('login') }}">
+                                        <i class="bi bi-bank2 text-primary fs-5"></i>
+                                        <div>
+                                            <div class="fw-bold text-dark">Login SIPARPOL</div>
+                                            <small class="text-muted" style="font-size: 0.72rem;">Poldagri &amp; Partai Politik</small>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    @endauth
                 </div>
             </div>
         </div>
@@ -219,7 +253,7 @@
                 
                 <!-- Logo Resmi Kabupaten Tanah Laut -->
                 <div class="mb-3 text-center">
-                    <img src="{{ asset('images/tanahlaut.png') }}" alt="Lambang Kabupaten Tanah Laut" style="width: 88px; height: auto; filter: drop-shadow(0 6px 16px rgba(0,0,0,0.6));">
+                    <img src="{{ asset('images/tanahlaut.png') }}" alt="Lambang Kabupaten Tanah Laut" style="width: clamp(64px, 14vw, 88px); height: auto; filter: drop-shadow(0 6px 16px rgba(0,0,0,0.6));">
                 </div>
 
                 <!-- Badge Resmi -->
@@ -229,11 +263,11 @@
                     </span>
                 </div>
 
-                <h1 class="display-5 fw-extrabold mb-2" style="font-weight: 800; letter-spacing: -0.5px;">
+                <h1 class="fw-extrabold mb-2 text-white" style="font-weight: 800; font-size: clamp(1.65rem, 5.2vw, 2.75rem); letter-spacing: -0.5px; line-height: 1.2;">
                     KABUPATEN TANAH LAUT
                 </h1>
                 
-                <p class="text-white-50 mx-auto mb-0" style="max-width: 680px; font-size: 0.95rem;">
+                <p class="text-white-50 mx-auto mb-0" style="max-width: 680px; font-size: clamp(0.85rem, 2.6vw, 0.95rem); line-height: 1.6;">
                     Portal Resmi Layanan Terpadu &bull; Ideologi, Wawasan Kebangsaan, Ketahanan Bangsa &amp; Politik Dalam Negeri
                 </p>
             </div>
@@ -314,20 +348,20 @@
 
                 </div>
 
-                <!-- Ringkasan Statistik Cepat -->
+                <!-- Ringkasan Statistik Cepat (Kompak & Rapi di Ponsel) -->
                 <div class="mt-4 pt-3 border-top">
                     <div class="row g-2 text-center text-muted small">
                         <div class="col-4 border-end">
-                            <strong class="text-dark d-block fs-6">{{ $totalParpol }}</strong>
-                            <span>Parpol Terdata</span>
+                            <strong class="text-dark d-block fs-6 fs-sm-5">{{ $totalParpol }}</strong>
+                            <span class="d-block" style="font-size: clamp(0.7rem, 2.2vw, 0.82rem); line-height: 1.25;">Parpol Terdata</span>
                         </div>
                         <div class="col-4 border-end">
-                            <strong class="text-dark d-block fs-6">{{ $totalDikpol }}</strong>
-                            <span>Kegiatan Dikpol Banpol</span>
+                            <strong class="text-dark d-block fs-6 fs-sm-5">{{ $totalDikpol }}</strong>
+                            <span class="d-block" style="font-size: clamp(0.7rem, 2.2vw, 0.82rem); line-height: 1.25;"><span class="d-none d-sm-inline">Kegiatan </span>Dikpol Banpol</span>
                         </div>
                         <div class="col-4">
-                            <strong class="text-dark d-block fs-6">{{ $totalWasbang }}</strong>
-                            <span>Arsip Kegiatan Wasbang</span>
+                            <strong class="text-dark d-block fs-6 fs-sm-5">{{ $totalWasbang }}</strong>
+                            <span class="d-block" style="font-size: clamp(0.7rem, 2.2vw, 0.82rem); line-height: 1.25;"><span class="d-none d-sm-inline">Kegiatan </span>Arsip Wasbang</span>
                         </div>
                     </div>
                 </div>
