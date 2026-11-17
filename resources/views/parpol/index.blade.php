@@ -1360,7 +1360,7 @@
                                                 </div>
                                                 <div class="flex-grow-1 min-w-0 w-100">
                                                     <span class="badge bg-warning text-dark fw-bold text-uppercase px-2.5 py-1 mb-2 text-wrap text-start lh-base d-inline-block" style="font-size: 0.72rem; white-space: normal; word-break: break-word;">
-                                                        <i class="bi bi-compass-fill me-1"></i> Landasan Ideologi &amp; Cita-Cita Politik
+                                                        <i class="bi bi-compass-fill me-1 d-none d-md-inline-block"></i> Landasan Ideologi &amp; Cita-Cita Politik
                                                     </span>
                                                     <h5 class="fw-bold mb-1 fs-5 fs-sm-4 text-wrap text-break lh-sm text-white">Visi &amp; Misi Resmi {{ $p->nama_partai }} ({{ $p->akronim }})</h5>
                                                     <div class="small opacity-75 text-wrap text-break">Nomor Urut {{ $p->nomor_urut }} &bull; DPD Kabupaten Tanah Laut</div>
@@ -1426,7 +1426,7 @@
                                         <div class="p-3 p-sm-4 mb-4 rounded-3 text-white d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-3 shadow-sm overflow-hidden" style="background: linear-gradient(135deg, #1e3a8a, #0f172a);">
                                             <div class="flex-grow-1 min-w-0 w-100">
                                                 <span class="badge bg-warning text-dark fw-bold text-uppercase px-2.5 py-1 mb-2 text-wrap text-start lh-base d-inline-block" style="font-size: 0.72rem; white-space: normal; word-break: break-word;">
-                                                    <i class="bi bi-file-earmark-bar-graph-fill me-1"></i> Bantuan Keuangan Parpol (Banpol) T.A. 2026
+                                                    <i class="bi bi-file-earmark-bar-graph-fill me-1 d-none d-md-inline-block"></i> Bantuan Keuangan Parpol (Banpol) T.A. 2026
                                                 </span>
                                                 <h5 class="fw-bold mb-1 fs-5 fs-sm-4 text-wrap text-break lh-sm text-white">Realisasi Pendidikan Politik DPD {{ $p->akronim }}</h5>
                                                 <div class="small opacity-75 text-wrap text-break">Periode Pelaksanaan: <strong>Januari s.d. Agustus T.A. 2026</strong> &bull; Kabupaten Tanah Laut</div>
