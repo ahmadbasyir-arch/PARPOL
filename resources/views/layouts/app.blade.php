@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="{{ request()->routeIs('wasbang.*') ? 'wasbang-html' : '' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -92,76 +92,39 @@
 
         @if(request()->routeIs('wasbang.*'))
         /* ========================================================
-           Khusus Modul Wasbang: Layout Proporsional (Tampilan Rapi Setara 75%)
-           Memastikan lebar layar 100% penuh (tidak terpotong di sisi kanan),
-           dengan tipografi, padding, dan komponen yang padat, proporsional,
-           dan pas saat zoom browser berada di angka standar 100%.
+           Khusus Modul Wasbang: Skala Zoom 90% Presisi
+           Menyesuaikan agar saat browser zoom 100%, tampilannya
+           proporsional, rapi, dan pas setara zoom 90%.
+           Lebar diatur 111.111111% agar setelah diskala 0.9 (90%),
+           lebar halaman persis 100% penuh tanpa celah putih di kanan.
            ======================================================== */
-        html {
+        html.wasbang-html {
             overflow-x: hidden;
             width: 100%;
         }
 
         body.wasbang-scoped {
-            width: 100% !important;
-            min-height: 100vh;
+            zoom: 0.9;
+            width: 111.111111% !important;
+            min-height: 111.111111vh;
             overflow-x: hidden;
-            font-size: 0.9rem; /* font lebih ringkas & padat */
-            line-height: 1.5;
             background-color: #f8fafc;
+            -webkit-text-size-adjust: 100%;
         }
 
-        body.wasbang-scoped .container {
-            max-width: 1320px;
-            width: 100%;
-        }
-
-        /* Skala heading proporsional tidak terlalu besar saat zoom 100% */
-        body.wasbang-scoped h1 {
-            font-size: 1.85rem !important;
-            line-height: 1.25 !important;
-        }
-
-        body.wasbang-scoped h2 {
-            font-size: 1.55rem !important;
-            line-height: 1.3 !important;
-        }
-
-        body.wasbang-scoped h3 {
-            font-size: 1.3rem !important;
-        }
-
-        body.wasbang-scoped h4 {
-            font-size: 1.15rem !important;
-        }
-
-        body.wasbang-scoped h5 {
-            font-size: 1.05rem !important;
-        }
-
-        body.wasbang-scoped .btn {
-            font-size: 0.85rem;
-            padding: 0.45rem 0.95rem;
-        }
-
-        body.wasbang-scoped .btn-lg {
-            font-size: 0.95rem;
-            padding: 0.65rem 1.4rem;
-        }
-
-        body.wasbang-scoped .card {
-            border-radius: 14px;
-        }
-
-        body.wasbang-scoped .form-control,
-        body.wasbang-scoped .form-select {
-            font-size: 0.88rem;
-            padding: 0.5rem 0.8rem;
+        @supports not (zoom: 1) {
+            body.wasbang-scoped {
+                transform: scale(0.9);
+                transform-origin: top left;
+                width: 111.111111% !important;
+            }
         }
 
         @media print {
+            html.wasbang-html,
             body.wasbang-scoped {
-                font-size: 10.5pt !important;
+                zoom: 1 !important;
+                transform: none !important;
                 width: auto !important;
             }
         }
