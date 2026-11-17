@@ -92,39 +92,54 @@
 
         @if(request()->routeIs('wasbang.*'))
         /* ========================================================
-           Khusus Modul Wasbang: Skala Zoom 90% Presisi
-           Menyesuaikan agar saat browser zoom 100%, tampilannya
-           proporsional, rapi, dan pas setara zoom 90%.
-           Lebar diatur 111.111111% agar setelah diskala 0.9 (90%),
-           lebar halaman persis 100% penuh tanpa celah putih di kanan.
+           Khusus Modul Wasbang: Skala Proporsional 90% (Tanpa Bug Zoom Terpotong)
+           Menggunakan root font scaling (90% = 14.4px) sehingga seluruh elemen
+           Bootstrap (font, tombol, margin, card) mengecil rapi sebesar 10%
+           (setara zoom 90%), dan layar tetap 100% PENUH tanpa ada celah putih
+           atau bagian yang terpotong di sebelah kanan saat zoom browser 100%.
            ======================================================== */
         html.wasbang-html {
+            font-size: 90% !important; /* Skala 90% murni untuk seluruh turunan rem */
+            width: 100% !important;
             overflow-x: hidden;
-            width: 100%;
         }
 
         body.wasbang-scoped {
-            zoom: 0.9;
-            width: 111.111111% !important;
-            min-height: 111.111111vh;
+            width: 100% !important;
+            min-height: 100vh;
             overflow-x: hidden;
             background-color: #f8fafc;
-            -webkit-text-size-adjust: 100%;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
-        @supports not (zoom: 1) {
-            body.wasbang-scoped {
-                transform: scale(0.9);
-                transform-origin: top left;
-                width: 111.111111% !important;
-            }
+        body.wasbang-scoped .container {
+            max-width: 1320px;
+            width: 100%;
+        }
+
+        /* Navigasi navbar Wasbang agar rapi 1 baris */
+        body.wasbang-scoped .navbar-nav .nav-link {
+            padding-left: 0.65rem !important;
+            padding-right: 0.65rem !important;
+            font-size: 0.88rem !important;
+            white-space: nowrap;
+        }
+
+        body.wasbang-scoped .top-bar {
+            width: 100%;
+        }
+
+        body.wasbang-scoped .navbar {
+            width: 100%;
         }
 
         @media print {
-            html.wasbang-html,
+            html.wasbang-html {
+                font-size: 100% !important;
+            }
             body.wasbang-scoped {
-                zoom: 1 !important;
-                transform: none !important;
+                font-size: 10.5pt !important;
                 width: auto !important;
             }
         }
