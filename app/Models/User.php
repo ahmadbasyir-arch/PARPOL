@@ -51,7 +51,8 @@ class User extends Authenticatable
     {
         return $this->role === 'kaban' 
             || str_contains(strtolower($this->jabatan ?? ''), 'kepala badan') 
-            || str_contains(strtolower($this->email ?? ''), 'kaban');
+            || str_contains(strtolower($this->email ?? ''), 'kaban')
+            || str_contains(strtolower($this->name ?? ''), 'bambang kusdariman');
     }
 
     /**
@@ -91,8 +92,13 @@ class User extends Authenticatable
      */
     public function getRoleLabelAttribute(): string
     {
+        if ($this->isKaban()) {
+            return 'Kepala Badan Kesbangpol Kab. Tanah Laut';
+        }
+
         return match ($this->role) {
-            'kaban', 'admin' => 'Kepala Badan / Admin Bakesbangpol',
+            'kaban' => 'Kepala Badan Kesbangpol Kab. Tanah Laut',
+            'admin' => 'Admin Bakesbangpol',
             'kabid_wasbang' => 'Kepala Bidang Wasbang',
             'staf_wasbang' => 'Staf Pelaksana Wasbang',
             'parpol' => 'Operator / Pengurus Partai',

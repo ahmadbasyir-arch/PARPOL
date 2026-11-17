@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="{{ request()->routeIs('wasbang.*') ? 'wasbang-html' : '' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -92,27 +92,54 @@
 
         @if(request()->routeIs('wasbang.*'))
         /* ========================================================
-           Khusus Modul Wasbang: Skala Zoom 75%
-           Menyesuaikan agar saat browser zoom 100%, tampilannya
-           proporsional, rapi, dan pas setara zoom 75%.
+           Khusus Modul Wasbang: Skala Proporsional 90% (Tanpa Bug Zoom Terpotong)
+           Menggunakan root font scaling (90% = 14.4px) sehingga seluruh elemen
+           Bootstrap (font, tombol, margin, card) mengecil rapi sebesar 10%
+           (setara zoom 90%), dan layar tetap 100% PENUH tanpa ada celah putih
+           atau bagian yang terpotong di sebelah kanan saat zoom browser 100%.
            ======================================================== */
-        body.wasbang-scoped {
-            zoom: 0.75;
-            -webkit-text-size-adjust: 100%;
+        html.wasbang-html {
+            font-size: 90% !important; /* Skala 90% murni untuk seluruh turunan rem */
+            width: 100% !important;
+            overflow-x: hidden;
         }
 
-        @supports not (zoom: 1) {
-            body.wasbang-scoped {
-                transform: scale(0.75);
-                transform-origin: top center;
-                width: 133.3333%;
-            }
+        body.wasbang-scoped {
+            width: 100% !important;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-color: #f8fafc;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        body.wasbang-scoped .container {
+            max-width: 1320px;
+            width: 100%;
+        }
+
+        /* Navigasi navbar Wasbang agar rapi 1 baris */
+        body.wasbang-scoped .navbar-nav .nav-link {
+            padding-left: 0.65rem !important;
+            padding-right: 0.65rem !important;
+            font-size: 0.88rem !important;
+            white-space: nowrap;
+        }
+
+        body.wasbang-scoped .top-bar {
+            width: 100%;
+        }
+
+        body.wasbang-scoped .navbar {
+            width: 100%;
         }
 
         @media print {
+            html.wasbang-html {
+                font-size: 100% !important;
+            }
             body.wasbang-scoped {
-                zoom: 1 !important;
-                transform: none !important;
+                font-size: 10.5pt !important;
                 width: auto !important;
             }
         }
@@ -785,13 +812,34 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-3 mt-2" style="min-width: 260px;">
                                 <li class="px-3 py-2 border-bottom bg-light">
-                                    <small class="text-danger fw-bold d-block" style="font-size: 0.72rem;">{{ auth()->user()->role_label }}</small>
+                                    <small class="{{ auth()->user()->isKaban() ? 'text-primary' : (auth()->user()->isKabidWasbang() ? 'text-danger' : (auth()->user()->isStafWasbang() ? 'text-success' : 'text-danger')) }} fw-bold d-block" style="font-size: 0.72rem;">{{ auth()->user()->role_label }}</small>
                                     <strong class="text-dark small d-block">{{ auth()->user()->name }}</strong>
                                     @if(auth()->user()->nip)
                                         <small class="text-muted d-block" style="font-size: 0.72rem;">NIP. {{ auth()->user()->nip }}</small>
                                     @endif
                                 </li>
-                                @if(auth()->user()->isKabidWasbang())
+                                @if(auth()->user()->isKaban())
+                                    <li>
+                                        <a class="dropdown-item py-2 small" href="{{ route('wasbang.index') }}">
+                                            <i class="bi bi-shield-shaded text-primary me-2"></i> Ruang Kerja Eksekutif Kaban
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item py-2 small" href="{{ route('wasbang.cetak') }}" target="_blank">
+                                            <i class="bi bi-printer-fill text-warning me-2"></i> Rekapitulasi Eksekutif (Cetak A4)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item py-2 small" href="{{ route('wasbang.index', ['view' => 'publik']) }}">
+                                            <i class="bi bi-eye-fill text-info me-2"></i> Tampilan Galeri Publik Wasbang
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item py-2 small" href="{{ route('dashboard') }}">
+                                            <i class="bi bi-speedometer2 text-secondary me-2"></i> Panel Utama Bakesbangpol
+                                        </a>
+                                    </li>
+                                @elseif(auth()->user()->isKabidWasbang())
                                     <li>
                                         <a class="dropdown-item py-2 small" href="{{ route('wasbang.index') }}">
                                             <i class="bi bi-speedometer2 text-danger me-2"></i> Dashboard Pelaporan Wasbang
@@ -838,7 +886,7 @@
                                 @endif
                                 <li><hr class="dropdown-divider my-1"></li>
                                 <li>
-                                    @if(auth()->user()->isKabidWasbang() || auth()->user()->isStafWasbang())
+                                    @if(auth()->user()->isKaban() || auth()->user()->isKabidWasbang() || auth()->user()->isStafWasbang())
                                         <form action="{{ route('wasbang.logout') }}" method="POST">
                                             @csrf
                                             <button type="submit" class="dropdown-item py-2 small text-danger">

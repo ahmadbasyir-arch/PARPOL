@@ -53,7 +53,9 @@ class WasbangController extends Controller
             }
 
             $nama = $user->name;
-            if ($user->isKabidWasbang()) {
+            if ($user->isKaban()) {
+                $msg = "Selamat datang, Bapak {$nama}! Anda berhasil masuk sebagai Kepala Badan Kesbangpol Kab. Tanah Laut.";
+            } elseif ($user->isKabidWasbang()) {
                 $msg = "Selamat datang, Ibu {$nama}! Anda berhasil masuk sebagai Kepala Bidang Wasbang Bakesbangpol Kab. Tanah Laut.";
             } elseif ($user->isStafWasbang()) {
                 $msg = "Selamat datang, {$nama}! Anda berhasil masuk sebagai Staf Pelaksana Pengarsipan Bidang Wasbang.";

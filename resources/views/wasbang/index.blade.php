@@ -12,6 +12,7 @@
         padding: 40px 0 60px;
         position: relative;
         border-bottom: 4px solid #b91c1c;
+        width: 100%;
     }
 
     @media (min-width: 992px) {
@@ -525,7 +526,7 @@
                         </div>
                     </div>
                 </div>
-            @elseif(auth()->user()->isAdmin())
+            @elseif(auth()->user()->isKaban() || auth()->user()->isAdmin())
                 <!-- 3. Role: Bapak H. Bambang Kusdariman (Kepala Badan Kesbangpol) -->
                 <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden" style="background: linear-gradient(135deg, #090d16 0%, #1e1b4b 100%); color: #ffffff; border-left: 6px solid #3b82f6 !important;">
                     <div class="card-body p-4 d-flex flex-wrap align-items-center justify-content-between gap-3">
@@ -707,16 +708,16 @@
 
                         <div class="d-flex justify-content-center gap-2 flex-wrap mb-4">
                             @auth
-                                @if(auth()->user()->isStafWasbang() || auth()->user()->isAdmin())
+                                @if(auth()->user()->isStafWasbang())
                                     <a href="#tambah-kegiatan" class="btn btn-danger rounded-3 px-4 py-2.5 fw-bold shadow-sm">
                                         <i class="bi bi-cloud-arrow-up-fill me-2"></i> Unggah Dokumentasi &amp; Surat Menyurat Baru
                                     </a>
                                 @elseif(auth()->user()->isKabidWasbang())
-                                    <a href="{{ route('wasbang.kabid') }}" class="btn btn-danger rounded-3 px-4 py-2.5 fw-bold shadow-sm">
+                                    <a href="{{ route('wasbang.index') }}" class="btn btn-danger rounded-3 px-4 py-2.5 fw-bold shadow-sm">
                                         <i class="bi bi-shield-check me-2"></i> Buka Ruang Kerja Kepala Bidang
                                     </a>
-                                @else
-                                    <a href="{{ route('wasbang.kaban') }}" class="btn btn-primary rounded-3 px-4 py-2.5 fw-bold shadow-sm">
+                                @elseif(auth()->user()->isKaban() || auth()->user()->isAdmin())
+                                    <a href="{{ route('wasbang.index') }}" class="btn btn-primary rounded-3 px-4 py-2.5 fw-bold shadow-sm">
                                         <i class="bi bi-shield-check me-2"></i> Buka Ruang Kerja Kepala Badan
                                     </a>
                                 @endif

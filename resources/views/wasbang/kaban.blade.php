@@ -7,9 +7,10 @@
     .hero-kaban {
         background: linear-gradient(135deg, #090d16 0%, #1e3a8a 60%, #0f172a 100%);
         color: #ffffff;
-        padding: 45px 0 35px 0;
+        padding: 32px 0 28px 0;
         position: relative;
         border-bottom: 4px solid #3b82f6;
+        width: 100%;
     }
 
     .badge-kaban-role {
@@ -218,16 +219,57 @@
                 </div>
             </div>
 
+            <!-- Filter & Pencarian Cepat Eksekutif Kaban -->
+            <div class="p-3 bg-light border-bottom">
+                <form action="{{ route('wasbang.index') }}" method="GET" class="row g-2 align-items-center">
+                    <div class="col-lg-4 col-md-5">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+                            <input type="text" name="q" class="form-control border-start-0" placeholder="Cari kegiatan, lokasi (mis: Kintap, Jorong)..." value="{{ request('q') }}">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4">
+                        <select name="kategori" class="form-select form-select-sm">
+                            <option value="">-- Semua Kategori Bidang --</option>
+                            @foreach($kategoriList as $kat)
+                                <option value="{{ $kat }}" {{ request('kategori') == $kat ? 'selected' : '' }}>{{ $kat }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <select name="bulan" class="form-select form-select-sm">
+                            <option value="">-- Semua Bulan --</option>
+                            @for($m = 1; $m <= 12; $m++)
+                                <option value="{{ $m }}" {{ request('bulan') == $m ? 'selected' : '' }}>
+                                    {{ \App\Models\WasbangKegiatan::getBulanIndonesia($m) }}
+                                </option>
+                            @endfor
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-12 d-flex gap-2 justify-content-md-start justify-content-lg-end">
+                        <button type="submit" class="btn btn-primary btn-sm px-3 fw-semibold shadow-sm">
+                            <i class="bi bi-funnel-fill me-1"></i> Saring Data
+                        </button>
+                        @if(request()->hasAny(['q', 'kategori', 'bulan', 'status']))
+                            <a href="{{ route('wasbang.index') }}" class="btn btn-outline-secondary btn-sm" title="Reset Filter">
+                                <i class="bi bi-arrow-counterclockwise"></i> Reset
+                            </a>
+                        @endif
+                    </div>
+                </form>
+            </div>
+
             <div class="table-responsive">
                 <table class="table table-hover table-monitoring align-middle m-0">
                     <thead>
                         <tr>
-                            <th style="width: 5%;">No</th>
-                            <th style="width: 14%;">Tanggal &amp; Hari</th>
-                            <th style="width: 30%;">Program &amp; Nama Kegiatan</th>
-                            <th style="width: 18%;">Kategori &amp; Wilayah</th>
-                            <th style="width: 15%;">Pelaksana &amp; Sasaran</th>
-                            <th style="width: 18%;" class="text-center">Supervisi</th>
+                            <th style="width: 4%;">No</th>
+                            <th style="width: 13%;">Tanggal &amp; Hari</th>
+                            <th style="width: 25%;">Program &amp; Nama Kegiatan</th>
+                            <th style="width: 16%;">Kategori &amp; Wilayah</th>
+                            <th style="width: 12%;">Media Foto</th>
+                            <th style="width: 13%;">Berkas SPJ/LPJ</th>
+                            <th style="width: 17%;" class="text-center">Supervisi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -251,8 +293,21 @@
                                     <div class="small text-muted"><i class="bi bi-geo-alt-fill text-danger me-1"></i> {{ $kegiatan->lokasi }}</div>
                                 </td>
                                 <td>
-                                    <div class="small fw-semibold text-dark">{{ $kegiatan->pelaksana }}</div>
-                                    <small class="text-muted">{{ Str::limit($kegiatan->sasaran_peserta, 30) }}</small>
+                                    <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1 rounded-pill fw-bold" style="font-size: 0.75rem;">
+                                        <i class="bi bi-images me-1"></i> {{ $kegiatan->jumlah_foto }} Foto
+                                    </span>
+                                </td>
+                                <td>
+                                    @if($kegiatan->dokumen_laporan)
+                                        <a href="{{ route('wasbang.download', ['id' => $kegiatan->id, 'type' => 'dokumen']) }}" class="badge bg-primary-subtle text-primary border border-primary-subtle text-decoration-none py-1.5 px-2 d-inline-flex align-items-center gap-1 shadow-sm" title="Unduh Berkas Surat/SPJ (.{{ pathinfo($kegiatan->dokumen_laporan, PATHINFO_EXTENSION) }})">
+                                            <i class="bi bi-file-earmark-check-fill text-danger"></i>
+                                            <span>SPJ Terlampir</span>
+                                        </a>
+                                    @else
+                                        <span class="badge bg-light text-muted border py-1.5 px-2 small">
+                                            <i class="bi bi-dash-circle me-1"></i> Tanpa Berkas
+                                        </span>
+                                    @endif
                                 </td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center gap-1 flex-wrap">
@@ -267,9 +322,14 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="text-center py-5">
+                                <td colspan="7" class="text-center py-5">
                                     <i class="bi bi-inbox fs-1 text-muted d-block mb-2"></i>
-                                    <h6 class="fw-bold text-muted">Belum ada data kegiatan yang terlapor.</h6>
+                                    <h6 class="fw-bold text-muted">Belum ada data kegiatan yang sesuai dengan pencarian Anda.</h6>
+                                    @if(request()->hasAny(['q', 'kategori', 'bulan', 'status']))
+                                        <a href="{{ route('wasbang.index') }}" class="btn btn-sm btn-outline-primary mt-2">
+                                            <i class="bi bi-arrow-counterclockwise me-1"></i> Tampilkan Semua Kegiatan
+                                        </a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforelse
@@ -319,23 +379,64 @@
                 <div class="modal-body p-4">
                     @if($kegiatan->jumlah_foto > 0)
                         <div class="mb-3 text-center bg-dark rounded-3 p-2">
-                            <img src="{{ $kegiatan->foto_url ?? $kegiatan->semua_foto_urls[0] }}" alt="{{ $kegiatan->nama_kegiatan }}" class="img-fluid rounded-2" style="max-height: 380px; width: 100%; object-fit: contain;">
+                            <img id="modalImgKaban{{ $kegiatan->id }}" src="{{ $kegiatan->foto_url ?? $kegiatan->semua_foto_urls[0] }}" alt="{{ $kegiatan->nama_kegiatan }}" class="img-fluid rounded-2 shadow-sm" style="max-height: 380px; width: 100%; object-fit: contain;">
                         </div>
+                        @if($kegiatan->jumlah_foto > 1)
+                            <div class="p-2 bg-light rounded-3 border mb-3">
+                                <small class="text-muted d-block mb-2 fw-semibold">Dokumentasi foto kegiatan lapangan:</small>
+                                <div class="d-flex flex-wrap gap-2">
+                                    @foreach($kegiatan->semua_foto_urls as $idx => $fUrl)
+                                        <div style="width: 70px; height: 50px; border-radius: 6px; overflow: hidden; border: 2px solid #cbd5e1; cursor: pointer;">
+                                            <img src="{{ $fUrl }}" alt="Foto {{ $idx + 1 }}" style="width: 100%; height: 100%; object-fit: cover;" onclick="document.getElementById('modalImgKaban{{ $kegiatan->id }}').src = '{{ $fUrl }}';">
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
                     @endif
                     <div class="table-responsive">
                         <table class="table table-bordered table-sm align-middle">
                             <tbody>
                                 <tr>
-                                    <th class="bg-light" style="width: 25%;">Pelaksana</th>
-                                    <td>{{ $kegiatan->pelaksana }}</td>
+                                    <th class="bg-light" style="width: 28%;">Waktu Pelaksanaan</th>
+                                    <td>{{ $kegiatan->waktu ?? 'Waktu tentatif kedinasan' }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Pelaksana / Penanggung Jawab</th>
+                                    <td>{{ $kegiatan->pelaksana ?? 'Bidang Wasbang' }}</td>
                                 </tr>
                                 <tr>
                                     <th class="bg-light">Sasaran Peserta</th>
-                                    <td>{{ $kegiatan->sasaran_peserta }}</td>
+                                    <td>{{ $kegiatan->sasaran_peserta ?? '-' }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Status Realisasi</th>
+                                    <td>
+                                        <span class="badge {{ $kegiatan->status === 'Sedang Dilaksanakan' ? 'bg-warning text-dark' : 'bg-success text-white' }} px-2 py-1">
+                                            {{ $kegiatan->status }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Lampiran Berkas (SPJ/LPJ)</th>
+                                    <td>
+                                        @if($kegiatan->dokumen_laporan)
+                                            <div class="d-flex align-items-center justify-content-between p-2 bg-primary-subtle rounded border border-primary-subtle">
+                                                <span class="small fw-bold text-primary">
+                                                    <i class="bi bi-file-earmark-check-fill text-danger me-1"></i> {{ basename($kegiatan->dokumen_laporan) }} (.{{ strtoupper(pathinfo($kegiatan->dokumen_laporan, PATHINFO_EXTENSION)) }})
+                                                </span>
+                                                <a href="{{ route('wasbang.download', ['id' => $kegiatan->id, 'type' => 'dokumen']) }}" class="btn btn-primary btn-sm py-0 px-2 fw-semibold" style="font-size: 0.78rem;">
+                                                    <i class="bi bi-download me-1"></i> Unduh Berkas
+                                                </a>
+                                            </div>
+                                        @else
+                                            <span class="text-muted small"><i class="bi bi-dash-circle me-1"></i> Tidak ada lampiran berkas terpisah.</span>
+                                        @endif
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th class="bg-light">Rincian Acara</th>
-                                    <td>{{ $kegiatan->rincian }}</td>
+                                    <td style="white-space: pre-line;">{{ $kegiatan->rincian }}</td>
                                 </tr>
                             </tbody>
                         </table>

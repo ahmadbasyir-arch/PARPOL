@@ -206,6 +206,12 @@
                         @if($k->video || $k->video_url)
                             <br><small style="font-size: 7.5pt; color: #b91c1c;">(Video Tersedia)</small>
                         @endif
+
+                        @if($k->dokumen_laporan)
+                            <div style="font-size: 7.5pt; color: #166534; font-weight: bold; margin-top: 3px;">
+                                [ Berkas SPJ Terlampir ]
+                            </div>
+                        @endif
                     </td>
                 </tr>
             @empty

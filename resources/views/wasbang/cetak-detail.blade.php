@@ -229,6 +229,17 @@
                 <th>Status Pelaksanaan</th>
                 <td>{{ $kegiatan->status }}</td>
             </tr>
+            <tr>
+                <th>Lampiran Berkas Kedinasan</th>
+                <td>
+                    @if($kegiatan->dokumen_laporan)
+                        <strong style="color: #15803d;"><i class="bi bi-file-earmark-check-fill me-1"></i> [ Terlampir di Server ]</strong>
+                        Surat Perintah Tugas / SPJ / LPJ Resmi (.{{ strtoupper(pathinfo($kegiatan->dokumen_laporan, PATHINFO_EXTENSION)) }})
+                    @else
+                        <span class="text-muted" style="font-style: italic;">Tidak ada dokumen lampiran terpisah (dokumentasi fisik foto terarsip).</span>
+                    @endif
+                </td>
+            </tr>
         </tbody>
     </table>
 
