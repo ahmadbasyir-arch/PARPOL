@@ -7,9 +7,10 @@
     .hero-staf {
         background: linear-gradient(135deg, #064e3b 0%, #0f172a 70%, #1e3a8a 100%);
         color: #ffffff;
-        padding: 45px 0 35px 0;
+        padding: 32px 0 28px 0;
         position: relative;
         border-bottom: 4px solid #10b981;
+        width: 100%;
     }
 
     .badge-staf-role {

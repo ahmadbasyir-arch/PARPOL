@@ -7,9 +7,10 @@
     .hero-kaban {
         background: linear-gradient(135deg, #090d16 0%, #1e3a8a 60%, #0f172a 100%);
         color: #ffffff;
-        padding: 45px 0 35px 0;
+        padding: 32px 0 28px 0;
         position: relative;
         border-bottom: 4px solid #3b82f6;
+        width: 100%;
     }
 
     .badge-kaban-role {

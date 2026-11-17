@@ -9,9 +9,10 @@
         background: radial-gradient(circle at 85% 15%, rgba(185, 28, 28, 0.35), transparent 50%),
                     linear-gradient(135deg, #0f172a 0%, #1e1b4b 45%, #450a0a 100%);
         color: #ffffff;
-        padding: 65px 0 85px;
+        padding: 42px 0 50px;
         position: relative;
         border-bottom: 4px solid #b91c1c;
+        width: 100%;
     }
 
     .wasbang-badge {

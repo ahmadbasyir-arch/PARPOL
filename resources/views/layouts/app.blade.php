@@ -92,27 +92,76 @@
 
         @if(request()->routeIs('wasbang.*'))
         /* ========================================================
-           Khusus Modul Wasbang: Skala Zoom 75%
-           Menyesuaikan agar saat browser zoom 100%, tampilannya
-           proporsional, rapi, dan pas setara zoom 75%.
+           Khusus Modul Wasbang: Layout Proporsional (Tampilan Rapi Setara 75%)
+           Memastikan lebar layar 100% penuh (tidak terpotong di sisi kanan),
+           dengan tipografi, padding, dan komponen yang padat, proporsional,
+           dan pas saat zoom browser berada di angka standar 100%.
            ======================================================== */
-        body.wasbang-scoped {
-            zoom: 0.75;
-            -webkit-text-size-adjust: 100%;
+        html {
+            overflow-x: hidden;
+            width: 100%;
         }
 
-        @supports not (zoom: 1) {
-            body.wasbang-scoped {
-                transform: scale(0.75);
-                transform-origin: top center;
-                width: 133.3333%;
-            }
+        body.wasbang-scoped {
+            width: 100% !important;
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-size: 0.9rem; /* font lebih ringkas & padat */
+            line-height: 1.5;
+            background-color: #f8fafc;
+        }
+
+        body.wasbang-scoped .container {
+            max-width: 1320px;
+            width: 100%;
+        }
+
+        /* Skala heading proporsional tidak terlalu besar saat zoom 100% */
+        body.wasbang-scoped h1 {
+            font-size: 1.85rem !important;
+            line-height: 1.25 !important;
+        }
+
+        body.wasbang-scoped h2 {
+            font-size: 1.55rem !important;
+            line-height: 1.3 !important;
+        }
+
+        body.wasbang-scoped h3 {
+            font-size: 1.3rem !important;
+        }
+
+        body.wasbang-scoped h4 {
+            font-size: 1.15rem !important;
+        }
+
+        body.wasbang-scoped h5 {
+            font-size: 1.05rem !important;
+        }
+
+        body.wasbang-scoped .btn {
+            font-size: 0.85rem;
+            padding: 0.45rem 0.95rem;
+        }
+
+        body.wasbang-scoped .btn-lg {
+            font-size: 0.95rem;
+            padding: 0.65rem 1.4rem;
+        }
+
+        body.wasbang-scoped .card {
+            border-radius: 14px;
+        }
+
+        body.wasbang-scoped .form-control,
+        body.wasbang-scoped .form-select {
+            font-size: 0.88rem;
+            padding: 0.5rem 0.8rem;
         }
 
         @media print {
             body.wasbang-scoped {
-                zoom: 1 !important;
-                transform: none !important;
+                font-size: 10.5pt !important;
                 width: auto !important;
             }
         }
