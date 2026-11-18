@@ -154,12 +154,12 @@
                     <thead class="table-light small text-uppercase text-secondary">
                         <tr>
                             <th class="text-center" style="width: 45px;">No</th>
-                            <th>Partai Politik</th>
-                            <th>Nama Kegiatan / Agenda</th>
-                            <th>Tempat &amp; Waktu</th>
-                            <th class="text-end">Biaya Realisasi</th>
-                            <th class="text-center">Dokumentasi</th>
-                            <th class="text-center">Status</th>
+                            <th style="min-width: 200px;">Partai Politik</th>
+                            <th style="min-width: 220px;">Nama Kegiatan / Agenda</th>
+                            <th style="min-width: 170px;">Tempat &amp; Waktu</th>
+                            <th class="text-end" style="min-width: 130px;">Biaya Realisasi</th>
+                            <th class="text-center" style="min-width: 110px;">Dokumentasi</th>
+                            <th class="text-center" style="min-width: 120px;">Status</th>
                             <th class="text-center" style="width: 150px;">Aksi</th>
                         </tr>
                     </thead>
@@ -167,13 +167,13 @@
                         @forelse ($dikpols as $idx => $item)
                             <tr>
                                 <td class="text-center fw-bold">{{ $idx + 1 }}</td>
-                                <td>
+                                <td style="min-width: 200px;">
                                     <div class="d-flex align-items-center gap-2">
-                                        <div style="width: 32px; height: 32px; border-radius: 6px; background: #ffffff; border: 1px solid #cbd5e1; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 2px;" class="flex-shrink-0">
-                                            <img src="{{ asset($item->parpol->logo) }}?v=16" alt="{{ $item->parpol->akronim }}" style="width: 100%; height: 100%; object-fit: contain;">
+                                        <div class="flex-shrink-0 d-flex align-items-center justify-content-center p-1.5" style="width: 44px; height: 44px; min-width: 44px; min-height: 44px; flex-shrink: 0; aspect-ratio: 1/1; border-radius: 10px; background: #ffffff; border: 1px solid #cbd5e1; overflow: hidden; padding: 4px;">
+                                            <img src="{{ asset($item->parpol->logo) }}?v=16" alt="{{ $item->parpol->akronim }}" style="width: 100%; height: 100%; object-fit: contain; aspect-ratio: 1/1;">
                                         </div>
                                         <div>
-                                            <span class="fw-bold text-dark d-block" style="font-size: 0.88rem;">{{ $item->parpol->akronim }}</span>
+                                            <span class="fw-bold text-dark d-block text-nowrap whitespace-nowrap" style="font-size: 0.88rem; white-space: nowrap;">{{ $item->parpol->akronim }}</span>
                                             <small class="text-muted" style="font-size: 0.72rem;">No. {{ sprintf('%02d', $item->parpol->nomor_urut) }}</small>
                                         </div>
                                     </div>
@@ -182,9 +182,12 @@
                                     <div class="fw-semibold text-dark">{{ $item->nama_kegiatan }}</div>
                                     <span class="text-muted small"><i class="bi bi-people me-1"></i>{{ $item->peserta_jumlah }} Peserta</span>
                                 </td>
-                                <td class="small">
+                                <td class="small" style="min-width: 170px;">
                                     <div><i class="bi bi-geo-alt-fill text-danger me-1"></i>{{ $item->tempat_pelaksanaan ?? 'Kab. Tanah Laut' }}</div>
-                                    <span class="text-muted"><i class="bi bi-calendar3 me-1"></i>{{ $item->tanggal_pelaksanaan }}</span>
+                                    <div class="text-muted text-nowrap whitespace-nowrap d-inline-flex inline-flex align-items-center gap-1.5 mt-0.5" style="white-space: nowrap; gap: 0.375rem;">
+                                        <i class="bi bi-calendar3 flex-shrink-0"></i>
+                                        <span>{{ $item->tanggal_pelaksanaan }}</span>
+                                    </div>
                                 </td>
                                 <td class="text-end fw-bold text-success">
                                     Rp {{ number_format($item->jumlah_biaya, 0, ',', '.') }}

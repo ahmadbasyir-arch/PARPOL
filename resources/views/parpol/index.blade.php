@@ -523,13 +523,13 @@
                                 </td>
 
                                 <!-- PARPOL & LOGO -->
-                                <td class="py-2">
-                                    <div class="d-flex align-items-center gap-2 gap-sm-3" style="min-width: 190px;">
+                                <td class="py-2" style="min-width: 220px;">
+                                    <div class="d-flex align-items-center gap-2 gap-sm-3" style="min-width: 200px;">
                                         <div class="logo-box flex-shrink-0">
                                             <img src="{{ asset($p->logo) }}?v=16" alt="Logo {{ $p->akronim }}">
                                         </div>
                                         <div class="lh-sm">
-                                            <h6 class="fw-bold text-dark mb-0.5 text-break" style="font-size: clamp(0.9rem, 3.5vw, 0.98rem);">{{ $p->akronim }}</h6>
+                                            <h6 class="fw-bold text-dark mb-0.5 text-nowrap whitespace-nowrap" style="font-size: clamp(0.9rem, 3.5vw, 0.98rem); white-space: nowrap;">{{ $p->akronim }}</h6>
                                             <span class="small text-muted d-block" style="font-size: 0.78rem;">{{ $p->nama_partai }}</span>
                                             @if ($p->pendidikanPolitik->count() > 0)
                                                 <div class="mt-1">
@@ -891,10 +891,10 @@
                         <thead class="table-light text-uppercase small text-secondary" style="border-bottom: 2px solid #cbd5e1;">
                             <tr>
                                 <th class="text-center" style="width: 45px;">No</th>
-                                <th style="min-width: 170px;">Partai Politik</th>
+                                <th style="min-width: 200px;">Partai Politik</th>
                                 <th style="min-width: 220px;">Jenis / Nama Kegiatan Dikpol</th>
                                 <th style="min-width: 190px;">Tempat Pelaksanaan</th>
-                                <th style="min-width: 150px;">Tanggal</th>
+                                <th style="min-width: 155px;">Tanggal</th>
                                 <th class="text-center" style="min-width: 110px;">Jumlah Peserta</th>
                                 <th class="text-end" style="min-width: 140px;">Biaya (Rp)</th>
                                 <th class="text-center" style="min-width: 130px;">Dokumentasi</th>
@@ -904,13 +904,13 @@
                             @forelse ($dikpols as $idx => $d)
                                 <tr>
                                     <td class="text-center fw-bold text-secondary">{{ $idx + 1 }}</td>
-                                    <td>
+                                    <td style="min-width: 200px;">
                                         <div class="d-flex align-items-center gap-2">
-                                            <div style="width: 36px; height: 36px; border-radius: 8px; border: 1px solid #cbd5e1; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #ffffff;">
-                                                <img src="{{ asset($d->parpol->logo ?? 'images/parpol/pks.jpg') }}" alt="Logo {{ $d->parpol->akronim ?? 'PKS' }}" style="width: 100%; height: 100%; object-fit: contain; padding: 2px;">
+                                            <div class="flex-shrink-0 d-flex align-items-center justify-content-center p-1.5" style="width: 44px; height: 44px; min-width: 44px; min-height: 44px; flex-shrink: 0; aspect-ratio: 1/1; border-radius: 10px; border: 1px solid #cbd5e1; overflow: hidden; background: #ffffff; padding: 5px;">
+                                                <img src="{{ asset($d->parpol->logo ?? 'images/parpol/pks.jpg') }}" alt="Logo {{ $d->parpol->akronim ?? 'PKS' }}" style="width: 100%; height: 100%; object-fit: contain; aspect-ratio: 1/1;">
                                             </div>
                                             <div>
-                                                <strong class="text-dark d-block">{{ $d->parpol->akronim ?? 'PKS' }}</strong>
+                                                <strong class="text-dark d-block text-nowrap whitespace-nowrap" style="white-space: nowrap;">{{ $d->parpol->akronim ?? 'PKS' }}</strong>
                                                 <span class="text-muted" style="font-size: 0.75rem;">{{ $d->parpol->nama_partai ?? 'Partai Keadilan Sejahtera' }}</span>
                                             </div>
                                         </div>
@@ -926,9 +926,10 @@
                                             <i class="bi bi-geo-alt-fill text-danger me-1"></i> {{ $d->tempat_pelaksanaan ?? 'Kabupaten Tanah Laut' }}
                                         </div>
                                     </td>
-                                    <td>
-                                        <div class="text-dark">
-                                            <i class="bi bi-calendar-event text-primary me-1"></i> {{ $d->tanggal_pelaksanaan }}
+                                    <td style="min-width: 155px;">
+                                        <div class="text-dark text-nowrap whitespace-nowrap d-inline-flex inline-flex align-items-center gap-1.5" style="white-space: nowrap; gap: 0.375rem;">
+                                            <i class="bi bi-calendar-event text-primary flex-shrink-0"></i>
+                                            <span>{{ $d->tanggal_pelaksanaan }}</span>
                                         </div>
                                     </td>
                                     <td class="text-center">
@@ -1476,7 +1477,7 @@
                                                     <tr>
                                                         <th class="text-center" style="width: 45px;">NO</th>
                                                         <th>NAMA PENDIDIKAN POLITIK</th>
-                                                        <th style="min-width: 140px;">TANGGAL</th>
+                                                        <th style="min-width: 155px;">TANGGAL</th>
                                                         <th class="text-center" style="width: 110px;">PESERTA</th>
                                                         <th class="text-end" style="min-width: 130px;">JUMLAH BIAYA</th>
                                                         <th class="text-center" style="min-width: 140px;">DOKUMENTASI</th>
@@ -1492,8 +1493,11 @@
                                                                     <span class="small text-muted">{{ $keg->keterangan }}</span>
                                                                 @endif
                                                             </td>
-                                                            <td>
-                                                                <div><i class="bi bi-calendar3 text-primary me-1"></i> {{ $keg->tanggal_pelaksanaan }}</div>
+                                                            <td style="min-width: 155px;">
+                                                                <div class="text-nowrap whitespace-nowrap d-inline-flex inline-flex align-items-center gap-1.5" style="white-space: nowrap; gap: 0.375rem;">
+                                                                    <i class="bi bi-calendar3 text-primary flex-shrink-0"></i>
+                                                                    <span>{{ $keg->tanggal_pelaksanaan }}</span>
+                                                                </div>
                                                                 @if ($keg->tempat_pelaksanaan)
                                                                     <div class="small text-muted mt-1">
                                                                         <i class="bi bi-geo-alt-fill text-danger me-1"></i> {{ $keg->tempat_pelaksanaan }}

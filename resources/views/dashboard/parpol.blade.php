@@ -203,12 +203,12 @@
                     <thead class="table-light small text-uppercase text-secondary">
                         <tr>
                             <th class="text-center" style="width: 50px;">No</th>
-                            <th>Nama Agenda Dikpol</th>
-                            <th>Tempat Pelaksanaan</th>
-                            <th>Tanggal</th>
-                            <th class="text-center">Peserta</th>
-                            <th class="text-end">Biaya Realisasi</th>
-                            <th class="text-center">Dokumentasi</th>
+                            <th style="min-width: 220px;">Nama Agenda Dikpol</th>
+                            <th style="min-width: 180px;">Tempat Pelaksanaan</th>
+                            <th style="min-width: 155px;">Tanggal</th>
+                            <th class="text-center" style="min-width: 100px;">Peserta</th>
+                            <th class="text-end" style="min-width: 130px;">Biaya Realisasi</th>
+                            <th class="text-center" style="min-width: 110px;">Dokumentasi</th>
                             <th class="text-center" style="width: 140px;">Aksi</th>
                         </tr>
                     </thead>
@@ -227,8 +227,11 @@
                                 <td>
                                     <i class="bi bi-geo-alt text-danger me-1"></i> {{ $keg->tempat_pelaksanaan ?? 'Kabupaten Tanah Laut' }}
                                 </td>
-                                <td>
-                                    <i class="bi bi-calendar-event text-primary me-1"></i> {{ $keg->tanggal_pelaksanaan }}
+                                <td style="min-width: 155px;">
+                                    <div class="text-nowrap whitespace-nowrap d-inline-flex inline-flex align-items-center gap-1.5" style="white-space: nowrap; gap: 0.375rem;">
+                                        <i class="bi bi-calendar-event text-primary flex-shrink-0"></i>
+                                        <span>{{ $keg->tanggal_pelaksanaan }}</span>
+                                    </div>
                                 </td>
                                 <td class="text-center">
                                     <span class="badge bg-secondary rounded-pill px-2 py-1">{{ $keg->peserta_jumlah }} Orang</span>
