@@ -219,7 +219,7 @@
     }
 
     .party-card-body {
-        padding: 14px;
+        padding: 12px 14px 4px 14px;
         flex: 1 1 auto;
         display: flex;
         flex-direction: column;
@@ -228,9 +228,9 @@
     }
 
     .party-card-footer {
-        padding: 10px 16px;
-        background: #f8fafc;
-        border-top: 1px solid #e2e8f0;
+        padding: 4px 14px 12px 14px;
+        background: transparent;
+        border-top: none;
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
         width: 100%;
@@ -238,11 +238,14 @@
     }
 
     @media (max-width: 767.98px) {
-        .party-card-header, .party-card-footer {
+        .party-card-header {
             padding: 8px 12px;
         }
+        .party-card-footer {
+            padding: 4px 12px 10px 12px;
+        }
         .party-card-body {
-            padding: 10px 12px;
+            padding: 10px 12px 4px 12px;
         }
         .logo-card-wrapper {
             width: 58px !important;
@@ -662,8 +665,8 @@
                     <div class="d-flex align-items-center gap-1 small text-muted justify-content-center">
                         <span>Per Hal:</span>
                         <div class="btn-group btn-group-sm" role="group">
-                            <a href="{{ request()->fullUrlWithQuery(['per_page' => 5, 'page' => 1]) }}#tabel-data" class="btn btn-sm {{ request('per_page') == 5 ? 'btn-primary text-white' : 'btn-outline-secondary' }}">5</a>
-                            <a href="{{ request()->fullUrlWithQuery(['per_page' => 10, 'page' => 1]) }}#tabel-data" class="btn btn-sm {{ (request('per_page') == 10 || !request('per_page')) ? 'btn-primary text-white' : 'btn-outline-secondary' }}">10</a>
+                            <a href="{{ request()->fullUrlWithQuery(['per_page' => 6, 'page' => 1]) }}#tabel-data" class="btn btn-sm {{ request('per_page') == 6 ? 'btn-primary text-white' : 'btn-outline-secondary' }}">6</a>
+                            <a href="{{ request()->fullUrlWithQuery(['per_page' => 9, 'page' => 1]) }}#tabel-data" class="btn btn-sm {{ (request('per_page') == 9 || !request('per_page')) ? 'btn-primary text-white' : 'btn-outline-secondary' }}">9</a>
                             <a href="{{ request()->fullUrlWithQuery(['per_page' => 20, 'page' => 1]) }}#tabel-data" class="btn btn-sm {{ request('per_page') == 20 ? 'btn-primary text-white' : 'btn-outline-secondary' }}">Semua</a>
                         </div>
                     </div>
@@ -718,33 +721,33 @@
                                     </div>
                                 @endif
 
-                                <div class="text-start p-2.5 rounded-3 bg-light border small mb-2 mt-auto">
-                                    <div class="mb-1 text-break">
+                                <div class="text-start p-2 rounded-3 bg-light border small mb-1.5 mt-auto">
+                                    <div class="mb-0.5 text-break">
                                         <span class="text-muted">Ketua:</span> <strong class="text-dark">{{ $p->ketua }}</strong>
                                     </div>
-                                    <div class="mb-1 text-break">
+                                    <div class="mb-0.5 text-break">
                                         <span class="text-muted">Sekretaris:</span> <strong class="text-dark">{{ $p->sekretaris }}</strong>
                                     </div>
-                                    <div class="mb-1 text-break">
+                                    <div class="mb-0.5 text-break">
                                         <span class="text-muted">Bendahara:</span> <strong class="text-dark">{{ $p->bendahara }}</strong>
                                     </div>
                                     <div class="mb-0 text-break">
                                         <span class="text-muted">LO:</span> <strong class="text-primary">{{ $p->lo_nama }}</strong>
                                         @if ($p->lo_hp)
-                                            <div class="text-dark mt-1">
+                                            <div class="text-dark mt-0.5">
                                                 <i class="bi bi-telephone-fill text-secondary me-1"></i> <span class="fw-semibold">{{ $p->lo_hp }}</span>
                                             </div>
                                         @endif
                                     </div>
                                 </div>
 
-                                <div class="text-start small text-secondary">
+                                <div class="text-start small text-secondary lh-sm mb-1" style="font-size: 0.76rem;">
                                     <i class="bi bi-geo-alt-fill text-danger me-1"></i> {{ Str::limit($p->alamat, 75) }}
                                 </div>
                             </div>
 
                             <div class="party-card-footer">
-                                <button class="btn {{ ($p->pendidikanPolitik->count() > 0 || !empty($p->visi) || !empty($p->misi)) ? 'btn-primary' : 'btn-outline-primary' }} btn-sm w-100" data-bs-toggle="modal" data-bs-target="#modalParpol{{ $p->id }}">
+                                <button class="btn {{ ($p->pendidikanPolitik->count() > 0 || !empty($p->visi) || !empty($p->misi)) ? 'btn-primary' : 'btn-outline-primary' }} btn-sm w-100 py-1.5" data-bs-toggle="modal" data-bs-target="#modalParpol{{ $p->id }}">
                                     <i class="bi bi-info-circle me-1"></i> {{ $p->pendidikanPolitik->count() > 0 ? 'Rincian & Dikpol' : (!empty($p->visi) || !empty($p->misi) ? 'Rincian & Visi-Misi' : 'Rincian SK & Profil') }}
                                 </button>
                             </div>
@@ -755,10 +758,10 @@
 
             <!-- Navigasi Halaman Pagination (Galeri) -->
             @if ($parpols->hasPages())
-                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 p-3 mt-4 bg-light border rounded-4 shadow-sm">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 p-2.5 p-md-3 mt-2 mt-md-2.5 bg-white border rounded-4 shadow-sm" style="margin-top: 10px !important;">
                     <div class="text-muted small text-center text-md-start">
                         Menampilkan <strong class="text-dark">{{ $parpols->firstItem() }}</strong> - <strong class="text-dark">{{ $parpols->lastItem() }}</strong> dari <strong class="text-dark">{{ $parpols->total() }}</strong> Partai Politik
-                        <span class="badge bg-white text-secondary border ms-1">Halaman {{ $parpols->currentPage() }} dari {{ $parpols->lastPage() }}</span>
+                        <span class="badge bg-light text-secondary border ms-1">Halaman {{ $parpols->currentPage() }} dari {{ $parpols->lastPage() }}</span>
                     </div>
 
                     <nav aria-label="Navigasi Galeri Parpol" class="w-100 w-md-auto">
@@ -807,8 +810,8 @@
                     <div class="d-flex align-items-center gap-1 small text-muted justify-content-center">
                         <span>Per Hal:</span>
                         <div class="btn-group btn-group-sm" role="group">
-                            <a href="{{ request()->fullUrlWithQuery(['per_page' => 5, 'page' => 1]) }}#galeri-partai" class="btn btn-sm {{ request('per_page') == 5 ? 'btn-primary text-white' : 'btn-outline-secondary' }}">5</a>
-                            <a href="{{ request()->fullUrlWithQuery(['per_page' => 10, 'page' => 1]) }}#galeri-partai" class="btn btn-sm {{ (request('per_page') == 10 || !request('per_page')) ? 'btn-primary text-white' : 'btn-outline-secondary' }}">10</a>
+                            <a href="{{ request()->fullUrlWithQuery(['per_page' => 6, 'page' => 1]) }}#galeri-partai" class="btn btn-sm {{ request('per_page') == 6 ? 'btn-primary text-white' : 'btn-outline-secondary' }}">6</a>
+                            <a href="{{ request()->fullUrlWithQuery(['per_page' => 9, 'page' => 1]) }}#galeri-partai" class="btn btn-sm {{ (request('per_page') == 9 || !request('per_page')) ? 'btn-primary text-white' : 'btn-outline-secondary' }}">9</a>
                             <a href="{{ request()->fullUrlWithQuery(['per_page' => 20, 'page' => 1]) }}#galeri-partai" class="btn btn-sm {{ request('per_page') == 20 ? 'btn-primary text-white' : 'btn-outline-secondary' }}">Semua</a>
                         </div>
                     </div>

@@ -43,10 +43,10 @@ class ParpolController extends Controller
             $query->where('kecamatan', $request->kecamatan);
         }
 
-        // Pagination (default 10 partai per halaman, opsi 5 atau 10)
-        $perPage = (int) $request->input('per_page', 10);
-        if (!in_array($perPage, [5, 10, 20])) {
-            $perPage = 10;
+        // Pagination (default 9 partai per halaman agar pas dengan grid 3 kolom, opsi 6 | 9 | 20)
+        $perPage = (int) $request->input('per_page', 9);
+        if (!in_array($perPage, [6, 9, 20])) {
+            $perPage = 9;
         }
 
         $parpols = $query->orderBy('nomor_urut')->paginate($perPage)->withQueryString();
