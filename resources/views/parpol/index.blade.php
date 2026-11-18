@@ -427,9 +427,6 @@
                         <a href="#galeri-partai" class="btn btn-outline-light btn-lg fw-semibold px-3 px-sm-4 rounded-3 text-center">
                             <i class="bi bi-grid-3x3-gap me-2"></i> Direktori Kartu & Logo
                         </a>
-                        <a href="{{ route('parpol.cetak') }}" target="_blank" class="btn btn-warning btn-lg fw-bold text-dark px-3 px-sm-4 rounded-3 shadow-sm text-center">
-                            <i class="bi bi-printer-fill me-2"></i> Cetak Laporan A4
-                        </a>
                     </div>
                 </div>
 
