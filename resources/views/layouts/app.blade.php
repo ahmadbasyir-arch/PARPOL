@@ -756,12 +756,8 @@
                     </a>
                 </div>
                 <div class="col-md-6 text-end">
-                    <a href="{{ route('wasbang.index') }}" class="fw-semibold text-warning text-decoration-none me-3">
+                    <a href="{{ route('wasbang.index') }}" class="fw-semibold text-warning text-decoration-none">
                         <i class="bi bi-flag-fill me-1"></i> Layanan WASBANG
-                    </a>
-                    <span class="mx-1 text-muted">|</span>
-                    <a href="{{ route('parpol.cetak') }}" target="_blank" class="fw-semibold text-white text-decoration-none">
-                        <i class="bi bi-printer me-1"></i> Cetak Dokumen
                     </a>
                 </div>
             </div>
@@ -927,7 +923,7 @@
                         </a>
                     @else
                         <a class="btn-parpol text-decoration-none d-flex align-items-center justify-content-center" href="{{ route('parpol.cetak') }}" target="_blank" title="Cetak Dokumen Resmi">
-                            <i class="bi bi-printer-fill me-1"></i> <span class="d-none d-xxl-inline">Cetak Dokumen</span><span class="d-inline d-xxl-none">Cetak</span>
+                            <i class="bi bi-printer-fill me-1"></i> Cetak Dokumen
                         </a>
                     @endif
                     
