@@ -649,18 +649,18 @@
                         <span class="badge bg-light text-secondary border ms-1">Halaman {{ $parpols->currentPage() }} dari {{ $parpols->lastPage() }}</span>
                     </div>
 
-                    <nav aria-label="Navigasi Halaman Parpol" class="w-100 w-md-auto">
-                        <ul class="pagination pagination-sm pagination-custom justify-content-center justify-content-md-end mb-0 gap-1 flex-nowrap align-items-center">
+                    <nav aria-label="Navigasi Halaman Parpol" class="w-100 w-md-auto d-flex justify-content-center">
+                        <ul class="pagination pagination-sm pagination-custom mb-0 align-items-center justify-content-center justify-content-md-end" style="display: flex !important; flex-wrap: nowrap !important; gap: 4px !important; margin: 0 auto !important;">
                             {{-- Tombol Sebelumnya --}}
                             @if ($parpols->onFirstPage())
-                                <li class="page-item disabled">
-                                    <span class="page-link rounded-pill fw-semibold text-muted bg-light border">
+                                <li class="page-item disabled" style="flex-shrink: 0 !important;">
+                                    <span class="page-link rounded-pill fw-semibold text-muted bg-light border" style="font-size: 0.72rem !important; padding: 4px 8px !important; white-space: nowrap !important;">
                                         <i class="bi bi-chevron-left me-0.5"></i> Sebelumnya
                                     </span>
                                 </li>
                             @else
-                                <li class="page-item">
-                                    <a class="page-link rounded-pill fw-semibold border text-primary bg-white" href="{{ $parpols->previousPageUrl() }}#tabel-data">
+                                <li class="page-item" style="flex-shrink: 0 !important;">
+                                    <a class="page-link rounded-pill fw-semibold border text-primary bg-white" href="{{ $parpols->previousPageUrl() }}#tabel-data" style="font-size: 0.72rem !important; padding: 4px 8px !important; white-space: nowrap !important;">
                                         <i class="bi bi-chevron-left me-0.5"></i> Sebelumnya
                                     </a>
                                 </li>
@@ -668,8 +668,8 @@
 
                             {{-- Nomor Halaman --}}
                             @foreach ($parpols->getUrlRange(1, $parpols->lastPage()) as $page => $url)
-                                <li class="page-item {{ $page == $parpols->currentPage() ? 'active' : '' }}">
-                                    <a class="page-link page-link-num rounded-circle fw-bold border text-center" href="{{ $url }}#tabel-data">
+                                <li class="page-item {{ $page == $parpols->currentPage() ? 'active' : '' }}" style="flex-shrink: 0 !important;">
+                                    <a class="page-link page-link-num rounded-circle fw-bold border text-center" href="{{ $url }}#tabel-data" style="width: 28px !important; height: 28px !important; min-width: 28px !important; min-height: 28px !important; padding: 0 !important; font-size: 0.75rem !important; display: inline-flex !important; align-items: center !important; justify-content: center !important;">
                                         {{ $page }}
                                     </a>
                                 </li>
@@ -677,14 +677,14 @@
 
                             {{-- Tombol Selanjutnya --}}
                             @if ($parpols->hasMorePages())
-                                <li class="page-item">
-                                    <a class="page-link rounded-pill fw-semibold border text-primary bg-white" href="{{ $parpols->nextPageUrl() }}#tabel-data">
+                                <li class="page-item" style="flex-shrink: 0 !important;">
+                                    <a class="page-link rounded-pill fw-semibold border text-primary bg-white" href="{{ $parpols->nextPageUrl() }}#tabel-data" style="font-size: 0.72rem !important; padding: 4px 8px !important; white-space: nowrap !important;">
                                         Selanjutnya <i class="bi bi-chevron-right ms-0.5"></i>
                                     </a>
                                 </li>
                             @else
-                                <li class="page-item disabled">
-                                    <span class="page-link rounded-pill fw-semibold text-muted bg-light border">
+                                <li class="page-item disabled" style="flex-shrink: 0 !important;">
+                                    <span class="page-link rounded-pill fw-semibold text-muted bg-light border" style="font-size: 0.72rem !important; padding: 4px 8px !important; white-space: nowrap !important;">
                                         Selanjutnya <i class="bi bi-chevron-right ms-0.5"></i>
                                     </span>
                                 </li>
@@ -795,18 +795,18 @@
                         <span class="badge bg-light text-secondary border ms-1">Halaman {{ $parpols->currentPage() }} dari {{ $parpols->lastPage() }}</span>
                     </div>
 
-                    <nav aria-label="Navigasi Galeri Parpol" class="w-100 w-md-auto">
-                        <ul class="pagination pagination-sm pagination-custom justify-content-center justify-content-md-end mb-0 gap-1 flex-nowrap align-items-center">
+                    <nav aria-label="Navigasi Galeri Parpol" class="w-100 w-md-auto d-flex justify-content-center">
+                        <ul class="pagination pagination-sm pagination-custom mb-0 align-items-center justify-content-center justify-content-md-end" style="display: flex !important; flex-wrap: nowrap !important; gap: 4px !important; margin: 0 auto !important;">
                             {{-- Tombol Sebelumnya --}}
                             @if ($parpols->onFirstPage())
-                                <li class="page-item disabled">
-                                    <span class="page-link rounded-pill fw-semibold text-muted bg-white border">
+                                <li class="page-item disabled" style="flex-shrink: 0 !important;">
+                                    <span class="page-link rounded-pill fw-semibold text-muted bg-white border" style="font-size: 0.72rem !important; padding: 4px 8px !important; white-space: nowrap !important;">
                                         <i class="bi bi-chevron-left me-0.5"></i> Sebelumnya
                                     </span>
                                 </li>
                             @else
-                                <li class="page-item">
-                                    <a class="page-link rounded-pill fw-semibold border text-primary bg-white" href="{{ $parpols->previousPageUrl() }}#galeri-partai">
+                                <li class="page-item" style="flex-shrink: 0 !important;">
+                                    <a class="page-link rounded-pill fw-semibold border text-primary bg-white" href="{{ $parpols->previousPageUrl() }}#galeri-partai" style="font-size: 0.72rem !important; padding: 4px 8px !important; white-space: nowrap !important;">
                                         <i class="bi bi-chevron-left me-0.5"></i> Sebelumnya
                                     </a>
                                 </li>
@@ -814,8 +814,8 @@
 
                             {{-- Nomor Halaman --}}
                             @foreach ($parpols->getUrlRange(1, $parpols->lastPage()) as $page => $url)
-                                <li class="page-item {{ $page == $parpols->currentPage() ? 'active' : '' }}">
-                                    <a class="page-link page-link-num rounded-circle fw-bold border text-center" href="{{ $url }}#galeri-partai">
+                                <li class="page-item {{ $page == $parpols->currentPage() ? 'active' : '' }}" style="flex-shrink: 0 !important;">
+                                    <a class="page-link page-link-num rounded-circle fw-bold border text-center" href="{{ $url }}#galeri-partai" style="width: 28px !important; height: 28px !important; min-width: 28px !important; min-height: 28px !important; padding: 0 !important; font-size: 0.75rem !important; display: inline-flex !important; align-items: center !important; justify-content: center !important;">
                                         {{ $page }}
                                     </a>
                                 </li>
@@ -823,14 +823,14 @@
 
                             {{-- Tombol Selanjutnya --}}
                             @if ($parpols->hasMorePages())
-                                <li class="page-item">
-                                    <a class="page-link rounded-pill fw-semibold border text-primary bg-white" href="{{ $parpols->nextPageUrl() }}#galeri-partai">
+                                <li class="page-item" style="flex-shrink: 0 !important;">
+                                    <a class="page-link rounded-pill fw-semibold border text-primary bg-white" href="{{ $parpols->nextPageUrl() }}#galeri-partai" style="font-size: 0.72rem !important; padding: 4px 8px !important; white-space: nowrap !important;">
                                         Selanjutnya <i class="bi bi-chevron-right ms-0.5"></i>
                                     </a>
                                 </li>
                             @else
-                                <li class="page-item disabled">
-                                    <span class="page-link rounded-pill fw-semibold text-muted bg-white border">
+                                <li class="page-item disabled" style="flex-shrink: 0 !important;">
+                                    <span class="page-link rounded-pill fw-semibold text-muted bg-white border" style="font-size: 0.72rem !important; padding: 4px 8px !important; white-space: nowrap !important;">
                                         Selanjutnya <i class="bi bi-chevron-right ms-0.5"></i>
                                     </span>
                                 </li>
