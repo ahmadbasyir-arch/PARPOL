@@ -52,11 +52,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 30px 12px 50px 12px;
+            padding: 32px 0 52px 0;
             background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(15, 23, 42, 0.94) 100%), url('{{ asset('images/bakesbangpol-bg.jpg') }}');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            width: 100%;
+            overflow-x: hidden;
         }
 
         /* Gold Badge */
@@ -80,9 +82,14 @@
             background: #ffffff;
             border-radius: 20px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            padding: 20px 16px;
+            padding: 22px 18px;
             margin-top: 20px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            overflow: hidden;
         }
 
         @media (min-width: 768px) {
@@ -246,7 +253,7 @@
 
     <!-- Hero Portal Bakesbangpol -->
     <main class="portal-hero">
-        <div class="container" style="max-width: 1020px;">
+        <div class="container px-4" style="max-width: 1020px;">
             
             <!-- Judul & Logo Tengah -->
             <div class="text-center text-white mb-4">
@@ -273,17 +280,21 @@
             </div>
 
             <!-- Wadah Pilihan Layanan Bidang -->
-            <div class="portal-card-container">
-                <div class="d-flex flex-wrap align-items-center justify-content-between mb-4 pb-2 border-bottom">
-                    <div>
-                        <h5 class="fw-bold text-dark mb-1">
-                            <i class="bi bi-grid-fill text-primary me-2"></i>Pilih Layanan Bidang
+            <div class="portal-card-container w-100 mx-auto">
+                <div class="d-flex flex-column flex-md-row align-items-center justify-content-between text-center text-md-start mb-4 pb-3 border-bottom gap-2 gap-md-3">
+                    <div class="order-2 order-md-1 text-center text-md-start">
+                        <h5 class="fw-bold text-dark mb-1 d-flex align-items-center justify-content-center justify-content-md-start gap-2 fs-5">
+                            <i class="bi bi-grid-fill text-primary"></i>
+                            <span>Pilih Layanan Bidang</span>
                         </h5>
-                        <p class="text-muted small mb-0">Silakan pilih bidang yang ingin Anda akses atau kelola datanya:</p>
+                        <p class="text-muted small mb-0 text-center text-md-start">Silakan pilih bidang yang ingin Anda akses atau kelola datanya:</p>
                     </div>
-                    <span class="badge bg-light text-secondary border px-3 py-2 rounded-pill small">
-                        T.A. 2026 Terintegrasi
-                    </span>
+                    <div class="order-1 order-md-2 mb-2 mb-md-0 text-center text-md-end">
+                        <span class="badge bg-light text-secondary border px-3 py-1.5 rounded-pill small fw-semibold d-inline-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill text-success"></i>
+                            <span>T.A. 2026 Terintegrasi</span>
+                        </span>
+                    </div>
                 </div>
 
                 <div class="row g-3">
