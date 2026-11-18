@@ -1352,22 +1352,22 @@
                                     <!-- Tab 2: Visi & Misi Partai -->
                                     <div class="tab-pane fade" id="visimisi-content{{ $p->id }}" role="tabpanel" aria-labelledby="visimisi-tab{{ $p->id }}">
                                         <!-- Banner Header Visi Misi (Responsif Mobile) -->
-                                        <div class="p-3 p-sm-4 mb-4 rounded-3 text-white d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-3 shadow-sm overflow-hidden" style="background: linear-gradient(135deg, #0f2b48 0%, #064e3b 100%);">
-                                            <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3 w-100 flex-grow-1 min-w-0">
+                                        <div class="p-3 p-sm-4 mb-4 rounded-3 text-white d-flex flex-column flex-sm-row align-items-center align-items-sm-center justify-content-between gap-3 shadow-sm overflow-hidden text-center text-sm-start" style="background: linear-gradient(135deg, #0f2b48 0%, #064e3b 100%);">
+                                            <div class="d-flex flex-column flex-sm-row align-items-center align-items-sm-center gap-3 w-100 flex-grow-1 min-w-0 text-center text-sm-start">
                                                 <!-- Wadah Persegi Logo di Tengah (mx-auto di Mobile) -->
                                                 <div class="modal-banner-logo mx-auto mx-sm-0 shadow-sm">
                                                     <img src="{{ asset($p->logo) }}?v=16" alt="Logo {{ $p->akronim }}">
                                                 </div>
-                                                <div class="flex-grow-1 min-w-0 w-100">
-                                                    <span class="badge bg-warning text-dark fw-bold text-uppercase px-2.5 py-1 mb-2 text-wrap text-start lh-base d-inline-block" style="font-size: 0.72rem; white-space: normal; word-break: break-word;">
+                                                <div class="flex-grow-1 min-w-0 w-100 text-center text-sm-start">
+                                                    <span class="badge bg-warning text-dark fw-bold text-uppercase px-2.5 py-1 mb-2 text-wrap lh-base d-inline-block" style="font-size: 0.72rem; white-space: normal; word-break: break-word;">
                                                         <i class="bi bi-compass-fill me-1 d-none d-md-inline-block"></i> Landasan Ideologi &amp; Cita-Cita Politik
                                                     </span>
-                                                    <h5 class="fw-bold mb-1 fs-5 fs-sm-4 text-wrap text-break lh-sm text-white">Visi &amp; Misi Resmi {{ $p->nama_partai }} ({{ $p->akronim }})</h5>
-                                                    <div class="small opacity-75 text-wrap text-break">Nomor Urut {{ $p->nomor_urut }} &bull; DPD Kabupaten Tanah Laut</div>
+                                                    <h5 class="fw-bold mb-1 fs-5 fs-sm-4 text-wrap text-break lh-sm text-white text-center text-sm-start">Visi &amp; Misi Resmi {{ $p->nama_partai }} ({{ $p->akronim }})</h5>
+                                                    <div class="small opacity-75 text-wrap text-break text-center text-sm-start">Nomor Urut {{ $p->nomor_urut }} &bull; DPD Kabupaten Tanah Laut</div>
                                                 </div>
                                             </div>
-                                            <div class="w-100 w-sm-auto text-start text-sm-end flex-shrink-0 mt-1 mt-sm-0">
-                                                <span class="badge bg-light text-dark px-3 py-2 fw-semibold text-wrap text-start lh-base" style="font-size: 0.78rem; white-space: normal;">
+                                            <div class="w-100 w-sm-auto text-center text-sm-end flex-shrink-0 mt-1 mt-sm-0">
+                                                <span class="badge bg-light text-dark px-3 py-2 fw-semibold text-wrap lh-base d-inline-block" style="font-size: 0.78rem; white-space: normal;">
                                                     <i class="bi bi-check-circle-fill text-success me-1"></i> Dokumen AD/ART Resmi
                                                 </span>
                                             </div>
@@ -1423,16 +1423,16 @@
                                     <!-- Tab 3: Realisasi Pendidikan Politik -->
                                     <div class="tab-pane fade" id="dikpol-content{{ $p->id }}" role="tabpanel" aria-labelledby="dikpol-tab{{ $p->id }}">
                                         <!-- Banner Header Laporan (Responsif Mobile) -->
-                                        <div class="p-3 p-sm-4 mb-4 rounded-3 text-white d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-3 shadow-sm overflow-hidden" style="background: linear-gradient(135deg, #1e3a8a, #0f172a);">
-                                            <div class="flex-grow-1 min-w-0 w-100">
-                                                <span class="badge bg-warning text-dark fw-bold text-uppercase px-2.5 py-1 mb-2 text-wrap text-start lh-base d-inline-block" style="font-size: 0.72rem; white-space: normal; word-break: break-word;">
+                                        <div class="p-3 p-sm-4 mb-4 rounded-3 text-white d-flex flex-column flex-sm-row align-items-center align-items-sm-center justify-content-between gap-3 shadow-sm overflow-hidden text-center text-sm-start" style="background: linear-gradient(135deg, #1e3a8a, #0f172a);">
+                                            <div class="flex-grow-1 min-w-0 w-100 text-center text-sm-start">
+                                                <span class="badge bg-warning text-dark fw-bold text-uppercase px-2.5 py-1 mb-2 text-wrap lh-base d-inline-block" style="font-size: 0.72rem; white-space: normal; word-break: break-word;">
                                                     <i class="bi bi-file-earmark-bar-graph-fill me-1 d-none d-md-inline-block"></i> Bantuan Keuangan Parpol (Banpol) T.A. 2026
                                                 </span>
-                                                <h5 class="fw-bold mb-1 fs-5 fs-sm-4 text-wrap text-break lh-sm text-white">Realisasi Pendidikan Politik DPD {{ $p->akronim }}</h5>
-                                                <div class="small opacity-75 text-wrap text-break">Periode Pelaksanaan: <strong>Januari s.d. Agustus T.A. 2026</strong> &bull; Kabupaten Tanah Laut</div>
+                                                <h5 class="fw-bold mb-1 fs-5 fs-sm-4 text-wrap text-break lh-sm text-white text-center text-sm-start">Realisasi Pendidikan Politik DPD {{ $p->akronim }}</h5>
+                                                <div class="small opacity-75 text-wrap text-break text-center text-sm-start">Periode Pelaksanaan: <strong>Januari s.d. Agustus T.A. 2026</strong> &bull; Kabupaten Tanah Laut</div>
                                             </div>
-                                            <div class="w-100 w-sm-auto text-start text-sm-end flex-shrink-0 mt-1 mt-sm-0">
-                                                <span class="badge bg-success bg-opacity-25 border border-success text-white px-3 py-2 small fw-semibold text-wrap text-start lh-base" style="white-space: normal;">
+                                            <div class="w-100 w-sm-auto text-center text-sm-end flex-shrink-0 mt-1 mt-sm-0">
+                                                <span class="badge bg-success bg-opacity-25 border border-success text-white px-3 py-2 small fw-semibold text-wrap lh-base d-inline-block" style="white-space: normal;">
                                                     <i class="bi bi-check2-circle me-1"></i> 100% Selesai Dilaporkan
                                                 </span>
                                             </div>

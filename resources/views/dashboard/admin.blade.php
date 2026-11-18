@@ -353,13 +353,13 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4">
-                    <div class="d-flex align-items-center gap-3 mb-3 p-3 bg-light rounded-3 border">
-                        <div style="width: 44px; height: 44px; border-radius: 8px; background: #ffffff; border: 1px solid #cbd5e1; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 2px;" class="flex-shrink-0">
+                    <div class="d-flex flex-column flex-sm-row align-items-center gap-3 mb-3 p-3 bg-light rounded-3 border text-center text-sm-start">
+                        <div style="width: 48px; height: 48px; border-radius: 10px; background: #ffffff; border: 1px solid #cbd5e1; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 2px; aspect-ratio: 1/1;" class="flex-shrink-0 mx-auto mx-sm-0">
                             <img src="{{ asset($item->parpol->logo) }}?v=16" alt="{{ $item->parpol->akronim }}" style="width: 100%; height: 100%; object-fit: contain;">
                         </div>
-                        <div>
-                            <span class="badge bg-warning text-dark text-uppercase small fw-bold">Nomor Urut {{ sprintf('%02d', $item->parpol->nomor_urut) }}</span>
-                            <h6 class="fw-bold mb-0 text-dark">{{ $item->parpol->nama_partai }} ({{ $item->parpol->akronim }})</h6>
+                        <div class="text-center text-sm-start flex-grow-1 min-w-0">
+                            <span class="badge bg-warning text-dark text-uppercase small fw-bold d-inline-block">Nomor Urut {{ sprintf('%02d', $item->parpol->nomor_urut) }}</span>
+                            <h6 class="fw-bold mb-0 text-dark text-break text-center text-sm-start">{{ $item->parpol->nama_partai }} ({{ $item->parpol->akronim }})</h6>
                         </div>
                     </div>
 

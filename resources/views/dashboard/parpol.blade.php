@@ -9,20 +9,23 @@
         <!-- Welcome Banner Partai -->
         <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden" style="background: linear-gradient(135deg, #1e293b 0%, #0f766e 100%);">
             <div class="card-body p-3 p-sm-4 p-md-5 text-white">
-                <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3">
-                    <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3 flex-grow-1 min-w-0">
-                        <div class="shadow-sm flex-shrink-0" style="width: 72px; height: 72px; background: #ffffff; border-radius: 14px; border: 2px solid rgba(255, 255, 255, 0.4); display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 4px;">
-                            <img src="{{ asset($parpol->logo) }}?v=16" alt="{{ $parpol->akronim }}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                <div class="d-flex flex-column flex-md-row align-items-center align-items-md-center justify-content-between gap-3 text-center text-md-start">
+                    <div class="d-flex flex-column flex-md-row align-items-center align-items-md-center gap-3 flex-grow-1 min-w-0 w-100">
+                        <!-- Kotak Logo Pas di Tengah (mx-auto di Mobile, mx-md-0 di Desktop) -->
+                        <div class="shadow-sm flex-shrink-0 mx-auto mx-md-0 mb-1 mb-md-0" style="width: 78px; height: 78px; background: #ffffff; border-radius: 16px; border: 2px solid rgba(255, 255, 255, 0.4); display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 6px; aspect-ratio: 1/1;">
+                            <img src="{{ asset($parpol->logo) }}?v=16" alt="{{ $parpol->akronim }}" style="width: 100%; height: 100%; object-fit: contain; aspect-ratio: 1/1; border-radius: 10px;">
                         </div>
-                        <div class="flex-grow-1 min-w-0">
-                            <span class="badge bg-warning text-dark text-uppercase px-2.5 py-1 mb-2 fw-bold text-wrap text-start lh-base" style="font-size: 0.75rem; white-space: normal;">Nomor Urut {{ sprintf('%02d', $parpol->nomor_urut) }} &bull; Pengurus DPC/DPD</span>
-                            <h3 class="fw-bold mb-1 fs-4 fs-md-3 text-break">{{ $parpol->nama_partai }} ({{ $parpol->akronim }})</h3>
-                            <p class="text-white-50 mb-0 small text-break">
+                        <!-- Teks Identitas Rata Tengah di Mobile, Rata Kiri di Desktop -->
+                        <div class="flex-grow-1 min-w-0 w-100 text-center text-md-start">
+                            <span class="badge bg-warning text-dark text-uppercase px-3 py-1.5 mb-2 fw-bold text-wrap lh-base d-inline-block" style="font-size: 0.75rem; white-space: normal;">Nomor Urut {{ sprintf('%02d', $parpol->nomor_urut) }} &bull; Pengurus DPC/DPD</span>
+                            <h3 class="fw-bold mb-1 fs-4 fs-md-3 text-break text-center text-md-start text-white">{{ $parpol->nama_partai }} ({{ $parpol->akronim }})</h3>
+                            <p class="text-white-50 mb-0 small text-break text-center text-md-start">
                                 <i class="bi bi-geo-alt me-1"></i> {{ $parpol->alamat }}, Kec. {{ $parpol->kecamatan }} &bull; Akun: <strong>{{ $user->email }}</strong>
                             </p>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center gap-2 mt-2 mt-md-0 w-100 w-md-auto justify-content-start justify-content-md-end flex-shrink-0">
+                    <!-- Tombol Aksi Simetris di Mobile, Kanan di Desktop -->
+                    <div class="d-flex align-items-center justify-content-center justify-content-md-end gap-2 mt-2 mt-md-0 w-100 w-md-auto flex-shrink-0">
                         <a href="{{ route('parpol.home') }}" class="btn btn-outline-light btn-sm rounded-pill px-3 py-2 flex-fill flex-md-grow-0 text-center fw-semibold">
                             <i class="bi bi-eye me-1"></i> Portal Publik
                         </a>
